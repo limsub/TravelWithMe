@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
+		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
+		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
+		487786162B0B29F70091661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 487786152B0B29F70091661F /* Assets.xcassets */; };
+		487786192B0B29F70091661F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 487786172B0B29F70091661F /* LaunchScreen.storyboard */; };
+		487786252B0B2A820091661F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786242B0B2A820091661F /* SignUpViewController.swift */; };
+		487786282B0B2AA50091661F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786272B0B2AA50091661F /* BaseViewController.swift */; };
+		4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786292B0B2CEF0091661F /* BaseView.swift */; };
+		4877862D2B0B2F5A0091661F /* SignUpSmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877862C2B0B2F5A0091661F /* SignUpSmallLabel.swift */; };
+		487786302B0B309F0091661F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4877862F2B0B309F0091661F /* SnapKit */; };
+		487786322B0B31730091661F /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786312B0B31730091661F /* SignUpTextField.swift */; };
+		487786352B0B32A50091661F /* ConstantColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786342B0B32A50091661F /* ConstantColor.swift */; };
+		487786382B0B32B10091661F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786372B0B32B10091661F /* UIColor+Extension.swift */; };
+		4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877863A2B0B35A20091661F /* SignUpSmallButton.swift */; };
+		4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877863C2B0B378C0091661F /* SignUpGenderSegmentControl.swift */; };
+		4877863F2B0B3ADA0091661F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877863E2B0B3ADA0091661F /* SignUpView.swift */; };
+		487786412B0B43AD0091661F /* SignUpCompleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786402B0B43AD0091661F /* SignUpCompleteButton.swift */; };
+		487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786432B0B47C30091661F /* MakeTourViewController.swift */; };
+		487786462B0B47D30091661F /* MakeTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786452B0B47D30091661F /* MakeTourView.swift */; };
+		487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786482B0B4A330091661F /* MakeTourTextView.swift */; };
+		4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		487786102B0B29F60091661F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		487786152B0B29F70091661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		487786182B0B29F70091661F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4877861A2B0B29F70091661F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		487786242B0B2A820091661F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		487786272B0B2AA50091661F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		487786292B0B2CEF0091661F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		4877862C2B0B2F5A0091661F /* SignUpSmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSmallLabel.swift; sourceTree = "<group>"; };
+		487786312B0B31730091661F /* SignUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
+		487786342B0B32A50091661F /* ConstantColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantColor.swift; sourceTree = "<group>"; };
+		487786372B0B32B10091661F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		4877863A2B0B35A20091661F /* SignUpSmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSmallButton.swift; sourceTree = "<group>"; };
+		4877863C2B0B378C0091661F /* SignUpGenderSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderSegmentControl.swift; sourceTree = "<group>"; };
+		4877863E2B0B3ADA0091661F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		487786402B0B43AD0091661F /* SignUpCompleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteButton.swift; sourceTree = "<group>"; };
+		487786432B0B47C30091661F /* MakeTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourViewController.swift; sourceTree = "<group>"; };
+		487786452B0B47D30091661F /* MakeTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourView.swift; sourceTree = "<group>"; };
+		487786482B0B4A330091661F /* MakeTourTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourTextView.swift; sourceTree = "<group>"; };
+		4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPeopleCountView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		487786062B0B29F60091661F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				487786302B0B309F0091661F /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		487786002B0B29F60091661F = {
+			isa = PBXGroup;
+			children = (
+				4877860B2B0B29F60091661F /* TravelWithMe */,
+				4877860A2B0B29F60091661F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4877860A2B0B29F60091661F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				487786092B0B29F60091661F /* TravelWithMe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4877860B2B0B29F60091661F /* TravelWithMe */ = {
+			isa = PBXGroup;
+			children = (
+				487786362B0B32A90091661F /* Extension */,
+				487786332B0B32200091661F /* Constant */,
+				4877862B2B0B2E430091661F /* CustomView */,
+				487786262B0B2A9C0091661F /* Base */,
+				487786202B0B2A690091661F /* Scene */,
+				4877860C2B0B29F60091661F /* AppDelegate.swift */,
+				4877860E2B0B29F60091661F /* SceneDelegate.swift */,
+				487786102B0B29F60091661F /* ViewController.swift */,
+				487786152B0B29F70091661F /* Assets.xcassets */,
+				487786172B0B29F70091661F /* LaunchScreen.storyboard */,
+				4877861A2B0B29F70091661F /* Info.plist */,
+			);
+			path = TravelWithMe;
+			sourceTree = "<group>";
+		};
+		487786202B0B2A690091661F /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				487786422B0B47AE0091661F /* MakeTour */,
+				487786212B0B2A6D0091661F /* SignUp */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		487786212B0B2A6D0091661F /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				487786242B0B2A820091661F /* SignUpViewController.swift */,
+				4877863E2B0B3ADA0091661F /* SignUpView.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		487786262B0B2A9C0091661F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				487786272B0B2AA50091661F /* BaseViewController.swift */,
+				487786292B0B2CEF0091661F /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		4877862B2B0B2E430091661F /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				487786392B0B35940091661F /* SignUp */,
+				487786472B0B4A250091661F /* MakeTour */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		487786332B0B32200091661F /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				487786342B0B32A50091661F /* ConstantColor.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		487786362B0B32A90091661F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				487786372B0B32B10091661F /* UIColor+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		487786392B0B35940091661F /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				4877862C2B0B2F5A0091661F /* SignUpSmallLabel.swift */,
+				487786312B0B31730091661F /* SignUpTextField.swift */,
+				4877863A2B0B35A20091661F /* SignUpSmallButton.swift */,
+				4877863C2B0B378C0091661F /* SignUpGenderSegmentControl.swift */,
+				487786402B0B43AD0091661F /* SignUpCompleteButton.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		487786422B0B47AE0091661F /* MakeTour */ = {
+			isa = PBXGroup;
+			children = (
+				487786432B0B47C30091661F /* MakeTourViewController.swift */,
+				487786452B0B47D30091661F /* MakeTourView.swift */,
+			);
+			path = MakeTour;
+			sourceTree = "<group>";
+		};
+		487786472B0B4A250091661F /* MakeTour */ = {
+			isa = PBXGroup;
+			children = (
+				487786482B0B4A330091661F /* MakeTourTextView.swift */,
+				4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */,
+			);
+			path = MakeTour;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		487786082B0B29F60091661F /* TravelWithMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4877861D2B0B29F70091661F /* Build configuration list for PBXNativeTarget "TravelWithMe" */;
+			buildPhases = (
+				487786052B0B29F60091661F /* Sources */,
+				487786062B0B29F60091661F /* Frameworks */,
+				487786072B0B29F60091661F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TravelWithMe;
+			packageProductDependencies = (
+				4877862F2B0B309F0091661F /* SnapKit */,
+			);
+			productName = TravelWithMe;
+			productReference = 487786092B0B29F60091661F /* TravelWithMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		487786012B0B29F60091661F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					487786082B0B29F60091661F = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 487786042B0B29F60091661F /* Build configuration list for PBXProject "TravelWithMe" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 487786002B0B29F60091661F;
+			packageReferences = (
+				4877862E2B0B309F0091661F /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
+			productRefGroup = 4877860A2B0B29F60091661F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				487786082B0B29F60091661F /* TravelWithMe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		487786072B0B29F60091661F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				487786192B0B29F70091661F /* LaunchScreen.storyboard in Resources */,
+				487786162B0B29F70091661F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		487786052B0B29F60091661F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
+				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
+				4877862D2B0B2F5A0091661F /* SignUpSmallLabel.swift in Sources */,
+				487786112B0B29F60091661F /* ViewController.swift in Sources */,
+				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
+				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
+				4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */,
+				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,
+				487786412B0B43AD0091661F /* SignUpCompleteButton.swift in Sources */,
+				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
+				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
+				487786252B0B2A820091661F /* SignUpViewController.swift in Sources */,
+				4877863F2B0B3ADA0091661F /* SignUpView.swift in Sources */,
+				4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */,
+				487786352B0B32A50091661F /* ConstantColor.swift in Sources */,
+				487786322B0B31730091661F /* SignUpTextField.swift in Sources */,
+				487786382B0B32B10091661F /* UIColor+Extension.swift in Sources */,
+				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		487786172B0B29F70091661F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				487786182B0B29F70091661F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4877861B2B0B29F70091661F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4877861C2B0B29F70091661F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4877861E2B0B29F70091661F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2S9WHYP486;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TravelWithMe/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sub.TravelWithMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4877861F2B0B29F70091661F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2S9WHYP486;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TravelWithMe/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sub.TravelWithMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		487786042B0B29F60091661F /* Build configuration list for PBXProject "TravelWithMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4877861B2B0B29F70091661F /* Debug */,
+				4877861C2B0B29F70091661F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4877861D2B0B29F70091661F /* Build configuration list for PBXNativeTarget "TravelWithMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4877861E2B0B29F70091661F /* Debug */,
+				4877861F2B0B29F70091661F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4877862E2B0B309F0091661F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4877862F2B0B309F0091661F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4877862E2B0B309F0091661F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 487786012B0B29F60091661F /* Project object */;
+}
