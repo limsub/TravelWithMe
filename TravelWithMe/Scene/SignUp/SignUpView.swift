@@ -29,7 +29,8 @@ class SignUpView: BaseView {
     
     let completeButton = SignUpCompleteButton("완료")
     
-    let checkEmailLabel = SignUpSmallLabel("사용 가능한 이메일 입니다", color: "008000")
+    let checkEmailLabel = SignUpCheckEmailLabel()
+    let checkPWLabel = SignUpCheckPWLabel()
     
    // 8, 40
     
@@ -39,7 +40,7 @@ class SignUpView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [emailLabel, pwLabel, nicknameLabel, birthdayLabel, genderLabel, emailTextField, pwTextField, nicknameTextField, birthdayTextField, emailCheckButton, genderSelectSegmentControl, completeButton, checkEmailLabel].forEach { item in
+        [emailLabel, pwLabel, nicknameLabel, birthdayLabel, genderLabel, emailTextField, pwTextField, nicknameTextField, birthdayTextField, emailCheckButton, genderSelectSegmentControl, completeButton, checkEmailLabel, checkPWLabel].forEach { item in
             contentView.addSubview(item)
         }
         
@@ -87,6 +88,10 @@ class SignUpView: BaseView {
             make.top.equalTo(pwLabel.snp.bottom).offset(8)
             make.height.equalTo(52)
         }
+        checkPWLabel.snp.makeConstraints { make in
+            make.top.equalTo(pwTextField.snp.bottom).offset(8)
+            make.leading.equalTo(contentView).inset(24)
+        }
         
         nicknameLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView).inset(18)
@@ -132,7 +137,7 @@ class SignUpView: BaseView {
     override func setting() {
         super.setting()
         
-        
+        emailCheckButton.isEnabled = false
     }
     
 }
