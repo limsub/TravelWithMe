@@ -40,7 +40,8 @@ class SignUpViewController: BaseViewController {
         let input = SignUpViewModel.Input(
             emailText: mainView.emailTextField.rx.text.orEmpty,
             emailCheckButtonClicked: mainView.emailCheckButton.rx.tap,
-            pwText: mainView.pwTextField.rx.text.orEmpty
+            pwText: mainView.pwTextField.rx.text.orEmpty,
+            nicknameText: mainView.nicknameTextField.rx.text.orEmpty
         )
         
         
@@ -64,16 +65,22 @@ class SignUpViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        // 2. 비밀번호 텍스트 -> 비밀번호
+        // 2. 비밀번호 텍스트 -> 비밀번호 체크 레이블
         output.validPWFormat
             .subscribe(with: self) { owner , value in
                 
                 owner.mainView.checkPWLabel.setUpText(value)
                 
-                print("비밀번호 === ", value)
+                
             }
             .disposed(by: disposeBag)
         
+        // 3. 닉네임 텍스트 -> 닉네임 체크 레이블
+        output.validNicknameFormat
+            .subscribe(with: self) { owner , value in
+                owner.mainView.checkNicknameLabel.setUpText(value)
+            }
+            .disposed(by: disposeBag)
         
     }
 }

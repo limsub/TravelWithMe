@@ -18,11 +18,13 @@ class SignUpViewModel: ViewModelType {
         let emailText: ControlProperty<String>
         let emailCheckButtonClicked: ControlEvent<Void>
         let pwText: ControlProperty<String>
+        let nicknameText: ControlProperty<String>
     }
     
     struct Output {
         let validEmailFormat: PublishSubject<ValidEmail>
         let validPWFormat: PublishSubject<ValidPW>
+        let validNicknameFormat: PublishSubject<ValidNickname>
     }
     
     func tranform(_ input: Input) -> Output {
@@ -76,13 +78,33 @@ class SignUpViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        /* 3. 닉네임 */
+        let validNicknameFormat = PublishSubject<ValidNickname>()
+        input.nicknameText
+            .map { text in
+                if text.isEmpty {
+                    return ValidNickname.nothing
+                } else {
+                    if text.count < 2 || text.count > 6 {
+                        return ValidNickname.invalidLength
+                    } else {
+                        return ValidNickname.available
+                    }
+                }
+            }
+            .subscribe(with: self) { owner , value in
+                validNicknameFormat.onNext(value)
+            }
+            .disposed(by: disposeBag)
+        
         
         
         
         
         return Output(
             validEmailFormat: validEmailFormat,
-            validPWFormat: validPWFormat
+            validPWFormat: validPWFormat,
+            validNicknameFormat: validNicknameFormat
         )
     }
     

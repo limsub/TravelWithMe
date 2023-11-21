@@ -31,9 +31,9 @@ enum ValidPW: Int {
         case .nothing:
             return "000000"
         case .tooShort, .missingSpecialCharacter:
-            return "FF0000"
+            return ConstantColor.invalid.hexCode
         case .available:
-            return "00FF00"
+            return ConstantColor.valid.hexCode
         }
     }
 

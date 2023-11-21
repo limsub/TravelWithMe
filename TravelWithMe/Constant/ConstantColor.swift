@@ -24,6 +24,8 @@ enum ConstantColor {
     
     case baseLabelText
     
+    case invalid
+    case valid
     
     var hexCode: String {
         switch self {
@@ -41,6 +43,10 @@ enum ConstantColor {
             return "FFFFFF"
         case .baseLabelText:
             return "938E8F"
+        case .invalid:
+            return "FF0000"
+        case .valid:
+            return "00FF00"
         default:
             return "000000"
         }

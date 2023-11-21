@@ -31,6 +31,7 @@ class SignUpView: BaseView {
     
     let checkEmailLabel = SignUpCheckEmailLabel()
     let checkPWLabel = SignUpCheckPWLabel()
+    let checkNicknameLabel = SignUpCheckNicknameLabel()
     
    // 8, 40
     
@@ -40,7 +41,7 @@ class SignUpView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [emailLabel, pwLabel, nicknameLabel, birthdayLabel, genderLabel, emailTextField, pwTextField, nicknameTextField, birthdayTextField, emailCheckButton, genderSelectSegmentControl, completeButton, checkEmailLabel, checkPWLabel].forEach { item in
+        [emailLabel, pwLabel, nicknameLabel, birthdayLabel, genderLabel, emailTextField, pwTextField, nicknameTextField, birthdayTextField, emailCheckButton, genderSelectSegmentControl, completeButton, checkEmailLabel, checkPWLabel, checkNicknameLabel].forEach { item in
             contentView.addSubview(item)
         }
         
@@ -101,6 +102,10 @@ class SignUpView: BaseView {
             make.horizontalEdges.equalTo(contentView).inset(18)
             make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             make.height.equalTo(52)
+        }
+        checkNicknameLabel.snp.makeConstraints { make in
+            make.top.equalTo(nicknameTextField.snp.bottom).offset(8)
+            make.leading.equalTo(contentView).inset(24)
         }
         
         birthdayLabel.snp.makeConstraints { make in

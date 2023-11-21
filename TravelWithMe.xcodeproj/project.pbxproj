@@ -18,6 +18,8 @@
 		4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867324E2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift */; };
 		486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486732502B0CA36300BC24A4 /* ValidNickname.swift */; };
 		486732542B0CA38100BC24A4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 486732532B0CA38100BC24A4 /* .gitignore */; };
+		486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486732562B0CA3E200BC24A4 /* APIKey.swift */; };
+		486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */; };
 		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
 		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
 		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
@@ -51,6 +53,8 @@
 		4867324E2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCheckPWLabel.swift; sourceTree = "<group>"; };
 		486732502B0CA36300BC24A4 /* ValidNickname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidNickname.swift; sourceTree = "<group>"; };
 		486732532B0CA38100BC24A4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		486732562B0CA3E200BC24A4 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCheckNicknameLabel.swift; sourceTree = "<group>"; };
 		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,14 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		486732552B0CA3DA00BC24A4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				486732562B0CA3E200BC24A4 /* APIKey.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		487786002B0B29F60091661F = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +145,7 @@
 		4877860B2B0B29F60091661F /* TravelWithMe */ = {
 			isa = PBXGroup;
 			children = (
+				486732552B0CA3DA00BC24A4 /* Network */,
 				486732472B0C902C00BC24A4 /* Enum */,
 				487786362B0B32A90091661F /* Extension */,
 				487786332B0B32200091661F /* Constant */,
@@ -216,6 +229,7 @@
 				487786402B0B43AD0091661F /* SignUpCompleteButton.swift */,
 				4867324A2B0C938E00BC24A4 /* SignUpCheckEmailLabel.swift */,
 				4867324E2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift */,
+				486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -325,6 +339,7 @@
 				487786112B0B29F60091661F /* ViewController.swift in Sources */,
 				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
+				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
 				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
 				4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */,
 				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,
@@ -344,6 +359,7 @@
 				487786382B0B32B10091661F /* UIColor+Extension.swift in Sources */,
 				4867324B2B0C938E00BC24A4 /* SignUpCheckEmailLabel.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
+				486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
