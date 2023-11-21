@@ -19,12 +19,14 @@ class SignUpViewModel: ViewModelType {
         let emailCheckButtonClicked: ControlEvent<Void>
         let pwText: ControlProperty<String>
         let nicknameText: ControlProperty<String>
+        let birthdayText: ControlProperty<String>
     }
     
     struct Output {
         let validEmailFormat: PublishSubject<ValidEmail>
         let validPWFormat: PublishSubject<ValidPW>
         let validNicknameFormat: PublishSubject<ValidNickname>
+        let validBirthdayFormat: PublishSubject<ValidBirthday>
     }
     
     func tranform(_ input: Input) -> Output {
@@ -97,6 +99,25 @@ class SignUpViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        /* 4. 생년월일 */
+        let validBirthdayFormat = PublishSubject<ValidBirthday>()
+        input.birthdayText
+            .map { text in
+                if text.count == 0 {
+                    return ValidBirthday.nothing
+                } else {
+                    if !self.checkBirthdayFormat(text) {
+                        return ValidBirthday.invalidFormat
+                    } else {
+                        return ValidBirthday.available
+                    }
+                }
+            }
+            .subscribe(with: self) { owner , value in
+                validBirthdayFormat.onNext(value)
+            }
+            .disposed(by: disposeBag)
+        
         
         
         
@@ -104,7 +125,8 @@ class SignUpViewModel: ViewModelType {
         return Output(
             validEmailFormat: validEmailFormat,
             validPWFormat: validPWFormat,
-            validNicknameFormat: validNicknameFormat
+            validNicknameFormat: validNicknameFormat,
+            validBirthdayFormat: validBirthdayFormat
         )
     }
     
@@ -123,6 +145,23 @@ class SignUpViewModel: ViewModelType {
         let numberTest = NSPredicate(format: "SELF MATCHES %@", numberRegex)
 
         return specialCharacterTest.evaluate(with: pw) && numberTest.evaluate(with: pw)
+    }
+    
+    func checkBirthdayFormat(_ b: String) -> Bool {
+        if b.count != 8 { return false }
+        
+        guard let _ = Int(b) else { return false }
+        
+        guard let year = Int(b.prefix(4)),
+              (1900...2023).contains(year) else { return false }
+        
+        guard let month = Int(b.dropFirst(4).prefix(2)),
+              (1...12).contains(month) else { return false }
+        
+        guard let day = Int(b.dropFirst(6).prefix(2)),
+              (1...31).contains(day) else { return false }
+        
+        return true
     }
     
     

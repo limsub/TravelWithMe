@@ -22,7 +22,7 @@ class SignUpView: BaseView {
     let emailTextField = SignUpTextField("이메일을 입력해주세요")
     let pwTextField = SignUpTextField("비밀번호를 입력해주세요")
     let nicknameTextField = SignUpTextField("닉네임을 입력해주세요")
-    let birthdayTextField = SignUpTextField("YY/MM/DD")
+    let birthdayTextField = SignUpTextField("YYYYMMDD")
     
     let emailCheckButton = SignUpSmallButton("중복 확인")
     let genderSelectSegmentControl = SignUpGenderSegmentControl(items: ["여성", "남성"])
@@ -32,6 +32,7 @@ class SignUpView: BaseView {
     let checkEmailLabel = SignUpCheckEmailLabel()
     let checkPWLabel = SignUpCheckPWLabel()
     let checkNicknameLabel = SignUpCheckNicknameLabel()
+    let checkBirthdayLabel = SignUpCheckBirthdayLabel()
     
    // 8, 40
     
@@ -41,7 +42,7 @@ class SignUpView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [emailLabel, pwLabel, nicknameLabel, birthdayLabel, genderLabel, emailTextField, pwTextField, nicknameTextField, birthdayTextField, emailCheckButton, genderSelectSegmentControl, completeButton, checkEmailLabel, checkPWLabel, checkNicknameLabel].forEach { item in
+        [emailLabel, pwLabel, nicknameLabel, birthdayLabel, genderLabel, emailTextField, pwTextField, nicknameTextField, birthdayTextField, emailCheckButton, genderSelectSegmentControl, completeButton, checkEmailLabel, checkPWLabel, checkNicknameLabel, checkBirthdayLabel].forEach { item in
             contentView.addSubview(item)
         }
         
@@ -128,6 +129,10 @@ class SignUpView: BaseView {
             make.height.equalTo(52)
             make.trailing.equalTo(contentView).inset(18)
         }
+        checkBirthdayLabel.snp.makeConstraints { make in
+            make.leading.equalTo(contentView).inset(24)
+            make.top.equalTo(birthdayTextField.snp.bottom).offset(8)
+        }
         
         completeButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView).inset(18)
@@ -143,6 +148,8 @@ class SignUpView: BaseView {
         super.setting()
         
         emailCheckButton.isEnabled = false
+        
+        birthdayTextField.keyboardType = .numberPad
     }
     
 }

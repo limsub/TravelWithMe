@@ -20,6 +20,8 @@
 		486732542B0CA38100BC24A4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 486732532B0CA38100BC24A4 /* .gitignore */; };
 		486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486732562B0CA3E200BC24A4 /* APIKey.swift */; };
 		486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */; };
+		4867325B2B0CBCD600BC24A4 /* ValidBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867325A2B0CBCD600BC24A4 /* ValidBirthday.swift */; };
+		4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867325C2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift */; };
 		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
 		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
 		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
@@ -55,6 +57,8 @@
 		486732532B0CA38100BC24A4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		486732562B0CA3E200BC24A4 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCheckNicknameLabel.swift; sourceTree = "<group>"; };
+		4867325A2B0CBCD600BC24A4 /* ValidBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidBirthday.swift; sourceTree = "<group>"; };
+		4867325C2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCheckBirthdayLabel.swift; sourceTree = "<group>"; };
 		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				486732482B0C903D00BC24A4 /* ValidEmail.swift */,
 				4867324C2B0C9BCF00BC24A4 /* ValidPW.swift */,
 				486732502B0CA36300BC24A4 /* ValidNickname.swift */,
+				4867325A2B0CBCD600BC24A4 /* ValidBirthday.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				4867324A2B0C938E00BC24A4 /* SignUpCheckEmailLabel.swift */,
 				4867324E2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift */,
 				486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */,
+				4867325C2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -334,9 +340,11 @@
 			files = (
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
+				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */,
 				4877862D2B0B2F5A0091661F /* SignUpSmallLabel.swift in Sources */,
 				487786112B0B29F60091661F /* ViewController.swift in Sources */,
+				4867325B2B0CBCD600BC24A4 /* ValidBirthday.swift in Sources */,
 				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
 				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
