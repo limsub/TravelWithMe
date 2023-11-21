@@ -51,11 +51,13 @@ class SignUpViewController: BaseViewController {
     func bind() {
         
         let input = SignUpViewModel.Input(
+            emailEditing: mainView.emailTextField.rx.controlEvent(.editingChanged),
             emailText: mainView.emailTextField.rx.text.orEmpty,
             emailCheckButtonClicked: mainView.emailCheckButton.rx.tap,
             pwText: mainView.pwTextField.rx.text.orEmpty,
             nicknameText: mainView.nicknameTextField.rx.text.orEmpty,
-            birthdayText: mainView.birthdayTextField.rx.text.orEmpty
+            birthdayText: mainView.birthdayTextField.rx.text.orEmpty,
+            genderSelectedIndex: mainView.genderSelectSegmentControl.rx.selectedSegmentIndex
         )
         
         
@@ -100,5 +102,18 @@ class SignUpViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        
+        // 5. 성별 -> 따로 예외처리 x
+        
+        // 라스트. 회원가입 버튼 활성화
+        output.validSignUpButton
+            .subscribe(with: self) { owner , value in
+                print("버튼 체크 === ", value)
+                owner.mainView.completeButton.isEnabled = value
+                owner.mainView.completeButton.backgroundColor = value ? .red : .lightGray
+                
+                
+            }
+            .disposed(by: disposeBag)
     }
 }

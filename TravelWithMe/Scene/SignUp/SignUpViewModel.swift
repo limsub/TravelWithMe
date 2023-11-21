@@ -15,11 +15,13 @@ class SignUpViewModel: ViewModelType {
     let disposeBag = DisposeBag()
     
     struct Input {
+        let emailEditing: ControlEvent<Void>
         let emailText: ControlProperty<String>
         let emailCheckButtonClicked: ControlEvent<Void>
         let pwText: ControlProperty<String>
         let nicknameText: ControlProperty<String>
         let birthdayText: ControlProperty<String>
+        let genderSelectedIndex: ControlProperty<Int>
     }
     
     struct Output {
@@ -27,6 +29,8 @@ class SignUpViewModel: ViewModelType {
         let validPWFormat: PublishSubject<ValidPW>
         let validNicknameFormat: PublishSubject<ValidNickname>
         let validBirthdayFormat: PublishSubject<ValidBirthday>
+        
+        let validSignUpButton: Observable<Bool>
     }
     
     func tranform(_ input: Input) -> Output {
@@ -34,7 +38,8 @@ class SignUpViewModel: ViewModelType {
         /* 1. 이메일 */
         // 이메일 형식에 맞는지 확인
         let validEmailFormat = PublishSubject<ValidEmail>()
-        input.emailText
+        input.emailEditing
+            .withLatestFrom(input.emailText)
             .map { text in
                 if (text.isEmpty) {
                     return ValidEmail.nothing
@@ -119,14 +124,35 @@ class SignUpViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         
+        /* 5. 성별 - 따로 검사할 내용 없음. 데이터 저장 */
+        let validGenderSelected = PublishSubject<Int>()
+        // 처음 (선택x) : -1
+        // 여성 : 0 / 남성 : 1
+        input.genderSelectedIndex
+            .subscribe(with: self , onNext: { owner , value in
+                validGenderSelected.onNext(value)
+                print("====", value)
+            })
+            .disposed(by: disposeBag)
         
+        
+        /* 라스트. 회원가입 버튼 활성화 여부 */
+        let validSignUp =  Observable.combineLatest(validEmailFormat, validPWFormat, validNicknameFormat, validBirthdayFormat, validGenderSelected) { v1 , v2, v3, v4, v5  in
+
+            return (v1 == ValidEmail.available)
+            && (v2 == ValidPW.available)
+            && (v3 == ValidNickname.available)
+            && (v4 == ValidBirthday.available)
+            && (v5 == 0 || v5 == 1)
+        }
         
         
         return Output(
             validEmailFormat: validEmailFormat,
             validPWFormat: validPWFormat,
             validNicknameFormat: validNicknameFormat,
-            validBirthdayFormat: validBirthdayFormat
+            validBirthdayFormat: validBirthdayFormat,
+            validSignUpButton: validSignUp
         )
     }
     
