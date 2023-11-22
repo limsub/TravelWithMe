@@ -70,7 +70,9 @@ class SignUpViewController: BaseViewController {
             pwText: mainView.pwTextField.rx.text.orEmpty,
             nicknameText: mainView.nicknameTextField.rx.text.orEmpty,
             birthdayText: mainView.birthdayTextField.rx.text.orEmpty,
-            genderSelectedIndex: mainView.genderSelectSegmentControl.rx.selectedSegmentIndex
+            genderSelectedIndex: mainView.genderSelectSegmentControl.rx.selectedSegmentIndex,
+            
+            signUpButtonClicked: mainView.completeButton.rx.tap
         )
         
         
@@ -118,15 +120,30 @@ class SignUpViewController: BaseViewController {
         
         // 5. 성별 -> 따로 예외처리 x
         
-        // 라스트. 회원가입 버튼 활성화
+        // 라스트. 회원가입 버튼 활성화 (모든 객체에 편집 시작해야 작동. 어차피 초기 enabled = false)
         output.validSignUpButton
             .subscribe(with: self) { owner , value in
                 print("버튼 체크 === ", value)
                 owner.mainView.completeButton.isEnabled = value
-                owner.mainView.completeButton.backgroundColor = value ? .red : .lightGray
+                owner.mainView.completeButton.backgroundColor = value ? .red : UIColor(hexCode: ConstantColor.disabledButtonBackground.hexCode)
                 
                 
             }
             .disposed(by: disposeBag)
+        
+        // 회원가입 버튼 누른 후 결과
+        output.resultSignUpClicked
+            .subscribe(with: self) { owner , value in
+                switch value {
+                case .success:
+                    print("회원가입 성공! 다음 화면 전환")
+                case .emptyParameter:
+                    print("=== 실패 === 빈 칸 존재! 다시 체크")
+                case .alreadyRegistered:
+                    print("=== 실패 === 이미 가입된 유저!!")
+                }
+            }
+            .disposed(by: disposeBag)
+    
     }
 }

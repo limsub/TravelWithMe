@@ -23,7 +23,7 @@ struct JoinRequest: Encodable {
     let email: String
     let password: String
     let nick: String
-    let phoneNum: String
+    let gender: String
     let birthDay: String
 }
 

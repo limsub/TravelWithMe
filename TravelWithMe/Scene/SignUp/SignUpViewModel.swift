@@ -22,6 +22,8 @@ class SignUpViewModel: ViewModelType {
         let nicknameText: ControlProperty<String>
         let birthdayText: ControlProperty<String>
         let genderSelectedIndex: ControlProperty<Int>
+        
+        let signUpButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
@@ -31,6 +33,7 @@ class SignUpViewModel: ViewModelType {
         let validBirthdayFormat: PublishSubject<ValidBirthday>
         
         let validSignUpButton: Observable<Bool>
+        let resultSignUpClicked: PublishSubject<AttemptSignUp>
     }
     
     func tranform(_ input: Input) -> Output {
@@ -146,7 +149,9 @@ class SignUpViewModel: ViewModelType {
         
         /* 라스트. 회원가입 버튼 활성화 여부 */
         let validSignUp =  Observable.combineLatest(validEmailFormat, validPWFormat, validNicknameFormat, validBirthdayFormat, validGenderSelected) { v1 , v2, v3, v4, v5  in
-
+            
+            // 모든 객체가 편집 시작해야 그때부터 작동됨
+                
             return (v1 == ValidEmail.available)
             && (v2 == ValidPW.available)
             && (v3 == ValidNickname.available)
@@ -154,16 +159,50 @@ class SignUpViewModel: ViewModelType {
             && (v5 == 0 || v5 == 1)
         }
         
+        /* 찐 라스트. 회원가입 버튼 클릭 */
+        let signUpInfo = Observable.combineLatest(input.emailText, input.pwText, input.nicknameText, input.birthdayText, input.genderSelectedIndex)
+        
+        let resultSignUpClicked = PublishSubject<AttemptSignUp>()
+        input.signUpButtonClicked
+            .withLatestFrom(signUpInfo)
+            .flatMap { value in
+                APIManager.shared.requestJoin(
+                    JoinRequest(
+                        email: value.0,
+                        password: value.1,
+                        nick: value.2,
+                        gender: Gender(rawValue: value.4)!.description,
+                        birthDay: value.3
+                    )
+                )
+            }
+            .map { response in
+                switch response {
+                case .success(_):
+                    return AttemptSignUp.success
+                case .failure(_):   // 임시. 추후에 나눌 예정
+                    return AttemptSignUp.alreadyRegistered
+                }
+            }
+            .subscribe(with: self) { owner , value in
+                resultSignUpClicked.onNext(value)
+            }
+            .disposed(by: disposeBag)
+            
+        
         
         return Output(
             validEmailFormat: validEmailFormat,
             validPWFormat: validPWFormat,
             validNicknameFormat: validNicknameFormat,
             validBirthdayFormat: validBirthdayFormat,
-            validSignUpButton: validSignUp
+            validSignUpButton: validSignUp,
+            resultSignUpClicked: resultSignUpClicked
         )
     }
     
+    
+    // (이메일) 이메일 형식에 맞는지 확인
     func checkValidFormatEmail(_ email: String) -> Bool {
         let emailRegex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
 
@@ -171,6 +210,7 @@ class SignUpViewModel: ViewModelType {
         return emailPredicate.evaluate(with: email)
     }
     
+    // (패스워드) 특수문자와 숫자가 포함되어 있는지 확인
     func checkSpecialCharacterPW(_ pw: String) -> Bool {
         let specialCharacterRegex = ".*[^A-Za-z0-9].*"
         let numberRegex = ".*[0-9].*"
@@ -181,6 +221,7 @@ class SignUpViewModel: ViewModelType {
         return specialCharacterTest.evaluate(with: pw) && numberTest.evaluate(with: pw)
     }
     
+    // (생년월일) YYYYMMDD 형식에 맞는지 확인
     func checkBirthdayFormat(_ b: String) -> Bool {
         if b.count != 8 { return false }
         
@@ -197,8 +238,5 @@ class SignUpViewModel: ViewModelType {
         
         return true
     }
-    
-    
-
 }
 

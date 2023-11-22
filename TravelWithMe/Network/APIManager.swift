@@ -22,6 +22,7 @@ class APIManager {
         "SesacKey": SeSACAPI.subKey
     ]
     
+    // 컷
     func requestValidEmail(_ sender: ValidEmailRequest) -> Single< Result< ValidEmailResponse, Error> > {
         
         return Single< Result<ValidEmailResponse, Error> >.create { single in
@@ -57,39 +58,42 @@ class APIManager {
         }
     }
     
-    func requestJoin(_ joinInfo: JoinRequest) {
-        let urlString = SeSACAPI.baseURL + "/join"
+    func requestJoin(_ sender: JoinRequest) -> Single< Result< JoinResponse, Error > > {
         
-        guard let url = URL(string: urlString) else { return }
-        
-        let parameter: Parameters = [
-            "email" : joinInfo.email,
-            "password": joinInfo.password,
-            "nick": joinInfo.nick,
-            "phoneNum": joinInfo.phoneNum,
-            "birthDay": joinInfo.birthDay
-        ]
-        
-        var request = URLRequest(url: url)
-        request.headers = header
-        request.method = .post
-        do {
-            try request.httpBody = JSONSerialization.data(withJSONObject: parameter)
-        } catch {
-            print(error)
-        }
-        
-        AF.request(request)
-            .validate(statusCode: 200...500)
-            .responseDecodable(of: JoinResponse.self) { response in
-                print("회원가입 요청")
-                let statusCode = response.response?.statusCode ?? 700
-                print("statusCode : ", statusCode)
-                
-                if statusCode == 200 {
-                    print("=== response === : ", response)
-                }
+        return Single< Result<JoinResponse, Error> >.create { single in
+            
+            let urlString = SeSACAPI.baseURL + "/join"
+            
+            guard let url = URL(string: urlString) else {
+                return Disposables.create()
             }
+            
+            let parameter: Parameters = [
+                "email" : sender.email,
+                "password": sender.password,
+                "nick": sender.nick,
+                "phoneNum": sender.gender,
+                "birthDay": sender.birthDay
+            ]
+            
+            AF.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: self.header)
+                .validate()
+                .responseDecodable(of: JoinResponse.self) { response in
+                    print("회원가입 요청")
+                    
+                    switch response.result {
+                    case .success(let data):
+                        single(.success(.success(data)))
+                        print("성공 : ", data)
+                    case .failure(let error):
+                        single(.success(.failure(error)))
+                        print("실패 : ", error)
+                        print("로컬 description : ", error.localizedDescription)
+                        print("상태 코드 : ", response.response?.statusCode)
+                    }
+                }
+            return Disposables.create()
+        }
     }
     
     func requestLogin(_ loginInfo: LoginRequest) -> Single< Result<LoginResponse, Error> > {

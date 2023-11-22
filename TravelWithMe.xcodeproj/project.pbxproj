@@ -10,6 +10,8 @@
 		4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115B2B0DD46A00C68490 /* APIModel.swift */; };
 		4847115E2B0DD56000C68490 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115D2B0DD56000C68490 /* APIManager.swift */; };
 		484711612B0DD59A00C68490 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 484711602B0DD59A00C68490 /* Alamofire */; };
+		484711632B0E1CE100C68490 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711622B0E1CE100C68490 /* Gender.swift */; };
+		484711652B0E25DA00C68490 /* AttemptSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711642B0E25DA00C68490 /* AttemptSignUp.swift */; };
 		4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */; };
 		4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */; };
 		486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 486732412B0C8EA900BC24A4 /* RxCocoa */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		4847115B2B0DD46A00C68490 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		4847115D2B0DD56000C68490 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		484711622B0E1CE100C68490 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		484711642B0E25DA00C68490 /* AttemptSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptSignUp.swift; sourceTree = "<group>"; };
 		4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		486732452B0C8EBD00BC24A4 /* BaseViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelType.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				4867324C2B0C9BCF00BC24A4 /* ValidPW.swift */,
 				486732502B0CA36300BC24A4 /* ValidNickname.swift */,
 				4867325A2B0CBCD600BC24A4 /* ValidBirthday.swift */,
+				484711622B0E1CE100C68490 /* Gender.swift */,
+				484711642B0E25DA00C68490 /* AttemptSignUp.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				4847115E2B0DD56000C68490 /* APIManager.swift in Sources */,
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
+				484711652B0E25DA00C68490 /* AttemptSignUp.swift in Sources */,
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */,
 				4877862D2B0B2F5A0091661F /* SignUpSmallLabel.swift in Sources */,
@@ -360,6 +367,7 @@
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
 				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
 				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
+				484711632B0E1CE100C68490 /* Gender.swift in Sources */,
 				4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */,
 				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,
 				4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */,
