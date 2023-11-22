@@ -30,6 +30,8 @@ class SignUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        APIManager.shared.abc(type: ValidEmailResponse.self, api: .validEmail(sender: ValidEmailRequest(email: "aa@nasdfasfaver.com")))
+        
 //        APIManager.shared.requestValidEmail("11@naver.commm")
 //        APIManager.shared.requestJoin(JoinRequest(email: "aa@naver.com", password: "aaa", nick: "abcd", phoneNum: "male", birthDay: "20231012"))
         
@@ -118,7 +120,7 @@ class SignUpViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         
-        // 5. 성별 -> 따로 예외처리 x
+        // 5. 성별 -> 따로 예외처리 x (선택되면 ok)
         
         // 라스트. 회원가입 버튼 활성화 (모든 객체에 편집 시작해야 작동. 어차피 초기 enabled = false)
         output.validSignUpButton

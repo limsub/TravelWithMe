@@ -22,6 +22,15 @@ class APIManager {
         "SesacKey": SeSACAPI.subKey
     ]
     
+    
+    // 라우터 패턴 함수. 필요한 요소 매개변수로 더 추가해주면 끝. (에러, ...)
+    func abc<T: Decodable>(type: T.Type, api: Router) {
+        AF.request(api)
+            .responseDecodable(of: T.self) { response  in
+                print(response)
+            }
+    }
+    
     // 컷
     func requestValidEmail(_ sender: ValidEmailRequest) -> Single< Result< ValidEmailResponse, Error> > {
         
@@ -167,6 +176,9 @@ class APIManager {
                 }
             }
     }
+    
+    
+
     
     
 }
