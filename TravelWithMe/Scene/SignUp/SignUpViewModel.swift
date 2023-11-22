@@ -54,13 +54,21 @@ class SignUpViewModel: ViewModelType {
         
         // 이메일 중복 체크
         input.emailCheckButtonClicked
-            .map { return ValidEmail.available }
-            .subscribe(with: self) { owner , value  in
-                print("이메일 중복 체크 버튼 클릭")
+            .withLatestFrom(input.emailText)
+            .flatMap { APIManager.shared.requestValidEmail(ValidEmailRequest(email: $0)) }
+            .map { response in
+                switch response {
+                case .success(_):
+                    return ValidEmail.available
+                case .failure(_):
+                    return ValidEmail.alreadyInUse
+                }
+            }
+            .subscribe(with: self) { owner , value in
                 validEmailFormat.onNext(value)
             }
             .disposed(by: disposeBag)
-        
+ 
         
         /* 2. 비밀번호 */
         let validPWFormat = PublishSubject<ValidPW>()
