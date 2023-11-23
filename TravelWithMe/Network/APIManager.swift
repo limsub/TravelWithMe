@@ -10,8 +10,26 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
+protocol RawEnumConvertible: RawRepresentable, Error {}
+
+enum EnumType1: Int, RawEnumConvertible {
+    case caseA = 1
+    case caseB
+}
+
+enum EnumType2: Int, RawEnumConvertible {
+    case caseX = 10
+    case caseY
+}
+
+func createEnumWithRawValue<T: RawEnumConvertible>(_ rawValue: Int) -> T? {
+    return T(rawValue: rawValue as! T.RawValue)
+}
+
 
 class APIManager {
+    
+    
     
     static let shared = APIManager()
     private init() { }
@@ -24,11 +42,58 @@ class APIManager {
     
     
     // 라우터 패턴 함수. 필요한 요소 매개변수로 더 추가해주면 끝. (에러, ...)
-    func abc<T: Decodable>(type: T.Type, api: Router) {
+    func abc<T: Decodable, U: APIError>(type: T.Type, api: Router, error: U.Type) {
         AF.request(api)
             .responseDecodable(of: T.self) { response  in
                 print(response)
+                
+                let ss = U(rawValue: 200)
+                
+                let a = CommonAPIError(rawValue: 200)
+   
+                response.response?.statusCode
+                
+                ValidEmailAPIError(rawValue: response.response!.statusCode)
+                
+                U(rawValue: 200 as! U.RawValue)
+                
             }
+    }
+    
+    func request<T: Decodable, U: APIError>(type: T.Type, error: U.Type, api: Router) -> Single< Result<T, Error> > {
+        
+        return Single< Result<T, Error> >.create { single in
+            AF.request(api)
+                .validate()
+                .responseDecodable(of: T.self) { response in
+                    switch response.result {
+                    case .success(let data):
+                        print("네트워크 통신 성공")
+                        single(.success(.success(data)))
+                        
+                    case .failure(_):
+                        // 상태 코드로 에러 찾기
+                        let statusCode = response.response?.statusCode ?? 500
+                        print("네트워크 통신 실패. 상태 코드 \(statusCode)에 따라 에러 탐색")
+                        
+                        // Common Error에 있는 경우
+                        if (statusCode == 420 || statusCode == 429 || statusCode == 444 || statusCode == 500) {
+                            let returnError = CommonAPIError(rawValue: statusCode)! // force unwrapping
+                            print("에러 내용 : \(returnError.description)")
+                            single(.success(.failure(returnError)))
+                            
+                        }
+                        // U Error인 경우
+                        else {
+                            let returnError = U(rawValue: statusCode)!  // force unwrapping
+                            print("에러 내용 : \(returnError.description)")
+                            single(.success(.failure(returnError)))
+                        }
+                    }
+                }
+            return Disposables.create()
+        }
+        
     }
     
     // 컷

@@ -17,9 +17,7 @@ class SignUpViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWRiMWE4OTk1MjdlMTc2MGQwOTZmMSIsImlhdCI6MTcwMDY0MDA1NSwiZXhwIjoxNzAwNjQxODU1LCJpc3MiOiJzZXNhY18zIn0.YzSm9iVKE4B02G38nAI2_eWZNzta_QIRcO7nmIgqrmw"
-    
-    let refreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDA2NDAwNTUsImV4cCI6MTcwMDY3NjA1NSwiaXNzIjoic2VzYWNfMyJ9.6cEv3AaQsQHhvRcMeYdWaCQP-hsVmG2l9xlyzBD7kcE"
+
     
     
     
@@ -30,7 +28,9 @@ class SignUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        APIManager.shared.abc(type: ValidEmailResponse.self, api: .validEmail(sender: ValidEmailRequest(email: "aa@nasdfasfaver.com")))
+//        APIManager.shared.abc(type: ValidEmailResponse.self, api: .validEmail(sender: ValidEmailRequest(email: "aa@nasdfasfaver.com")))
+        
+//        APIManager.shared.abc(type: ValidEmailResponse.self , api: .validEmail(sender: ValidEmailRequest(email: "aa@nasdfasfaver.com")), error: ValidEmailAPIError.self)
         
 //        APIManager.shared.requestValidEmail("11@naver.commm")
 //        APIManager.shared.requestJoin(JoinRequest(email: "aa@naver.com", password: "aaa", nick: "abcd", phoneNum: "male", birthDay: "20231012"))

@@ -81,14 +81,18 @@ import Foundation
 //    }
 //}
 
-enum APIError {
-    case common(CommonAPIError)
-    
-    case validEmail(ValidEmailAPIError)
-    case join(JoinAPIError)
+//enum APIError {
+//    case common(CommonAPIError)
+//
+//    case validEmail(ValidEmailAPIError)
+//    case join(JoinAPIError)
+//}
+
+protocol APIError: RawRepresentable, Error where RawValue == Int {
+    var description: String { get }
 }
 
-enum CommonAPIError: Int, Error {
+enum CommonAPIError: Int, APIError {
     case invalidSeSACKey = 420
     case overInvocation = 429
     case invalidURL = 444
@@ -108,7 +112,7 @@ enum CommonAPIError: Int, Error {
     }
 }
 
-enum ValidEmailAPIError: Int, Error {
+enum ValidEmailAPIError: Int, APIError {
     case missingValue = 400
     case invalidEmail = 409
     
@@ -122,7 +126,7 @@ enum ValidEmailAPIError: Int, Error {
     }
 }
 
-enum JoinAPIError: Int, Error {
+enum JoinAPIError: Int, APIError {
     case missingValue = 400
     case alreadyRegistered = 409
     

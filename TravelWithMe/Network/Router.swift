@@ -13,6 +13,7 @@ enum Router: URLRequestConvertible {
     case validEmail(sender: ValidEmailRequest)
     case join(sender: JoinRequest)
     
+    
     private var path: String {
         switch self {
         case .validEmail:
@@ -62,7 +63,24 @@ enum Router: URLRequestConvertible {
 //
 //        }
 //    }
+     
+//    var sesacError: Error.Type {
+//        switch self {
+//        case .validEmail:
+//            return ValidEmailAPIError.self
+//        case .join:
+//            return JoinAPIError.self
+//        }
+//    }
     
+//    var sesacError: any APIError.Type {
+//        switch self {
+//        case .validEmail:
+//            return ValidEmailAPIError.self
+//        case .join:
+//            return JoinAPIError.self
+//        }
+//    }
     
     func asURLRequest() throws -> URLRequest {
         let url = URL(string: SeSACAPI.baseURL + path)!

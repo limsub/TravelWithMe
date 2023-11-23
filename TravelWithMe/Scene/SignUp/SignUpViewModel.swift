@@ -58,7 +58,13 @@ class SignUpViewModel: ViewModelType {
         // 이메일 중복 체크
         input.emailCheckButtonClicked
             .withLatestFrom(input.emailText)
-            .flatMap { APIManager.shared.requestValidEmail(ValidEmailRequest(email: $0)) }
+//            .flatMap { APIManager.shared.requestValidEmail(ValidEmailRequest(email: $0)) }
+            .flatMap {
+                RouterAPIManager.shared.request(
+                    type: ValidEmailResponse.self,
+                    error: ValidEmailAPIError.self,
+                    api: .validEmail(sender: ValidEmailRequest(email: $0)))
+            }
             .map { response in
                 switch response {
                 case .success(_):
@@ -165,15 +171,24 @@ class SignUpViewModel: ViewModelType {
         let resultSignUpClicked = PublishSubject<AttemptSignUp>()
         input.signUpButtonClicked
             .withLatestFrom(signUpInfo)
+//            .flatMap { value in
+//                APIManager.shared.requestJoin(
+//                    JoinRequest(
+//                        email: value.0,
+//                        password: value.1,
+//                        nick: value.2,
+//                        gender: Gender(rawValue: value.4)!.description,
+//                        birthDay: value.3
+//                    )
+//                )
+//            }
             .flatMap { value in
-                APIManager.shared.requestJoin(
-                    JoinRequest(
-                        email: value.0,
-                        password: value.1,
-                        nick: value.2,
-                        gender: Gender(rawValue: value.4)!.description,
-                        birthDay: value.3
-                    )
+                RouterAPIManager.shared.request(
+                    type: JoinResponse.self,
+                    error: JoinAPIError.self,
+                    api: .join(
+                        sender: JoinRequest(
+                            email: value.0, password: value.1, nick: value.2, gender: Gender(rawValue: value.4)!.description, birthDay: value.3))
                 )
             }
             .map { response in
