@@ -18,9 +18,11 @@ class RouterAPIManager {
     func request<T: Decodable, U: APIError>(type: T.Type, error: U.Type, api: Router) -> Single< Result<T, Error> > {
         
         return Single< Result<T, Error> >.create { single in
+            
             AF.request(api)
                 .validate()
-                .responseDecodable(of: T.self) { response  in
+                .responseDecodable(of: T.self) { response in
+                    
                     switch response.result {
                     case .success(let data):
                         print("네트워크 통신 성공")
@@ -28,7 +30,7 @@ class RouterAPIManager {
                         
                     case .failure(_):
                         let statusCode = response.response?.statusCode ?? 500
-                        print("네ㅌ워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
+                        print("네트워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
                         
                         if [420, 429, 444, 500].contains(statusCode) {
                             let returnError = CommonAPIError(rawValue: statusCode)!
@@ -44,6 +46,6 @@ class RouterAPIManager {
             
             return Disposables.create()
         }
-        
+        .debug()
     }
 }

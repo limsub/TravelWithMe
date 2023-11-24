@@ -45,6 +45,7 @@ class StartViewController: BaseViewController {
     
     @objc
     func button1Clicked() {
+        print("hi")
         let vc = SignUpViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -55,7 +56,8 @@ class StartViewController: BaseViewController {
     }
     @objc
     func button3Clicked() {
-        
+        let vc = LoginViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

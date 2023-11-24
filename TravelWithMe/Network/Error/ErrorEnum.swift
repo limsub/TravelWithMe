@@ -112,6 +112,8 @@ enum CommonAPIError: Int, APIError {
     }
 }
 
+
+/* ===== 이메일 중복 확인 ===== */
 enum ValidEmailAPIError: Int, APIError {
     case missingValue = 400
     case invalidEmail = 409
@@ -126,6 +128,8 @@ enum ValidEmailAPIError: Int, APIError {
     }
 }
 
+
+/* ===== 회원가입 ===== */
 enum JoinAPIError: Int, APIError {
     case missingValue = 400
     case alreadyRegistered = 409
@@ -136,6 +140,25 @@ enum JoinAPIError: Int, APIError {
             return "필수값을 채워주세요"
         case .alreadyRegistered:
             return "이미 가입된 유저입니다"
+        }
+    }
+}
+
+
+/* ===== 로그인 ===== */
+enum LoginAPIError: Int, APIError {
+    case success = 200
+    case missingValue = 400
+    case inValidAccount = 401
+    
+    var description: String {
+        switch self {
+        case .success:
+            return "로그인 성공"
+        case .missingValue:
+            return "필수값을 채워주세요"
+        case .inValidAccount:
+            return "가입되지 않은 유저이거나, 비밀번호가 일치하지 않습니다"
         }
     }
 }

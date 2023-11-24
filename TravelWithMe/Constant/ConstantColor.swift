@@ -34,9 +34,10 @@ enum ConstantColor {
         case .textFieldPlaceholder, .disabledButtonText:
             return "D0CCCD"
         case .Main1, .enabledButtonBackground:
-            return "F63C6E"
+            return "00FF00"
         case .Main2:
-            return "FEE2E9"
+            return "007700"
+            
         case .disabledButtonBackground:
             return "F1EEF0"
         case .enabledButtonText:

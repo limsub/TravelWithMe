@@ -28,6 +28,7 @@ class SignUpCompleteButton: UIButton {
     func setUp() {
         backgroundColor = UIColor(hexCode: ConstantColor.disabledButtonBackground.hexCode)
         setTitleColor(UIColor(hexCode: ConstantColor.disabledButtonText.hexCode), for: .normal)
+        titleLabel?.font = .boldSystemFont(ofSize: 16)
         
         clipsToBounds = true
         layer.cornerRadius = 10

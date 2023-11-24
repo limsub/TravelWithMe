@@ -7,8 +7,3 @@
 
 import Foundation
 
-enum AttemptSignUp: Int {
-    case success
-    case emptyParameter
-    case alreadyRegistered
-}

@@ -49,6 +49,7 @@ class SignUpViewController: BaseViewController {
     func setNavigation() {
         navigationItem.title = "회원가입"
         navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func settingBirthTextField() {
@@ -123,11 +124,11 @@ class SignUpViewController: BaseViewController {
         // 5. 성별 -> 따로 예외처리 x (선택되면 ok)
         
         // 라스트. 회원가입 버튼 활성화 (모든 객체에 편집 시작해야 작동. 어차피 초기 enabled = false)
-        output.validSignUpButton
+        output.enabledSignUpButton
             .subscribe(with: self) { owner , value in
                 print("버튼 체크 === ", value)
                 owner.mainView.completeButton.isEnabled = value
-                owner.mainView.completeButton.backgroundColor = value ? .red : UIColor(hexCode: ConstantColor.disabledButtonBackground.hexCode)
+                owner.mainView.completeButton.backgroundColor = UIColor(hexCode: value ? ConstantColor.enabledButtonBackground.hexCode : ConstantColor.disabledButtonBackground.hexCode)
                 
                 
             }

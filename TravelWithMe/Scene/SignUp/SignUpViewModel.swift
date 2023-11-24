@@ -32,7 +32,7 @@ class SignUpViewModel: ViewModelType {
         let validNicknameFormat: PublishSubject<ValidNickname>
         let validBirthdayFormat: PublishSubject<ValidBirthday>
         
-        let validSignUpButton: Observable<Bool>
+        let enabledSignUpButton: Observable<Bool>
         let resultSignUpClicked: PublishSubject<AttemptSignUp>
     }
     
@@ -65,6 +65,7 @@ class SignUpViewModel: ViewModelType {
                     error: ValidEmailAPIError.self,
                     api: .validEmail(sender: ValidEmailRequest(email: $0)))
             }
+            .debug()
             .map { response in
                 switch response {
                 case .success(_):
@@ -211,7 +212,7 @@ class SignUpViewModel: ViewModelType {
             validPWFormat: validPWFormat,
             validNicknameFormat: validNicknameFormat,
             validBirthdayFormat: validBirthdayFormat,
-            validSignUpButton: validSignUp,
+            enabledSignUpButton: validSignUp,
             resultSignUpClicked: resultSignUpClicked
         )
     }
