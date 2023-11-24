@@ -24,10 +24,12 @@ class LoginView: BaseView {
     let loginButton = SignUpCompleteButton("로그인")
     let signUpButton = SignUpCompleteButton("회원가입")
     
+    let checkLoginLabel = LoginCheckLoginLabel()
+    
     override func setConfigure() {
         super.setConfigure()
         
-        [logoImageView, emailLabel, emailTextField, pwLabel, pwTextField, loginButton, signUpButton].forEach { item in
+        [logoImageView, emailLabel, emailTextField, pwLabel, pwTextField, loginButton, signUpButton, checkLoginLabel].forEach { item in
             addSubview(item)
         }
     }
@@ -67,6 +69,11 @@ class LoginView: BaseView {
             make.top.equalTo(loginButton.snp.bottom).offset(18)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(18)
             make.height.equalTo(52)
+        }
+        
+        checkLoginLabel.snp.makeConstraints { make in
+            make.top.equalTo(pwTextField.snp.bottom).offset(8)
+            make.trailing.equalTo(self).inset(24)
         }
         
         

@@ -50,10 +50,20 @@ class LoginViewModel: ViewModelType {
             }
             .map { response in
                 switch response {
-                case .success(_): // let result
-                    return AttemptLogin.success
-                case .failure(_):
-                    return AttemptLogin.emptyParameter
+                case .success(let result): // let result
+                    return AttemptLogin.success(result: result)
+                case .failure(let error):   // 임시. 추후에 나눌 예정
+                    
+                    if let commonError = error as? CommonAPIError {
+                        return AttemptLogin.commonError(error: commonError)
+                    }
+                    
+                    if let loginError = error as? LoginAPIError {
+                        return AttemptLogin.loginError(error: loginError)
+                    }
+                    
+                    // 이건 일어나지 않길 바라야지 뭐...
+                    return AttemptLogin.commonError(error: .unknownError)
                 }
             }
             .subscribe(with: self) { owner, value in

@@ -147,14 +147,11 @@ enum JoinAPIError: Int, APIError {
 
 /* ===== 로그인 ===== */
 enum LoginAPIError: Int, APIError {
-    case success = 200
     case missingValue = 400
     case inValidAccount = 401
     
     var description: String {
         switch self {
-        case .success:
-            return "로그인 성공"
         case .missingValue:
             return "필수값을 채워주세요"
         case .inValidAccount:

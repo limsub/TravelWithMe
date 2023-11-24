@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4818C8CF2B105C5600BC8F02 /* AttemptLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8CE2B105C5600BC8F02 /* AttemptLogin.swift */; };
 		4818C8D12B105C8300BC8F02 /* ResultNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */; };
+		4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */; };
 		4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115B2B0DD46A00C68490 /* APIModel.swift */; };
 		4847115E2B0DD56000C68490 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115D2B0DD56000C68490 /* APIManager.swift */; };
 		484711612B0DD59A00C68490 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 484711602B0DD59A00C68490 /* Alamofire */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		4818C8CE2B105C5600BC8F02 /* AttemptLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptLogin.swift; sourceTree = "<group>"; };
 		4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultNetwork.swift; sourceTree = "<group>"; };
+		4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckLoginLabel.swift; sourceTree = "<group>"; };
 		4847115B2B0DD46A00C68490 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		4847115D2B0DD56000C68490 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		484711622B0E1CE100C68490 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 		48F0A55F2B0F848900859828 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				484711682B0E2B8600C68490 /* ErrorEnum.swift in Sources */,
 				4847115E2B0DD56000C68490 /* APIManager.swift in Sources */,
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
+				4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
 				48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */,
 				4847116A2B0E2FF700C68490 /* Router.swift in Sources */,

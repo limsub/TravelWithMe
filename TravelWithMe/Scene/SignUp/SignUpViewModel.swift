@@ -65,7 +65,7 @@ class SignUpViewModel: ViewModelType {
                     error: ValidEmailAPIError.self,
                     api: .validEmail(sender: ValidEmailRequest(email: $0)))
             }
-            .debug()
+//            .debug()
             .map { response in
                 switch response {
                 case .success(_):

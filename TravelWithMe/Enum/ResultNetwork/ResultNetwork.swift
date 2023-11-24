@@ -20,7 +20,7 @@ import Foundation
 // - SignUp의 ValidEmail로 대응
 
 /* === 회원가입 === */
-enum AttemptSignUp: Int {
+enum AttemptSignUp {
     case success
     case emptyParameter
     case alreadyRegistered
@@ -29,10 +29,10 @@ enum AttemptSignUp: Int {
 
 
 /* === 로그인 === */
-enum AttemptLogin: Int {
+enum AttemptLogin {
 //    case success(result: LoginResponse)
-    case success
-    case emptyParameter
-    case invalidAccount
+    case success(result: LoginResponse)
+    case commonError(error: CommonAPIError)
+    case loginError(error: LoginAPIError)
 }
 

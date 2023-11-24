@@ -46,6 +46,6 @@ class RouterAPIManager {
             
             return Disposables.create()
         }
-        .debug()
+//        .debug()
     }
 }
