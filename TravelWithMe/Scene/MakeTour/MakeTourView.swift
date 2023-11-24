@@ -12,6 +12,8 @@ class MakeTourView: BaseView {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
+    let testButton = UIButton()
+    
     let imagePickerView = { // 임시
         let view = UIImageView()
         view.backgroundColor = .green
@@ -50,6 +52,9 @@ class MakeTourView: BaseView {
         [imagePickerView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceTextField, dateLabel, locationLabel, datePicker].forEach { item in
             contentView.addSubview(item)
         }
+        
+        contentView.addSubview(testButton)
+        
         
     }
     
@@ -122,6 +127,11 @@ class MakeTourView: BaseView {
             make.trailing.equalTo(contentView).inset(18)
         }
 
+        testButton.backgroundColor = .red
+        testButton.snp.makeConstraints { make in
+            make.height.equalTo(200)
+            make.top.horizontalEdges.equalTo(contentView).inset(50)
+        }
         
         
     }

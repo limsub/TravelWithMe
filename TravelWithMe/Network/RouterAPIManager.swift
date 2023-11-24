@@ -20,15 +20,16 @@ class RouterAPIManager {
         return Single< Result<T, Error> >.create { single in
             
             AF.request(api)
-                .validate()
+                .validate(statusCode: 200...200)
                 .responseDecodable(of: T.self) { response in
-                    
+
                     switch response.result {
                     case .success(let data):
                         print("네트워크 통신 성공")
                         single(.success(.success(data)))
                         
-                    case .failure(_):
+                    case .failure(let error):
+                        
                         let statusCode = response.response?.statusCode ?? 500
                         print("네트워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
                         
@@ -37,7 +38,8 @@ class RouterAPIManager {
                             print("에러 내용 : \(returnError.description)")
                             single(.success(.failure(returnError)))
                         } else {
-                            let returnError = U(rawValue: statusCode)!
+                            guard let returnError = U(rawValue: statusCode) else { return }
+//                            let returnError = U(rawValue: statusCode)!
                             print("에러 내용 : \(returnError.description)")
                             single(.success(.failure(returnError)))
                         }

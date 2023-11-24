@@ -10,6 +10,8 @@
 		4818C8CF2B105C5600BC8F02 /* AttemptLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8CE2B105C5600BC8F02 /* AttemptLogin.swift */; };
 		4818C8D12B105C8300BC8F02 /* ResultNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */; };
 		4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */; };
+		4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */; };
+		4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */; };
 		4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115B2B0DD46A00C68490 /* APIModel.swift */; };
 		4847115E2B0DD56000C68490 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115D2B0DD56000C68490 /* APIManager.swift */; };
 		484711612B0DD59A00C68490 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 484711602B0DD59A00C68490 /* Alamofire */; };
@@ -63,6 +65,8 @@
 		4818C8CE2B105C5600BC8F02 /* AttemptLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptLogin.swift; sourceTree = "<group>"; };
 		4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultNetwork.swift; sourceTree = "<group>"; };
 		4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckLoginLabel.swift; sourceTree = "<group>"; };
+		4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSONtoString.swift; sourceTree = "<group>"; };
+		4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourViewModel.swift; sourceTree = "<group>"; };
 		4847115B2B0DD46A00C68490 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		4847115D2B0DD56000C68490 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		484711622B0E1CE100C68490 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -133,6 +137,14 @@
 				4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */,
 			);
 			path = ResultNetwork;
+			sourceTree = "<group>";
+		};
+		4818C8D42B10720100BC8F02 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		4826FF2D2B0B97D20077B2D1 /* Login */ = {
@@ -206,6 +218,7 @@
 		4877860B2B0B29F60091661F /* TravelWithMe */ = {
 			isa = PBXGroup;
 			children = (
+				4818C8D42B10720100BC8F02 /* Test */,
 				486732552B0CA3DA00BC24A4 /* Network */,
 				486732472B0C902C00BC24A4 /* Enum */,
 				487786362B0B32A90091661F /* Extension */,
@@ -302,6 +315,7 @@
 			children = (
 				487786432B0B47C30091661F /* MakeTourViewController.swift */,
 				487786452B0B47D30091661F /* MakeTourView.swift */,
+				4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */,
 			);
 			path = MakeTour;
 			sourceTree = "<group>";
@@ -422,10 +436,12 @@
 				487786112B0B29F60091661F /* ViewController.swift in Sources */,
 				4867325B2B0CBCD600BC24A4 /* ValidBirthday.swift in Sources */,
 				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
+				4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */,
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
 				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
 				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
 				484711632B0E1CE100C68490 /* Gender.swift in Sources */,
+				4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */,
 				4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */,
 				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,
 				4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */,

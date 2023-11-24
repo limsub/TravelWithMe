@@ -14,6 +14,8 @@ enum Router: URLRequestConvertible {
     case join(sender: JoinRequest)
     case login(sender: LoginRequest)
     
+    case makePost(sender: MakePostRequest)
+    
     
     private var path: String {
         switch self {
@@ -23,6 +25,8 @@ enum Router: URLRequestConvertible {
             return "/join"
         case .login:
             return "/login"
+        case .makePost:
+            return "/post"
         }
     }
     
@@ -33,12 +37,18 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "application/json",
                 "SesacKey": SeSACAPI.subKey
             ]
+        case .makePost:
+            return [
+                "Authorization": SeSACAPI.tempToken,
+                "Content-Type": "application/json",
+                "SesacKey": SeSACAPI.subKey
+            ]
         }
     }
     
     private var method: HTTPMethod {
         switch self {
-        case .validEmail, .join, .login:
+        case .validEmail, .join, .login, .makePost:
             return .post
         }
     }
@@ -63,6 +73,19 @@ enum Router: URLRequestConvertible {
             return [
                 "email": sender.email,
                 "password": sender.password
+            ]
+            
+        case .makePost(let sender):
+            return [
+                "title": sender.title,
+                "content": sender.content,
+//                "file": sender.files
+                "product_id": sender.product_id,
+                "content1": sender.tourDates,
+                "content2": sender.tourLocations,
+                "content3": sender.locationName,
+                "content4": sender.maxPeopleCnt,
+                "content5": sender.tourPrice
             ]
         }
         
