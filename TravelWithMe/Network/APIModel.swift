@@ -71,7 +71,7 @@ struct MakePostRequest: Encodable {
 
 struct MakePostResponse: Decodable {
     let likes: [String]
-    let image: [String] // String인지 Data인지 아직 잘 모르겠음
+    let image: [String] // String인지 Data인지 아직 잘 모르겠음 -> String으로 결론. 서버 내에 이미지가 저장된 url을 받는다.
     let hashTags: [String]
     let comments: [String]
     let _id: String

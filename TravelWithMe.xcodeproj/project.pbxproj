@@ -35,6 +35,7 @@
 		486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */; };
 		4867325B2B0CBCD600BC24A4 /* ValidBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867325A2B0CBCD600BC24A4 /* ValidBirthday.swift */; };
 		4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867325C2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift */; };
+		486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486A9FFC2B12BCC600CB5179 /* SelectDateViewController.swift */; };
 		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
 		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
 		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
@@ -87,6 +88,7 @@
 		486732582B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCheckNicknameLabel.swift; sourceTree = "<group>"; };
 		4867325A2B0CBCD600BC24A4 /* ValidBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidBirthday.swift; sourceTree = "<group>"; };
 		4867325C2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCheckBirthdayLabel.swift; sourceTree = "<group>"; };
+		486A9FFC2B12BCC600CB5179 /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,14 @@
 				484711662B0E2B7600C68490 /* Error */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		486A9FFB2B12BCB100CB5179 /* SelectDate */ = {
+			isa = PBXGroup;
+			children = (
+				486A9FFC2B12BCC600CB5179 /* SelectDateViewController.swift */,
+			);
+			path = SelectDate;
 			sourceTree = "<group>";
 		};
 		487786002B0B29F60091661F = {
@@ -313,6 +323,7 @@
 		487786422B0B47AE0091661F /* MakeTour */ = {
 			isa = PBXGroup;
 			children = (
+				486A9FFB2B12BCB100CB5179 /* SelectDate */,
 				487786432B0B47C30091661F /* MakeTourViewController.swift */,
 				487786452B0B47D30091661F /* MakeTourView.swift */,
 				4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */,
@@ -461,6 +472,7 @@
 				487786322B0B31730091661F /* SignUpTextField.swift in Sources */,
 				487786382B0B32B10091661F /* UIColor+Extension.swift in Sources */,
 				4867324B2B0C938E00BC24A4 /* SignUpCheckEmailLabel.swift in Sources */,
+				486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
 				48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */,
 				486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */,

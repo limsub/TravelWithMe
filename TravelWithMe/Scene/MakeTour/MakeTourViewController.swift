@@ -36,17 +36,20 @@ class MakeTourViewController: BaseViewController {
     
     func bind() {
         
-        let input = MakeTourViewModel.Input(
-            tap: mainView.testButton.rx.tap
-        )
+//        let input = MakeTourViewModel.Input(
+//            tap: mainView.testButton.rx.tap
+//        )
+//
+//        let output = viewModel.tranform(input)
+//
+//        output.tap
+//            .subscribe(with: self) { owner , _ in
+//                print("탭 뷰컨")
+//            }
+//            .disposed(by: disposeBag)
+//
         
-        let output = viewModel.tranform(input)
-        
-        output.tap
-            .subscribe(with: self) { owner , _ in
-                print("탭 뷰컨")
-            }
-            .disposed(by: disposeBag)
-        
+
     }
+
 }
