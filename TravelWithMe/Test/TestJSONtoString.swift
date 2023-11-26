@@ -12,12 +12,11 @@ struct TourDates: Codable {
     let dates: [String]
 }
 
-struct TourLocations: Codable {
+struct TourLocation: Codable {
+    let name: String
     let latitude: Double
     let longtitude: Double
 }
-
-let sample = ["20230910", "20231028"]
 
 
 func encodingStructToString<T: Codable>(sender: T) {
@@ -52,7 +51,7 @@ func decodingStringToStruct<T: Codable>(type: T.Type, sender: String) -> T? {
 /* Test Code */
 //// Struct -> String
 //let a = TourDates(dates: ["20230109", "20230110", "20231010"])
-//let b = TourLocations(latitude: 23.0909, longtitude: 243.1234)
+//let b = TourLocation(latitude: 23.0909, longtitude: 243.1234)
 //
 //encodingStructToString(sender: a)
 //encodingStructToString(sender: b)
@@ -70,7 +69,7 @@ func decodingStringToStruct<T: Codable>(type: T.Type, sender: String) -> T? {
 //"""
 //
 //let e = decodingStringToStruct(type: TourDates.self, sender: c)
-//let f = decodingStringToStruct(type: TourLocations.self , sender: d)
+//let f = decodingStringToStruct(type: TourLocation.self , sender: d)
 //
 //print(e?.dates)
 //print(f?.latitude)

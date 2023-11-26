@@ -42,6 +42,8 @@
 		486AA0062B12C2E100CB5179 /* Date<->String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0052B12C2E100CB5179 /* Date<->String.swift */; };
 		486AA0082B12C30B00CB5179 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0072B12C30B00CB5179 /* Date+Extension.swift */; };
 		486AA00C2B12CFFE00CB5179 /* MakeTourDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA00B2B12CFFE00CB5179 /* MakeTourDatesView.swift */; };
+		486AA00E2B12D51600CB5179 /* SelectTourInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA00D2B12D51600CB5179 /* SelectTourInfoDelegate.swift */; };
+		486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0102B12D60600CB5179 /* SelectLocationViewController.swift */; };
 		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
 		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
 		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
@@ -100,6 +102,8 @@
 		486AA0052B12C2E100CB5179 /* Date<->String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date<->String.swift"; sourceTree = "<group>"; };
 		486AA0072B12C30B00CB5179 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		486AA00B2B12CFFE00CB5179 /* MakeTourDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourDatesView.swift; sourceTree = "<group>"; };
+		486AA00D2B12D51600CB5179 /* SelectTourInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTourInfoDelegate.swift; sourceTree = "<group>"; };
+		486AA0102B12D60600CB5179 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +227,14 @@
 			path = SelectDate;
 			sourceTree = "<group>";
 		};
+		486AA00F2B12D5F600CB5179 /* SelectLocation */ = {
+			isa = PBXGroup;
+			children = (
+				486AA0102B12D60600CB5179 /* SelectLocationViewController.swift */,
+			);
+			path = SelectLocation;
+			sourceTree = "<group>";
+		};
 		487786002B0B29F60091661F = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +354,8 @@
 				487786432B0B47C30091661F /* MakeTourViewController.swift */,
 				487786452B0B47D30091661F /* MakeTourView.swift */,
 				4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */,
+				486AA00D2B12D51600CB5179 /* SelectTourInfoDelegate.swift */,
+				486AA00F2B12D5F600CB5179 /* SelectLocation */,
 				486A9FFB2B12BCB100CB5179 /* SelectDate */,
 			);
 			path = MakeTour;
@@ -457,10 +471,12 @@
 				4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
 				48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */,
+				486AA00E2B12D51600CB5179 /* SelectTourInfoDelegate.swift in Sources */,
 				4847116A2B0E2FF700C68490 /* Router.swift in Sources */,
 				484711652B0E25DA00C68490 /* AttemptSignUp.swift in Sources */,
 				4818C8CF2B105C5600BC8F02 /* AttemptLogin.swift in Sources */,
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
+				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
 				4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */,
 				4818C8D12B105C8300BC8F02 /* ResultNetwork.swift in Sources */,
