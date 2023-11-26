@@ -16,21 +16,15 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
     
     let imageView = {
         let view = UIImageView()
-        
-        view.backgroundColor = .red
-        
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
         view.image = UIImage(systemName: "plus")
-        
         return view
     }()
     
     let cancelButton = {
         let view = UIButton()
-        
         view.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
-        
-//        view.backgroundColor = .blue
-        
         return view
     }()
     
@@ -55,11 +49,15 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
     }
     
     func designPlusCell() {
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = UIColor(hexCode: ConstantColor.textFieldBackground.hexCode)
         imageView.image = UIImage(systemName: "plus")
+        cancelButton.isHidden = true
+        cancelButton.isEnabled = false
     }
     
     func designCell(_ imageData: Data) {
         imageView.image = UIImage(data: imageData)
+        cancelButton.isHidden = false
+        cancelButton.isEnabled = true
     }
 }

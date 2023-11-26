@@ -125,8 +125,9 @@ class MakeTourViewController: BaseViewController {
         vc.rx.checkTourDates
             .subscribe(with: self) { owner , value in
                 print("선택한 날짜 : ", value)
+                owner.mainView.tourDatesView.label.textColor = .black
                 owner.mainView.tourDatesView.label.rx.text
-                    .onNext("일단 하나. \(value[0])")
+                    .onNext(owner.calculateDateLabel(value))
                 
                 owner.viewModel.tourDates
                     .onNext(TourDates(dates: value))
@@ -136,14 +137,35 @@ class MakeTourViewController: BaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func calculateDateLabel(_ arr: [String]) -> String {
+        var ans = ""
+        
+        let cnt = (arr.count > 4) ? 4 : arr.count
+        for i in 0..<cnt {
+            ans += arr[i]
+            
+            if (i != cnt - 1) {
+                ans += ", "
+            }
+        }
+        
+        if (arr.count > 4) {
+            let d = arr.count - 4
+            ans += " 외 \(d)일"
+        }
+        
+        return ans
+    }
+    
     @objc
     func locationButtonClicked() {
         let vc = SelectLocationViewController()
         vc.rx.checkTourLocation
             .subscribe(with: self) { owner , value in
                 print("선택한 장소 : ", value)
+                owner.mainView.tourLocationView.label.textColor = .black
                 owner.mainView.tourLocationView.label.rx.text
-                    .onNext("위도경도 따로. \(value.name)")
+                    .onNext(value.name)
                 
                 owner.viewModel.tourLocation
                     .onNext(value)

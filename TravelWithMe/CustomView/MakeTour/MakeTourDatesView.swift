@@ -16,17 +16,17 @@ class MakeTourDatesView: UIView {
         super.init(frame: frame)
     }
     
-    convenience init(_ imageName: String) {
+    convenience init(_ imageName: String, placeholder: String) {
         self.init()
         
-        setUp(imageName)
+        setUp(imageName, placeholder: placeholder)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUp(_ imageName: String) {
+    func setUp(_ imageName: String, placeholder: String) {
         // 뷰 세팅
         clipsToBounds = true
         layer.cornerRadius = 10
@@ -34,6 +34,11 @@ class MakeTourDatesView: UIView {
         
         // 버튼 세팅
         button.setImage(UIImage(systemName: imageName), for: .normal)
+        
+        // 레이블 세팅
+        label.text = placeholder
+        label.textColor = UIColor(hexCode: ConstantColor.textFieldPlaceholder.hexCode)
+        label.font = .systemFont(ofSize: 14)
         
         // 레이아웃
         addSubview(label)

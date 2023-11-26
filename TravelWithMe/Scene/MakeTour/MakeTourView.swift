@@ -17,7 +17,7 @@ class MakeTourView: BaseView {
         
         view.register(MakeTourImageCollectionViewCell.self, forCellWithReuseIdentifier: "여행 만들기 - 이미지 컬렉션뷰")
         
-        view.backgroundColor = .purple
+//        view.backgroundColor = .purple
         
         
         view.showsHorizontalScrollIndicator = false
@@ -50,7 +50,7 @@ class MakeTourView: BaseView {
     let titleLabel = SignUpSmallLabel("제목")
     let contentLabel = SignUpSmallLabel("소개")
     let typeLabel = SignUpSmallLabel("유형")
-    let peopleCntLabel = SignUpSmallLabel("모집 인원")
+    let peopleCntLabel = SignUpSmallLabel("최대 모집 인원")
     let priceLabel = SignUpSmallLabel("예상 금액")
     let dateLabel = SignUpSmallLabel("여행 날짜")
     let locationLabel = SignUpSmallLabel("여행 장소")
@@ -63,8 +63,8 @@ class MakeTourView: BaseView {
     
     let tourDatesLabel = SignUpSmallLabel("여행 일자")
     let tourLocationLabel = SignUpSmallLabel("여행 장소")
-    let tourDatesView = MakeTourDatesView("calendar")
-    let tourLocationView = MakeTourDatesView("map")
+    let tourDatesView = MakeTourDatesView("calendar", placeholder: "언제 여행을 떠나고 싶으신가요?")
+    let tourLocationView = MakeTourDatesView("map", placeholder: "가고 싶은 장소 한 곳을 골라주세요")
     
     let makeTourButton = SignUpCompleteButton("여행 제작 완료")
     
