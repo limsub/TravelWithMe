@@ -161,7 +161,7 @@ enum LoginAPIError: Int, APIError {
 }
 
 
-/* ===== 포스트 작성 ===== */
+/* ===== 게시글 작성 ===== */
 enum MakePostAPIError: Int, APIError {
     case invalidRequest = 400
     case invalidToken = 401

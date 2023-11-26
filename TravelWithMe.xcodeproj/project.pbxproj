@@ -44,6 +44,7 @@
 		486AA00C2B12CFFE00CB5179 /* MakeTourDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA00B2B12CFFE00CB5179 /* MakeTourDatesView.swift */; };
 		486AA00E2B12D51600CB5179 /* SelectTourInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA00D2B12D51600CB5179 /* SelectTourInfoDelegate.swift */; };
 		486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0102B12D60600CB5179 /* SelectLocationViewController.swift */; };
+		486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0122B13065200CB5179 /* MakeTourPriceView.swift */; };
 		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
 		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
 		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
@@ -104,6 +105,7 @@
 		486AA00B2B12CFFE00CB5179 /* MakeTourDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourDatesView.swift; sourceTree = "<group>"; };
 		486AA00D2B12D51600CB5179 /* SelectTourInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTourInfoDelegate.swift; sourceTree = "<group>"; };
 		486AA0102B12D60600CB5179 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		486AA0122B13065200CB5179 /* MakeTourPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPriceView.swift; sourceTree = "<group>"; };
 		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				487786482B0B4A330091661F /* MakeTourTextView.swift */,
 				4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */,
 				486AA00B2B12CFFE00CB5179 /* MakeTourDatesView.swift */,
+				486AA0122B13065200CB5179 /* MakeTourPriceView.swift */,
 			);
 			path = MakeTour;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
 				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
+				486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */,
 				487786252B0B2A820091661F /* SignUpViewController.swift in Sources */,
 				48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */,
 				4877863F2B0B3ADA0091661F /* SignUpView.swift in Sources */,

@@ -12,7 +12,6 @@ class MakeTourView: BaseView {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
-    let testButton = UIButton()
     
     let imagePickerView = { // 임시
         let view = UIImageView()
@@ -32,20 +31,15 @@ class MakeTourView: BaseView {
     let titleTextField = SignUpTextField("제목을 입력하세요")
     let contentTextView = MakeTourTextView()
     let peopleCntView = MakeTourPeopleCountView()
-    let priceTextField = SignUpTextField("10,000 원")
+//    let priceTextField = SignUpTextField("10,000 원")
+    let priceView = MakeTourPriceView()
     
     let tourDatesLabel = SignUpSmallLabel("여행 일자")
     let tourLocationLabel = SignUpSmallLabel("여행 장소")
     let tourDatesView = MakeTourDatesView("calendar")
     let tourLocationView = MakeTourDatesView("map")
     
-    let datePicker = {
-        let view = UIDatePicker()
-        view.datePickerMode = .date
-        view.minimumDate = Date()
-        view.preferredDatePickerStyle = .compact
-        return view
-    }()
+    let makeTourButton = SignUpCompleteButton("여행 제작 완료")
     
     
     override func setConfigure() {
@@ -54,11 +48,9 @@ class MakeTourView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [imagePickerView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceTextField, dateLabel, locationLabel, datePicker, tourDatesLabel, tourLocationLabel, tourDatesView, tourLocationView].forEach { item in
+        [imagePickerView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceView, dateLabel, locationLabel, tourDatesLabel, tourLocationLabel, tourDatesView, tourLocationView, makeTourButton].forEach { item in
             contentView.addSubview(item)
         }
-        
-        contentView.addSubview(testButton)
         
         
     }
@@ -125,7 +117,7 @@ class MakeTourView: BaseView {
             make.height.equalTo(52)
             make.trailing.equalTo(contentView.snp.centerX)
         }
-        priceTextField.snp.makeConstraints { make in
+        priceView.snp.makeConstraints { make in
             make.leading.equalTo(contentView.snp.centerX).offset(8)
             make.top.equalTo(peopleCntView)
             make.height.equalTo(52)
@@ -150,16 +142,24 @@ class MakeTourView: BaseView {
             make.horizontalEdges.equalTo(contentView).inset(18)
             make.top.equalTo(tourLocationLabel.snp.bottom).offset(8)
             make.height.equalTo(52)
+        }
+        
+        makeTourButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentView).inset(18)
+            make.top.equalTo(tourLocationView.snp.bottom).offset(40)
+            make.height.equalTo(52)
             make.bottom.equalTo(contentView).inset(20)
         }
 
-        testButton.backgroundColor = .red
-        testButton.snp.makeConstraints { make in
-            make.height.equalTo(200)
-            make.top.horizontalEdges.equalTo(contentView).inset(50)
-        }
         
         
+    }
+    
+    override func setting() {
+        super.setting()
+        
+        makeTourButton.isEnabled = false
+        makeTourButton.backgroundColor = UIColor(hexCode:  ConstantColor.disabledButtonBackground.hexCode)
     }
     
     

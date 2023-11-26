@@ -40,7 +40,7 @@ enum Router: URLRequestConvertible {
         case .makePost:
             return [
                 "Authorization": SeSACAPI.tempToken,
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
         }
@@ -76,6 +76,7 @@ enum Router: URLRequestConvertible {
             ]
             
         case .makePost(let sender):
+            // 이미지(file)는 파라미터에 넣지 않고, 따로 data로 변환시켜서 전달한다
             return [
                 "title": sender.title,
                 "content": sender.content,
@@ -83,9 +84,9 @@ enum Router: URLRequestConvertible {
                 "product_id": sender.product_id,
                 "content1": sender.tourDates,
                 "content2": sender.tourLocations,
-                "content3": sender.locationName,
-                "content4": sender.maxPeopleCnt,
-                "content5": sender.tourPrice
+                "content3": sender.maxPeopleCnt,
+                "content4": sender.tourPrice,
+                "content5": ""
             ]
         }
         

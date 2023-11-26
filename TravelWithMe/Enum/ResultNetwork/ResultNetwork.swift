@@ -36,3 +36,10 @@ enum AttemptLogin {
     case loginError(error: LoginAPIError)
 }
 
+
+/* === 게시글 작성 === */
+enum AttemptMakePost {
+    case success(result: MakePostResponse)
+    case commonError(error: CommonAPIError)
+    case makePostError(error: MakePostAPIError)
+}

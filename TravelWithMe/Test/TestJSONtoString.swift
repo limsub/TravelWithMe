@@ -19,17 +19,18 @@ struct TourLocation: Codable {
 }
 
 
-func encodingStructToString<T: Codable>(sender: T) {
+func encodingStructToString<T: Codable>(sender: T) -> String? {
     do {
         let jsonData = try JSONEncoder().encode(sender)
         if let jsonString = String(data: jsonData, encoding: .utf8) {
-            print("JSON 변환 성공, 서버에 데이터 전송하기")
+            print("JSON 변환 성공")
             print("JSON String : ", jsonString)
+            return jsonString
         }
     } catch {
         print("에러 발생")
     }
-    
+    return nil
 }
 
 func decodingStringToStruct<T: Codable>(type: T.Type, sender: String) -> T? {

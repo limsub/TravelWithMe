@@ -30,6 +30,8 @@ class RouterAPIManager {
                         
                     case .failure(let error):
                         
+                        print("에러 내용 : ", error)
+                        
                         let statusCode = response.response?.statusCode ?? 500
                         print("네트워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
                         

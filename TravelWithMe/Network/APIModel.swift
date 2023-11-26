@@ -63,8 +63,7 @@ struct MakePostRequest: Encodable {
 //    let file: data
     let product_id = SeSACAPI.product_id
     let tourDates: String   // struct TourDates { let dates: [String] }             ["20231011", "20231104", "20231108"]
-    let tourLocations: String  // struct TourLocations { let locations: [String] }  [위도, 경도]
-    let locationName: String
+    let tourLocations: String // struct TourLocations { let name: String, let latitude: Double, let longtitude: Double }
     let maxPeopleCnt: String  // String(5)
     let tourPrice: String // String(30000)
 }

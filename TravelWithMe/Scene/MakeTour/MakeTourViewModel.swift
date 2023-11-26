@@ -13,32 +13,145 @@ class MakeTourViewModel: ViewModelType {
     
     let disposeBag = DisposeBag()
     
+    var tourPeopleCnt = BehaviorRelay(value: 0)
+    var tourDates =  PublishSubject<TourDates>()
+    var tourLocation =  PublishSubject<TourLocation>()
+    
+    
     struct Input {
-        let tap: ControlEvent<Void>
+        // 제목
+        let titleText: ControlProperty<String>
+        // 소개
+        let contentText: ControlProperty<String>
+        // 모집 인원 - 플러스, 마이너스 버튼에 따라 값 변경 (디폴트 0)
+            // 실제 값은 viewModel의 데이터로 관리
+        let peoplePlusTap: ControlEvent<Void>
+        let peopleMinusTap: ControlEvent<Void>
+        // 가격
+        let priceText: ControlProperty<String>
+        
+        // 여행 일자, 장소 -> viewModel의 데이터로 관리
+        
+        // 완료 버튼 클릭
+        let completeButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
+        let peopleCnt: BehaviorRelay<Int>
         let tap: ControlEvent<Void>
+        let enabledCompleteButton: Observable<Bool>
+        
+        let resultCompleteButtonClicked: PublishSubject<AttemptMakePost>
     }
     
     func tranform(_ input: Input) -> Output {
         
-        input.tap
-//            .flatMap { value in
-//                RouterAPIManager.shared.request(
-//                    type: MakePostResponse.self,
-//                    error: MakePostAPIError.self,
-//                    api: .makePost(sender: MakePostRequest(title: "테스트 타이틀", content: "테스트 컨텐츠", tourDates: "20231010", tourLocations: "위도, 경도", locationName: "새싹 영등포캠퍼스", maxPeopleCnt: "8", tourPrice: "30000"))
-//                )
-//            }
+        // 여행 제작 버튼 활성화
+        let enabledCompleteButton = Observable.combineLatest(input.titleText, input.contentText, tourPeopleCnt, input.priceText, tourDates, tourLocation) { v1, v2, v3, v4, v5, v6 in
+            
+            return (!v1.isEmpty && !v2.isEmpty && v3 != 0
+                    && !v4.isEmpty && !v5.dates.isEmpty && !v6.name.isEmpty)
+        }
         
         
+        // people Cnt Button 작동 (값 +, - 해주고 그 값을 다시 전달해서 뷰에 보일 수 있도록 한다)
+        input.peoplePlusTap
+            .subscribe(with: self) { owner , _ in
+                print("plus tap")
+                var cnt = owner.tourPeopleCnt.value
+                cnt += 1;
+                owner.tourPeopleCnt.accept(cnt)
+            }
+            .disposed(by: disposeBag)
+        
+        input.peopleMinusTap
+            .subscribe(with: self) { owner , _ in
+                print("minus tap")
+                var cnt = owner.tourPeopleCnt.value
+                if (cnt > 0) { cnt -= 1; }
+                owner.tourPeopleCnt.accept(cnt)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        
+        // 고려해야 할 것들
+        // price Int로 바꾸고, ?? 0 으로 옵셔널 처리해주기
+        // 모집 인원도 Int 형변환할게 없네. 걍 Int였구나
+        
+        // 요청할 정보
+        let makePostInfo = Observable.combineLatest(input.titleText, input.contentText, tourPeopleCnt, input.priceText, tourDates, tourLocation) { v1, v2, v3, v4, v5, v6 in
+            let price = Int(v4) ?? 0
+
+            return (v1, v2, String(v3), String(price), v5, v6)
+        }
+        
+        let resultCompleteButtonClicked = PublishSubject<AttemptMakePost>()
+        
+        input.completeButtonClicked
+            .withLatestFrom(makePostInfo)
+            .flatMap { value in
+                
+                let tourDatesString = encodingStructToString(sender: value.4) ?? ""
+                let tourLocationString = encodingStructToString(sender: value.5) ?? ""
+                
+                return RouterAPIManager.shared.request(
+                    type: MakePostResponse.self,
+                    error: MakePostAPIError.self,
+                    api: .makePost(
+                        sender: MakePostRequest(title: value.0, content: value.1, tourDates: tourDatesString, tourLocations: tourLocationString, maxPeopleCnt: value.2, tourPrice: value.3)
+                    )
+                )
+            }
+            .map { response in
+                switch response {
+                case .success(_):
+                    print("석세스")
+                case .failure(_):
+                    print("페일")
+                }
+                return true
+            }
             .subscribe(with: self) { owner , value in
                 print(value)
             }
             .disposed(by: disposeBag)
         
         
-        return Output(tap: input.tap)
+        
+        
+//        input.completeButtonClicked
+//            .withLatestFrom(makePostInfo)
+//            .flatMap { value in
+//                
+//                // tourDates와 tourLocation String으로 바꿔줘야 함
+//                
+////                RouterAPIManager.shared.request(
+////                    type: MakePostResponse.self,
+////                    error: MakePostAPIError.self,
+////                    api: .makePost(
+////                        sender: MakePostRequest(title: value.0, content: value.1, tourDates: value.4, tourLocations: <#T##String#>, locationName: <#T##String#>, maxPeopleCnt: value.2, tourPrice: value.3)
+////                    ))
+//            }
+//        
+        
+        // 날짜, 위치 테스트 (VC에서 VM의 데이터에 onNext로 넣어줌) (transform이랑 관련 x)
+        tourDates
+            .subscribe(with: self) { owner , value in
+                print("날짜 테스트중 : ", value)
+            }
+            .disposed(by: disposeBag)
+        tourLocation
+            .subscribe(with: self) { owner , value in
+                print("위치 테스트중 : ", value)
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(
+            peopleCnt: tourPeopleCnt,
+            tap: input.completeButtonClicked,
+            enabledCompleteButton: enabledCompleteButton,
+            resultCompleteButtonClicked: resultCompleteButtonClicked
+        )
     }
 }
