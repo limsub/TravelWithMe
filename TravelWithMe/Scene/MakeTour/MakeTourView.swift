@@ -12,12 +12,39 @@ class MakeTourView: BaseView {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
-    
-    let imagePickerView = { // 임시
-        let view = UIImageView()
-        view.backgroundColor = .green
+    lazy var imageCollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: createImageCollectionViewLayout())
+        
+        view.register(MakeTourImageCollectionViewCell.self, forCellWithReuseIdentifier: "여행 만들기 - 이미지 컬렉션뷰")
+        
+        view.backgroundColor = .purple
+        
+        
+        view.showsHorizontalScrollIndicator = false
+        
         return view
     }()
+    
+    func createImageCollectionViewLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.itemSize = CGSize(width: 100, height: 100)
+        
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 24
+        
+        layout.scrollDirection = .horizontal
+        
+        return layout
+    }
+    
+    
+//    let imagePickerView = { // 임시
+//        let view = UIImageView()
+//        view.backgroundColor = .green
+//        return view
+//    }()
 
     let imageLabel = SignUpSmallLabel("사진")
     let titleLabel = SignUpSmallLabel("제목")
@@ -48,7 +75,7 @@ class MakeTourView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [imagePickerView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceView, dateLabel, locationLabel, tourDatesLabel, tourLocationLabel, tourDatesView, tourLocationView, makeTourButton].forEach { item in
+        [imageCollectionView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceView, dateLabel, locationLabel, tourDatesLabel, tourLocationLabel, tourDatesView, tourLocationView, makeTourButton].forEach { item in
             contentView.addSubview(item)
         }
         
@@ -71,15 +98,16 @@ class MakeTourView: BaseView {
             make.top.equalTo(contentView).inset(40)
             make.horizontalEdges.equalTo(contentView).inset(18)
         }
-        imagePickerView.snp.makeConstraints { make in
+
+        imageCollectionView.snp.makeConstraints { make in
             make.top.equalTo(imageLabel.snp.bottom).offset(8)
-            make.leading.equalTo(contentView).inset(18)
-            make.width.equalTo(100)
-            make.height.equalTo(150)
+            make.horizontalEdges.equalTo(contentView)
+            make.height.equalTo(100)
         }
+        
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(imagePickerView.snp.bottom).offset(40)
+            make.top.equalTo(imageCollectionView.snp.bottom).offset(40)
             make.horizontalEdges.equalTo(contentView).inset(18)
         }
         titleTextField.snp.makeConstraints { make in

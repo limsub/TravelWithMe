@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PhotosUI
 
 class MakeTourViewController: BaseViewController {
     
@@ -35,6 +36,8 @@ class MakeTourViewController: BaseViewController {
         // 여행 일자와 여행 장소 다른 뷰컨에서 받아오는 건 (버튼 탭) Input으로 넣지 말고, 일단 Rx Delegate Pattern만 이용하자.
         
         selectDatesLocation()
+        
+        settingCollectionView()
     }
 
     
@@ -125,4 +128,55 @@ class MakeTourViewController: BaseViewController {
         
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    
+    func settingCollectionView() {
+        
+        mainView.imageCollectionView.delegate = self
+        mainView.imageCollectionView.dataSource = self
+    }
+}
+
+extension MakeTourViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "여행 만들기 - 이미지 컬렉션뷰", for: indexPath) as? MakeTourImageCollectionViewCell else { return UICollectionViewCell() }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard indexPath.item == 0 else { print("선택 불가"); return;}
+        
+        showPHPicker()
+    }
+    
+    func showPHPicker() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 5
+        configuration.filter = .images
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        
+        present(picker, animated: true)
+    }
+}
+
+extension MakeTourViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        picker.dismiss(animated: true)
+        
+    }
+    
+    
+    
 }
