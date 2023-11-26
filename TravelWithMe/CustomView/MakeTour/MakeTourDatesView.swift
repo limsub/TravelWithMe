@@ -44,7 +44,7 @@ class MakeTourDatesView: UIView {
         }
         label.snp.makeConstraints { make in
             make.verticalEdges.leading.equalTo(self).inset(14)
-            make.trailing.equalTo(button.snp.leading).offset(8)
+            make.trailing.equalTo(button.snp.leading).offset(-8)
         }
     }
 }

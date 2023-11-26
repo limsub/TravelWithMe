@@ -28,43 +28,17 @@ class SelectDateViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        mainView.completeButton.addTarget(self , action: #selector(b), for: .touchUpInside)
+        mainView.completeButton.addTarget(self , action: #selector(completeButtonClicked), for: .touchUpInside)
     }
     
-//    @objc
-//    func b() {
-//
-//        delegate?.printDates?(value: mainView.calendar.selectedDates.map { $0.toString(of: .full) })
-//        navigationController?.popViewController(animated: true)
-//    }
+    @objc
+    func completeButtonClicked() {
+        // 선택한 날짜 배열 -> sort -> "M/DD" 변환
+        delegate?.sendDates?(
+            value: mainView.calendar.selectedDates.sorted()
+                .map { $0.toString(of: .monthSlashDay) }
+        )
+        
+        navigationController?.popViewController(animated: true)
+    }
 }
-//
-//class RxSecondViewControllerDelegateProxy: DelegateProxy<SelectDateViewController, SecondViewControllerDelegate>, DelegateProxyType, SecondViewControllerDelegate {
-//    static func registerKnownImplementations() {
-//        self.register { (vc) -> RxSecondViewControllerDelegateProxy in
-//            RxSecondViewControllerDelegateProxy(parentObject: vc , delegateProxy: self)
-//        }
-//    }
-//
-//    static func currentDelegate(for object: SelectDateViewController) -> SecondViewControllerDelegate? {
-//        return object.delegate
-//    }
-//
-//    static func setCurrentDelegate(_ delegate: SecondViewControllerDelegate?, to object: SelectDateViewController) {
-//        object.delegate = delegate
-//    }
-//
-//
-//
-//}
-//
-//
-//extension Reactive where Base: SelectDateViewController {
-//    var delegate: DelegateProxy<SelectDateViewController, SecondViewControllerDelegate> {
-//        return RxSecondViewControllerDelegateProxy.proxy(for: self.base)
-//    }
-//
-//    var plusButtonClicked: Observable<[String]> {
-//        return delegate.methodInvoked(#selector(SecondViewControllerDelegate.printDates(value: ))).map { $0.first as? [String] ?? []}
-//    }
-//}

@@ -73,6 +73,8 @@ class MakeTourViewController: BaseViewController {
         vc.rx.checkTourDates
             .subscribe(with: self) { owner , value in
                 print("선택한 날짜 : ", value)
+                owner.mainView.tourDatesView.label.rx.text
+                    .onNext("일단 하나. \(value[0])")
             }
             .disposed(by: disposeBag)
         
@@ -85,6 +87,8 @@ class MakeTourViewController: BaseViewController {
         vc.rx.checkTourLocation
             .subscribe(with: self) { owner , value in
                 print("선택한 장소 : ", value)
+                owner.mainView.tourLocationView.label.rx.text
+                    .onNext("위도경도 따로. \(value.name)")
             }
             .disposed(by: disposeBag)
         

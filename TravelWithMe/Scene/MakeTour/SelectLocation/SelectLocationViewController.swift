@@ -30,6 +30,8 @@ class SelectLocationViewController: BaseViewController {
     
     @objc
     func clicked() {
-        delegate?.sendLocation?(name: "하이", latitude: 1.2, longitude: 1.2)
+        delegate?.sendLocation?(name: "청년취업사관학교 영등포캠퍼스", latitude: 37.517742, longitude: 126.886463)
+        
+        navigationController?.popViewController(animated: true)
     }
 }
