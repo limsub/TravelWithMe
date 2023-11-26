@@ -13,12 +13,13 @@ class StartViewController: BaseViewController {
     let button1 = UIButton()
     let button2 = UIButton()
     let button3 = UIButton()
+    let button4 = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        [button1, button2, button3].forEach { item in
+        [button1, button2, button3, button4].forEach { item in
             view.addSubview(item)
             item.backgroundColor = .gray
         }
@@ -37,10 +38,16 @@ class StartViewController: BaseViewController {
             make.centerX.equalTo(view)
             make.top.equalTo(button2.snp.bottom).offset(50)
         }
+        button4.snp.makeConstraints { make in
+            make.size.equalTo(100)
+            make.centerX.equalTo(view)
+            make.top.equalTo(button3.snp.bottom).offset(50)
+        }
         
         button1.addTarget(self, action: #selector(button1Clicked), for: .touchUpInside)
         button2.addTarget(self, action: #selector(button2Clicked), for: .touchUpInside)
         button3.addTarget(self, action: #selector(button3Clicked), for: .touchUpInside)
+        button4.addTarget(self, action: #selector(button4Clicked), for: .touchUpInside)
     }
     
     @objc
@@ -57,6 +64,11 @@ class StartViewController: BaseViewController {
     @objc
     func button3Clicked() {
         let vc = LoginViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc
+    func button4Clicked() {
+        let vc = SelectDateViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 

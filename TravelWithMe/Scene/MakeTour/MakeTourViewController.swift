@@ -49,7 +49,22 @@ class MakeTourViewController: BaseViewController {
 //            .disposed(by: disposeBag)
 //
         
+        mainView.testButton.addTarget(self , action: #selector(a), for: .touchUpInside)
 
+    }
+    
+    @objc
+    func a() {
+        let vc = SelectDateViewController()
+        vc.rx.plusButtonClicked
+            .subscribe(with: self) { owner , value in
+                print("날짜들 저장 : ", value)
+            }
+            .disposed(by: disposeBag)
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
+        
     }
 
 }

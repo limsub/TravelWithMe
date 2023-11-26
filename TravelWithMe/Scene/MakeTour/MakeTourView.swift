@@ -34,6 +34,11 @@ class MakeTourView: BaseView {
     let peopleCntView = MakeTourPeopleCountView()
     let priceTextField = SignUpTextField("10,000 원")
     
+    let tourDatesLabel = SignUpSmallLabel("여행 일자")
+    let tourLocationLabel = SignUpSmallLabel("여행 장소")
+    let tourDatesView = MakeTourDatesView("calendar")
+    let tourLocationView = MakeTourDatesView("map")
+    
     let datePicker = {
         let view = UIDatePicker()
         view.datePickerMode = .date
@@ -49,7 +54,7 @@ class MakeTourView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [imagePickerView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceTextField, dateLabel, locationLabel, datePicker].forEach { item in
+        [imagePickerView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceTextField, dateLabel, locationLabel, datePicker, tourDatesLabel, tourLocationLabel, tourDatesView, tourLocationView].forEach { item in
             contentView.addSubview(item)
         }
         
@@ -125,6 +130,27 @@ class MakeTourView: BaseView {
             make.top.equalTo(peopleCntView)
             make.height.equalTo(52)
             make.trailing.equalTo(contentView).inset(18)
+        }
+        
+        tourDatesLabel.snp.makeConstraints { make in
+            make.top.equalTo(peopleCntView.snp.bottom).offset(40)
+            make.horizontalEdges.equalTo(contentView).inset(18)
+        }
+        tourDatesView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentView).inset(18)
+            make.top.equalTo(tourDatesLabel.snp.bottom).offset(8)
+            make.height.equalTo(52)
+        }
+        
+        tourLocationLabel.snp.makeConstraints { make in
+            make.top.equalTo(tourDatesView.snp.bottom).offset(40)
+            make.horizontalEdges.equalTo(contentView).inset(18)
+        }
+        tourLocationView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentView).inset(18)
+            make.top.equalTo(tourLocationLabel.snp.bottom).offset(8)
+            make.height.equalTo(52)
+            make.bottom.equalTo(contentView).inset(20)
         }
 
         testButton.backgroundColor = .red

@@ -48,8 +48,8 @@ class SignUpViewController: BaseViewController {
     
     func setNavigation() {
         navigationItem.title = "회원가입"
-        navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.largeTitleDisplayMode = .always
+//        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func settingBirthTextField() {
