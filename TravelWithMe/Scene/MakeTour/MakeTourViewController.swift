@@ -200,12 +200,12 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
                         
                         // 시뮬레이터 맨 첫번째 사진 로드 불가
                         guard let image = image as? UIImage else { return }
-                        print("가드 통과")
-                        self?.viewModel.tourImages.append(image)
+                        
+                        
+                        // image를 jpegData로 변환해서 저장
+                        guard let imageData = image.jpegData(compressionQuality: 0.01) else { return }
+                        self?.viewModel.tourImages.append(imageData)
                         print(self?.viewModel.tourImages)
-                        
-                        
-                        
                         
                         DispatchQueue.main.async {
                             self?.mainView.imageCollectionView.reloadData()
@@ -222,6 +222,8 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         
     }
-
+    
+    
+    
     
 }

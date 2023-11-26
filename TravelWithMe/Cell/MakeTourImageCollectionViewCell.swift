@@ -59,7 +59,7 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
         imageView.image = UIImage(systemName: "plus")
     }
     
-    func designCell(_ image: UIImage) {
-        imageView.image = image
+    func designCell(_ imageData: Data) {
+        imageView.image = UIImage(data: imageData)
     }
 }

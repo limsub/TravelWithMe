@@ -47,6 +47,7 @@
 		486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0122B13065200CB5179 /* MakeTourPriceView.swift */; };
 		486AA0162B131E0300CB5179 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0152B131E0300CB5179 /* BaseCollectionViewCell.swift */; };
 		486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0172B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift */; };
+		486AA01A2B1338A800CB5179 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0192B1338A800CB5179 /* UIImage+Extension.swift */; };
 		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
 		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
 		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
@@ -110,6 +111,7 @@
 		486AA0122B13065200CB5179 /* MakeTourPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPriceView.swift; sourceTree = "<group>"; };
 		486AA0152B131E0300CB5179 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		486AA0172B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		486AA0192B1338A800CB5179 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				487786372B0B32B10091661F /* UIColor+Extension.swift */,
 				486AA0052B12C2E100CB5179 /* Date<->String.swift */,
 				486AA0072B12C30B00CB5179 /* Date+Extension.swift */,
+				486AA0192B1338A800CB5179 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				4867324B2B0C938E00BC24A4 /* SignUpCheckEmailLabel.swift in Sources */,
 				486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
+				486AA01A2B1338A800CB5179 /* UIImage+Extension.swift in Sources */,
 				48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */,
 				486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */,
 			);

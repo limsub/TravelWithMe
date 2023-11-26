@@ -6,6 +6,7 @@
 //
 
 import Foundation
+//import UIKit    // file 저장을 [UIImage]..
 
 /* ===== 이메일 중복 확인 ===== */
 struct ValidEmailRequest: Encodable {
@@ -60,7 +61,7 @@ struct WithDrawResponse: Decodable {
 struct MakePostRequest: Encodable {
     let title: String
     let content: String
-//    let file: data
+    let file: [Data]
     let product_id = SeSACAPI.product_id
     let tourDates: String   // struct TourDates { let dates: [String] }             ["20231011", "20231104", "20231108"]
     let tourLocations: String // struct TourLocations { let name: String, let latitude: Double, let longtitude: Double }

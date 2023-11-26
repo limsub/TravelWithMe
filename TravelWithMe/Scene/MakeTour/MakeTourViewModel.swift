@@ -13,7 +13,8 @@ class MakeTourViewModel: ViewModelType {
     
     let disposeBag = DisposeBag()
     
-    var tourImages: [UIImage] = []
+//    var tourImages: [UIImage] = []
+    var tourImages: [Data] = []
     
     var tourPeopleCnt = BehaviorRelay(value: 0)
     var tourDates =  PublishSubject<TourDates>()
@@ -48,11 +49,15 @@ class MakeTourViewModel: ViewModelType {
     
     func tranform(_ input: Input) -> Output {
         
+//        tourImages[0].jpegData(compressionQuality: 1)
+        
         // 여행 제작 버튼 활성화
         let enabledCompleteButton = Observable.combineLatest(input.titleText, input.contentText, tourPeopleCnt, input.priceText, tourDates, tourLocation) { v1, v2, v3, v4, v5, v6 in
             
+            let isImage = !self.tourImages.isEmpty
+            
             return (!v1.isEmpty && !v2.isEmpty && v3 != 0
-                    && !v4.isEmpty && !v5.dates.isEmpty && !v6.name.isEmpty)
+                    && !v4.isEmpty && !v5.dates.isEmpty && !v6.name.isEmpty && isImage)
         }
         
         
@@ -96,12 +101,11 @@ class MakeTourViewModel: ViewModelType {
                 
                 let tourDatesString = encodingStructToString(sender: value.4) ?? ""
                 let tourLocationString = encodingStructToString(sender: value.5) ?? ""
-                
-                return RouterAPIManager.shared.request(
+                return RouterAPIManager.shared.requestMultiPart(
                     type: MakePostResponse.self,
                     error: MakePostAPIError.self,
                     api: .makePost(
-                        sender: MakePostRequest(title: value.0, content: value.1, tourDates: tourDatesString, tourLocations: tourLocationString, maxPeopleCnt: value.2, tourPrice: value.3)
+                        sender: MakePostRequest(title: value.0, content: value.1, file: self.tourImages, tourDates: tourDatesString, tourLocations: tourLocationString, maxPeopleCnt: value.2, tourPrice: value.3)
                     )
                 )
             }

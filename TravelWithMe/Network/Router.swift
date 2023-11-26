@@ -17,7 +17,7 @@ enum Router: URLRequestConvertible {
     case makePost(sender: MakePostRequest)
     
     
-    private var path: String {
+    var path: String {
         switch self {
         case .validEmail:
             return "/validation/email"
@@ -30,7 +30,11 @@ enum Router: URLRequestConvertible {
         }
     }
     
-    private var header: HTTPHeaders {
+    var url: URL {
+        URL(string: SeSACAPI.baseURL + path)!
+    }
+    
+    var header: HTTPHeaders {
         switch self {
         case .validEmail, .join, .login:
             return [
@@ -39,21 +43,21 @@ enum Router: URLRequestConvertible {
             ]
         case .makePost:
             return [
-                "Authorization": SeSACAPI.tempToken,
+                "Authorization": UserDefaults.standard.string(forKey: "token")!,
                 "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
         }
     }
     
-    private var method: HTTPMethod {
+    var method: HTTPMethod {
         switch self {
         case .validEmail, .join, .login, .makePost:
             return .post
         }
     }
     
-    private var parameter: [String: Any] {
+    var parameter: [String: Any] {
         switch self {
         case .validEmail(let sender):
             return [
@@ -89,9 +93,18 @@ enum Router: URLRequestConvertible {
                 "content5": ""
             ]
         }
-        
-        
     }
+    
+    var imageData: [Data] {
+        switch self {
+        case .validEmail, .join, .login:
+            return []
+        case .makePost(let sender):
+            return sender.file
+        }
+    }
+    
+    
     
 //    private var query: [String: String] {
 //        switch self {

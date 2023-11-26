@@ -51,6 +51,8 @@ class LoginViewModel: ViewModelType {
             .map { response in
                 switch response {
                 case .success(let result): // let result
+                    UserDefaults.standard.set(result.token, forKey: "token")
+                    
                     return AttemptLogin.success(result: result)
                 case .failure(let error):   // 임시. 추후에 나눌 예정
                     
