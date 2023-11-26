@@ -53,4 +53,13 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
             make.size.equalTo(24)
         }
     }
+    
+    func designPlusCell() {
+        imageView.backgroundColor = .white
+        imageView.image = UIImage(systemName: "plus")
+    }
+    
+    func designCell(_ image: UIImage) {
+        imageView.image = image
+    }
 }

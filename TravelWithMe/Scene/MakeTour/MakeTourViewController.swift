@@ -141,11 +141,20 @@ class MakeTourViewController: BaseViewController {
 
 extension MakeTourViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.tourImages.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "여행 만들기 - 이미지 컬렉션뷰", for: indexPath) as? MakeTourImageCollectionViewCell else { return UICollectionViewCell() }
+        
+        
+        if (indexPath.item == 0) {
+            cell.designPlusCell()
+        }
+        else {
+            cell.designCell(viewModel.tourImages[indexPath.row - 1])
+        }
+        
         
         return cell
     }
@@ -173,10 +182,46 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
+        
+        
+        if !results.isEmpty {
+            
+            viewModel.tourImages.removeAll()
+            
+            for result in results {
+                let itemProvider = result.itemProvider
+                
+                // UIImage로 받을 수 있는 애들을 배열에 저장
+                if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image , error  in
+                        
+                        print("이미지 : ", image)
+                        print("에러 : ", error)
+                        
+                        // 시뮬레이터 맨 첫번째 사진 로드 불가
+                        guard let image = image as? UIImage else { return }
+                        print("가드 통과")
+                        self?.viewModel.tourImages.append(image)
+                        print(self?.viewModel.tourImages)
+                        
+                        
+                        
+                        
+                        DispatchQueue.main.async {
+                            self?.mainView.imageCollectionView.reloadData()
+                        }
+                            
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+        
         picker.dismiss(animated: true)
         
     }
-    
-    
+
     
 }

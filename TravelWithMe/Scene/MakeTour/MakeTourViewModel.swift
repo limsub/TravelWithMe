@@ -5,13 +5,15 @@
 //  Created by 임승섭 on 2023/11/24.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 
 class MakeTourViewModel: ViewModelType {
     
     let disposeBag = DisposeBag()
+    
+    var tourImages: [UIImage] = []
     
     var tourPeopleCnt = BehaviorRelay(value: 0)
     var tourDates =  PublishSubject<TourDates>()
