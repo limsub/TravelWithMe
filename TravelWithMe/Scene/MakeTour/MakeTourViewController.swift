@@ -76,6 +76,30 @@ class MakeTourViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.resultCompleteButtonClicked
+            .subscribe(with: self) { owner, value  in
+                
+                switch value {
+                case .success(let result):
+                    print("게시글 작성에 성공하였습니다")
+                    print("=== result 출력 ===")
+                    print(result)
+                    
+                case .commonError(let error):
+                    print("게시글 작성에 실패하였습니다 - 공통 에러")
+                    print("여기 분기 처리 아직 안함")
+                        
+                case .makePostError(let error):
+                    print("게시글 작성에 실패했습니다 - 게시글 작성 에러")
+                    print("여기 분기 처리 아직 안함")
+                    
+                }
+                
+        
+                
+            
+            }
+        
     
 
         output.tap

@@ -197,6 +197,7 @@ class SignUpViewModel: ViewModelType {
                 case .success(_):
                     return AttemptSignUp.success
                 case .failure(_):   // 임시. 추후에 나눌 예정
+                    print("회원가입 실패. 에러 타입은 추후에 분리")
                     return AttemptSignUp.alreadyRegistered
                 }
             }

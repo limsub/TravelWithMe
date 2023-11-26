@@ -111,35 +111,31 @@ class MakeTourViewModel: ViewModelType {
             }
             .map { response in
                 switch response {
-                case .success(_):
-                    print("석세스")
-                case .failure(_):
-                    print("페일")
+                case .success(let result):
+                    print("게시글 작성 성공")
+                    return AttemptMakePost.success(result: result)
+                case .failure(let error):
+                    print("게시글 작성 실퍠")
+                    
+                    if let commonError = error as? CommonAPIError {
+                        print("  공통 에러 중 하나")
+                        return AttemptMakePost.commonError(error: commonError)
+                    }
+                    
+                    if let makePostError = error as? MakePostAPIError {
+                        print("  게시글 작성 에러 중 하나")
+                        return AttemptMakePost.makePostError(error: makePostError)
+                    }
+                    
+                    print("  알 수 없는 에러.. 뭔 에러일까..?")
+                    return AttemptMakePost.commonError(error: .unknownError)
+                
                 }
-                return true
             }
             .subscribe(with: self) { owner , value in
-                print(value)
+                resultCompleteButtonClicked.onNext(value)
             }
             .disposed(by: disposeBag)
-        
-        
-        
-        
-//        input.completeButtonClicked
-//            .withLatestFrom(makePostInfo)
-//            .flatMap { value in
-//                
-//                // tourDates와 tourLocation String으로 바꿔줘야 함
-//                
-////                RouterAPIManager.shared.request(
-////                    type: MakePostResponse.self,
-////                    error: MakePostAPIError.self,
-////                    api: .makePost(
-////                        sender: MakePostRequest(title: value.0, content: value.1, tourDates: value.4, tourLocations: <#T##String#>, locationName: <#T##String#>, maxPeopleCnt: value.2, tourPrice: value.3)
-////                    ))
-//            }
-//        
         
         // 날짜, 위치 테스트 (VC에서 VM의 데이터에 onNext로 넣어줌) (transform이랑 관련 x)
         tourDates

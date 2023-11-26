@@ -51,20 +51,26 @@ class LoginViewModel: ViewModelType {
             .map { response in
                 switch response {
                 case .success(let result): // let result
+                    print("로그인 성공")
+                    
                     UserDefaults.standard.set(result.token, forKey: "token")
                     
                     return AttemptLogin.success(result: result)
-                case .failure(let error):   // 임시. 추후에 나눌 예정
+                case .failure(let error):
+                    print("로그인 실패")
                     
                     if let commonError = error as? CommonAPIError {
+                        print("  공통 에러 중 하나")
                         return AttemptLogin.commonError(error: commonError)
                     }
                     
                     if let loginError = error as? LoginAPIError {
+                        print("  로그인 에러 중 하나")
                         return AttemptLogin.loginError(error: loginError)
                     }
                     
                     // 이건 일어나지 않길 바라야지 뭐...
+                    print("  알 수 없는 에러.. 뭔 에러일까..?")
                     return AttemptLogin.commonError(error: .unknownError)
                 }
             }

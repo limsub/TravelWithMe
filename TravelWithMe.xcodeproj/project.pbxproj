@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4818C8CF2B105C5600BC8F02 /* AttemptLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8CE2B105C5600BC8F02 /* AttemptLogin.swift */; };
 		4818C8D12B105C8300BC8F02 /* ResultNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */; };
 		4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */; };
 		4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */; };
@@ -16,7 +15,6 @@
 		4847115E2B0DD56000C68490 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115D2B0DD56000C68490 /* APIManager.swift */; };
 		484711612B0DD59A00C68490 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 484711602B0DD59A00C68490 /* Alamofire */; };
 		484711632B0E1CE100C68490 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711622B0E1CE100C68490 /* Gender.swift */; };
-		484711652B0E25DA00C68490 /* AttemptSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711642B0E25DA00C68490 /* AttemptSignUp.swift */; };
 		484711682B0E2B8600C68490 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711672B0E2B8600C68490 /* ErrorEnum.swift */; };
 		4847116A2B0E2FF700C68490 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711692B0E2FF700C68490 /* Router.swift */; };
 		48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48474C072B0F712A00B73261 /* RouterAPIManager.swift */; };
@@ -75,7 +73,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4818C8CE2B105C5600BC8F02 /* AttemptLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptLogin.swift; sourceTree = "<group>"; };
 		4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultNetwork.swift; sourceTree = "<group>"; };
 		4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckLoginLabel.swift; sourceTree = "<group>"; };
 		4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSONtoString.swift; sourceTree = "<group>"; };
@@ -83,7 +80,6 @@
 		4847115B2B0DD46A00C68490 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		4847115D2B0DD56000C68490 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		484711622B0E1CE100C68490 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
-		484711642B0E25DA00C68490 /* AttemptSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptSignUp.swift; sourceTree = "<group>"; };
 		484711672B0E2B8600C68490 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
 		484711692B0E2FF700C68490 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		48474C072B0F712A00B73261 /* RouterAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterAPIManager.swift; sourceTree = "<group>"; };
@@ -158,8 +154,6 @@
 		4818C8CD2B105C4600BC8F02 /* ResultNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				484711642B0E25DA00C68490 /* AttemptSignUp.swift */,
-				4818C8CE2B105C5600BC8F02 /* AttemptLogin.swift */,
 				4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */,
 			);
 			path = ResultNetwork;
@@ -493,8 +487,6 @@
 				48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */,
 				486AA00E2B12D51600CB5179 /* SelectTourInfoDelegate.swift in Sources */,
 				4847116A2B0E2FF700C68490 /* Router.swift in Sources */,
-				484711652B0E25DA00C68490 /* AttemptSignUp.swift in Sources */,
-				4818C8CF2B105C5600BC8F02 /* AttemptLogin.swift in Sources */,
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
