@@ -74,6 +74,8 @@
 		48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC102B14836800AD854F /* ContentsViewModel.swift */; };
 		48B7CC132B14836D00AD854F /* ContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC122B14836D00AD854F /* ContentsView.swift */; };
 		48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */; };
+		48B7CC182B14C16200AD854F /* ContentsTourInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */; };
+		48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */; };
 		48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A5592B0F83A700859828 /* LoginViewController.swift */; };
 		48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A55B2B0F83AE00859828 /* LoginViewModel.swift */; };
 		48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A55D2B0F83B300859828 /* LoginView.swift */; };
@@ -143,6 +145,8 @@
 		48B7CC102B14836800AD854F /* ContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewModel.swift; sourceTree = "<group>"; };
 		48B7CC122B14836D00AD854F /* ContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsView.swift; sourceTree = "<group>"; };
 		48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTourCollectionViewCell.swift; sourceTree = "<group>"; };
+		48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourInfoView.swift; sourceTree = "<group>"; };
+		48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsProfileImageView.swift; sourceTree = "<group>"; };
 		48F0A5592B0F83A700859828 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48F0A55B2B0F83AE00859828 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		48F0A55D2B0F83B300859828 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -202,9 +206,9 @@
 		486732472B0C902C00BC24A4 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 				4818C8CD2B105C4600BC8F02 /* ResultNetwork */,
 				486732522B0CA36700BC24A4 /* SignUp */,
-				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -337,6 +341,7 @@
 		4877862B2B0B2E430091661F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				48B7CC162B14C15000AD854F /* Contents */,
 				48F0A55F2B0F848900859828 /* Login */,
 				487786392B0B35940091661F /* SignUp */,
 				487786472B0B4A250091661F /* MakeTour */,
@@ -417,6 +422,15 @@
 				48B7CC0E2B14835500AD854F /* ContentsViewController.swift */,
 				48B7CC102B14836800AD854F /* ContentsViewModel.swift */,
 				48B7CC122B14836D00AD854F /* ContentsView.swift */,
+			);
+			path = Contents;
+			sourceTree = "<group>";
+		};
+		48B7CC162B14C15000AD854F /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */,
+				48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -549,6 +563,8 @@
 				4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */,
 				486732492B0C903D00BC24A4 /* ValidEmail.swift in Sources */,
 				487786412B0B43AD0091661F /* SignUpCompleteButton.swift in Sources */,
+				48B7CC182B14C16200AD854F /* ContentsTourInfoView.swift in Sources */,
+				48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */,
 				4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
 				48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */,

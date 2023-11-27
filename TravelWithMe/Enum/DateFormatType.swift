@@ -10,7 +10,7 @@ import Foundation
 enum DateFormatType: String {
     
     case full = "yyyyMMdd"
-    case monthSlashDay = "M/dd"
+    case monthSlashDay = "M/d"
 }
 
 

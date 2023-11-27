@@ -73,5 +73,4 @@ class StartViewController: BaseViewController {
         let vc = ContentsViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-
 }

@@ -9,25 +9,26 @@ import UIKit
 
 class ContentsView: BaseView {
     
+
     lazy var tourCollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout())
         
         view.register(AboutTourCollectionViewCell.self, forCellWithReuseIdentifier: "ContentsView - tourCollectionView")
         
-        view.backgroundColor = .red
+        view.showsVerticalScrollIndicator = false
         
         return view
     }()
     
     
     
+    
     func createTourCollectionViewLayout() -> UICollectionViewFlowLayout  {
         let layout = UICollectionViewFlowLayout()
         
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 270)
-        
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 36, height: 270)
         layout.minimumLineSpacing = 20
-        
+       
         return layout
     }
     
@@ -42,7 +43,8 @@ class ContentsView: BaseView {
         super.setConstraints()
         
         tourCollectionView.snp.makeConstraints { make in
-            make.edges.equalTo(self)
+            make.verticalEdges.equalTo(self)
+            make.horizontalEdges.equalTo(self).inset(18)
         }
     }
     
