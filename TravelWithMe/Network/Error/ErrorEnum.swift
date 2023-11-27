@@ -162,6 +162,28 @@ enum LoginAPIError: Int, APIError {
 }
 
 
+/* ===== 토큰 갱신 ===== */
+enum RefreshTokenAPIError: Int, APIError {
+    case inValidToken = 401
+    case forbidden = 403
+    case notExpired = 409
+    case refreshTokenExpired = 418
+    
+    var description: String {
+        switch self {
+        case .inValidToken:
+            return "인증할 수 없는 액세스 토큰입니다"
+        case .forbidden:
+            return "접근 권한이 없습니다"
+        case .notExpired:
+            return "액세스 토큰이 만료되지 않았습니다"
+        case .refreshTokenExpired:
+            return "리프레시 토큰이 만료되었습니다"
+        }
+    }
+}
+
+
 /* ===== 게시글 작성 ===== */
 enum MakePostAPIError: Int, APIError {
     case invalidRequest = 400

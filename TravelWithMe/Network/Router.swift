@@ -14,6 +14,8 @@ enum Router: URLRequestConvertible {
     case join(sender: JoinRequest)
     case login(sender: LoginRequest)
     
+    case refreshToken   // get 이기 때문에 바디가 없다.
+    
     case makePost(sender: MakePostRequest)
     
     var path: String {
@@ -24,6 +26,8 @@ enum Router: URLRequestConvertible {
             return "/join"
         case .login:
             return "/login"
+        case .refreshToken:
+            return "/refresh"
         case .makePost:
             return "/post"
         }
@@ -40,9 +44,15 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "application/json",
                 "SesacKey": SeSACAPI.subKey
             ]
+        case .refreshToken:
+            return [
+                "Authorization": KeychainStorage.shared.accessToken ?? "",
+                "SesacKey": SeSACAPI.subKey,
+                "Refresh": KeychainStorage.shared.refreshToken ?? ""
+            ]
         case .makePost:
             return [
-                "Authorization": UserDefaults.standard.string(forKey: "token")!,
+                "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
@@ -53,6 +63,8 @@ enum Router: URLRequestConvertible {
         switch self {
         case .validEmail, .join, .login, .makePost:
             return .post
+        case .refreshToken:
+            return .get
         }
     }
     
@@ -62,7 +74,6 @@ enum Router: URLRequestConvertible {
             return [
                 "email" : sender.email
             ]
-            
         case .join(let sender):
             return [
                 "email" : sender.email,
@@ -77,7 +88,6 @@ enum Router: URLRequestConvertible {
                 "email": sender.email,
                 "password": sender.password
             ]
-            
         case .makePost(let sender):
             // 이미지(file)는 파라미터에 넣지 않고, 따로 data로 변환시켜서 전달한다
             return [
@@ -91,12 +101,14 @@ enum Router: URLRequestConvertible {
                 "content4": sender.tourPrice,
                 "content5": ""
             ]
+        default:
+            return [:]
         }
     }
     
     var imageData: [Data] {
         switch self {
-        case .validEmail, .join, .login:
+        case .validEmail, .join, .login, .refreshToken:
             return []
         case .makePost(let sender):
             return sender.file
@@ -118,8 +130,11 @@ enum Router: URLRequestConvertible {
         request.headers = header
         request.method = method
         
-        let jsonData = try? JSONSerialization.data(withJSONObject: parameter)
-        request.httpBody = jsonData
+        // get이 아닐 때,
+        if method != .get {
+            let jsonData = try? JSONSerialization.data(withJSONObject: parameter)
+            request.httpBody = jsonData
+        }
         
 //        request = try URLEncodedFormParameterEncoder(destination: .methodDependent).encode(query, into: request)
         

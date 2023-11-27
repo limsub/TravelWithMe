@@ -70,8 +70,18 @@ class StartViewController: BaseViewController {
     }
     @objc
     func button4Clicked() {
-        let vc = SelectDateViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        
+//        RouterAPIManager.shared.requestNormal(
+//            type: RefreshTokenResponse.self ,
+//            error: RefreshTokenAPIError.self ,
+//            api: .refreshToken) { response in
+//                print(response)
+//                // 토큰 발급 성공 시 -> 바로 키체인에 저장
+//            }
+        
+        
+//        let vc = SelectDateViewController()
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

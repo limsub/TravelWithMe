@@ -48,6 +48,11 @@ struct LoginResponse: Decodable {
 }
 
 
+/* ===== 토큰 갱신 ===== */
+struct RefreshTokenResponse: Decodable {
+    let token: String
+}
+
 
 /* ===== 탈퇴 (only response) ===== */
 struct WithDrawResponse: Decodable {

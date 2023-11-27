@@ -69,6 +69,7 @@
 		4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */; };
 		48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */; };
 		48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC092B1452FB00AD854F /* KeychainStorage.swift */; };
+		48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */; };
 		48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A5592B0F83A700859828 /* LoginViewController.swift */; };
 		48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A55B2B0F83AE00859828 /* LoginViewModel.swift */; };
 		48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A55D2B0F83B300859828 /* LoginView.swift */; };
@@ -133,6 +134,7 @@
 		487786482B0B4A330091661F /* MakeTourTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourTextView.swift; sourceTree = "<group>"; };
 		4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPeopleCountView.swift; sourceTree = "<group>"; };
 		48B7CC092B1452FB00AD854F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
+		48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
 		48F0A5592B0F83A700859828 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48F0A55B2B0F83AE00859828 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		48F0A55D2B0F83B300859828 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				4847115D2B0DD56000C68490 /* APIManager.swift */,
 				484711692B0E2FF700C68490 /* Router.swift */,
 				48474C072B0F712A00B73261 /* RouterAPIManager.swift */,
+				48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */,
 				484711662B0E2B7600C68490 /* Error */,
 			);
 			path = Network;
@@ -533,6 +536,7 @@
 				487786252B0B2A820091661F /* SignUpViewController.swift in Sources */,
 				48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */,
 				4877863F2B0B3ADA0091661F /* SignUpView.swift in Sources */,
+				48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */,
 				486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */,
 				4867324D2B0C9BCF00BC24A4 /* ValidPW.swift in Sources */,
 				4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */,
