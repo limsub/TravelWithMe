@@ -18,6 +18,8 @@ class StartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        KeychainStorage.shared.printTokens()
+        
         
         [button1, button2, button3, button4].forEach { item in
             view.addSubview(item)

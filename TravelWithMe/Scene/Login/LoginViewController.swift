@@ -49,11 +49,10 @@ class LoginViewController: BaseViewController {
             .subscribe(with: self) { owner , value in
                 
                 switch value {
-                case .success(let result):
+                case .success:  // 결과값 (result)는 토큰 저장 용으로만 사용하고, 이 과정은 viewModel에서 끝난다. 여기서는 화면 전환만 시켜주면 됨
                     print("로그인 성공! 다음 화면 전환!")
-                    print("== 토큰 ==")
-                    print(" - 액세스 토큰 : \(result.token)")
-                    print(" - 리푸레시 토큰 : \(result.refreshToken)")
+                    let vc = MakeTourViewController()
+                    owner.navigationController?.pushViewController(vc , animated: true)
                     
                 case .commonError(let error):
                     print("공통 에러 발생!")

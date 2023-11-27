@@ -92,6 +92,7 @@ protocol APIError: RawRepresentable, Error where RawValue == Int {
     var description: String { get }
 }
 
+/* ===== 공통 에러 ===== */
 enum CommonAPIError: Int, APIError {
     case invalidSeSACKey = 420
     case overInvocation = 429

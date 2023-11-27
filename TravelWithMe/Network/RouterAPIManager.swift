@@ -21,7 +21,7 @@ class RouterAPIManager {
         
         return Single< Result<T, Error> >.create { single in
             AF.upload(multipartFormData: { multipartFormData in
-                // 파라미터 데이터 타입으로 변환
+                // 파라미터를 데이터 타입으로 변환
                 for (key, value) in api.parameter {
                     multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
                 }
@@ -77,7 +77,7 @@ class RouterAPIManager {
         return Single< Result<T, Error> >.create { single in
             
             AF.request(api)
-                .validate(statusCode: 200...200)
+                .validate()
                 .responseDecodable(of: T.self) { response in
 
                     switch response.result {

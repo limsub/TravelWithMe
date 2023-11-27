@@ -53,7 +53,9 @@ class LoginViewModel: ViewModelType {
                 case .success(let result): // let result
                     print("로그인 성공")
                     
-                    UserDefaults.standard.set(result.token, forKey: "token")
+                    print("로그인에 성공했습니다. 토큰을 keychain에 저장합니다")
+                    KeychainStorage.shared.accessToken = result.token
+                    KeychainStorage.shared.refreshToken = result.refreshToken
                     
                     return AttemptLogin.success(result: result)
                 case .failure(let error):

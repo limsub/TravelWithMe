@@ -29,8 +29,6 @@ func createEnumWithRawValue<T: RawEnumConvertible>(_ rawValue: Int) -> T? {
 
 class APIManager {
     
-    
-    
     static let shared = APIManager()
     private init() { }
     
