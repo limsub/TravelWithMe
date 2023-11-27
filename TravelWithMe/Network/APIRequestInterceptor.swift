@@ -61,7 +61,7 @@ final class APIRequestInterceptor: RequestInterceptor {
                     print("토큰 갱신 실패")
 
                     if let commonError = error as? CommonAPIError {
-                        print("  공통 에러 중 하나")
+                        print("  공통 에러 중 하나 던집니다")
                         completion(.doNotRetryWithError(commonError))
                         return
                     }

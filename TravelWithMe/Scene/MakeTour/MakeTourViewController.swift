@@ -79,6 +79,7 @@ class MakeTourViewController: BaseViewController {
         output.resultCompleteButtonClicked
             .subscribe(with: self) { owner, value  in
                 
+
                 switch value {
                 case .success(let result):
                     print("게시글 작성에 성공하였습니다")
@@ -92,6 +93,10 @@ class MakeTourViewController: BaseViewController {
                 case .makePostError(let error):
                     print("게시글 작성에 실패했습니다 - 게시글 작성 에러")
                     print("여기 분기 처리 아직 안함")
+                    
+                case .refreshTokenError(let error):
+                    print("게시글 작성에 실패했습니다 - 토큰 만료 에러")
+                    print("만약 refreshToken 만료 에러이면 로그인 화면으로 돌아갑니다")
                     
                 }
                 

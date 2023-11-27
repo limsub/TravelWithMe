@@ -42,4 +42,5 @@ enum AttemptMakePost {
     case success(result: MakePostResponse)
     case commonError(error: CommonAPIError)
     case makePostError(error: MakePostAPIError)
+    case refreshTokenError(error: RefreshTokenAPIError)
 }

@@ -127,6 +127,12 @@ class MakeTourViewModel: ViewModelType {
                         return AttemptMakePost.makePostError(error: makePostError)
                     }
                     
+                    if let expiredTokenError = error as? RefreshTokenAPIError {
+                        print ("  토큰 만료 에러 중 하나")
+                        print("  만약 에러 내용이 '리프레시 토큰 만료'이면 로그인 화면으로 돌아가야 합니다")
+                        return AttemptMakePost.refreshTokenError(error: expiredTokenError)
+                    }
+                    
                     print("  알 수 없는 에러.. 뭔 에러일까..?")
                     return AttemptMakePost.commonError(error: .unknownError)
                 

@@ -26,21 +26,21 @@ class RouterAPIManager {
                 
                 switch response.result {
                 case .success(let data):
-                    print("노말 네트워크 통신 성공")
+                    print("(노말 네트워크) 통신 성공")
                     completionHandler(.success(data))
                     
                 case .failure:
                     
                     let statusCode = response.response?.statusCode ?? 500
-                    print("노말 네트워크 통신 실패. 상태 코드 \(statusCode)에 따라 에러 탐색")
+                    print("(노말 네트워크) 노말 네트워크 통신 실패. 상태 코드 \(statusCode)에 따라 에러 탐색")
                     
                     if [420, 429, 444, 500].contains(statusCode) {
                         let returnError = CommonAPIError(rawValue: statusCode)!
-                        print("에러 내용 : \(returnError.description)")
+                        print("(노말 네트워크) 에러 내용 : \(returnError.description)")
                         completionHandler(.failure(returnError))
                     } else {
                         guard let returnError = U(rawValue: statusCode) else { return }
-                        print("에러 내용 : \(returnError.description)")
+                        print("(노말 네트워크) 에러 내용 : \(returnError.description)")
                         completionHandler(.failure(returnError))
                     }
                 }
@@ -64,7 +64,7 @@ class RouterAPIManager {
                     print("=== 이미지 크기 ===")
                     print((Double(image.count)/1024.0)/1024.0)
                     
-                    let imageHash = String(image.hashValue)
+                    _ = String(image.hashValue)
                     
                     multipartFormData.append(
                         image,
@@ -78,23 +78,35 @@ class RouterAPIManager {
             .responseDecodable(of: T.self) { response  in
                 switch response.result {
                 case .success(let data):
-                    print("네트워크 통신 성공")
+                    print("(multipart) 네트워크 통신 성공")
                     single(.success(.success(data)))
                     
                 case .failure(let error):
                     
-                    print("에러 내용 : ", error)
-                    
+                    print("(multipart) 에러 내용 : ", error)
                     let statusCode = response.response?.statusCode ?? 500
-                    print("네트워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
+                    print("(multipart) 네트워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
                     
+                    
+                    // 1. 공통 에러인 경우
                     if [420, 429, 444, 500].contains(statusCode) {
+                        print("(multipart) 공통 에러를 받았습니다")
                         let returnError = CommonAPIError(rawValue: statusCode)!
-                        print("에러 내용 : \(returnError.description)")
                         single(.success(.failure(returnError)))
-                    } else {
-                        guard let returnError = U(rawValue: statusCode) else { return }
-                        print("에러 내용 : \(returnError.description)")
+                        return
+                    }
+                    
+                    
+                    // 2. 리프레시 토큰 에러인 경우
+                    else if case .requestRetryFailed(let retryError as RefreshTokenAPIError, _) = error {
+                        print("(multipart) 리프레시 토큰 에러를 받았습니다. 상태 코드와 관계없이 refreshTokenAPIError를 던집니다")
+                        single(.success(.failure(retryError)))
+                    }
+                    
+                    // 3. U 타입 에러인 경우
+                    else if let returnError = U(rawValue: statusCode) {
+                        print("(multipart) U 타입 에러를 받았습니다")
+                        print("(multipart) 에러 내용 : \(returnError.description)")
                         single(.success(.failure(returnError)))
                     }
                 }
@@ -115,26 +127,37 @@ class RouterAPIManager {
 
                     switch response.result {
                     case .success(let data):
-                        print("네트워크 통신 성공")
+                        print("(Single) 네트워크 통신 성공")
                         single(.success(.success(data)))
                         
                     case .failure(let error):
                         
-                        print("에러 내용 : ", error)
-                        
+                        print("(Single) 에러 내용 : ", error)
                         let statusCode = response.response?.statusCode ?? 500
-                        print("네트워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
+                        print("(Single) 네트워크 통신 실패. 상태 코드 '\(statusCode)'에 따라 에러 탐색")
                         
+                        // 1. 공통 에러인 경우
                         if [420, 429, 444, 500].contains(statusCode) {
+                            print("(Single) 공통 에러를 받았습니다")
                             let returnError = CommonAPIError(rawValue: statusCode)!
-                            print("에러 내용 : \(returnError.description)")
-                            single(.success(.failure(returnError)))
-                        } else {
-                            guard let returnError = U(rawValue: statusCode) else { return }
-//                            let returnError = U(rawValue: statusCode)!
-                            print("에러 내용 : \(returnError.description)")
                             single(.success(.failure(returnError)))
                         }
+                        
+                        
+                        // 2. 리프레시 토큰 에러인 경우
+                        else if case .requestRetryFailed(let retryError as RefreshTokenAPIError, _) = error {
+                            print("(Single) 리프레시 토큰 에러를 받았습니다. 상태 코드와 관계없이 refreshTokenAPIError를 던집니다")
+                            single(.success(.failure(retryError)))
+                        }
+                        
+                        
+                        // 3. U 타입 에러인 경우
+                        else if let returnError = U(rawValue: statusCode) {
+                            print("(Single) U 타입 에러를 받았습니다")
+                            print("(Single) 에러 내용 : \(returnError.description)")
+                            single(.success(.failure(returnError)))
+                        }
+
                     }
                 }
             
