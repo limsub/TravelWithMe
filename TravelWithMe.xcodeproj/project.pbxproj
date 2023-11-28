@@ -20,6 +20,7 @@
 		484711682B0E2B8600C68490 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711672B0E2B8600C68490 /* ErrorEnum.swift */; };
 		4847116A2B0E2FF700C68490 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711692B0E2FF700C68490 /* Router.swift */; };
 		48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48474C072B0F712A00B73261 /* RouterAPIManager.swift */; };
+		484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C85A12B1628C90052B247 /* ImageCacheManager.swift */; };
 		4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */; };
 		4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */; };
 		486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 486732412B0C8EA900BC24A4 /* RxCocoa */; };
@@ -96,6 +97,7 @@
 		484711672B0E2B8600C68490 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
 		484711692B0E2FF700C68490 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		48474C072B0F712A00B73261 /* RouterAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterAPIManager.swift; sourceTree = "<group>"; };
+		484C85A12B1628C90052B247 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		486732452B0C8EBD00BC24A4 /* BaseViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelType.swift; sourceTree = "<group>"; };
@@ -220,6 +222,14 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		484C85A02B1628BF0052B247 /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				484C85A12B1628C90052B247 /* ImageCacheManager.swift */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
 		486732472B0C902C00BC24A4 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +311,7 @@
 		4877860B2B0B29F60091661F /* TravelWithMe */ = {
 			isa = PBXGroup;
 			children = (
+				484C85A02B1628BF0052B247 /* ImageCache */,
 				48405B482B15CDAF00B3144F /* 버릴거 */,
 				48B7CC082B1452F000AD854F /* KeyChain */,
 				486AA0142B131DF500CB5179 /* Cell */,
@@ -572,6 +583,7 @@
 				487786112B0B29F60091661F /* ViewController.swift in Sources */,
 				4867325B2B0CBCD600BC24A4 /* ValidBirthday.swift in Sources */,
 				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
+				484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */,
 				4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */,
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
 				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
