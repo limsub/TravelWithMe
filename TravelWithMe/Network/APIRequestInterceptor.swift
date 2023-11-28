@@ -24,9 +24,6 @@ final class APIRequestInterceptor: RequestInterceptor {
         // 근데 refreshToken은 새로 갱신되서 들어올 일이 없기 때문에 초기 header에 넣어준 값이 호출 중에 바뀔 일은 없다. 그니까 여기서 안넣어줘도 됨.
     }
     
-    
-    
-    
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         
         // 네트워크 에러가 발생하면 retry 함수가 실행된다

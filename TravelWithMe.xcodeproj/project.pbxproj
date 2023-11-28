@@ -199,6 +199,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		48405B482B15CDAF00B3144F /* 버릴거 */ = {
+			isa = PBXGroup;
+			children = (
+				4847115D2B0DD56000C68490 /* APIManager.swift */,
+			);
+			name = "버릴거";
+			path = "버릴거";
+			sourceTree = "<group>";
+		};
 		484711662B0E2B7600C68490 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,7 +243,6 @@
 			children = (
 				486732562B0CA3E200BC24A4 /* APIKey.swift */,
 				4847115B2B0DD46A00C68490 /* APIModel.swift */,
-				4847115D2B0DD56000C68490 /* APIManager.swift */,
 				484711692B0E2FF700C68490 /* Router.swift */,
 				48474C072B0F712A00B73261 /* RouterAPIManager.swift */,
 				48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */,
@@ -289,6 +297,7 @@
 		4877860B2B0B29F60091661F /* TravelWithMe */ = {
 			isa = PBXGroup;
 			children = (
+				48405B482B15CDAF00B3144F /* 버릴거 */,
 				48B7CC082B1452F000AD854F /* KeyChain */,
 				486AA0142B131DF500CB5179 /* Cell */,
 				4818C8D42B10720100BC8F02 /* Test */,

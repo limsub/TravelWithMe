@@ -207,3 +207,18 @@ enum MakePostAPIError: Int, APIError {
         }
     }
 }
+
+/* ===== 게시글 조회 ===== */
+enum LookPostAPIError: Int, APIError {
+    case invalidRequest = 400
+    case invalidToken = 401
+    case forbidden = 403
+    case tokenExpired = 419
+    
+    var description: String {
+        switch self {
+        default:
+            return "하이하이하이하이"
+        }
+    }
+}

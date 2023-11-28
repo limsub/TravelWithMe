@@ -101,3 +101,52 @@ struct Creator: Codable {
     let nick: String
 }
 
+
+/* ===== 포스트 조회 ===== */
+struct LookPostQueryString {
+    let next: String
+    let limit: String
+    let product_id = SeSACAPI.product_id
+}
+
+struct LookPostResponse: Decodable {
+    let data: [Datum]
+    let nextCursor: String
+
+    enum CodingKeys: String, CodingKey {
+        case data
+        case nextCursor = "next_cursor"
+    }
+}
+
+struct Datum: Codable {
+    let likes: [String]
+    let image: [String]
+    let hashTags, comments: [String]
+    let id: String
+    let creator: Creator
+    let time: String
+    let title: String?       // 제목
+    let content: String     // 소개 (내용)
+    let dates: String       // content1. 날짜 struct json string
+    let location: String    // content2. 장소 struct json string
+    let maxPeopleCnt: String? // content3. 최대 인원수
+    let price: String?       // content4. 예상 가격
+    let content5: String?    // 미정
+    let productID: String
+
+    enum CodingKeys: String, CodingKey {
+        case likes, image, hashTags, comments
+        case id = "_id"
+        case creator, time, title, content
+        
+        case dates = "content1"
+        case location = "content2"
+        case maxPeopleCnt = "content3"
+        case price = "content4"
+        
+        case content5
+        case productID = "product_id"
+    }
+}
+

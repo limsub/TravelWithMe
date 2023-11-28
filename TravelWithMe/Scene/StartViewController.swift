@@ -21,6 +21,13 @@ class StartViewController: BaseViewController {
         KeychainStorage.shared.printTokens()
         
         
+        RouterAPIManager.shared.requestNormal(
+            type: LookPostResponse.self ,
+            error: LookPostAPIError.self ,
+            api: .lookPost(query: LookPostQueryString(next: "", limit: "5"))) { response  in
+                print(response)
+            }
+        
         [button1, button2, button3, button4].forEach { item in
             view.addSubview(item)
             item.backgroundColor = .gray
