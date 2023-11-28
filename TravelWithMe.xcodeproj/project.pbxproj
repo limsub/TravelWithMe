@@ -21,6 +21,7 @@
 		4847116A2B0E2FF700C68490 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484711692B0E2FF700C68490 /* Router.swift */; };
 		48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48474C072B0F712A00B73261 /* RouterAPIManager.swift */; };
 		484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C85A12B1628C90052B247 /* ImageCacheManager.swift */; };
+		484C85A52B162C360052B247 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 484C85A42B162C360052B247 /* SkeletonView */; };
 		4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */; };
 		4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */; };
 		486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 486732412B0C8EA900BC24A4 /* RxCocoa */; };
@@ -172,6 +173,7 @@
 				48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */,
 				486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */,
 				486AA0002B12BDB100CB5179 /* FSCalendar in Frameworks */,
+				484C85A52B162C360052B247 /* SkeletonView in Frameworks */,
 				487786302B0B309F0091661F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +500,7 @@
 				48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */,
 				48405B4A2B16044E00B3144F /* Kingfisher */,
 				48405B4D2B16108200B3144F /* AlamofireImage */,
+				484C85A42B162C360052B247 /* SkeletonView */,
 			);
 			productName = TravelWithMe;
 			productReference = 487786092B0B29F60091661F /* TravelWithMe.app */;
@@ -535,6 +538,7 @@
 				48B7CC052B1451FB00AD854F /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				48405B4C2B16108200B3144F /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				484C85A32B162C360052B247 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 4877860A2B0B29F60091661F /* Products */;
 			projectDirPath = "";
@@ -864,6 +868,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		484C85A32B162C360052B247 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		486732402B0C8EA900BC24A4 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -913,6 +925,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4847115F2B0DD59A00C68490 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		484C85A42B162C360052B247 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 484C85A32B162C360052B247 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		486732412B0C8EA900BC24A4 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

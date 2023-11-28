@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
-
+import SkeletonView
 
 class AboutTourCollectionViewCell: BaseCollectionViewCell {
     
@@ -20,6 +20,9 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         view.layer.cornerCurve = .continuous
         view.image = UIImage(named: "sample")
 //        view.backgroundColor = .systemGray6
+        
+        view.isSkeletonable = true
+        
         return view
     }()
     let shadowView = {
@@ -151,12 +154,15 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
                 self.backImageView.image = cachedImage
             } else {
                 print("-- 캐싱되지 않은 이미지")
+                print(" * 스켈레톤 뷰 띄우기 : ", Date())
+                backImageView.showAnimatedSkeleton()
                 RouterAPIManager.shared.requestImage(api: .imageDownload(sender: imageURL)) { response  in
                     
                     switch response {
                     case .success(let image):
-                        print("- 이미지 캐싱하기")
+                        print("- 이미지 다운 완료 -> 이미지 설정 및 이미지 캐싱")
                         ImageCacheManager.shared.setObject(image, forKey: cacheKey)
+                        self.backImageView.hideSkeleton()
                         self.backImageView.image = image
                         
                     case .failure(let error):
