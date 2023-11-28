@@ -80,11 +80,8 @@ struct MakePostResponse: Decodable {
     let hashTags: [String]
     let comments: [String]
     let _id: String
-    
     let creator: Creator
-    
     let time: String
-    
     let title: String
     let content: String
     let content1: String
@@ -92,7 +89,6 @@ struct MakePostResponse: Decodable {
     let content3: String
     let content4: String
     let content5: String
-    
     let product_id: String
 }
 

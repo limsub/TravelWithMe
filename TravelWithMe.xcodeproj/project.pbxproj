@@ -220,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
-				4818C8CD2B105C4600BC8F02 /* ResultNetwork */,
 				486732522B0CA36700BC24A4 /* SignUp */,
 			);
 			path = Enum;
@@ -241,6 +240,7 @@
 		486732552B0CA3DA00BC24A4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4818C8CD2B105C4600BC8F02 /* ResultNetwork */,
 				486732562B0CA3E200BC24A4 /* APIKey.swift */,
 				4847115B2B0DD46A00C68490 /* APIModel.swift */,
 				484711692B0E2FF700C68490 /* Router.swift */,

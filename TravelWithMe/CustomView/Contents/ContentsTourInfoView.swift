@@ -29,7 +29,7 @@ enum TourInfoType {
             // 말도 안되지만, 배열이 비었을 때 예외처리 (index OutofBounds 대비)
             if dates.isEmpty { return "" }
             
-            guard let firstDate = dates[0].toDate(to: .full)?.toString(of: .monthSlashDay) else { return "" }
+            let firstDate = dates[0]
             
             if dates.count == 1 {
                 return firstDate
@@ -43,6 +43,8 @@ enum TourInfoType {
 class ContentsTourInfoView: BaseView {
     
     func setUp(_ info: TourInfoType) {
+        print("매개변수 인포 :")
+        print(info)
         imageView.image = UIImage(systemName: info.imageName)
         infoLabel.text = info.infoLabelText
     }

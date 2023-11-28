@@ -44,3 +44,12 @@ enum AttemptMakePost {
     case makePostError(error: MakePostAPIError)
     case refreshTokenError(error: RefreshTokenAPIError)
 }
+
+
+/* === 게시글 조회 === */
+enum AttemptLookPost {
+    case success(result: LookPostResponse)
+    case commonError(error: CommonAPIError)
+    case lookPostError(error: LookPostAPIError)
+    case refreshTokenError(error: RefreshTokenAPIError)
+}

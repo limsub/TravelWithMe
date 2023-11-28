@@ -23,12 +23,12 @@ func encodingStructToString<T: Codable>(sender: T) -> String? {
     do {
         let jsonData = try JSONEncoder().encode(sender)
         if let jsonString = String(data: jsonData, encoding: .utf8) {
-            print("JSON 변환 성공")
-            print("JSON String : ", jsonString)
+//            print("JSON 변환 성공")
+//            print("JSON String : ", jsonString)
             return jsonString
         }
     } catch {
-        print("에러 발생")
+        print("JSON String encoding 과정 중 에러 발생")
     }
     return nil
 }
@@ -37,12 +37,12 @@ func decodingStringToStruct<T: Codable>(type: T.Type, sender: String) -> T? {
     do {
         if let jsonData = sender.data(using: .utf8) {
             let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
-            print("Struct 변환 성공")
-            print("Struct 타입 데이터 : ", decodedData)
+//            print("Struct 변환 성공")
+//            print("Struct 타입 데이터 : ", decodedData)
             return decodedData
         }
     } catch {
-        print("에러 발생")
+        print("JSON String decoding 과정 중 에러 발생")
     }
     
     return nil

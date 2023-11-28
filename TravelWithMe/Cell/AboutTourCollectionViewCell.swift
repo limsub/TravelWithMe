@@ -122,17 +122,45 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
     }
     
     
-    func designCell() {
+    func designCell(_ sender: Datum) {
         
-        maxPeopleView.setUp(TourInfoType.maxPeople(cnt: 3))
-        tourDatesView.setUp(TourInfoType.tourDates(dates: ["20230111", "20230912"]))
+        // 1. 배경 이미지 (아직)
+//        if !sender.image.isEmpty {
+//
+//        } else {
+//            print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함")
+//
+//        }
         
-        profileImageView.image = UIImage(named: "sample")
+        // 2. 타이틀
+        tourTitleLabel.text = sender.title
         
-        profileNameLabel.text = "임승섭asdfjlak;sjdfl;sakdjf"
+        // 3. 닉네임
+        profileNameLabel.text = sender.creator.nick
+        
+            // 닉네임 길이에 따라 라인 길이 조절
         lineView.snp.makeConstraints { make in
             make.leading.equalTo(profileNameLabel.snp.trailing).offset(8)
         }
+        
+        // 4. 유저 프로필 이미지 (아직)
+        profileImageView.image = UIImage(named: "sample")
+        
+        // 5. 최대 인원
+        // JSON String -> Struct
+        let cnt = Int(sender.maxPeopleCnt ?? "0") ?? 0
+        maxPeopleView.setUp(.maxPeople(cnt: cnt))
+        
+        // 6. 날짜
+        let dates = decodingStringToStruct(
+            type: TourDates.self,
+            sender: sender.dates
+        )
+        tourDatesView.setUp(.tourDates(dates: dates?.dates ?? []))
+        
+        
+        
+        
     }
     
 }
