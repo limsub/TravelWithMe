@@ -16,7 +16,7 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
     let backImageView = {
         let view = UIImageView()
         view.clipsToBounds = true
-        view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 20
         view.layer.cornerCurve = .continuous
         view.image = UIImage(named: "sample")
 //        view.backgroundColor = .systemGray6
@@ -25,7 +25,7 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
     let shadowView = {
         let view = UIImageView()
         view.clipsToBounds = true
-        view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 20
         view.layer.cornerCurve = .continuous
         view.backgroundColor = .black.withAlphaComponent(0.5)
         return view

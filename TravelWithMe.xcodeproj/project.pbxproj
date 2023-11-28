@@ -67,6 +67,8 @@
 		487786462B0B47D30091661F /* MakeTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786452B0B47D30091661F /* MakeTourView.swift */; };
 		487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786482B0B4A330091661F /* MakeTourTextView.swift */; };
 		4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */; };
+		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
+		48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */; };
 		48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */; };
 		48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC092B1452FB00AD854F /* KeychainStorage.swift */; };
 		48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */; };
@@ -139,6 +141,8 @@
 		487786452B0B47D30091661F /* MakeTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourView.swift; sourceTree = "<group>"; };
 		487786482B0B4A330091661F /* MakeTourTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourTextView.swift; sourceTree = "<group>"; };
 		4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPeopleCountView.swift; sourceTree = "<group>"; };
+		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
+		48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCategoryButton.swift; sourceTree = "<group>"; };
 		48B7CC092B1452FB00AD854F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
 		48B7CC0E2B14835500AD854F /* ContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 			children = (
 				486AA0172B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift */,
 				48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */,
+				48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 			children = (
 				48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */,
 				48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */,
+				48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 				48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */,
 				4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */,
 				486AA0082B12C30B00CB5179 /* Date+Extension.swift in Sources */,
+				48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */,
 				4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */,
 				486AA0042B12C25700CB5179 /* DateFormatType.swift in Sources */,
 				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,
@@ -582,6 +589,7 @@
 				4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */,
 				486AA00C2B12CFFE00CB5179 /* MakeTourDatesView.swift in Sources */,
 				486732462B0C8EBD00BC24A4 /* BaseViewModelType.swift in Sources */,
+				48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */,
 				487786352B0B32A50091661F /* ConstantColor.swift in Sources */,
 				487786322B0B31730091661F /* SignUpTextField.swift in Sources */,
 				487786382B0B32B10091661F /* UIColor+Extension.swift in Sources */,

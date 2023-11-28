@@ -86,7 +86,7 @@ class MakeTourView: BaseView {
         super.setConstraints()
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)
+            make.edges.equalTo(self)
         }
         contentView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView.contentLayoutGuide)

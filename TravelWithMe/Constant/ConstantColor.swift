@@ -27,6 +27,17 @@ enum ConstantColor {
     case invalid
     case valid
     
+    
+    case main1
+    case main2
+    case main3
+    case main4
+    case main5
+    case main6
+    case main7
+    case main8
+    
+    
     var hexCode: String {
         switch self {
         case .textFieldBackground:
@@ -48,6 +59,29 @@ enum ConstantColor {
             return "FF0000"
         case .valid:
             return "00FF00"
+            
+            
+        case .main1:
+            return "#FFD8B1" // 페이드 코랄 (Faded Coral)
+        case .main2:
+            return "#FFBFA3" // 코랄 피치 (Coral Peach)
+        case .main3:
+            return "#FFD699" // 선명한 오렌지 (Vivid Orange)
+        case .main4:
+            return "#FFCC99" // 주황 갈색 (Orange Tan)
+        case .main5:
+            return "#FFEBCC" // 금빛 주황 (Golden Orange)
+        case .main6:
+            return "#FFD9B3" // 연한 주황 회색 (Light Orange Grreturn ay)
+        case .main7:
+            return "#FFA366" // 밝은 썬셋 (Bright Sunset)
+        case .main8:
+            return "#FFD1A0" // 페이드 오렌지 (Faded Orange)
+            
+            
+            
+            
+            
         default:
             return "000000"
         }
