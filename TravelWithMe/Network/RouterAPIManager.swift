@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 import RxSwift
 import RxCocoa
 
@@ -16,6 +17,30 @@ class RouterAPIManager {
     
     static let shared = RouterAPIManager()
     private init() { }
+    
+    
+    // 이미지 다운
+    func requestImage(api: Router, completionHandler: @escaping (Result<Image, Error>) -> Void) {
+        
+        AF.request(api)
+            .responseImage { response in
+                print(response)
+                switch response.result {
+                case .success(let image):
+                    print("image 네트워크 성공")
+                    
+                    completionHandler(.success(image))
+                    
+                    
+                case .failure(let error):
+                    print("error 네트워크 실패")
+                    
+                    completionHandler(.failure(error))
+                }
+            }
+        
+    }
+    
     
     // 기본
     func requestNormal<T: Decodable, U: APIError>(type: T.Type, error: U.Type, api: Router, completionHandler: @escaping (Result<T, Error>) -> Void) {

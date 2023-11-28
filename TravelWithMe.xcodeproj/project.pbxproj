@@ -11,6 +11,8 @@
 		4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */; };
 		4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */; };
 		4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */; };
+		48405B4B2B16044E00B3144F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4A2B16044E00B3144F /* Kingfisher */; };
+		48405B4E2B16108200B3144F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4D2B16108200B3144F /* AlamofireImage */; };
 		4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115B2B0DD46A00C68490 /* APIModel.swift */; };
 		4847115E2B0DD56000C68490 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115D2B0DD56000C68490 /* APIManager.swift */; };
 		484711612B0DD59A00C68490 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 484711602B0DD59A00C68490 /* Alamofire */; };
@@ -162,7 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				486732442B0C8EA900BC24A4 /* RxSwift in Frameworks */,
+				48405B4E2B16108200B3144F /* AlamofireImage in Frameworks */,
 				484711612B0DD59A00C68490 /* Alamofire in Frameworks */,
+				48405B4B2B16044E00B3144F /* Kingfisher in Frameworks */,
 				48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */,
 				486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */,
 				486AA0002B12BDB100CB5179 /* FSCalendar in Frameworks */,
@@ -481,6 +485,8 @@
 				484711602B0DD59A00C68490 /* Alamofire */,
 				486A9FFF2B12BDB100CB5179 /* FSCalendar */,
 				48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */,
+				48405B4A2B16044E00B3144F /* Kingfisher */,
+				48405B4D2B16108200B3144F /* AlamofireImage */,
 			);
 			productName = TravelWithMe;
 			productReference = 487786092B0B29F60091661F /* TravelWithMe.app */;
@@ -516,6 +522,8 @@
 				4847115F2B0DD59A00C68490 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				486A9FFE2B12BDB100CB5179 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				48B7CC052B1451FB00AD854F /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				48405B4C2B16108200B3144F /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = 4877860A2B0B29F60091661F /* Products */;
 			projectDirPath = "";
@@ -820,6 +828,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		48405B4C2B16108200B3144F /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		4847115F2B0DD59A00C68490 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -863,6 +887,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		48405B4A2B16044E00B3144F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		48405B4D2B16108200B3144F /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48405B4C2B16108200B3144F /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
 		484711602B0DD59A00C68490 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4847115F2B0DD59A00C68490 /* XCRemoteSwiftPackageReference "Alamofire" */;

@@ -19,6 +19,8 @@ enum Router: URLRequestConvertible {
     case makePost(sender: MakePostRequest)
     case lookPost(query: LookPostQueryString) // get이기 때문에 바디 대신 쿼리 스트링에 적을 내용을 전달받는다.
     
+    case imageDownload(sender: String)
+    
     var path: String {
         switch self {
         case .validEmail:
@@ -31,6 +33,8 @@ enum Router: URLRequestConvertible {
             return "/refresh"
         case .makePost, .lookPost:
             return "/post"
+        case .imageDownload(let urlString):
+            return "/" + urlString
         }
     }
     
@@ -57,7 +61,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .lookPost:
+        case .lookPost, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "SesacKey": SeSACAPI.subKey
@@ -69,7 +73,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .validEmail, .join, .login, .makePost:
             return .post
-        case .refreshToken, .lookPost:
+        case .refreshToken, .lookPost, .imageDownload:
             return .get
         }
     }
@@ -154,7 +158,6 @@ enum Router: URLRequestConvertible {
         
         // get일 때 쿼리스트링
         else {
-            
             guard let urlString = request.url?.absoluteString else { return request }
             
             var components = URLComponents(string: urlString)
@@ -176,9 +179,6 @@ enum Router: URLRequestConvertible {
             
             return newURLRequest
         }
-        
-//        request = try URLEncodedFormParameterEncoder(destination: .methodDependent).encode(query, into: request)
-        
-        
+
     }
 }

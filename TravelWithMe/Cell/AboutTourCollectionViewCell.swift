@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-
+import Kingfisher
 
 
 class AboutTourCollectionViewCell: BaseCollectionViewCell {
@@ -124,13 +124,40 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
     
     func designCell(_ sender: Datum) {
         
+//        let url = URL(string: "http://lslp.sesac.kr:27820/uploads/posts/1701081002540.jpeg")
+//        
+//        var urlRequest = URLRequest(url: url!)
+//        
+//        urlRequest.method = .get
+//        urlRequest.headers = [
+//            "Authorization": KeychainStorage.shared.accessToken ?? "",
+//            "SesacKey": SeSACAPI.subKey
+//        ]
+//        
+//        backImageView.af.setImage(withURLRequest: urlRequest)
+//        
+        
+        
         // 1. 배경 이미지 (아직)
-//        if !sender.image.isEmpty {
-//
-//        } else {
-//            print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함")
-//
-//        }
+        if !sender.image.isEmpty {
+//            let url = URL(string: SeSACAPI.baseURL + sender.image[0])
+
+            print("==== 이미지 네트워크 통신 진행 ====")
+            RouterAPIManager.shared.requestImage(api: .imageDownload(sender: sender.image[0])) { response in
+                
+                switch response {
+                case .success(let image):
+                    self.backImageView.image = image
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+
+        } else {
+            print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함")
+
+        }
         
         // 2. 타이틀
         tourTitleLabel.text = sender.title
