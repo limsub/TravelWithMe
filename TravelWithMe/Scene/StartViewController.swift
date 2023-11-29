@@ -14,6 +14,7 @@ class StartViewController: BaseViewController {
     let button2 = UIButton()
     let button3 = UIButton()
     let button4 = UIButton()
+    let button5 = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class StartViewController: BaseViewController {
         
    
         
-        [button1, button2, button3, button4].forEach { item in
+        [button1, button2, button3, button4, button5].forEach { item in
             view.addSubview(item)
             item.backgroundColor = .gray
         }
@@ -46,11 +47,17 @@ class StartViewController: BaseViewController {
             make.centerX.equalTo(view)
             make.top.equalTo(button3.snp.bottom).offset(50)
         }
+        button5.snp.makeConstraints { make in
+            make.size.equalTo(100)
+            make.centerX.equalTo(view)
+            make.top.equalTo(button4.snp.bottom).offset(50)
+        }
         
         button1.addTarget(self, action: #selector(button1Clicked), for: .touchUpInside)
         button2.addTarget(self, action: #selector(button2Clicked), for: .touchUpInside)
         button3.addTarget(self, action: #selector(button3Clicked), for: .touchUpInside)
         button4.addTarget(self, action: #selector(button4Clicked), for: .touchUpInside)
+        button5.addTarget(self , action: #selector(button5Clicked), for: .touchUpInside)
     }
     
     @objc
@@ -73,5 +80,10 @@ class StartViewController: BaseViewController {
     func button4Clicked() {
         let vc = ContentsViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc
+    func button5Clicked() {
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc , animated: true)
     }
 }
