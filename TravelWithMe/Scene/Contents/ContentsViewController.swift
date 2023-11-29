@@ -45,6 +45,35 @@ class ContentsViewController: BaseViewController {
                 
                 
                 cell.designCell(element)
+                
+                
+                
+                cell.menuButton.rx.tap
+                    .subscribe(with: self) { owner, _ in
+                        owner.showActionSheet(nil, message: nil, firstTitle: "게시글 수정", secondTitle: "게시글 삭제") {
+                            print("게시글 수정하기")
+                            print(element.id)
+                            
+                            
+                        } secondCompletionHandler: {
+                            print("게시글 삭제하기")
+                            print(element.id)
+                            
+                            
+                            RouterAPIManager.shared.requestNormal(
+                                type: DeletePostRespose.self ,
+                                error: DeletePostAPIError.self ,
+                                api: .deletePost(idStruct: DeletePostRequest(id: element.id))) { response  in
+                                    print(response)
+                                }
+                            
+                            
+                        }
+                        
+                    
+
+                    }
+                    .disposed(by: cell.disposeBag)
     
             }
             .disposed(by: disposeBag)

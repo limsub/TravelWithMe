@@ -146,3 +146,16 @@ struct Datum: Codable {
     }
 }
 
+
+/* ==== 포스트 삭제 ===== */
+struct DeletePostRequest {
+    let id: String
+}
+
+struct DeletePostRespose: Decodable {
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+    }
+}

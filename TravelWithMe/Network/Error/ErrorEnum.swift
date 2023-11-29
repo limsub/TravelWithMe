@@ -222,3 +222,28 @@ enum LookPostAPIError: Int, APIError {
         }
     }
 }
+
+
+/* ===== 게시글 삭제 ===== */
+enum DeletePostAPIError: Int, APIError {
+    case invalidToken = 401
+    case forbidden = 403
+    case postNotFound = 410
+    case tokenExpired = 419
+    case permissionDenied = 445
+    
+    var description: String {
+        switch self {
+        case .invalidToken:
+            return "유효하지 않은 액세스 토큰입니다"
+        case .forbidden:
+            return "접근 권한이 없습니다"
+        case .postNotFound:
+            return "게시글을 찾을 수 없습니다"
+        case .tokenExpired:
+            return "액세스 토큰이 만료되었습니다"
+        case .permissionDenied:
+            return "게시글 삭제 권한이 없습니다. 본인이 작성한 게시글만 삭제할 수 있습니다"
+        }
+    }
+}

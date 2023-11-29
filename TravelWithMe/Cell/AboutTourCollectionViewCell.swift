@@ -10,8 +10,12 @@ import SnapKit
 import Kingfisher
 import SkeletonView
 import Alamofire
+import RxSwift
+import RxCocoa
 
 class AboutTourCollectionViewCell: BaseCollectionViewCell {
+    
+    var disposeBag = DisposeBag()
     
     // 이미지 뷰 얹고, 코너레디우스 주기. 굳이 패딩 안줘도 될듯
     let backImageView = {
@@ -32,6 +36,12 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         view.layer.cornerRadius = 20
         view.layer.cornerCurve = .continuous
         view.backgroundColor = .black.withAlphaComponent(0.5)
+        return view
+    }()
+    
+    let menuButton = {
+        let view = UIButton()
+        view.setImage(UIImage(named: "dots")?.withTintColor(.white), for: .normal)
         return view
     }()
     
@@ -72,7 +82,7 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         super.setConfigure()
         
         
-        [backImageView, shadowView, maxPeopleView, tourDatesView, profileImageView, profileNameLabel, lineView, tourTitleLabel].forEach { item  in
+        [backImageView, shadowView, maxPeopleView, tourDatesView, profileImageView, profileNameLabel, lineView, tourTitleLabel, menuButton].forEach { item  in
             contentView.addSubview(item)
         }
     }
@@ -85,6 +95,12 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         }
         shadowView.snp.makeConstraints { make in
             make.edges.equalTo(backImageView)
+        }
+        
+        menuButton.snp.makeConstraints { make in
+            make.top.equalTo(contentView).inset(15)
+            make.trailing.equalTo(contentView).inset(12)
+            make.size.equalTo(25)
         }
         
         maxPeopleView.snp.makeConstraints { make in
@@ -125,7 +141,11 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
     
     func designCell(_ sender: Datum) {
         

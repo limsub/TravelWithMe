@@ -82,7 +82,8 @@
 		48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */; };
 		48B7CC182B14C16200AD854F /* ContentsTourInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */; };
 		48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */; };
-		48F006B92B16F1B400DB1FC1 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006B82B16F1B400DB1FC1 /* UIImageView.swift */; };
+		48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */; };
+		48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */; };
 		48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A5592B0F83A700859828 /* LoginViewController.swift */; };
 		48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A55B2B0F83AE00859828 /* LoginViewModel.swift */; };
 		48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0A55D2B0F83B300859828 /* LoginView.swift */; };
@@ -157,7 +158,8 @@
 		48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourInfoView.swift; sourceTree = "<group>"; };
 		48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsProfileImageView.swift; sourceTree = "<group>"; };
-		48F006B82B16F1B400DB1FC1 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		48F0A5592B0F83A700859828 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48F0A55B2B0F83AE00859828 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		48F0A55D2B0F83B300859828 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -397,7 +399,8 @@
 				486AA0052B12C2E100CB5179 /* Date<->String.swift */,
 				486AA0072B12C30B00CB5179 /* Date+Extension.swift */,
 				486AA0192B1338A800CB5179 /* UIImage+Extension.swift */,
-				48F006B82B16F1B400DB1FC1 /* UIImageView.swift */,
+				48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */,
+				48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				4847115E2B0DD56000C68490 /* APIManager.swift in Sources */,
 				486AA0062B12C2E100CB5179 /* Date<->String.swift in Sources */,
 				486AA0022B12BE0600CB5179 /* SelectDateView.swift in Sources */,
+				48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */,
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
 				4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
@@ -619,7 +623,7 @@
 				48B7CC132B14836D00AD854F /* ContentsView.swift in Sources */,
 				48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */,
 				48B7CC0F2B14835500AD854F /* ContentsViewController.swift in Sources */,
-				48F006B92B16F1B400DB1FC1 /* UIImageView.swift in Sources */,
+				48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */,
 				486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */,
 				4867324D2B0C9BCF00BC24A4 /* ValidPW.swift in Sources */,
 				4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */,
