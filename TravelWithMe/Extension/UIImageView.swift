@@ -29,10 +29,17 @@ extension UIImageView {
             return modifiedRequest
         }
         
+        
         self.kf.setImage(
             with: imageURL,
-            options: [.requestModifier(modifier)]
+            options: [
+                .requestModifier(modifier),
+                .transition(.fade(0.5)),
+                .forceTransition
+            ]
         )
+        
+        
         
     }
 }

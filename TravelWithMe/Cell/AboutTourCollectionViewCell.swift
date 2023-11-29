@@ -125,42 +125,16 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    let modifier = AnyModifier { request in
-        var r = request
-        r.setValue(KeychainStorage.shared.accessToken ?? "", forHTTPHeaderField: "Authorization")
-        r.setValue(SeSACAPI.subKey, forHTTPHeaderField: "SesacKey")
-        return r
-    }
     
     
     func designCell(_ sender: Datum) {
         
-        KingfisherManager.shared.defaultOptions += [
-            .requestModifier(modifier)
-        ]
-        
-//        let url = URL(string: "http://lslp.sesac.kr:27820/uploads/posts/1701081002540.jpeg")
-//        
-//        var urlRequest = URLRequest(url: url!)
-//        
-//        urlRequest.method = .get
-//        urlRequest.headers = [
-//            "Authorization": KeychainStorage.shared.accessToken ?? "",
-//            "SesacKey": SeSACAPI.subKey
-//        ]
-//        
-//        backImageView.af.setImage(withURLRequest: urlRequest)
-//        
-        
         
         // 1. 배경 이미지 (아직)
         if !sender.image.isEmpty {
-            
             let imageEndString = sender.image[0]    // 맨 처음 이미지
             
             backImageView.loadImage(endURLString: imageEndString)
-
-
         } else {
             print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함")
 
