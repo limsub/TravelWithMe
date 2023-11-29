@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 import SkeletonView
+import Alamofire
 
 class AboutTourCollectionViewCell: BaseCollectionViewCell {
     
@@ -124,8 +125,19 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
+    let modifier = AnyModifier { request in
+        var r = request
+        r.setValue(KeychainStorage.shared.accessToken ?? "", forHTTPHeaderField: "Authorization")
+        r.setValue(SeSACAPI.subKey, forHTTPHeaderField: "SesacKey")
+        return r
+    }
+    
     
     func designCell(_ sender: Datum) {
+        
+        KingfisherManager.shared.defaultOptions += [
+            .requestModifier(modifier)
+        ]
         
 //        let url = URL(string: "http://lslp.sesac.kr:27820/uploads/posts/1701081002540.jpeg")
 //        
@@ -143,46 +155,11 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         
         // 1. 배경 이미지 (아직)
         if !sender.image.isEmpty {
-//            let url = URL(string: SeSACAPI.baseURL + sender.image[0])
             
-            let imageURL = sender.image[0]
+            let imageEndString = sender.image[0]    // 맨 처음 이미지
             
-            print("--- 이미지 캐싱 확인 ---")
-            let cacheKey = NSString(string: imageURL)
-            if let cachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {
-                print("-- 캐싱된 이미지")
-                self.backImageView.image = cachedImage
-            } else {
-                print("-- 캐싱되지 않은 이미지")
-                print(" * 스켈레톤 뷰 띄우기 : ", Date())
-                backImageView.showAnimatedSkeleton()
-                RouterAPIManager.shared.requestImage(api: .imageDownload(sender: imageURL)) { response  in
-                    
-                    switch response {
-                    case .success(let image):
-                        print("- 이미지 다운 완료 -> 이미지 설정 및 이미지 캐싱")
-                        ImageCacheManager.shared.setObject(image, forKey: cacheKey)
-                        self.backImageView.hideSkeleton()
-                        self.backImageView.image = image
-                        
-                    case .failure(let error):
-                        print("에러 발생 : ", error)
-                    }
-                    
-                }
-            }
+            backImageView.loadImage(endURLString: imageEndString)
 
-//            print("==== 이미지 네트워크 통신 진행 ====")
-//            RouterAPIManager.shared.requestImage(api: .imageDownload(sender: sender.image[0])) { response in
-//
-//                switch response {
-//                case .success(let image):
-//                    self.backImageView.image = image
-//
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
 
         } else {
             print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함")
