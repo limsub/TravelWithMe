@@ -11,8 +11,11 @@ class ProfileView: BaseView {
     
     let topView = ProfileTopView()
     
+    
     override func setConfigure() {
         super.setConfigure()
+        
+        self.backgroundColor = .white
         
         addSubview(topView)
     }

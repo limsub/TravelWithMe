@@ -10,6 +10,8 @@ import UIKit
 class BezierView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -93,6 +95,7 @@ class ProfileTopView: BaseView {
     override func setting() {
         super.setting()
         
+        self.backgroundColor = .white
         profileImageView.image = UIImage(named: "sample")
     }
 }

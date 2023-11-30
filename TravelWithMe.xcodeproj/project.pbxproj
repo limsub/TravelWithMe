@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480442F82B1811D400E5C70B /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 480442F72B1811D400E5C70B /* Tabman */; };
+		480442FE2B18126200E5C70B /* JoinedTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480442FD2B18126200E5C70B /* JoinedTourViewController.swift */; };
+		480443002B18126C00E5C70B /* MyTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480442FF2B18126C00E5C70B /* MyTourViewController.swift */; };
+		480443022B18132800E5C70B /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480443012B18132800E5C70B /* CALayer+Extension.swift */; };
+		480443042B18133F00E5C70B /* UITabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480443032B18133F00E5C70B /* UITabBar+Extension.swift */; };
 		4818C8D12B105C8300BC8F02 /* ResultNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */; };
 		4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */; };
 		4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */; };
@@ -95,6 +100,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480442FD2B18126200E5C70B /* JoinedTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourViewController.swift; sourceTree = "<group>"; };
+		480442FF2B18126C00E5C70B /* MyTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourViewController.swift; sourceTree = "<group>"; };
+		480443012B18132800E5C70B /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
+		480443032B18133F00E5C70B /* UITabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extension.swift"; sourceTree = "<group>"; };
 		4818C8D02B105C8300BC8F02 /* ResultNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultNetwork.swift; sourceTree = "<group>"; };
 		4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckLoginLabel.swift; sourceTree = "<group>"; };
 		4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSONtoString.swift; sourceTree = "<group>"; };
@@ -185,6 +194,7 @@
 				484711612B0DD59A00C68490 /* Alamofire in Frameworks */,
 				48405B4B2B16044E00B3144F /* Kingfisher in Frameworks */,
 				48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */,
+				480442F82B1811D400E5C70B /* Tabman in Frameworks */,
 				486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */,
 				486AA0002B12BDB100CB5179 /* FSCalendar in Frameworks */,
 				484C85A52B162C360052B247 /* SkeletonView in Frameworks */,
@@ -195,6 +205,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		480442F92B18120B00E5C70B /* MyTour */ = {
+			isa = PBXGroup;
+			children = (
+				480442FF2B18126C00E5C70B /* MyTourViewController.swift */,
+			);
+			path = MyTour;
+			sourceTree = "<group>";
+		};
+		480442FA2B18121200E5C70B /* JoinedTour */ = {
+			isa = PBXGroup;
+			children = (
+				480442FD2B18126200E5C70B /* JoinedTourViewController.swift */,
+			);
+			path = JoinedTour;
+			sourceTree = "<group>";
+		};
 		4818C8CD2B105C4600BC8F02 /* ResultNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +439,8 @@
 				486AA0192B1338A800CB5179 /* UIImage+Extension.swift */,
 				48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */,
 				48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */,
+				480443012B18132800E5C70B /* CALayer+Extension.swift */,
+				480443032B18133F00E5C70B /* UITabBar+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -492,6 +520,8 @@
 				48F006BF2B17194C00DB1FC1 /* ProfileViewController.swift */,
 				48F006C12B17195100DB1FC1 /* ProfileViewModel.swift */,
 				48F006C62B17241D00DB1FC1 /* ProfileTopView.swift */,
+				480442FA2B18121200E5C70B /* JoinedTour */,
+				480442F92B18120B00E5C70B /* MyTour */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -538,6 +568,7 @@
 				48405B4A2B16044E00B3144F /* Kingfisher */,
 				48405B4D2B16108200B3144F /* AlamofireImage */,
 				484C85A42B162C360052B247 /* SkeletonView */,
+				480442F72B1811D400E5C70B /* Tabman */,
 			);
 			productName = TravelWithMe;
 			productReference = 487786092B0B29F60091661F /* TravelWithMe.app */;
@@ -576,6 +607,7 @@
 				48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				48405B4C2B16108200B3144F /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				484C85A32B162C360052B247 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				480442F62B1811D400E5C70B /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 4877860A2B0B29F60091661F /* Products */;
 			projectDirPath = "";
@@ -645,6 +677,7 @@
 				487786412B0B43AD0091661F /* SignUpCompleteButton.swift in Sources */,
 				48B7CC182B14C16200AD854F /* ContentsTourInfoView.swift in Sources */,
 				48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */,
+				480443022B18132800E5C70B /* CALayer+Extension.swift in Sources */,
 				4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */,
 				48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
@@ -661,6 +694,7 @@
 				48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */,
 				486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */,
 				4867324D2B0C9BCF00BC24A4 /* ValidPW.swift in Sources */,
+				480442FE2B18126200E5C70B /* JoinedTourViewController.swift in Sources */,
 				4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */,
 				4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */,
 				486AA00C2B12CFFE00CB5179 /* MakeTourDatesView.swift in Sources */,
@@ -673,8 +707,10 @@
 				486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
 				48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */,
+				480443002B18126C00E5C70B /* MyTourViewController.swift in Sources */,
 				486AA01A2B1338A800CB5179 /* UIImage+Extension.swift in Sources */,
 				48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */,
+				480443042B18133F00E5C70B /* UITabBar+Extension.swift in Sources */,
 				486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */,
 				48F006C22B17195100DB1FC1 /* ProfileViewModel.swift in Sources */,
 			);
@@ -888,6 +924,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		480442F62B1811D400E5C70B /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -955,6 +999,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		480442F72B1811D400E5C70B /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 480442F62B1811D400E5C70B /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
+		};
 		48405B4A2B16044E00B3144F /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */;
