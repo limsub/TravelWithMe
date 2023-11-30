@@ -26,6 +26,12 @@ class MakeTourViewModel: ViewModelType {
         let titleText: ControlProperty<String>
         // 소개
         let contentText: ControlProperty<String>
+        
+        // 카테고리 선택 (무조건 7개 들어온다고 판단)
+        // 0 ~ 6까지 인덱스로 판단. 인덱스는 enum의 RawValue와 일치
+        let categoryButtons: [ControlProperty<Bool>]
+        
+        
         // 모집 인원 - 플러스, 마이너스 버튼에 따라 값 변경 (디폴트 0)
             // 실제 값은 viewModel의 데이터로 관리
         let peoplePlusTap: ControlEvent<Void>
@@ -86,11 +92,42 @@ class MakeTourViewModel: ViewModelType {
         // price Int로 바꾸고, ?? 0 으로 옵셔널 처리해주기
         // 모집 인원도 Int 형변환할게 없네. 걍 Int였구나
         
+        
+        // 투어 카테고리 -> 누른 버튼에 따라 #이름 조합으로 문자열 만들어주기
+        let buttonsCombine = Observable.combineLatest(input.categoryButtons[0], input.categoryButtons[1], input.categoryButtons[2], input.categoryButtons[3], input.categoryButtons[4], input.categoryButtons[5], input.categoryButtons[6]) { v1, v2, v3, v4, v5, v6, v7 in
+            
+            var ansStr = ""
+            var arr = [v1, v2, v3, v4, v5, v6, v7]
+            for (index, element) in arr.enumerated() {
+                if element {
+                    // rawValue 0은 .all이니까 주의
+                    
+                    guard let newTxt = TourCategoryType(rawValue: index + 1)?.hashTagText else { continue }
+                    
+                    ansStr += newTxt
+                }
+            }
+            
+            return ansStr
+        }
+        
+        buttonsCombine
+            .subscribe(with: self) { owner , value in
+                print("결과결과 : ", value)
+            }
+            .disposed(by: disposeBag)
+        
+        
         // 요청할 정보
-        let makePostInfo = Observable.combineLatest(input.titleText, input.contentText, tourPeopleCnt, input.priceText, tourDates, tourLocation) { v1, v2, v3, v4, v5, v6 in
+        let makePostInfo = Observable.combineLatest(input.titleText, input.contentText, tourPeopleCnt, input.priceText, tourDates, tourLocation, buttonsCombine) { v1, v2, v3, v4, v5, v6, v7 in
+            
+            // content + category 를 합친 구조체를 문자열로 변환
+            let newStruct = TourContent(content: v2, hashTags: v7)
+            let newString = encodingStructToString(sender: newStruct)
+            
             let price = Int(v4) ?? 0
 
-            return (v1, v2, String(v3), String(price), v5, v6)
+            return (v1, newString ?? "", String(v3), String(price), v5, v6)
         }
         
         let resultCompleteButtonClicked = PublishSubject<AttemptMakePost>()

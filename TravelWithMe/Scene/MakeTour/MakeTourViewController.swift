@@ -31,16 +31,32 @@ class MakeTourViewController: BaseViewController {
         //)
         //        )
         
-        bind()
+        
         
         // 여행 일자와 여행 장소 다른 뷰컨에서 받아오는 건 (버튼 탭) Input으로 넣지 말고, 일단 Rx Delegate Pattern만 이용하자.
         
         selectDatesLocation()
         
         settingCollectionView()
+        
+        settingCategoryButtons()    // 버튼 토글을 먼저 걸어줘야 하기 때문에 얘가 반드시 bind 함수보다 먼저 실행되어야 함!!
+        
+        bind()
     }
-
     
+
+    func settingCategoryButtons() {
+        // 버튼 클릭할 때마다 isSelected 변수 토글시켜주기.
+        
+        mainView.categoryButtons.forEach { item  in
+            item.rx.tap
+                .subscribe(with: self) { owner , _ in
+                    item.isSelected.toggle()
+                    print("토글 결과 ; ", item.isSelected)
+                }
+                .disposed(by: disposeBag)
+        }
+    }
     
     
     
@@ -49,6 +65,7 @@ class MakeTourViewController: BaseViewController {
         let input = MakeTourViewModel.Input(
             titleText: mainView.titleTextField.rx.text.orEmpty,
             contentText: mainView.contentTextView.rx.text.orEmpty,
+            categoryButtons: mainView.categoryButtons.map { $0.rx.isSelected },
             peoplePlusTap: mainView.peopleCntView.plusButton.rx.tap,
             peopleMinusTap: mainView.peopleCntView.minusButton.rx.tap,
             priceText: mainView.priceView.textField.rx.text.orEmpty,
@@ -232,8 +249,6 @@ extension MakeTourViewController: UICollectionViewDataSource, UICollectionViewDe
 extension MakeTourViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        
-        
         
         if !results.isEmpty {
             

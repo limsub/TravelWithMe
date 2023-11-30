@@ -21,10 +21,12 @@ class ContentsViewController: BaseViewController {
         self.view = mainView
     }
     
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         bind()
     }
     

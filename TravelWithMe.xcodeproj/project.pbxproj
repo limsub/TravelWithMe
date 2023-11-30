@@ -81,6 +81,9 @@
 		48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE332B18658400B1B95E /* MyTourView.swift */; };
 		48ADEE362B18660F00B1B95E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE352B18660F00B1B95E /* UIView+Extension.swift */; };
 		48ADEE382B1866AF00B1B95E /* MyTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE372B1866AF00B1B95E /* MyTourViewModel.swift */; };
+		48ADEE3A2B1892C500B1B95E /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE392B1892C500B1B95E /* UIButton+Extension.swift */; };
+		48ADEE3C2B189D4700B1B95E /* Reactive+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE3B2B189D4700B1B95E /* Reactive+Extension.swift */; };
+		48ADEE3E2B18A23000B1B95E /* TourCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */; };
 		48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */; };
 		48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC092B1452FB00AD854F /* KeychainStorage.swift */; };
 		48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */; };
@@ -170,6 +173,9 @@
 		48ADEE332B18658400B1B95E /* MyTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourView.swift; sourceTree = "<group>"; };
 		48ADEE352B18660F00B1B95E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		48ADEE372B1866AF00B1B95E /* MyTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourViewModel.swift; sourceTree = "<group>"; };
+		48ADEE392B1892C500B1B95E /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		48ADEE3B2B189D4700B1B95E /* Reactive+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+Extension.swift"; sourceTree = "<group>"; };
+		48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCategoryType.swift; sourceTree = "<group>"; };
 		48B7CC092B1452FB00AD854F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
 		48B7CC0E2B14835500AD854F /* ContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +291,7 @@
 			children = (
 				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 				486732522B0CA36700BC24A4 /* SignUp */,
+				48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -450,6 +457,8 @@
 				480443012B18132800E5C70B /* CALayer+Extension.swift */,
 				480443032B18133F00E5C70B /* UITabBar+Extension.swift */,
 				48ADEE352B18660F00B1B95E /* UIView+Extension.swift */,
+				48ADEE392B1892C500B1B95E /* UIButton+Extension.swift */,
+				48ADEE3B2B189D4700B1B95E /* Reactive+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -651,6 +660,7 @@
 				486AA0022B12BE0600CB5179 /* SelectDateView.swift in Sources */,
 				48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */,
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
+				48ADEE3E2B18A23000B1B95E /* TourCategoryType.swift in Sources */,
 				4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
 				48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */,
@@ -671,6 +681,7 @@
 				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
 				484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */,
 				4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */,
+				48ADEE3A2B1892C500B1B95E /* UIButton+Extension.swift in Sources */,
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
 				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
 				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
@@ -706,6 +717,7 @@
 				48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */,
 				486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */,
 				4867324D2B0C9BCF00BC24A4 /* ValidPW.swift in Sources */,
+				48ADEE3C2B189D4700B1B95E /* Reactive+Extension.swift in Sources */,
 				480442FE2B18126200E5C70B /* JoinedTourViewController.swift in Sources */,
 				4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */,
 				4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */,

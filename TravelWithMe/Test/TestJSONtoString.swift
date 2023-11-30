@@ -18,6 +18,10 @@ struct TourLocation: Codable {
     let longtitude: Double
 }
 
+struct TourContent: Codable {
+    let content: String
+    let hashTags: String 
+}
 
 func encodingStructToString<T: Codable>(sender: T) -> String? {
     do {

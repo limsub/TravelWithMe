@@ -7,16 +7,7 @@
 
 import UIKit
 
-enum CategoryType: String {
-    case all = "  전체  "
-    case city = "  도시  "
-    case nature = "  자연  "
-    case culture = "  문화  "
-    case food = "  음식  "
-    case adventure = "  모험  "
-    case history = "  역사  "
-    case local = "  로컬  "
-}
+
 
 
 class ContentsCategoryButton: UIButton {
@@ -27,10 +18,12 @@ class ContentsCategoryButton: UIButton {
         setUp()
     }
     
-    convenience init(_ tourCategoryType: CategoryType) {
+    convenience init(_ tourCategoryType: TourCategoryType) {
         self.init()
         
-        setTitle(tourCategoryType.rawValue, for: .normal)
+        setUp()
+        
+        setTitle(tourCategoryType.buttonTitle, for: .normal)
         // 버튼.setTitle
         // 버튼.setImage
     }
@@ -41,16 +34,18 @@ class ContentsCategoryButton: UIButton {
     
     func setUp() {
         clipsToBounds = true
-        layer.cornerRadius = 10
+        layer.cornerRadius = 22
         layer.borderWidth = 1
-        layer.borderColor = UIColor(hexCode: ConstantColor.main2.hexCode).cgColor
+        layer.borderColor = UIColor(hexCode: ConstantColor.main1.hexCode).cgColor
         
-        backgroundColor = UIColor(hexCode: ConstantColor.main6.hexCode)
+//        backgroundColor = UIColor(hexCode: ConstantColor.main6.hexCode)
         
         setTitle("하이", for: .normal)
         titleLabel?.font = .systemFont(ofSize: 14)
         
         setTitleColor(.black, for: .normal)
         
+        setBackgroundColor(UIColor(hexCode: ConstantColor.main8.hexCode).withAlphaComponent(0.5), for: .normal)
+        setBackgroundColor(UIColor(hexCode: ConstantColor.main3.hexCode), for: .selected)
     }
 }

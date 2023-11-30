@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MakeTourView: BaseView {
     
     let scrollView = UIScrollView()
     let contentView = UIView()
+    
+    let disposeBag = DisposeBag()
     
     lazy var imageCollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createImageCollectionViewLayout())
@@ -52,8 +56,8 @@ class MakeTourView: BaseView {
     let typeLabel = SignUpSmallLabel("유형")
     let peopleCntLabel = SignUpSmallLabel("최대 모집 인원")
     let priceLabel = SignUpSmallLabel("예상 금액")
-    let dateLabel = SignUpSmallLabel("여행 날짜")
-    let locationLabel = SignUpSmallLabel("여행 장소")
+
+    
     
     let titleTextField = SignUpTextField("제목을 입력하세요")
     let contentTextView = MakeTourTextView()
@@ -69,13 +73,28 @@ class MakeTourView: BaseView {
     let makeTourButton = SignUpCompleteButton("여행 제작 완료")
     
     
+    let categoryButtons = [
+        ContentsCategoryButton(.city),
+        ContentsCategoryButton(.nature),
+        ContentsCategoryButton(.culture),
+        ContentsCategoryButton(.food),
+        ContentsCategoryButton(.adventure),
+        ContentsCategoryButton(.history),
+        ContentsCategoryButton(.local)
+    ]
+    
+    
     override func setConfigure() {
         super.setConfigure()
         
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [imageCollectionView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceView, dateLabel, locationLabel, tourDatesLabel, tourLocationLabel, tourDatesView, tourLocationView, makeTourButton].forEach { item in
+        [imageCollectionView, imageLabel, titleLabel, contentLabel, typeLabel, peopleCntLabel, priceLabel, titleTextField, contentTextView, peopleCntView, priceView, tourDatesLabel, tourLocationLabel, tourDatesView, tourLocationView, makeTourButton].forEach { item in
+            contentView.addSubview(item)
+        }
+        
+        categoryButtons.forEach { item  in
             contentView.addSubview(item)
         }
         
@@ -131,8 +150,37 @@ class MakeTourView: BaseView {
             make.horizontalEdges.equalTo(contentView).inset(18)
         }
         
+        categoryButtons[0].snp.makeConstraints { make in
+            make.leading.equalTo(contentView).inset(18)
+            make.top.equalTo(typeLabel.snp.bottom).offset(8)
+            make.width.equalTo(80)
+            make.height.equalTo(46)
+        }
+        categoryButtons[4].snp.makeConstraints { make in
+            make.leading.equalTo(contentView).inset(18)
+            make.top.equalTo(categoryButtons[0].snp.bottom).offset(8)
+            make.size.equalTo(categoryButtons[0])
+        }
+
+        for i in 1...3 {
+            categoryButtons[i].snp.makeConstraints { make in
+                make.leading.equalTo(categoryButtons[i-1].snp.trailing).offset(10)
+                make.top.size.equalTo(categoryButtons[i-1])
+            }
+        }
+        for i in 5...6 {
+            categoryButtons[i].snp.makeConstraints { make in
+                make.leading.equalTo(categoryButtons[i-1].snp.trailing).offset(10)
+                make.top.size.equalTo(categoryButtons[i-1])
+            }
+        }
+        
+        
+        
+        
+        
         peopleCntLabel.snp.makeConstraints { make in
-            make.top.equalTo(typeLabel.snp.bottom).offset(40)
+            make.top.equalTo(categoryButtons[4].snp.bottom).offset(40)
             make.leading.equalTo(contentView).inset(18)
         }
         priceLabel.snp.makeConstraints { make in

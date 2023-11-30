@@ -26,12 +26,14 @@ class MyTourViewController: BaseViewController {
         super.viewDidLoad()
         
         bind()
+        
     }
     
     func bind() {
         let input = MyTourViewModel.Input(a: "hi")
         let output = viewModel.tranform(input)
         
+    
         // 1. items
         output.myTourItems
             .bind(to: mainView.myTourCollectionView.rx.items(cellIdentifier: "ProfileMyTourView - tourCollectionView", cellType: AboutTourCollectionViewCell.self)) { (row, element, cell) in
@@ -62,8 +64,8 @@ class MyTourViewController: BaseViewController {
                                     switch response {
                                     case .success(let result):
                                         print("게시글 삭제 성공")
-
                                         
+                                     
                                     case .failure(let error):
                                         print("게시글 삭제 실패")
                                     }
