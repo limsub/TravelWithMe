@@ -10,7 +10,7 @@ import UIKit
 class MyTourView: BaseView {
     
     lazy var myTourCollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout())
+        let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout(topInset: 0))
         
         view.register(AboutTourCollectionViewCell.self, forCellWithReuseIdentifier: "ProfileMyTourView - tourCollectionView")
         
@@ -31,9 +31,10 @@ class MyTourView: BaseView {
         super.setConstraints()
         
         myTourCollectionView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(self)
-            make.horizontalEdges.equalTo(self).inset(18)
+            make.horizontalEdges.bottom.equalTo(self)
+            make.top.equalTo(self).inset(290)
         }
+        
     }
     
 }

@@ -48,7 +48,7 @@ class ProfileViewController: TabmanViewController {
         }
         customBarView.snp.makeConstraints { make in
             make.top.equalTo(profileView.snp.bottom)
-            make.horizontalEdges.equalTo(view)
+            make.horizontalEdges.equalTo(view).inset(18)
             make.height.equalTo(50)
         }
         
@@ -68,7 +68,7 @@ class ProfileViewController: TabmanViewController {
         bar.layout.contentMode = .intrinsic
         bar.layout.interButtonSpacing = 20
         bar.backgroundView.style = .clear
-        bar.indicator.overscrollBehavior = .bounce
+        bar.indicator.overscrollBehavior = .none
         bar.indicator.tintColor = .black
         bar.indicator.weight = .custom(value: 3)
         bar.indicator.cornerStyle = .square

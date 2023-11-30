@@ -48,7 +48,7 @@ class ContentsView: BaseView {
     
     /* 메인 컬렉션뷰 */
     lazy var tourCollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout())
+        let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout(topInset: 58))
         
         view.register(AboutTourCollectionViewCell.self, forCellWithReuseIdentifier: "ContentsView - tourCollectionView")
         
@@ -109,7 +109,7 @@ class ContentsView: BaseView {
 //            make.top.equalTo(categoryScrollView.snp.bottom)
             make.top.equalTo(self)
             make.bottom.equalTo(self)
-            make.horizontalEdges.equalTo(self).inset(18)
+            make.horizontalEdges.equalTo(self)
         }
     }
     

@@ -185,10 +185,11 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
             sender: sender.dates
         )
         tourDatesView.setUp(.tourDates(dates: dates?.dates ?? []))
-        
-        
-        
-        
+    }
+    
+    func disabledMenuButton() {
+        menuButton.isEnabled = false
+        menuButton.isHidden = true
     }
     
 }
