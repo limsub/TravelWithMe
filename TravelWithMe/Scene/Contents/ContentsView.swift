@@ -56,15 +56,7 @@ class ContentsView: BaseView {
         
         return view
     }()
-    func createTourCollectionViewLayout() -> UICollectionViewFlowLayout  {
-        let layout = UICollectionViewFlowLayout()
-        
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 36, height: 270)
-        layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 58, left: 0, bottom: 0, right: 0)
-       
-        return layout
-    }
+    
     
     
     override func setConfigure() {

@@ -17,7 +17,10 @@ enum Router: URLRequestConvertible {
     case refreshToken   // get 이기 때문에 바디가 없다.
     
     case makePost(sender: MakePostRequest)
-    case lookPost(query: LookPostQueryString) // get이기 때문에 바디 대신 쿼리 스트링에 적을 내용을 전달받는다.
+    
+    // userId를 넣으면 유저 별 조회, nil이면 전체 유저 조회라고 판단
+    case lookPost(query: LookPostQueryString, userId: String? = nil) // get이기 때문에 바디 대신 쿼리 스트링에 적을 내용을 전달받는다.
+    
     case deletePost(idStruct: DeletePostRequest)
     
     case imageDownload(sender: String)  // (사용 x)
@@ -32,8 +35,16 @@ enum Router: URLRequestConvertible {
             return "/login"
         case .refreshToken:
             return "/refresh"
-        case .makePost, .lookPost:
+        case .makePost:
             return "/post"
+        case .lookPost(_, let userID):
+            if let userID {
+                return "/post/user/\(userID)"
+            }
+            else {
+                return "/post"
+            }
+            
         case .deletePost(let idStruct):
             return "/post/\(idStruct.id)"
         case .imageDownload(let urlString):
@@ -132,7 +143,7 @@ enum Router: URLRequestConvertible {
     
     private var query: [String: String] {
         switch self {
-        case .lookPost(let queryString):
+        case .lookPost(let queryString, _):
             return [
                 "next": queryString.next,
                 "limit": queryString.limit,

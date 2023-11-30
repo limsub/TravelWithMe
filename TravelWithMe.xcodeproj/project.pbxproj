@@ -78,6 +78,9 @@
 		4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */; };
 		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
 		48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */; };
+		48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE332B18658400B1B95E /* MyTourView.swift */; };
+		48ADEE362B18660F00B1B95E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE352B18660F00B1B95E /* UIView+Extension.swift */; };
+		48ADEE382B1866AF00B1B95E /* MyTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE372B1866AF00B1B95E /* MyTourViewModel.swift */; };
 		48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */; };
 		48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC092B1452FB00AD854F /* KeychainStorage.swift */; };
 		48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */; };
@@ -164,6 +167,9 @@
 		4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPeopleCountView.swift; sourceTree = "<group>"; };
 		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCategoryButton.swift; sourceTree = "<group>"; };
+		48ADEE332B18658400B1B95E /* MyTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourView.swift; sourceTree = "<group>"; };
+		48ADEE352B18660F00B1B95E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		48ADEE372B1866AF00B1B95E /* MyTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourViewModel.swift; sourceTree = "<group>"; };
 		48B7CC092B1452FB00AD854F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
 		48B7CC0E2B14835500AD854F /* ContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				480442FF2B18126C00E5C70B /* MyTourViewController.swift */,
+				48ADEE332B18658400B1B95E /* MyTourView.swift */,
+				48ADEE372B1866AF00B1B95E /* MyTourViewModel.swift */,
 			);
 			path = MyTour;
 			sourceTree = "<group>";
@@ -441,6 +449,7 @@
 				48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */,
 				480443012B18132800E5C70B /* CALayer+Extension.swift */,
 				480443032B18133F00E5C70B /* UITabBar+Extension.swift */,
+				48ADEE352B18660F00B1B95E /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -520,8 +529,8 @@
 				48F006BF2B17194C00DB1FC1 /* ProfileViewController.swift */,
 				48F006C12B17195100DB1FC1 /* ProfileViewModel.swift */,
 				48F006C62B17241D00DB1FC1 /* ProfileTopView.swift */,
-				480442FA2B18121200E5C70B /* JoinedTour */,
 				480442F92B18120B00E5C70B /* MyTour */,
+				480442FA2B18121200E5C70B /* JoinedTour */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -644,9 +653,11 @@
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
 				4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
+				48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */,
 				48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */,
 				486AA00E2B12D51600CB5179 /* SelectTourInfoDelegate.swift in Sources */,
 				4847116A2B0E2FF700C68490 /* Router.swift in Sources */,
+				48ADEE382B1866AF00B1B95E /* MyTourViewModel.swift in Sources */,
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F006CA2B172A6400DB1FC1 /* ProfileModifyButton.swift in Sources */,
@@ -665,6 +676,7 @@
 				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
 				484711632B0E1CE100C68490 /* Gender.swift in Sources */,
 				48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */,
+				48ADEE362B18660F00B1B95E /* UIView+Extension.swift in Sources */,
 				4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */,
 				486AA0082B12C30B00CB5179 /* Date+Extension.swift in Sources */,
 				48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */,

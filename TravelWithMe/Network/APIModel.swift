@@ -43,6 +43,7 @@ struct LoginRequest: Encodable {
 }
 
 struct LoginResponse: Decodable {
+    let _id: String
     let token: String
     let refreshToken: String
 }

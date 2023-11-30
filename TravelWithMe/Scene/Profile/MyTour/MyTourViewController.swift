@@ -10,6 +10,12 @@ import UIKit
 
 class MyTourViewController: BaseViewController {
     
+    let mainView = MyTourView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

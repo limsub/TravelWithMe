@@ -41,10 +41,14 @@ class ContentsViewModel: ViewModelType {
                 RouterAPIManager.shared.request(
                     type: LookPostResponse.self,
                     error: LookPostAPIError.self,
-                    api: .lookPost(query: LookPostQueryString(
-                            next: $0, limit: "10"
-                        ))
-                )
+                    api:
+                            
+                            /*.lookPost(query: LookPostQueryString(next: $0, limit: "10"), userId: KeychainStorage.shared._id)*/
+                            
+                            
+                            .lookPost(query: LookPostQueryString(
+                            next: $0, limit: "10"))
+                        )
             }
             .map { response in
                 switch response {
