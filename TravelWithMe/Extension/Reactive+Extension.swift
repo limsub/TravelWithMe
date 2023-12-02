@@ -19,6 +19,7 @@ extension Reactive where Base: UIButton {
             editingEvents: [.touchUpInside]) { button  in
                 button.isSelected
             } setter: { button , value  in
+                print("value: \(value)")
                 button.isSelected = value
             }
 

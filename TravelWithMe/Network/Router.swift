@@ -19,7 +19,12 @@ enum Router: URLRequestConvertible {
     case makePost(sender: MakePostRequest)
     
     // userId를 넣으면 유저 별 조회, nil이면 전체 유저 조회라고 판단
-    case lookPost(query: LookPostQueryString, userId: String? = nil) // get이기 때문에 바디 대신 쿼리 스트링에 적을 내용을 전달받는다.
+    // hashTag가 있으면 특정 해시태그 게시글 조회. nil이면 전체 게시글 조회
+    case lookPost(
+        query: LookPostQueryString,
+        userId: String? = nil,
+        hashTag: String? = nil
+    ) // get이기 때문에 바디 대신 쿼리 스트링에 적을 내용을 전달받는다.
     
     case deletePost(idStruct: DeletePostRequest)
     
@@ -37,13 +42,19 @@ enum Router: URLRequestConvertible {
             return "/refresh"
         case .makePost:
             return "/post"
-        case .lookPost(_, let userID):
+            
+        case .lookPost(_, let userID, let hashTag):
             if let userID {
                 return "/post/user/\(userID)"
+            }
+            if let hashTag {
+                return "/post/hashTag"
             }
             else {
                 return "/post"
             }
+            
+            
             
         case .deletePost(let idStruct):
             return "/post/\(idStruct.id)"
@@ -143,12 +154,27 @@ enum Router: URLRequestConvertible {
     
     private var query: [String: String] {
         switch self {
-        case .lookPost(let queryString, _):
-            return [
-                "next": queryString.next,
-                "limit": queryString.limit,
-                "product_id": queryString.product_id
-            ]
+        case .lookPost(let queryString, _, let hashTag):
+            
+            if let hashTag {
+                
+                return [
+                    "next": queryString.next,
+                    "limit": queryString.limit,
+                    "product_id": queryString.product_id,
+                    "hashTag": hashTag
+                ]
+                
+            }
+            
+            else {
+                return [
+                    "next": queryString.next,
+                    "limit": queryString.limit,
+                    "product_id": queryString.product_id
+                ]
+            }
+            
         default:
             return [:]
         }

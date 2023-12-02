@@ -90,12 +90,14 @@ class ContentsView: BaseView {
         categoryButtons[0].snp.makeConstraints { make in
             make.verticalEdges.equalTo(categoryContentView).inset(4)
             make.leading.equalTo(categoryContentView).inset(18)
+            make.width.equalTo(60)
         }
         for (index, item) in categoryButtons.enumerated() {
             if (index == 0) { continue }
             item.snp.makeConstraints { make in
                 make.verticalEdges.equalTo(categoryContentView).inset(4)
                 make.leading.equalTo(categoryButtons[index-1].snp.trailing).offset(10)
+                make.width.equalTo(60)
             }
             
             if item == categoryButtons.last {

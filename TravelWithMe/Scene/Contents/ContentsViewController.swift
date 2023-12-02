@@ -26,13 +26,92 @@ class ContentsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        settingCategoryButtons()
         bind()
+    }
+    
+    func settingCategoryButtons() {
+        
+//        mainView.categoryButtons[3].rx.tap
+//            .subscribe(with: self) { owner , value in
+//                owner.mainView.categoryButtons[0].isSelected = false
+//                
+//                owner.mainView.categoryButtons[3].isSelected = true
+//                
+//                //                owner.mainView.categoryButtons[3].rx.isSelected.onNext(true)
+//                //
+//                //                owner.mainView.categoryButtons[0].rx.isSelected.onNext(false)
+//                //            }
+//            }
+//            .disposed(by: disposeBag)
+//        
+//        mainView.categoryButtons[5].rx.tap
+//            .subscribe(with: self) { owner , value in
+//                owner.mainView.categoryButtons[1].isSelected = true
+//                
+//                owner.mainView.categoryButtons[5].isSelected = true
+//                
+//                //                owner.mainView.categoryButtons[3].rx.isSelected.onNext(true)
+//                //
+//                //                owner.mainView.categoryButtons[0].rx.isSelected.onNext(false)
+//                //            }
+//            }
+//            .disposed(by: disposeBag)
+//        
+//        mainView.categoryButtons[3].rx.isSelected.onNext(false)
+//        
+//        mainView.categoryButtons[0].isSelected = true
+        
+        
+        // ----
+//        mainView.categoryButtons[3].isSelected = false
+        
+        for (index, item) in mainView.categoryButtons.enumerated() {
+            item.rx.tap
+                .subscribe(with: self) { owner , _ in
+                    // false -> tap -> true
+                    if !item.isSelected {
+                        // 1. 해당 버튼 isSelected true
+//                        item.isSelected = true
+                        item.rx.isSelected.onNext(true)
+                        
+//                        owner.mainView.categoryButtons[0].isSelected = false
+                        
+                        // 2. 다른 버튼 isSelected false
+                        for (i, button) in owner.mainView.categoryButtons.enumerated() {
+                            if (i == index) { continue }
+                            
+                            print("다른\(i) 버튼 false 처리해주기")
+                            
+//                            button.isSelected = false
+                            
+                            owner.mainView.categoryButtons[i].rx.isSelected.onNext(false)
+//                            button.rx.isSelected.onNext(false)
+                        }
+                    }
+                    
+                    // true -> tap -> x
+                }
+                .disposed(by: disposeBag)
+        }
+        
+        // 뷰가 처음 나올 때 "전체" 버튼만 isSelected true
+//        mainView.categoryButtons[0].isSelected = true
     }
     
     func bind() {
         
-        let input = ContentsViewModel.Input(a: "hi")
+//        let input = ContentsViewModel.Input(
+//            categoryButtons: mainView.categoryButtons.map { $0.rx.isSelected }
+//        )
+        
+        let input = ContentsViewModel.Input(
+            categoryButtons: [],
+            categoryButton1: mainView.categoryButtons[0].rx.tap,
+            categoryButton2: mainView.categoryButtons[1].rx.isSelected,
+            categoryButton3: mainView.categoryButtons[2].rx.isSelected,
+            categoryButton4: mainView.categoryButtons[3].rx.isSelected
+        )
         
         let output = viewModel.tranform(input)
         

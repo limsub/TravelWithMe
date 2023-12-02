@@ -18,9 +18,14 @@ class ContentsViewModel: ViewModelType {
     
     
     struct Input {
-        let a: String
+        let categoryButtons: [ControlProperty<Bool>]
+        let categoryButton1: ControlEvent<Void>
+        let categoryButton2: ControlProperty<Bool>
+        let categoryButton3: ControlProperty<Bool>
+        let categoryButton4: ControlProperty<Bool>
     }
     struct Output {
+        // 버튼 8개 고정 (전체 버튼 포함) -> MakeTour에서는 7개 (전체 x)
         let tourItems: BehaviorSubject<[Datum]>
         let resultLookPost: PublishSubject<AttemptLookPost>
     }
@@ -35,10 +40,57 @@ class ContentsViewModel: ViewModelType {
         // 페이지네이션 -> nextCursor 값 변경 (tmpNextCursor에 통신 결과로 받은 커서 값 저장)
         
         
+        
+        // 어떤 버튼이 눌렸는지 확인 후 해시태그 값 결정 (전체 이면 해시태그 nil)
+        // -> 배열의 인덱스와 enum의 rawValue 동일
+//        let hashTagText = Observable.zip(input.categoryButtons[0], input.categoryButtons[1], input.categoryButtons[2], input.categoryButtons[3], input.categoryButtons[4], input.categoryButtons[5], input.categoryButtons[6], input.categoryButtons[7]) { v1, v2, v3, v4, v5, v6, v7, v8 in
+//            
+//            let arr = [v1, v2, v3, v4, v5, v6, v7, v8]
+//            print("해시태그 배열의 값 : ", arr)
+//            for (index, element) in arr.enumerated() {
+//                
+//                // true인 카테고리 해시태그로 검색
+//                if element {
+//                    return TourCategoryType(rawValue: index)?.searchText
+//                }
+//            }
+//            
+//            return nil
+//        }
+        
+        let _ = input.categoryButton1.subscribe {
+            print("1Selected")
+        }
+        .disposed(by: disposeBag)
+        
+        
+        let hashTagText = Observable.zip(input.categoryButton2, input.categoryButton3, input.categoryButton4) {v2, v3, v4 in
+            
+            let arr = [v2, v3, v4]
+            print("해시태그 배열의 값 : ", arr)
+            for (index, element) in arr.enumerated() {
+                
+                // true인 카테고리 해시태그로 검색
+                if element {
+                    return TourCategoryType(rawValue: index)?.searchText
+                }
+            }
+            
+            return nil
+        }
+        
+        
+        let combineCursorAndHashTagButton = Observable.combineLatest(nextCursor, hashTagText)
+        
+        
         // 데이터 로딩
-        nextCursor
+        combineCursorAndHashTagButton
             .flatMap {
-                RouterAPIManager.shared.request(
+                print("=== 데이터 로딩 flatmap 실행 ===")
+                print("cursur : ", $0.0)
+                print("hashTag : ", $0.1)
+                
+                return RouterAPIManager.shared.request(
                     type: LookPostResponse.self,
                     error: LookPostAPIError.self,
                     api:
@@ -46,8 +98,12 @@ class ContentsViewModel: ViewModelType {
                             /*.lookPost(query: LookPostQueryString(next: $0, limit: "10"), userId: KeychainStorage.shared._id)*/
                             
                             
-                            .lookPost(query: LookPostQueryString(
-                            next: $0, limit: "10"))
+                            .lookPost(
+                                query: LookPostQueryString(
+                                    next: $0.0, limit: "10"),
+                                userId: nil,
+                                hashTag: $0.1
+                            )
                         )
             }
             .map { response in

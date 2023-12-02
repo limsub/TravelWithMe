@@ -60,4 +60,25 @@ enum TourCategoryType: Int {
         }
     }
     
+    var searchText: String? {
+        switch self {
+        case .all:
+            return nil
+        case .city:
+            return "도시"
+        case .nature:
+            return "자연"
+        case .culture:
+            return "문화"
+        case .food:
+            return "음식"
+        case .adventure:
+            return "모험"
+        case .history:
+            return "역사"
+        case .local:
+            return "로컬"
+        }
+    }
+    
 }

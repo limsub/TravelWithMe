@@ -51,8 +51,6 @@ class SelectDateView: BaseView {
         calendar.allowsMultipleSelection = true
         
         
-        
-        
         print(calendar.selectedDates)
         
     }

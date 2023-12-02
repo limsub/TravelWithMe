@@ -25,9 +25,11 @@ class MyTourViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         bind()
         
     }
+    
     
     func bind() {
         let input = MyTourViewModel.Input(a: "hi")

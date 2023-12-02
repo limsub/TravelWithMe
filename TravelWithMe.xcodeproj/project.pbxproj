@@ -289,8 +289,8 @@
 		486732472B0C902C00BC24A4 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 				486732522B0CA36700BC24A4 /* SignUp */,
+				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 				48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */,
 			);
 			path = Enum;
