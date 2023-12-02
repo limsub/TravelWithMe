@@ -32,72 +32,43 @@ class ContentsViewController: BaseViewController {
     
     func settingCategoryButtons() {
         
-//        mainView.categoryButtons[3].rx.tap
-//            .subscribe(with: self) { owner , value in
-//                owner.mainView.categoryButtons[0].isSelected = false
-//                
-//                owner.mainView.categoryButtons[3].isSelected = true
-//                
-//                //                owner.mainView.categoryButtons[3].rx.isSelected.onNext(true)
-//                //
-//                //                owner.mainView.categoryButtons[0].rx.isSelected.onNext(false)
-//                //            }
-//            }
-//            .disposed(by: disposeBag)
-//        
-//        mainView.categoryButtons[5].rx.tap
-//            .subscribe(with: self) { owner , value in
-//                owner.mainView.categoryButtons[1].isSelected = true
-//                
-//                owner.mainView.categoryButtons[5].isSelected = true
-//                
-//                //                owner.mainView.categoryButtons[3].rx.isSelected.onNext(true)
-//                //
-//                //                owner.mainView.categoryButtons[0].rx.isSelected.onNext(false)
-//                //            }
-//            }
-//            .disposed(by: disposeBag)
-//        
-//        mainView.categoryButtons[3].rx.isSelected.onNext(false)
-//        
-//        mainView.categoryButtons[0].isSelected = true
-        
-        
-        // ----
-//        mainView.categoryButtons[3].isSelected = false
-        
+        // 버튼의 탭에 bind로 버튼 별 isSelected 값 넣어주기
+        // (-> (클릭하지 않은 버튼에 대해) UI 적으로는 작동되지만, rx 이벤트 방출은 안된다)
+        // 여기선 단순 UI 작동 용. Input을 위한 값은 아래 bind 함수에서 결정한다
+        // *** 컬렉션뷰 스크롤 맨 위로 올려주기!!!
         for (index, item) in mainView.categoryButtons.enumerated() {
             item.rx.tap
                 .subscribe(with: self) { owner , _ in
                     // false -> tap -> true
                     if !item.isSelected {
                         // 1. 해당 버튼 isSelected true
-//                        item.isSelected = true
-                        item.rx.isSelected.onNext(true)
-                        
-//                        owner.mainView.categoryButtons[0].isSelected = false
+                        item.isSelected = true
                         
                         // 2. 다른 버튼 isSelected false
                         for (i, button) in owner.mainView.categoryButtons.enumerated() {
                             if (i == index) { continue }
-                            
-                            print("다른\(i) 버튼 false 처리해주기")
-                            
-//                            button.isSelected = false
-                            
-                            owner.mainView.categoryButtons[i].rx.isSelected.onNext(false)
-//                            button.rx.isSelected.onNext(false)
+                            button.isSelected = false
                         }
                     }
                     
                     // true -> tap -> x
+                    
+                    // 컬렉션뷰 스크롤 맨 위로 올려주기
+                    owner.mainView.tourCollectionView.setContentOffset(.zero, animated: true)
+                    
+                    
+//                    owner.mainView.tourCollectionView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
+                    
+                    
                 }
                 .disposed(by: disposeBag)
         }
         
         // 뷰가 처음 나올 때 "전체" 버튼만 isSelected true
-//        mainView.categoryButtons[0].isSelected = true
+        mainView.categoryButtons[0].isSelected = true
     }
+    
+    
     
     func bind() {
         
@@ -105,13 +76,43 @@ class ContentsViewController: BaseViewController {
 //            categoryButtons: mainView.categoryButtons.map { $0.rx.isSelected }
 //        )
         
+        
+        
+        
+        // 어떤 카테고리로 검색할지 이벤트 발생. (초기값 all)
+        // 1.
+        let searchCategory = BehaviorSubject(value: TourCategoryType.all)
+        
+        let searchedButtonIdx = BehaviorSubject(value: 0)
+        
+        // 2. 카테고리 버튼 클릭 시, 인덱스만 먼저 이벤트 전달
+        for (index, button) in mainView.categoryButtons.enumerated() {
+            button.rx.tap
+                .subscribe(with: self) { owner , _ in
+                    searchedButtonIdx.onNext(index)
+                }
+                .disposed(by: disposeBag)
+        }
+        
+        // 3. 인덱스에 대한 이벤트 발생 시, 값이 변했다면 카테고리 값 변경
+        searchedButtonIdx
+            .distinctUntilChanged()
+            .subscribe(with: self) { owner , value in
+                // enum의 rawValue 활용
+                searchCategory.onNext(
+                    TourCategoryType(rawValue: value) ??  TourCategoryType.all
+                )
+            }
+            .disposed(by: disposeBag)
+        
+        // 4. searchCategory를 Input으로 넣어서, 다른 버튼 클릭 시 네트워크 새로 요총
+        
         let input = ContentsViewModel.Input(
-            categoryButtons: [],
-            categoryButton1: mainView.categoryButtons[0].rx.tap,
-            categoryButton2: mainView.categoryButtons[1].rx.isSelected,
-            categoryButton3: mainView.categoryButtons[2].rx.isSelected,
-            categoryButton4: mainView.categoryButtons[3].rx.isSelected
+            searchCategory: searchCategory
         )
+        
+        
+    
         
         let output = viewModel.tranform(input)
         
