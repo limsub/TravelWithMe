@@ -96,8 +96,26 @@ class DetailTourView: BaseView {
     // 6. 투어 제작자 이미지뷰
     let tourProfileImageView = ContentsProfileImageView(frame: .zero)
     
-    // 6. 투어 제작자 레이블
+    // 7. 투어 제작자 레이블
     let tourProfileLabel = ContentsTourProfileNameLabel(.black)
+    
+    // 8. 투어 정보 - 투어 일자
+    let tourDatesInfoView = DetailTourInfoView()
+    
+    // 9. 투어 정보 - 최대 인원
+    let tourMaxPeopleInfoView = DetailTourInfoView()
+    
+    // 10. 투어 소개 - 이름 레이블
+    
+    // 11. 투어 소개 - 내용
+    
+    // 12. 투어 비용 - 이름 레이블
+    
+    // 13. 투어 비용 - 내용
+    
+    // 14. 투어 위치 - 이름 레이블
+    
+    // 15. 투어 위치 - 지도 뷰
 
     
     override func setConfigure() {
@@ -106,7 +124,7 @@ class DetailTourView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel].forEach { item  in
+        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourDatesInfoView, tourMaxPeopleInfoView].forEach { item  in
             contentView.addSubview(item)
         }
     }
@@ -161,6 +179,21 @@ class DetailTourView: BaseView {
         tourProfileLabel.snp.makeConstraints { make in
             make.centerY.equalTo(tourProfileImageView)
             make.leading.equalTo(tourProfileImageView.snp.trailing).offset(12)
+        }
+        
+        tourDatesInfoView.snp.makeConstraints { make in
+            make.top.equalTo(tourProfileImageView.snp.bottom).offset(10)
+            make.height.equalTo(92)
+            make.leading.equalTo(contentView).inset(18)
+            make.trailing.equalTo(contentView.snp.centerX).inset(5)
+        }
+        
+        
+        tourMaxPeopleInfoView.snp.makeConstraints { make in
+            make.height.equalTo(92)
+            make.top.equalTo(tourProfileImageView.snp.bottom).offset(10)
+            make.leading.equalTo(contentView.snp.centerX).offset(5)
+            make.trailing.equalTo(contentView).inset(18)
         }
     }
     

@@ -23,6 +23,8 @@
 		4840595F2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4840595E2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift */; };
 		484059612B1DA710006A8AAC /* ContentsTourTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059602B1DA710006A8AAC /* ContentsTourTitleLabel.swift */; };
 		484059632B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059622B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift */; };
+		484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059652B1DAAC8006A8AAC /* TourTypeInfo.swift */; };
+		484059682B1DAAF2006A8AAC /* DetailTourInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059672B1DAAF2006A8AAC /* DetailTourInfoView.swift */; };
 		48405B4B2B16044E00B3144F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4A2B16044E00B3144F /* Kingfisher */; };
 		48405B4E2B16108200B3144F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4D2B16108200B3144F /* AlamofireImage */; };
 		4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115B2B0DD46A00C68490 /* APIModel.swift */; };
@@ -128,6 +130,8 @@
 		4840595E2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		484059602B1DA710006A8AAC /* ContentsTourTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourTitleLabel.swift; sourceTree = "<group>"; };
 		484059622B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourProfileNameLabel.swift; sourceTree = "<group>"; };
+		484059652B1DAAC8006A8AAC /* TourTypeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourTypeInfo.swift; sourceTree = "<group>"; };
+		484059672B1DAAF2006A8AAC /* DetailTourInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourInfoView.swift; sourceTree = "<group>"; };
 		4847115B2B0DD46A00C68490 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		4847115D2B0DD56000C68490 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		484711622B0E1CE100C68490 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -285,6 +289,14 @@
 			path = DetailTour;
 			sourceTree = "<group>";
 		};
+		484059642B1DAAAC006A8AAC /* DetailTour */ = {
+			isa = PBXGroup;
+			children = (
+				484059672B1DAAF2006A8AAC /* DetailTourInfoView.swift */,
+			);
+			path = DetailTour;
+			sourceTree = "<group>";
+		};
 		48405B482B15CDAF00B3144F /* 버릴거 */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +328,7 @@
 				486732522B0CA36700BC24A4 /* SignUp */,
 				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 				48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */,
+				484059652B1DAAC8006A8AAC /* TourTypeInfo.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -455,6 +468,7 @@
 		4877862B2B0B2E430091661F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				484059642B1DAAAC006A8AAC /* DetailTour */,
 				48F006C82B172A5300DB1FC1 /* Profile */,
 				48B7CC162B14C15000AD854F /* Contents */,
 				48F0A55F2B0F848900859828 /* Login */,
@@ -702,6 +716,7 @@
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F006CA2B172A6400DB1FC1 /* ProfileModifyButton.swift in Sources */,
+				484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
 				486AA0162B131E0300CB5179 /* BaseCollectionViewCell.swift in Sources */,
 				4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */,
@@ -773,6 +788,7 @@
 				480443042B18133F00E5C70B /* UITabBar+Extension.swift in Sources */,
 				486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */,
 				48F006C22B17195100DB1FC1 /* ProfileViewModel.swift in Sources */,
+				484059682B1DAAF2006A8AAC /* DetailTourInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
