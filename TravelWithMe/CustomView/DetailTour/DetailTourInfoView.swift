@@ -84,11 +84,17 @@ class DetailTourInfoView: BaseView {
     override func setting() {
         super.setting()
         
-        self.clipsToBounds = true
+        self.backgroundColor = .white
         
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 20
+
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowColor = UIColor.appColor(.main2).cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.layer.shadowRadius = 5
+        self.layer.masksToBounds = false
         
-        self.layer.cornerRadius = 10        
+        iconImageView.tintColor = UIColor.appColor(.main1)
+        
     }
 }

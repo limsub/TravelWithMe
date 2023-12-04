@@ -29,7 +29,7 @@ class ContentsTourProfileNameLabel: UILabel {
     }
     
     func setUp() {
-        font = .boldSystemFont(ofSize: 14)
+        font = .boldSystemFont(ofSize: 16)
         textColor = .white
         text = "임승섭입니다"
     }

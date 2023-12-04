@@ -9,6 +9,31 @@ import UIKit
 
 
 
+enum ColorSet: String {
+    case main1 = "F63C6E"
+    case main2 = "FCBBCC"
+    case main3 = "FEE2E9"
+    case main4 = "FEEBF0"
+    case main5 = "FFF5F8"
+    
+    case second1 = "FF9E85"
+    
+    case black1 = "202020"
+    case black2 = "1F1F1F"
+    
+    case gray1 = "938E8F"
+    
+    case disabledGray1 = "D0CCCD" // disabled button text
+    case disabledGray2 = "F1EEF0" // disabled button background
+    
+    case inputGray = "FBF8F9"  // textfield background
+    
+    case white1 = "FFFFFF"
+    
+    case success = "6BD495"
+}
+
+
 enum ConstantColor {
     case textFieldBackground
     case textFieldPlaceholder

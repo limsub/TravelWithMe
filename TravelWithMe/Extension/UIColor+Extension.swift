@@ -28,5 +28,12 @@ extension UIColor {
                   blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
                   alpha: alpha)
     }
-    
+}
+
+
+extension UIColor {
+    static func appColor(_ colorSet: ColorSet) -> UIColor {
+        
+        return UIColor(hexCode: colorSet.rawValue)
+    }
 }

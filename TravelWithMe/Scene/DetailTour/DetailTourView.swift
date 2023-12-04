@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class HideHalfDetailTourImageBezierView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,6 +101,15 @@ class DetailTourView: BaseView {
     // 7. 투어 제작자 레이블
     let tourProfileLabel = ContentsTourProfileNameLabel(.black)
     
+    // 7.5 투어 제작자 프로필 화살표
+    let tourProfileChevronImageView = {
+        let view = UIImageView()
+        view.tintColor = .black
+        view.image = UIImage(systemName: "chevron.right")
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
     // 8. 투어 정보 - 투어 일자
     let tourDatesInfoView = DetailTourInfoView()
     
@@ -106,27 +117,71 @@ class DetailTourView: BaseView {
     let tourMaxPeopleInfoView = DetailTourInfoView()
     
     // 10. 투어 소개 - 이름 레이블
+    let contentNameLabel = SignUpSmallLabel("여행 소개")
     
     // 11. 투어 소개 - 내용
+    let contentLabel = {
+        let view = UILabel()
+        
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = .black
+        view.numberOfLines = 0
+        view.textAlignment = .left
+        
+        view.text = "안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일"
+        
+        return view
+    }()
     
     // 12. 투어 비용 - 이름 레이블
+    let priceNameLabel = SignUpSmallLabel("예상 비용")
+    
+    // 12.5 투어 비용 점선
+    let priceDotLineView = DetailTourDotLineView()
     
     // 13. 투어 비용 - 내용
+    let priceLabel = {
+        let view = UILabel()
+        
+        view.font = .boldSystemFont(ofSize: 18)
+        view.textColor = .black
+        view.numberOfLines = 1
+        view.textAlignment = .right
+        
+        view.text = "30,000 원"
+        
+        return view
+    }()
     
     // 14. 투어 위치 - 이름 레이블
+    let locationNameLabel = SignUpSmallLabel("여행 장소")
     
     // 15. 투어 위치 - 지도 뷰
+    let locationView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
+    
+    // * 맨 아래 bottom view (고정)
+    let bottomView = DetailTourBottomView()
+    
 
     
     override func setConfigure() {
         super.setConfigure()
         
+        bottomView.layer.applyShadow()
+        
+        
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourDatesInfoView, tourMaxPeopleInfoView].forEach { item  in
+        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourProfileChevronImageView,  tourDatesInfoView, tourMaxPeopleInfoView, contentNameLabel, contentLabel, priceNameLabel, priceDotLineView, priceLabel, locationNameLabel, locationView].forEach { item  in
             contentView.addSubview(item)
         }
+        
+        addSubview(bottomView)
     }
     
     override func setConstraints() {
@@ -172,7 +227,7 @@ class DetailTourView: BaseView {
             make.horizontalEdges.equalTo(contentView).inset(18)
         }
         tourProfileImageView.snp.makeConstraints { make in
-            make.top.equalTo(tourTitleLabel.snp.bottom).offset(10)
+            make.top.equalTo(tourTitleLabel.snp.bottom).offset(20)
             make.leading.equalTo(contentView).inset(18)
             make.size.equalTo(40)
         }
@@ -180,20 +235,66 @@ class DetailTourView: BaseView {
             make.centerY.equalTo(tourProfileImageView)
             make.leading.equalTo(tourProfileImageView.snp.trailing).offset(12)
         }
+        tourProfileChevronImageView.snp.makeConstraints { make in
+            make.centerY.equalTo(tourProfileImageView)
+            make.leading.equalTo(tourProfileLabel.snp.trailing).offset(4)
+            make.size.equalTo(20)
+        }
         
         tourDatesInfoView.snp.makeConstraints { make in
-            make.top.equalTo(tourProfileImageView.snp.bottom).offset(10)
+            make.top.equalTo(tourProfileImageView.snp.bottom).offset(20)
             make.height.equalTo(92)
             make.leading.equalTo(contentView).inset(18)
             make.trailing.equalTo(contentView.snp.centerX).inset(5)
         }
         
-        
         tourMaxPeopleInfoView.snp.makeConstraints { make in
             make.height.equalTo(92)
-            make.top.equalTo(tourProfileImageView.snp.bottom).offset(10)
+            make.top.equalTo(tourProfileImageView.snp.bottom).offset(20)
             make.leading.equalTo(contentView.snp.centerX).offset(5)
             make.trailing.equalTo(contentView).inset(18)
+        }
+        
+        contentNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(tourDatesInfoView.snp.bottom).offset(40)
+            make.leading.equalTo(contentView).inset(18)
+        }
+        contentLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentNameLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(contentView).inset(18)
+        }
+        
+        priceNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentLabel.snp.bottom).offset(40)
+            make.leading.equalTo(contentView).inset(18)
+        }
+        priceLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(priceNameLabel)
+            make.trailing.equalTo(contentView).inset(18)
+        }
+        priceDotLineView.snp.makeConstraints { make in
+            make.leading.equalTo(priceNameLabel.snp.trailing).offset(12)
+            make.trailing.equalTo(priceLabel.snp.leading).offset(-12)
+            make.height.equalTo(1)
+            make.centerY.equalTo(priceNameLabel)
+        }
+        
+        locationNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(priceNameLabel.snp.bottom).offset(40)
+            make.leading.equalTo(contentView).inset(18)
+        }
+        locationView.snp.makeConstraints { make in
+            make.top.equalTo(locationNameLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(contentView).inset(18)
+            make.height.equalTo(150)
+            make.bottom.equalTo(contentView).inset(120)
+        }
+        
+        
+        
+        bottomView.snp.makeConstraints { make in
+            make.height.equalTo(105)
+            make.bottom.horizontalEdges.equalTo(self)
         }
     }
     

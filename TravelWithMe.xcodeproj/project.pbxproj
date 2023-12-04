@@ -25,6 +25,7 @@
 		484059632B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059622B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift */; };
 		484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059652B1DAAC8006A8AAC /* TourTypeInfo.swift */; };
 		484059682B1DAAF2006A8AAC /* DetailTourInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059672B1DAAF2006A8AAC /* DetailTourInfoView.swift */; };
+		4840596A2B1E01BA006A8AAC /* DetailTourBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059692B1E01BA006A8AAC /* DetailTourBottomView.swift */; };
 		48405B4B2B16044E00B3144F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4A2B16044E00B3144F /* Kingfisher */; };
 		48405B4E2B16108200B3144F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4D2B16108200B3144F /* AlamofireImage */; };
 		4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115B2B0DD46A00C68490 /* APIModel.swift */; };
@@ -102,6 +103,8 @@
 		48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */; };
 		48B7CC182B14C16200AD854F /* ContentsTourInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */; };
 		48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */; };
+		48BCD9CC2B1E03FF004E8838 /* DetailTourApplyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BCD9CB2B1E03FF004E8838 /* DetailTourApplyButton.swift */; };
+		48BCD9CE2B1E0EAD004E8838 /* DetailTourDotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BCD9CD2B1E0EAD004E8838 /* DetailTourDotLineView.swift */; };
 		48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */; };
 		48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */; };
 		48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006BD2B17194400DB1FC1 /* ProfileView.swift */; };
@@ -132,6 +135,7 @@
 		484059622B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourProfileNameLabel.swift; sourceTree = "<group>"; };
 		484059652B1DAAC8006A8AAC /* TourTypeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourTypeInfo.swift; sourceTree = "<group>"; };
 		484059672B1DAAF2006A8AAC /* DetailTourInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourInfoView.swift; sourceTree = "<group>"; };
+		484059692B1E01BA006A8AAC /* DetailTourBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourBottomView.swift; sourceTree = "<group>"; };
 		4847115B2B0DD46A00C68490 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		4847115D2B0DD56000C68490 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		484711622B0E1CE100C68490 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 		48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourInfoView.swift; sourceTree = "<group>"; };
 		48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsProfileImageView.swift; sourceTree = "<group>"; };
+		48BCD9CB2B1E03FF004E8838 /* DetailTourApplyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourApplyButton.swift; sourceTree = "<group>"; };
+		48BCD9CD2B1E0EAD004E8838 /* DetailTourDotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourDotLineView.swift; sourceTree = "<group>"; };
 		48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		48F006BD2B17194400DB1FC1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -293,6 +299,9 @@
 			isa = PBXGroup;
 			children = (
 				484059672B1DAAF2006A8AAC /* DetailTourInfoView.swift */,
+				484059692B1E01BA006A8AAC /* DetailTourBottomView.swift */,
+				48BCD9CB2B1E03FF004E8838 /* DetailTourApplyButton.swift */,
+				48BCD9CD2B1E0EAD004E8838 /* DetailTourDotLineView.swift */,
 			);
 			path = DetailTour;
 			sourceTree = "<group>";
@@ -766,6 +775,7 @@
 				48B7CC0F2B14835500AD854F /* ContentsViewController.swift in Sources */,
 				48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */,
 				486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */,
+				48BCD9CC2B1E03FF004E8838 /* DetailTourApplyButton.swift in Sources */,
 				4867324D2B0C9BCF00BC24A4 /* ValidPW.swift in Sources */,
 				48ADEE3C2B189D4700B1B95E /* Reactive+Extension.swift in Sources */,
 				480442FE2B18126200E5C70B /* JoinedTourViewController.swift in Sources */,
@@ -779,7 +789,9 @@
 				487786322B0B31730091661F /* SignUpTextField.swift in Sources */,
 				487786382B0B32B10091661F /* UIColor+Extension.swift in Sources */,
 				4867324B2B0C938E00BC24A4 /* SignUpCheckEmailLabel.swift in Sources */,
+				48BCD9CE2B1E0EAD004E8838 /* DetailTourDotLineView.swift in Sources */,
 				486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */,
+				4840596A2B1E01BA006A8AAC /* DetailTourBottomView.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
 				48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */,
 				480443002B18126C00E5C70B /* MyTourViewController.swift in Sources */,
