@@ -16,6 +16,13 @@
 		4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */; };
 		4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */; };
 		4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */; };
+		484059572B1D909E006A8AAC /* DetailTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059562B1D909E006A8AAC /* DetailTourViewController.swift */; };
+		484059592B1D90A4006A8AAC /* DetailTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059582B1D90A4006A8AAC /* DetailTourView.swift */; };
+		4840595B2B1D90AB006A8AAC /* DetailTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */; };
+		4840595D2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4840595C2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift */; };
+		4840595F2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4840595E2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift */; };
+		484059612B1DA710006A8AAC /* ContentsTourTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059602B1DA710006A8AAC /* ContentsTourTitleLabel.swift */; };
+		484059632B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059622B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift */; };
 		48405B4B2B16044E00B3144F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4A2B16044E00B3144F /* Kingfisher */; };
 		48405B4E2B16108200B3144F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 48405B4D2B16108200B3144F /* AlamofireImage */; };
 		4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4847115B2B0DD46A00C68490 /* APIModel.swift */; };
@@ -114,6 +121,13 @@
 		4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckLoginLabel.swift; sourceTree = "<group>"; };
 		4818C8D52B10721100BC8F02 /* TestJSONtoString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSONtoString.swift; sourceTree = "<group>"; };
 		4818C8D72B10870F00BC8F02 /* MakeTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourViewModel.swift; sourceTree = "<group>"; };
+		484059562B1D909E006A8AAC /* DetailTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourViewController.swift; sourceTree = "<group>"; };
+		484059582B1D90A4006A8AAC /* DetailTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourView.swift; sourceTree = "<group>"; };
+		4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourViewModel.swift; sourceTree = "<group>"; };
+		4840595C2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourSwipeImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4840595E2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		484059602B1DA710006A8AAC /* ContentsTourTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourTitleLabel.swift; sourceTree = "<group>"; };
+		484059622B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsTourProfileNameLabel.swift; sourceTree = "<group>"; };
 		4847115B2B0DD46A00C68490 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		4847115D2B0DD56000C68490 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		484711622B0E1CE100C68490 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -261,6 +275,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		484059552B1D9090006A8AAC /* DetailTour */ = {
+			isa = PBXGroup;
+			children = (
+				484059562B1D909E006A8AAC /* DetailTourViewController.swift */,
+				484059582B1D90A4006A8AAC /* DetailTourView.swift */,
+				4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */,
+			);
+			path = DetailTour;
+			sourceTree = "<group>";
+		};
 		48405B482B15CDAF00B3144F /* 버릴거 */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +369,8 @@
 				486AA0172B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift */,
 				48B7CC142B14841D00AD854F /* AboutTourCollectionViewCell.swift */,
 				48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */,
+				4840595C2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift */,
+				4840595E2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -395,6 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */,
+				484059552B1D9090006A8AAC /* DetailTour */,
 				48F006BC2B17193600DB1FC1 /* Profile */,
 				48B7CC0D2B1482DC00AD854F /* Contents */,
 				4826FF2D2B0B97D20077B2D1 /* Login */,
@@ -527,6 +554,8 @@
 				48B7CC172B14C16200AD854F /* ContentsTourInfoView.swift */,
 				48B7CC192B14C82600AD854F /* ContentsProfileImageView.swift */,
 				48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */,
+				484059602B1DA710006A8AAC /* ContentsTourTitleLabel.swift */,
+				484059622B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -657,6 +686,7 @@
 				484711682B0E2B8600C68490 /* ErrorEnum.swift in Sources */,
 				4847115E2B0DD56000C68490 /* APIManager.swift in Sources */,
 				486AA0062B12C2E100CB5179 /* Date<->String.swift in Sources */,
+				4840595B2B1D90AB006A8AAC /* DetailTourViewModel.swift in Sources */,
 				486AA0022B12BE0600CB5179 /* SelectDateView.swift in Sources */,
 				48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */,
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
@@ -668,6 +698,7 @@
 				486AA00E2B12D51600CB5179 /* SelectTourInfoDelegate.swift in Sources */,
 				4847116A2B0E2FF700C68490 /* Router.swift in Sources */,
 				48ADEE382B1866AF00B1B95E /* MyTourViewModel.swift in Sources */,
+				4840595F2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift in Sources */,
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F006CA2B172A6400DB1FC1 /* ProfileModifyButton.swift in Sources */,
@@ -678,6 +709,7 @@
 				4877862D2B0B2F5A0091661F /* SignUpSmallLabel.swift in Sources */,
 				487786112B0B29F60091661F /* ViewController.swift in Sources */,
 				4867325B2B0CBCD600BC24A4 /* ValidBirthday.swift in Sources */,
+				484059612B1DA710006A8AAC /* ContentsTourTitleLabel.swift in Sources */,
 				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
 				484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */,
 				4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */,
@@ -695,6 +727,7 @@
 				48F006C02B17194C00DB1FC1 /* ProfileViewController.swift in Sources */,
 				486AA0042B12C25700CB5179 /* DateFormatType.swift in Sources */,
 				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,
+				484059592B1D90A4006A8AAC /* DetailTourView.swift in Sources */,
 				4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */,
 				486732492B0C903D00BC24A4 /* ValidEmail.swift in Sources */,
 				487786412B0B43AD0091661F /* SignUpCompleteButton.swift in Sources */,
@@ -704,6 +737,8 @@
 				4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */,
 				48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
+				4840595D2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift in Sources */,
+				484059632B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift in Sources */,
 				48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */,
 				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
 				486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */,
@@ -719,6 +754,7 @@
 				4867324D2B0C9BCF00BC24A4 /* ValidPW.swift in Sources */,
 				48ADEE3C2B189D4700B1B95E /* Reactive+Extension.swift in Sources */,
 				480442FE2B18126200E5C70B /* JoinedTourViewController.swift in Sources */,
+				484059572B1D909E006A8AAC /* DetailTourViewController.swift in Sources */,
 				4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */,
 				4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */,
 				486AA00C2B12CFFE00CB5179 /* MakeTourDatesView.swift in Sources */,

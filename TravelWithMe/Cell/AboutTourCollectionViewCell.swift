@@ -45,26 +45,10 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
-    let tourTitleLabel = {
-        let view = UILabel()
-        
-//        view.backgroundColor = .purple
-        view.font = .boldSystemFont(ofSize: 20)
-        view.textColor = .white
-        view.text = "3박 4일 도쿄 여행 같이 가실분sadjfl;kjasd;lfkjas;dlfkja;slkdfja;sldkjf"
-        view.numberOfLines = 2
-        return view
-    }()
+    let tourTitleLabel = ContentsTourTitleLabel(.white)
     
-    let profileNameLabel = {
-        let view = UILabel()
-//        view.backgroundColor = .purple
-        view.font = .systemFont(ofSize: 14)
-        view.textColor = .white
-        view.text = "임승섭입니다"
-        
-        return view
-    }()
+    let profileNameLabel = ContentsTourProfileNameLabel(.white)
+    
     
     let lineView = {
         let view = UIView()
@@ -75,7 +59,7 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
     let maxPeopleView = ContentsTourInfoView()
     let tourDatesView = ContentsTourInfoView()
     
-    let profileImageView = ContentsProfileImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let profileImageView = ContentsProfileImageView(frame: .zero)
     
     
     override func setConfigure() {

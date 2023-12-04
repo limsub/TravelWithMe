@@ -22,6 +22,8 @@ class ContentsProfileImageView: UIImageView {
     
     func setUp() {
         clipsToBounds = true
+        
+        image = UIImage(named: "sample")
     }
     
     override func layoutSubviews() {
