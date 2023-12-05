@@ -48,11 +48,18 @@ class SelectDateViewController: BaseViewController {
     
     @objc
     func completeButtonClicked() {
-        // 선택한 날짜 배열 -> sort -> "M/DD" 변환
-        delegate?.sendDates?(
-            value: mainView.calendar.selectedDates.sorted()
-                .map { $0.toString(of: .monthSlashDay) }
-        )
+        
+        // 선택 날짜가 하나
+        if datesRange.count == 1 {
+            delegate?.sendDates?(value: [datesRange.first!.toString(of: .full) ])
+        }
+        // 선택 날짜가 여러개 -> 첫째날 마지막날 전달
+        else {
+            let firstDate = datesRange.first!.toString(of: .full)
+            let lastDate = datesRange.last!.toString(of: .full)
+            
+            delegate?.sendDates?(value: [firstDate, lastDate])
+        }
         
         navigationController?.popViewController(animated: true)
     }

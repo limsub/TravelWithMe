@@ -162,18 +162,18 @@ class MakeTourViewController: BaseViewController {
     func calculateDateLabel(_ arr: [String]) -> String {
         var ans = ""
         
-        let cnt = (arr.count > 4) ? 4 : arr.count
-        for i in 0..<cnt {
-            ans += arr[i]
-            
-            if (i != cnt - 1) {
-                ans += ", "
-            }
+        // 하루 선택
+        if arr.count == 1 {
+            ans = arr.first!.toDate(to: .full)!.toString(of: .yearMonthDaySlash)
         }
         
-        if (arr.count > 4) {
-            let d = arr.count - 4
-            ans += " 외 \(d)일"
+        // 여러 날 선택
+        else if arr.count == 2 {
+            ans = arr.first!.toDate(to: .full)!.toString(of: .yearMonthDaySlash)
+            
+            ans += " ~ "
+            
+            ans += arr.last!.toDate(to: .full)!.toString(of: .yearMonthDaySlash)
         }
         
         return ans
