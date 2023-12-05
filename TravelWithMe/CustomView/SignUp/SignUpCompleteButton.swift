@@ -26,11 +26,19 @@ class SignUpCompleteButton: UIButton {
     }
     
     func setUp() {
-        backgroundColor = UIColor(hexCode: ConstantColor.disabledButtonBackground.hexCode)
-        setTitleColor(UIColor(hexCode: ConstantColor.disabledButtonText.hexCode), for: .normal)
+        update(.disabled) // 기본적으로 enable false
+        
         titleLabel?.font = .boldSystemFont(ofSize: 16)
         
         clipsToBounds = true
         layer.cornerRadius = 10
     }
+    
+    func update(_ state: ButtonEnabledType) {
+        self.isEnabled = state.isEnabled
+        backgroundColor = state.backgroundColor
+        setTitleColor(state.textColor, for: .normal)
+    }
 }
+
+

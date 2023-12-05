@@ -24,12 +24,15 @@ class SelectDateView: BaseView {
     
     override func setConstraints() {
         super.setConstraints()
-        
-        calendar.snp.makeConstraints { make in
-            make.size.equalTo(self.safeAreaLayoutGuide)
-        }
+
         completeButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.safeAreaLayoutGuide).inset(45)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).inset(40)
+            make.height.equalTo(52)
+            make.horizontalEdges.equalTo(self).inset(18)
+        }
+        calendar.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+            make.bottom.equalTo(completeButton.snp.top).inset(8)
         }
     }
     
@@ -37,8 +40,6 @@ class SelectDateView: BaseView {
         super.setting()
         
         settingCalendar()
-        
-//        completeButton.addTarget(self , action: #selector(buttonClicked), for: .touchUpInside)
     }
     
  
@@ -46,12 +47,26 @@ class SelectDateView: BaseView {
     func settingCalendar() {
         calendar.appearance.titleSelectionColor = UIColor(hexCode: ConstantColor.Main1.hexCode)
         
-        calendar.scrollDirection = .vertical
+//        calendar.pagingEnabled = false
         
+        calendar.scrollDirection = .vertical
         calendar.allowsMultipleSelection = true
         
+        calendar.register(SelectDatesCustomCalendarCell.self, forCellReuseIdentifier: SelectDatesCustomCalendarCell.description())
         
-        print(calendar.selectedDates)
+        calendar.appearance.titleFont = .boldSystemFont(ofSize: 18)
+        calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 18)
+        
+        calendar.today = nil
+        calendar.appearance.selectionColor = .clear
+        calendar.appearance.titleDefaultColor = .black
+        calendar.appearance.titleSelectionColor = UIColor.appColor(.main1)
+        
+        calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
+        
+        calendar.appearance.headerTitleColor = .black
+        calendar.appearance.weekdayTextColor = .black
+        calendar.appearance.caseOptions = .weekdayUsesSingleUpperCase
         
     }
     
