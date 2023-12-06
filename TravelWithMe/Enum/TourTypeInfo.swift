@@ -28,13 +28,27 @@ enum TourInfoType {
             // 말도 안되지만, 배열이 비었을 때 예외처리 (index OutofBounds 대비)
             if dates.isEmpty { return "" }
             
-            let firstDate = dates[0]
-            
+            // case 1. 단일 여행
             if dates.count == 1 {
-                return firstDate
-            } else {
-                return firstDate + " 외 \(dates.count - 1)일"
+                return dates[0].toDate(to: .full)!.toString(of: .monthSlashDay)
             }
+            
+            // case 2. 기간 여행
+            else {
+                let firstDate = dates[0].toDate(to: .full)!.toString(of: .monthSlashDay)
+                let lastDate = dates[1].toDate(to: .full)!.toString(of: .monthSlashDay)
+                
+                return "\(firstDate) ~ \(lastDate)"
+            }
+        }
+    }
+    
+    var typeName: String {
+        switch self {
+        case .maxPeople:
+            return "여행 인원"
+        case .tourDates:
+            return "여행 일자"
         }
     }
 }

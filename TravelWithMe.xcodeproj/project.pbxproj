@@ -89,6 +89,7 @@
 		487786462B0B47D30091661F /* MakeTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786452B0B47D30091661F /* MakeTourView.swift */; };
 		487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786482B0B4A330091661F /* MakeTourTextView.swift */; };
 		4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */; };
+		48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */; };
 		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
 		48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */; };
 		48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE332B18658400B1B95E /* MyTourView.swift */; };
@@ -196,6 +197,7 @@
 		487786452B0B47D30091661F /* MakeTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourView.swift; sourceTree = "<group>"; };
 		487786482B0B4A330091661F /* MakeTourTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourTextView.swift; sourceTree = "<group>"; };
 		4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPeopleCountView.swift; sourceTree = "<group>"; };
+		48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCategoryButton.swift; sourceTree = "<group>"; };
 		48ADEE332B18658400B1B95E /* MyTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourView.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				486AA0102B12D60600CB5179 /* SelectLocationViewController.swift */,
+				48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */,
 			);
 			path = SelectLocation;
 			sourceTree = "<group>";
@@ -763,6 +766,7 @@
 				481CCCBB2B1F0E6E00B3B40F /* SelectedDateType.swift in Sources */,
 				486AA0162B131E0300CB5179 /* BaseCollectionViewCell.swift in Sources */,
 				4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */,
+				48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */,
 				4818C8D12B105C8300BC8F02 /* ResultNetwork.swift in Sources */,
 				4877862D2B0B2F5A0091661F /* SignUpSmallLabel.swift in Sources */,
 				487786112B0B29F60091661F /* ViewController.swift in Sources */,

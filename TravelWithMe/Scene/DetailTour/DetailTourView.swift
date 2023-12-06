@@ -25,8 +25,8 @@ class HideHalfDetailTourImageBezierView: UIView {
         
         let width = UIScreen.main.bounds.width
         
-        
-        UIColor.yellow.setFill()
+    
+        UIColor.white.setFill()
         path.lineWidth = 0
         
         path.move(to: CGPoint(x: 0, y: 100))
@@ -73,8 +73,8 @@ class DetailTourView: BaseView {
         let view = UIPageControl()
         view.numberOfPages = 4
         view.hidesForSinglePage = true
-        view.currentPageIndicatorTintColor = .red
-        view.pageIndicatorTintColor = .blue
+        view.currentPageIndicatorTintColor = UIColor.appColor(.second1)
+        view.pageIndicatorTintColor = UIColor.appColor(.second1).withAlphaComponent(0.3)
         return view
     }()
     
@@ -85,7 +85,7 @@ class DetailTourView: BaseView {
         view.register(DetailTourCategoryCollectionViewCell.self , forCellWithReuseIdentifier: "DetailTourView - DetailTourCategoryCollectionViewCell")
         
         view.showsHorizontalScrollIndicator = false
-        view.backgroundColor = .orange
+//        view.backgroundColor = .orange
         
         view.isScrollEnabled = false
         
@@ -165,9 +165,7 @@ class DetailTourView: BaseView {
     
     // * 맨 아래 bottom view (고정)
     let bottomView = DetailTourBottomView()
-    
 
-    
     override func setConfigure() {
         super.setConfigure()
         
@@ -182,10 +180,12 @@ class DetailTourView: BaseView {
         }
         
         addSubview(bottomView)
+
     }
     
     override func setConstraints() {
         super.setConstraints()
+     
         
         // * 스크롤뷰
         scrollView.snp.makeConstraints { make in
@@ -194,6 +194,9 @@ class DetailTourView: BaseView {
         
         contentView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView.contentLayoutGuide)
+//            make.top.equalTo(scrollView)
+            
+            make.top.equalTo(scrollView)
             make.height.greaterThanOrEqualTo(self.snp.height).priority(.low)
             make.width.equalTo(scrollView.snp.width)
         }
@@ -212,8 +215,8 @@ class DetailTourView: BaseView {
         }
         
         swipeImagesPageControl.snp.makeConstraints { make in
-            make.centerY.equalTo(curveView).inset(20)
-            make.trailing.equalTo(contentView).inset(20)
+            make.centerY.equalTo(curveView).inset(30)
+            make.trailing.equalTo(contentView).inset(16)
         }
         
         tourCategoryCollectionView.snp.makeConstraints { make in
@@ -241,17 +244,17 @@ class DetailTourView: BaseView {
             make.size.equalTo(20)
         }
         
-        tourDatesInfoView.snp.makeConstraints { make in
+        tourMaxPeopleInfoView.snp.makeConstraints { make in
             make.top.equalTo(tourProfileImageView.snp.bottom).offset(20)
             make.height.equalTo(92)
             make.leading.equalTo(contentView).inset(18)
-            make.trailing.equalTo(contentView.snp.centerX).inset(5)
+            make.trailing.equalTo(contentView.snp.centerX).inset(10)
         }
         
-        tourMaxPeopleInfoView.snp.makeConstraints { make in
+        tourDatesInfoView.snp.makeConstraints { make in
             make.height.equalTo(92)
             make.top.equalTo(tourProfileImageView.snp.bottom).offset(20)
-            make.leading.equalTo(contentView.snp.centerX).offset(5)
+            make.leading.equalTo(contentView.snp.centerX).offset(10)
             make.trailing.equalTo(contentView).inset(18)
         }
         

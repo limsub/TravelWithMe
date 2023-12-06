@@ -45,9 +45,6 @@ class SelectDateView: BaseView {
  
     
     func settingCalendar() {
-        calendar.appearance.titleSelectionColor = UIColor(hexCode: ConstantColor.Main1.hexCode)
-        
-//        calendar.pagingEnabled = false
         
         calendar.scrollDirection = .vertical
         calendar.allowsMultipleSelection = true
@@ -55,15 +52,13 @@ class SelectDateView: BaseView {
         calendar.register(SelectDatesCustomCalendarCell.self, forCellReuseIdentifier: SelectDatesCustomCalendarCell.description())
         
         calendar.appearance.titleFont = .boldSystemFont(ofSize: 18)
-        calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 18)
+        calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
         
         calendar.today = nil
         calendar.appearance.selectionColor = .clear
+        
         calendar.appearance.titleDefaultColor = .black
         calendar.appearance.titleSelectionColor = UIColor.appColor(.main1)
-        
-        calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
-        
         calendar.appearance.headerTitleColor = .black
         calendar.appearance.weekdayTextColor = .black
         calendar.appearance.caseOptions = .weekdayUsesSingleUpperCase

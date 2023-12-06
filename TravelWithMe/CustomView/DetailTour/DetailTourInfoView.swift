@@ -11,10 +11,14 @@ import SnapKit
 class DetailTourInfoView: BaseView {
     
     func setUp(_ info: TourInfoType) {
+        // 1. iconImage
         iconImageView.image = UIImage(systemName: info.imageName)
         
-        // 일단 보류 - 투어 날짜 수정해야 함
+        // 2. infoName
+        infoNameLabel.text = info.typeName
         
+        // 3. infoContents
+        infoContentsLabel.text = info.infoLabelText
     }
     
     

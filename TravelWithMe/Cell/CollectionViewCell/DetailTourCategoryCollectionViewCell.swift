@@ -12,11 +12,12 @@ class DetailTourCategoryCollectionViewCell: BaseCollectionViewCell {
     let mainLabel = {
         let view = UILabel()
         
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 14
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.red.cgColor
+        view.layer.borderColor = UIColor.appColor(.main1).cgColor
         
         view.text = "로컬"
+        view.textColor = UIColor.appColor(.main1)
         
         view.font = .systemFont(ofSize: 12)
         

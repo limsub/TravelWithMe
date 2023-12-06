@@ -9,7 +9,7 @@ import UIKit
 
 class DetailTourBottomView: BaseView {
     
-    let heartIconImageView = UIImageView()
+//    let heartIconImageView = UIImageView()
     
     let commentIconImageView = UIImageView()
     
@@ -19,7 +19,7 @@ class DetailTourBottomView: BaseView {
     override func setConfigure() {
         super.setConfigure()
         
-        [heartIconImageView, commentIconImageView, applyButton].forEach { item  in
+        [commentIconImageView, applyButton].forEach { item  in
             addSubview(item)
         }
     }
@@ -27,22 +27,21 @@ class DetailTourBottomView: BaseView {
     override func setConstraints() {
         super.setConstraints()
         
-        heartIconImageView.snp.makeConstraints { make in
-            make.size.equalTo(24)
-            make.leading.top.equalTo(self).inset(27)
-            
-        }
+//        heartIconImageView.snp.makeConstraints { make in
+//            make.size.equalTo(24)
+//            make.leading.top.equalTo(self).inset(27)
+//            
+//        }
         
         commentIconImageView.snp.makeConstraints { make in
             make.size.equalTo(24)
-            make.centerY.equalTo(heartIconImageView)
-            make.leading.equalTo(heartIconImageView.snp.trailing).offset(27)
+            make.leading.top.equalTo(self).inset(27)
         }
         
         applyButton.snp.makeConstraints { make in
             make.trailing.equalTo(self).inset(27)
             make.leading.equalTo(commentIconImageView.snp.trailing).offset(27)
-            make.centerY.equalTo(heartIconImageView)
+            make.centerY.equalTo(commentIconImageView)
             make.height.equalTo(48)
         }
     }
@@ -60,10 +59,10 @@ class DetailTourBottomView: BaseView {
         self.layer.shadowRadius = 10
         self.layer.masksToBounds = false
         
-        heartIconImageView.tintColor = UIColor.appColor(.main1)
+//        heartIconImageView.tintColor = UIColor.appColor(.main1)
         commentIconImageView.tintColor = UIColor.appColor(.main1)
         
-        heartIconImageView.image = UIImage(systemName: "heart")
+//        heartIconImageView.image = UIImage(systemName: "heart")
         commentIconImageView.image = UIImage(systemName: "ellipsis.message")
         
     }

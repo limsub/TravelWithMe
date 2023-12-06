@@ -20,6 +20,12 @@ class DetailTourViewController: BaseViewController {
         super.viewDidLoad()
         
         setSwipeImageCollectionViewDataSource()
+        
+        settingNavigation()
+        
+        
+        mainView.tourDatesInfoView.setUp(.tourDates(dates: ["20230910", "20231028"]))
+        mainView.tourMaxPeopleInfoView.setUp(.maxPeople(cnt: 200))
     }
     
     func setSwipeImageCollectionViewDataSource() {
@@ -27,6 +33,12 @@ class DetailTourViewController: BaseViewController {
         mainView.swipeImagesCollectionView.delegate = self
         
         mainView.tourCategoryCollectionView.dataSource = self
+    }
+    
+    func settingNavigation() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationController?.navigationBar.standardAppearance = appearance
     }
     
 }
