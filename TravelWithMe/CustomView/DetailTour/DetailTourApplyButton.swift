@@ -16,18 +16,13 @@ class DetailTourApplyButton: UIButton {
     }
     
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func setUp() {
-//        setTitleColor(UIColor.appColor(.disabledGray1), for: .normal)
-//        backgroundColor = UIColor.appColor(.disabledGray2)
         
-        setTitleColor(.white, for: .normal)
-        backgroundColor = UIColor.appColor(.main1)
-        
+        update(.disabled)
         
         titleLabel?.font = .boldSystemFont(ofSize: 16)
         
@@ -36,4 +31,28 @@ class DetailTourApplyButton: UIButton {
         
         setTitle("신청하기 1/3", for: .normal)
     }
+    
+    func updateCnt(_ likesCnt: Int, maxCnt: Int) {
+        
+        // 그럴 일은 없겠지만..
+        if likesCnt > maxCnt {
+            update(.disabled)
+            setTitle("마감 \(maxCnt)/\(maxCnt)", for: .normal)
+        }
+        else if likesCnt == maxCnt {
+            update(.disabled)
+            setTitle("마감 \(likesCnt)/\(maxCnt)", for: .normal)
+        } else {
+            update(.enabled)
+            setTitle("신청하기 \(likesCnt)/\(maxCnt)", for: .normal)
+        }
+    }
+    
+    func update(_ state: ButtonEnabledType) {
+        self.isEnabled = state.isEnabled
+        backgroundColor = state.backgroundColor
+        setTitleColor(state.textColor, for: .normal)
+    }
+    
+    
 }

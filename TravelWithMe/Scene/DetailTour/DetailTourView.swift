@@ -205,7 +205,7 @@ class DetailTourView: BaseView {
         
         swipeImagesPageControl.snp.makeConstraints { make in
             make.centerY.equalTo(curveView).inset(30)
-            make.trailing.equalTo(contentView).inset(16)
+            make.centerX.equalTo(contentView.snp.centerX).offset(120)
         }
         
         tourCategoryCollectionView.snp.makeConstraints { make in
@@ -292,6 +292,8 @@ class DetailTourView: BaseView {
     
     func setUp(_ sender: Datum) {
         
+        swipeImagesPageControl.numberOfPages = sender.image.count
+        
         // collectionView 데이터는 VC에서 DataSource로 관리
         
         tourTitleLabel.text = sender.title ?? ""
@@ -315,6 +317,10 @@ class DetailTourView: BaseView {
         priceLabel.updatePrice(sender.price ?? "")
         
         locationView
+        
+        let likesCnt = sender.likes.count
+        let maxCnt = cntInt
+        bottomView.applyButton.updateCnt(likesCnt, maxCnt: maxCnt)
         
         
         

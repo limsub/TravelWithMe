@@ -24,7 +24,7 @@ class DetailTourViewModel {
         dates: "{\"dates\":[\"20231220\",\"20231222\"]}",
         location: "{\"name\":\"청년취업사관학교 영등포캠퍼스\",\"longtitude\":126.886463,\"latitude\":37.517742}",
         maxPeopleCnt: Optional("2"),
-        price: Optional("0"),
+        price: Optional("120000000000"),
         content5: Optional(""),
         productID: "sub_SeSAC"
     )

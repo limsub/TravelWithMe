@@ -90,12 +90,12 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         maxPeopleView.snp.makeConstraints { make in
             make.bottom.equalTo(contentView).inset(15)
             make.leading.equalTo(contentView).inset(15)
-            make.width.equalTo(90)
+            make.width.equalTo(100)
             make.height.equalTo(30)
         }
         
         tourDatesView.snp.makeConstraints { make in
-            make.leading.equalTo(maxPeopleView.snp.trailing).offset(20)
+            make.leading.equalTo(maxPeopleView.snp.trailing).offset(16)
             make.height.equalTo(30)
             make.bottom.equalTo(contentView).inset(15)
         }

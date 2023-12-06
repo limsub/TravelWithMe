@@ -46,12 +46,13 @@ class ContentsTourInfoView: BaseView {
         super.setConstraints()
         
         imageView.snp.makeConstraints { make in
-            make.leading.verticalEdges.equalTo(self)
-            make.width.equalTo(imageView.snp.height)
+            make.leading.equalTo(self)
+            make.centerY.equalTo(self)
+            make.size.equalTo(24)
         }
         
         infoLabel.snp.makeConstraints { make in
-            make.leading.equalTo(imageView.snp.trailing).offset(8)
+            make.leading.equalTo(imageView.snp.trailing).offset(4)
             make.centerY.equalTo(self)
             make.trailing.equalTo(self)
         }
