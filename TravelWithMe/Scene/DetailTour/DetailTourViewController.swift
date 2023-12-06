@@ -27,9 +27,7 @@ class DetailTourViewController: BaseViewController {
         
         settingNavigation()
         
-        
-        mainView.tourDatesInfoView.setUp(.tourDates(dates: ["20230910", "20231028"]))
-        mainView.tourMaxPeopleInfoView.setUp(.maxPeople(cnt: 200))
+        settingMainView()
     }
     
     func setSwipeImageCollectionViewDataSource() {
@@ -45,16 +43,20 @@ class DetailTourViewController: BaseViewController {
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
+    func settingMainView() {
+        mainView.setUp(viewModel.tourItem)
+    }
+    
 }
 
 extension DetailTourViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case mainView.swipeImagesCollectionView:
-            return 4
+            return viewModel.tourItem.image.count
             
         case mainView.tourCategoryCollectionView:
-            return 7
+            return viewModel.tourItem.hashTags.count
             
         default:
             return 0
@@ -78,7 +80,7 @@ extension DetailTourViewController: UICollectionViewDataSource, UICollectionView
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"DetailTourView - DetailTourCategoryCollectionViewCell", for: indexPath) as? DetailTourCategoryCollectionViewCell else { return UICollectionViewCell() }
             
-            cell.mainLabel.text = "도시"
+            cell.mainLabel.text = viewModel.tourItem.hashTags[indexPath.item]
                 
             return cell
             

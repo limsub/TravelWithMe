@@ -140,18 +140,7 @@ class DetailTourView: BaseView {
     let priceDotLineView = DetailTourDotLineView()
     
     // 13. 투어 비용 - 내용
-    let priceLabel = {
-        let view = UILabel()
-        
-        view.font = .boldSystemFont(ofSize: 18)
-        view.textColor = .black
-        view.numberOfLines = 1
-        view.textAlignment = .right
-        
-        view.text = "30,000 원"
-        
-        return view
-    }()
+    let priceLabel = DetailTourPriceLabel()
     
     // 14. 투어 위치 - 이름 레이블
     let locationNameLabel = SignUpSmallLabel("여행 장소")
@@ -175,7 +164,7 @@ class DetailTourView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourProfileChevronImageView,  tourDatesInfoView, tourMaxPeopleInfoView, contentNameLabel, contentLabel, priceNameLabel, priceDotLineView, priceLabel, locationNameLabel, locationView].forEach { item  in
+        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourProfileChevronImageView,   tourMaxPeopleInfoView, tourDatesInfoView, contentNameLabel, contentLabel, priceNameLabel, priceDotLineView, priceLabel, locationNameLabel, locationView].forEach { item  in
             contentView.addSubview(item)
         }
         
@@ -301,4 +290,35 @@ class DetailTourView: BaseView {
         }
     }
     
+    func setUp(_ sender: Datum) {
+        
+        // collectionView 데이터는 VC에서 DataSource로 관리
+        
+        tourTitleLabel.text = sender.title ?? ""
+        
+        tourProfileImageView
+        
+        tourProfileLabel.text = sender.creator.nick
+        
+        let cntString = sender.maxPeopleCnt ?? "0"
+        let cntInt = Int(cntString) ?? 0
+        tourMaxPeopleInfoView.setUp(.maxPeople(cnt: cntInt))
+        
+        let datesStruct = decodingStringToStruct(type: TourDates.self , sender: sender.dates) ?? TourDates(dates: [])
+        let datesArr = datesStruct.dates
+        tourDatesInfoView.setUp(.tourDates(dates: datesArr))
+        
+        let contentStruct = decodingStringToStruct(type: TourContent.self , sender: sender.content) ?? TourContent(content: "", hashTags: "")
+        let contentString = contentStruct.content
+        contentLabel.text = contentString
+        
+        priceLabel.updatePrice(sender.price ?? "")
+        
+        locationView
+        
+        
+        
+        
+        
+    }
 }
