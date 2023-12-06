@@ -20,6 +20,14 @@ class HideHalfDetailTourImageBezierView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        
+        let hitView: UIView? = super.hitTest(point, with: event)
+        if (self == hitView) { return nil }
+        return hitView
+    }
+
+    
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
         
@@ -174,6 +182,9 @@ class DetailTourView: BaseView {
     
     override func setConstraints() {
         super.setConstraints()
+        
+//        scrollView.backgroundColor = .blue
+//        contentView.backgroundColor = .yellow
      
         
         // * 스크롤뷰
@@ -182,10 +193,13 @@ class DetailTourView: BaseView {
         }
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView.contentLayoutGuide)
-//            make.top.equalTo(scrollView)
+            make.bottom.horizontalEdges.equalTo(scrollView.contentLayoutGuide)
+//            make.top.equalTo(scrollView.snp.top)
+//            make.top.equalTo(self)
+//            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.top.equalTo(scrollView).inset(-100)
             
-            make.top.equalTo(scrollView)
+            
             make.height.greaterThanOrEqualTo(self.snp.height).priority(.low)
             make.width.equalTo(scrollView.snp.width)
         }
