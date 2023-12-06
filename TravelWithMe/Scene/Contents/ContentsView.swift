@@ -48,7 +48,7 @@ class ContentsView: BaseView {
     
     /* 메인 컬렉션뷰 */
     lazy var tourCollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout(topInset: 58))
+        let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout(topInset: 0))
         
         view.register(AboutTourCollectionViewCell.self, forCellWithReuseIdentifier: "ContentsView - tourCollectionView")
         
@@ -62,9 +62,9 @@ class ContentsView: BaseView {
     override func setConfigure() {
         super.setConfigure()
         
-        addSubview(tourCollectionView)  // 카테고리 버튼 뒤로 올라갈 수 있도록 순서 설정
         
         addSubview(categoryScrollView)
+        addSubview(tourCollectionView)
         categoryScrollView.addSubview(categoryContentView)
         categoryButtons.forEach { item  in
             categoryContentView.addSubview(item)
@@ -75,8 +75,7 @@ class ContentsView: BaseView {
     override func setConstraints() {
         super.setConstraints()
         
-        categoryScrollView.backgroundColor = .clear
-        categoryContentView.backgroundColor = .red.withAlphaComponent(0.5)
+        categoryScrollView.backgroundColor = .white
         
         categoryScrollView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
@@ -109,7 +108,7 @@ class ContentsView: BaseView {
   
         tourCollectionView.snp.makeConstraints { make in
 //            make.top.equalTo(categoryScrollView.snp.bottom)
-            make.top.equalTo(self)
+            make.top.equalTo(categoryScrollView.snp.bottom).offset(8)
             make.bottom.equalTo(self)
             make.horizontalEdges.equalTo(self)
         }
@@ -118,6 +117,8 @@ class ContentsView: BaseView {
     override func setting() {
         super.setting()
 
+        tourCollectionView.layer.addBorder([.top], color: UIColor.appColor(.main3), width: 10)
+        
         categoryScrollView.showsHorizontalScrollIndicator = false
     }
     

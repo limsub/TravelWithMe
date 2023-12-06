@@ -12,8 +12,6 @@ import Pageboy
 class ProfileViewController: TabmanViewController {
     
     let profileView = ProfileTopView()
-
-    
     
     let myTourVC = MyTourViewController()
     let joinedTourVC = JoinedTourViewController()

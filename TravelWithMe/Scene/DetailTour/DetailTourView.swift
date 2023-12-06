@@ -83,6 +83,8 @@ class DetailTourView: BaseView {
         view.hidesForSinglePage = true
         view.currentPageIndicatorTintColor = UIColor.appColor(.second1)
         view.pageIndicatorTintColor = UIColor.appColor(.second1).withAlphaComponent(0.3)
+        view.isEnabled = false
+        
         return view
     }()
     
@@ -115,6 +117,13 @@ class DetailTourView: BaseView {
         view.tintColor = .black
         view.image = UIImage(systemName: "chevron.right")
         view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    // 6 ~ 7.5 덮어쓰고 있는 투어 제작자 프로필 화면 이동 버튼
+    let goToProfileButton = {
+        let view = UIButton()
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -172,7 +181,7 @@ class DetailTourView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourProfileChevronImageView,   tourMaxPeopleInfoView, tourDatesInfoView, contentNameLabel, contentLabel, priceNameLabel, priceDotLineView, priceLabel, locationNameLabel, locationView].forEach { item  in
+        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourProfileChevronImageView, goToProfileButton, tourMaxPeopleInfoView, tourDatesInfoView, contentNameLabel, contentLabel, priceNameLabel, priceDotLineView, priceLabel, locationNameLabel, locationView].forEach { item  in
             contentView.addSubview(item)
         }
         
@@ -245,6 +254,11 @@ class DetailTourView: BaseView {
             make.centerY.equalTo(tourProfileImageView)
             make.leading.equalTo(tourProfileLabel.snp.trailing).offset(4)
             make.size.equalTo(20)
+        }
+        goToProfileButton.snp.makeConstraints { make in
+            make.verticalEdges.equalTo(tourProfileImageView)
+            make.leading.equalTo(tourProfileImageView)
+            make.trailing.equalTo(tourProfileChevronImageView)
         }
         
         tourMaxPeopleInfoView.snp.makeConstraints { make in

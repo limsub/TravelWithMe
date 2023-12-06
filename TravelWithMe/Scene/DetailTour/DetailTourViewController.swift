@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class DetailTourViewController: BaseViewController {
     
     let mainView = DetailTourView()
     
     let viewModel = DetailTourViewModel()
+    
+    let disposeBag = DisposeBag()
     
     override func loadView() {
         self.view = mainView
@@ -30,6 +34,12 @@ class DetailTourViewController: BaseViewController {
         settingMainView()
         
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
     }
     
     func setSwipeImageCollectionViewDataSource() {
@@ -51,13 +61,20 @@ class DetailTourViewController: BaseViewController {
     
     func bind() {
         let input = DetailTourViewModel.Input(
-            applyButtonClicked: mainView.bottomView.applyButton.rx.tap
+            applyButtonClicked: mainView.bottomView.applyButton.rx.tap,
+            goToProfileButtonClicked: mainView.goToProfileButton.rx.tap
         )
         
         let output = viewModel.tranform(input)
         
-        
-        
+        // 1. 여행 제작자 프로필 화면으로 이동
+        output.goToProfileButtonClicked
+            .subscribe(with: self) { owner , _ in
+                let vc = ProfileViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+
     }
 }
 

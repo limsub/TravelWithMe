@@ -11,6 +11,7 @@ import RxCocoa
 
 class DetailTourViewModel: ViewModelType {
 
+    // 샘플 데이터. 화면 전환할 때 받을 예정
     var tourItem = Datum(
         likes: ["a", "b"],
         image: ["uploads/posts/1701840928977.jpeg", "uploads/posts/1701840929139.jpeg"],
@@ -32,17 +33,21 @@ class DetailTourViewModel: ViewModelType {
     
     struct Input {
         let applyButtonClicked: ControlEvent<Void>
+        let goToProfileButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
         let resultApplyTour: PublishSubject<Int>
+        
+        let goToProfileButtonClicked: ControlEvent<Void>
     }
     
     func tranform(_ input: Input) -> Output {
         let resultApplyTour = PublishSubject<Int>()
         
         return Output(
-            resultApplyTour: resultApplyTour
+            resultApplyTour: resultApplyTour,
+            goToProfileButtonClicked: input.goToProfileButtonClicked
         )
         
     }

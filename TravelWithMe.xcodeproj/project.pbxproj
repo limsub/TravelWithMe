@@ -89,6 +89,8 @@
 		487786462B0B47D30091661F /* MakeTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786452B0B47D30091661F /* MakeTourView.swift */; };
 		487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786482B0B4A330091661F /* MakeTourTextView.swift */; };
 		4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */; };
+		487931AD2B208D3500F567D5 /* ButtonSelectedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487931AC2B208D3500F567D5 /* ButtonSelectedType.swift */; };
+		487931B02B208FE100F567D5 /* StartTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */; };
 		48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */; };
 		48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */; };
 		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
@@ -198,6 +200,8 @@
 		487786452B0B47D30091661F /* MakeTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourView.swift; sourceTree = "<group>"; };
 		487786482B0B4A330091661F /* MakeTourTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourTextView.swift; sourceTree = "<group>"; };
 		4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPeopleCountView.swift; sourceTree = "<group>"; };
+		487931AC2B208D3500F567D5 /* ButtonSelectedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectedType.swift; sourceTree = "<group>"; };
+		487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTabBarViewController.swift; sourceTree = "<group>"; };
 		48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourPriceLabel.swift; sourceTree = "<group>"; };
 		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -373,12 +377,12 @@
 		486732472B0C902C00BC24A4 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				487931AE2B208D3800F567D5 /* Button */,
 				481CCCB92B1F0E6700B3B40F /* MakeTour */,
 				486732522B0CA36700BC24A4 /* SignUp */,
 				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 				48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */,
 				484059652B1DAAC8006A8AAC /* TourTypeInfo.swift */,
-				481CCCBC2B1F112400B3B40F /* ButtonEnabledType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -467,8 +471,8 @@
 				4877862B2B0B2E430091661F /* CustomView */,
 				487786262B0B2A9C0091661F /* Base */,
 				487786202B0B2A690091661F /* Scene */,
-				4877860C2B0B29F60091661F /* AppDelegate.swift */,
 				4877860E2B0B29F60091661F /* SceneDelegate.swift */,
+				4877860C2B0B29F60091661F /* AppDelegate.swift */,
 				487786102B0B29F60091661F /* ViewController.swift */,
 				487786152B0B29F70091661F /* Assets.xcassets */,
 				487786172B0B29F70091661F /* LaunchScreen.storyboard */,
@@ -481,6 +485,7 @@
 		487786202B0B2A690091661F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */,
 				4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */,
 				484059552B1D9090006A8AAC /* DetailTour */,
 				48F006BC2B17193600DB1FC1 /* Profile */,
@@ -590,6 +595,15 @@
 				486AA0122B13065200CB5179 /* MakeTourPriceView.swift */,
 			);
 			path = MakeTour;
+			sourceTree = "<group>";
+		};
+		487931AE2B208D3800F567D5 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				481CCCBC2B1F112400B3B40F /* ButtonEnabledType.swift */,
+				487931AC2B208D3500F567D5 /* ButtonSelectedType.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		48B7CC082B1452F000AD854F /* KeyChain */ = {
@@ -780,6 +794,7 @@
 				484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */,
 				4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */,
 				48ADEE3A2B1892C500B1B95E /* UIButton+Extension.swift in Sources */,
+				487931AD2B208D3500F567D5 /* ButtonSelectedType.swift in Sources */,
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
 				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
 				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
@@ -809,6 +824,7 @@
 				48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */,
 				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
 				486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */,
+				487931B02B208FE100F567D5 /* StartTabBarViewController.swift in Sources */,
 				48F006C72B17241D00DB1FC1 /* ProfileTopView.swift in Sources */,
 				487786252B0B2A820091661F /* SignUpViewController.swift in Sources */,
 				48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */,

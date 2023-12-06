@@ -26,8 +26,20 @@ class ContentsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settingNavigation()
         settingCategoryButtons()
         bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func settingNavigation() {
+        navigationItem.title = "Travel With Me"
+        navigationItem.largeTitleDisplayMode = .always
     }
     
     func settingCategoryButtons() {
@@ -67,8 +79,6 @@ class ContentsViewController: BaseViewController {
         // 뷰가 처음 나올 때 "전체" 버튼만 isSelected true
         mainView.categoryButtons[0].isSelected = true
     }
-    
-    
     
     func bind() {
         
@@ -137,8 +147,6 @@ class ContentsViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    func bindItemSelected() {
-        
-    }
+    
     
 }

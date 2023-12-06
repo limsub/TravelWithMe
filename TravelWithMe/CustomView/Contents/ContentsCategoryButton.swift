@@ -8,8 +8,6 @@
 import UIKit
 
 
-
-
 class ContentsCategoryButton: UIButton {
     
     override init(frame: CGRect) {
@@ -24,8 +22,6 @@ class ContentsCategoryButton: UIButton {
         setUp()
         
         setTitle(tourCategoryType.buttonTitle, for: .normal)
-        // 버튼.setTitle
-        // 버튼.setImage
     }
     
     required init?(coder: NSCoder) {
@@ -34,18 +30,29 @@ class ContentsCategoryButton: UIButton {
     
     func setUp() {
         clipsToBounds = true
-        layer.cornerRadius = 22
+        layer.cornerRadius = 20
         layer.borderWidth = 1
-        layer.borderColor = UIColor(hexCode: ConstantColor.main1.hexCode).cgColor
         
-//        backgroundColor = UIColor(hexCode: ConstantColor.main6.hexCode)
+        layer.borderColor = ButtonSelectedType.normal.borderColor.cgColor
         
-        setTitle("하이", for: .normal)
         titleLabel?.font = .systemFont(ofSize: 14)
         
-        setTitleColor(.black, for: .normal)
+//        backgroundColor = ButtonSelectedType.normal.backgroundColor
+        setBackgroundColor(ButtonSelectedType.normal.backgroundColor, for: .normal)
+        setBackgroundColor(ButtonSelectedType.selected.backgroundColor, for: .selected)
         
-        setBackgroundColor(UIColor(hexCode: ConstantColor.main8.hexCode).withAlphaComponent(0.5), for: .normal)
-        setBackgroundColor(UIColor(hexCode: ConstantColor.main3.hexCode), for: .selected)
+        setTitleColor(ButtonSelectedType.normal.textColor, for: .normal)
+        setTitleColor(ButtonSelectedType.selected.textColor, for: .selected)
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            switch isSelected {
+            case true:
+                layer.borderColor = ButtonSelectedType.selected.borderColor.cgColor
+            case false:
+                layer.borderColor = ButtonSelectedType.normal.borderColor.cgColor
+            }
+        }
     }
 }
