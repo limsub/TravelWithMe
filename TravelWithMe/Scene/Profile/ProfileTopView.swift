@@ -7,11 +7,9 @@
 
 import UIKit
 
-class BezierView: UIView {
+class ProfileTopBackBackView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -19,50 +17,85 @@ class BezierView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        let colors: [CGColor] = [
+            UIColor.appColor(.main1).cgColor,
+            UIColor.appColor(.second1).cgColor
+        ]
+        gradientLayer.colors = colors
+
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        
+        
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
+}
+
+class ProfileTopBackView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = .clear
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        print("----rect : ", rect)
+        print("----rect : ", rect)
+        
         let path = UIBezierPath()
         
         let width = UIScreen.main.bounds.width
         
-        UIColor.systemRed.setFill()
+        UIColor.white.setFill()
         UIColor.systemYellow.setStroke()
         path.lineWidth = 1
-
-        path.move(to: CGPoint(x: 0, y: 0))
+        
+        
+        let height = rect.height
+        path.move(to: CGPoint(x: 0, y: height))
         path.addLine(to: CGPoint(x: 0, y: 140))
         path.addCurve(to: CGPoint(x: width , y: 140),
                       controlPoint1: CGPoint(x: center.x - 50, y: 200),
                       controlPoint2: CGPoint(x: center.x + 50, y: 40)
         )
-        path.addLine(to: CGPoint(x: width, y: 0))
-
+        path.addLine(to: CGPoint(x: width, y: height))
+    
         path.stroke()
         path.fill()
+        
+        
+        
+        
+
+
     }
 }
 
 class ProfileTopView: BaseView {
     
-    
-    let backView = BezierView()
+    let backBackView = ProfileTopBackBackView()
+    let backView = ProfileTopBackView()
     
     let profileImageView = ContentsProfileImageView(frame: .zero)
     
-    let nameLabel = {
-        let view = UILabel()
-        view.textColor = .systemPink
-        view.font = .boldSystemFont(ofSize: 20)
-        view.text = "아아아아아아아"
-        view.textAlignment = .center
-        view.backgroundColor = .white
-        return view
-    }()
-    
+    let nameLabel = ContentsTourTitleLabel(.black)
+
     let modifyButton = ProfileModifyButton()
     
     override func setConfigure() {
         super.setConfigure()
         
-        [backView, profileImageView, nameLabel, modifyButton].forEach { item  in
+        [backBackView, backView, profileImageView, nameLabel, modifyButton].forEach { item  in
             addSubview(item)
         }
     }
@@ -70,6 +103,9 @@ class ProfileTopView: BaseView {
     override func setConstraints() {
         super.setConstraints()
         
+        backBackView.snp.makeConstraints { make in
+            make.edges.equalTo(self)
+        }
         backView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
@@ -87,6 +123,7 @@ class ProfileTopView: BaseView {
             make.centerX.equalTo(nameLabel)
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.width.equalTo(160)
+            make.height.equalTo(34)
         }
         
         
@@ -97,5 +134,8 @@ class ProfileTopView: BaseView {
         
         self.backgroundColor = .white
         profileImageView.image = UIImage(named: "sample")
+        
+        nameLabel.text = "이름"
+        nameLabel.textAlignment = .center
     }
 }

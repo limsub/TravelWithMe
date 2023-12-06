@@ -68,6 +68,8 @@ class DetailTourView: BaseView {
         
         view.isPagingEnabled = true
         
+        view.dragInteractionEnabled = false
+        
         view.backgroundColor = .red
         
         return view

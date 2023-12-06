@@ -37,10 +37,16 @@ class ProfileModifyButton: UIButton {
     
     func setUp() {
         
-        setTitle("  수정하기  ", for: .normal)
+        setTitle("수정하기", for: .normal)
+        titleLabel?.font = .boldSystemFont(ofSize: 14)
         
-        backgroundColor = .lightGray
         
+        clipsToBounds = true
+        layer.cornerRadius = 16
+        
+        backgroundColor = UIColor.appColor(.main4)
+        setTitleColor(UIColor.appColor(.main1), for: .normal)
+
     }
     
 }
