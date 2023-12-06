@@ -320,11 +320,10 @@ class DetailTourView: BaseView {
         
         let likesCnt = sender.likes.count
         let maxCnt = cntInt
-        bottomView.applyButton.updateCnt(likesCnt, maxCnt: maxCnt)
+        let isMine = sender.creator._id == KeychainStorage.shared._id
+        print("isMine : \(isMine)")
+        bottomView.applyButton.updateCnt(likesCnt, maxCnt: maxCnt, isMine: isMine)
         
-        
-        
-        
-        
+
     }
 }

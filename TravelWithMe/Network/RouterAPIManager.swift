@@ -44,7 +44,7 @@ class RouterAPIManager {
     // 기본
     func requestNormal<T: Decodable, U: APIError>(type: T.Type, error: U.Type, api: Router, completionHandler: @escaping (Result<T, Error>) -> Void) {
         
-        AF.request(api, interceptor: nil /*APIRequestInterceptor()*/)
+        AF.request(api, interceptor: /*nil*/ APIRequestInterceptor())
             .responseDecodable(of: T.self) { response in
                 print(response)
                 
@@ -78,11 +78,6 @@ class RouterAPIManager {
                         completionHandler(.failure(returnError))
                     }
                     
-//                    else {
-//                        guard let returnError = U(rawValue: statusCode) else { return }
-//                        print("(노말 네트워크) 에러 내용 : \(returnError.description)")
-//                        completionHandler(.failure(returnError))
-//                    }
                 }
             }
         

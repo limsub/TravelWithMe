@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-class DetailTourViewModel {
-    
-//    var tourItem: Datum? = nil
-    
+class DetailTourViewModel: ViewModelType {
+
     var tourItem = Datum(
         likes: ["a", "b"],
         image: ["uploads/posts/1701840928977.jpeg", "uploads/posts/1701840929139.jpeg"],
@@ -29,6 +29,23 @@ class DetailTourViewModel {
         productID: "sub_SeSAC"
     )
     
+    
+    struct Input {
+        let applyButtonClicked: ControlEvent<Void>
+    }
+    
+    struct Output {
+        let resultApplyTour: PublishSubject<Int>
+    }
+    
+    func tranform(_ input: Input) -> Output {
+        let resultApplyTour = PublishSubject<Int>()
+        
+        return Output(
+            resultApplyTour: resultApplyTour
+        )
+        
+    }
 }
 
 

@@ -32,20 +32,29 @@ class DetailTourApplyButton: UIButton {
         setTitle("신청하기 1/3", for: .normal)
     }
     
-    func updateCnt(_ likesCnt: Int, maxCnt: Int) {
+    func updateCnt(_ likesCnt: Int, maxCnt: Int, isMine: Bool) {
         
-        // 그럴 일은 없겠지만..
-        if likesCnt > maxCnt {
-            update(.disabled)
-            setTitle("마감 \(maxCnt)/\(maxCnt)", for: .normal)
-        }
-        else if likesCnt == maxCnt {
-            update(.disabled)
-            setTitle("마감 \(likesCnt)/\(maxCnt)", for: .normal)
-        } else {
+        // 내가 작성한 글이라면, 터치 불가. 신청 내역만 알려줌
+        if isMine {
+            setTitle("신청 현황 \(likesCnt)/\(maxCnt)", for: .normal)
             update(.enabled)
-            setTitle("신청하기 \(likesCnt)/\(maxCnt)", for: .normal)
+            isEnabled = false
         }
+        else {
+            // 그럴 일은 없겠지만..
+            if likesCnt > maxCnt {
+                update(.disabled)
+                setTitle("마감 \(maxCnt)/\(maxCnt)", for: .normal)
+            }
+            else if likesCnt == maxCnt {
+                update(.disabled)
+                setTitle("마감 \(likesCnt)/\(maxCnt)", for: .normal)
+            } else {
+                update(.enabled)
+                setTitle("신청하기 \(likesCnt)/\(maxCnt)", for: .normal)
+            }
+        }
+        
     }
     
     func update(_ state: ButtonEnabledType) {

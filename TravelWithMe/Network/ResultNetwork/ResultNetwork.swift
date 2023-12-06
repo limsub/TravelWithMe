@@ -53,3 +53,16 @@ enum AttemptLookPost {
     case lookPostError(error: LookPostAPIError)
     case refreshTokenError(error: RefreshTokenAPIError)
 }
+
+
+/* === 게시글 삭제 === */
+
+
+
+/* === 게시글 좋아요 === */
+enum AttemptLikePost {
+    case sucees(result: LikePostResponse)
+    case commonError(error: CommonAPIError)
+    case likePostError(error: LikePostAPIError)
+    case refreshTokenError(error: RefreshTokenAPIError)
+}

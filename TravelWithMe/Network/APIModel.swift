@@ -160,3 +160,12 @@ struct DeletePostRespose: Decodable {
         case id = "_id"
     }
 }
+
+
+/* ==== 포스트 좋아요 ==== */
+struct LikePostRequest {
+    let id: String
+}
+struct LikePostResponse: Decodable {
+    let like_status: Bool
+}

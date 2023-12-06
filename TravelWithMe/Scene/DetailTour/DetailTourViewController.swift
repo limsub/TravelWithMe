@@ -28,6 +28,8 @@ class DetailTourViewController: BaseViewController {
         settingNavigation()
         
         settingMainView()
+        
+        bind()
     }
     
     func setSwipeImageCollectionViewDataSource() {
@@ -47,6 +49,16 @@ class DetailTourViewController: BaseViewController {
         mainView.setUp(viewModel.tourItem)
     }
     
+    func bind() {
+        let input = DetailTourViewModel.Input(
+            applyButtonClicked: mainView.bottomView.applyButton.rx.tap
+        )
+        
+        let output = viewModel.tranform(input)
+        
+        
+        
+    }
 }
 
 extension DetailTourViewController: UICollectionViewDataSource, UICollectionViewDelegate {
