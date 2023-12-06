@@ -19,6 +19,7 @@ class ContentsTourInfoView: BaseView {
     let imageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "person")
+        view.tintColor = UIColor.appColor(.second1)
         return view
     }()
     

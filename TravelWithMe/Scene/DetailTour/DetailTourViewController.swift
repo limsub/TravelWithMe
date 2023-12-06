@@ -11,6 +11,8 @@ class DetailTourViewController: BaseViewController {
     
     let mainView = DetailTourView()
     
+    let viewModel = DetailTourViewModel()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -18,6 +20,8 @@ class DetailTourViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("뷰모델 데이터 : \(viewModel.tourItem)")
         
         setSwipeImageCollectionViewDataSource()
         

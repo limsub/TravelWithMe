@@ -72,13 +72,6 @@ class ContentsViewController: BaseViewController {
     
     func bind() {
         
-//        let input = ContentsViewModel.Input(
-//            categoryButtons: mainView.categoryButtons.map { $0.rx.isSelected }
-//        )
-        
-        
-        
-        
         // 어떤 카테고리로 검색할지 이벤트 발생. (초기값 all)
         // 1.
         let searchCategory = BehaviorSubject(value: TourCategoryType.all)
@@ -108,7 +101,8 @@ class ContentsViewController: BaseViewController {
         // 4. searchCategory를 Input으로 넣어서, 다른 버튼 클릭 시 네트워크 새로 요총
         
         let input = ContentsViewModel.Input(
-            searchCategory: searchCategory
+            searchCategory: searchCategory,
+            itemSelected: mainView.tourCollectionView.rx.itemSelected
         )
         
         
@@ -131,7 +125,20 @@ class ContentsViewController: BaseViewController {
                 cell.disabledMenuButton()
             }
             .disposed(by: disposeBag)
-    
-       
+        
+        output.itemSelected
+            .withLatestFrom(output.nextTourInfo)
+            .subscribe(with: self) { owner , value in
+                let vc = DetailTourViewController()
+                vc.viewModel.tourItem = value
+                
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
+    
+    func bindItemSelected() {
+        
+    }
+    
 }

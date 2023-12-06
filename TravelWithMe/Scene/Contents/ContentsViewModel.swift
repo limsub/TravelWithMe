@@ -19,11 +19,16 @@ class ContentsViewModel: ViewModelType {
     
     struct Input {
         let searchCategory: BehaviorSubject<TourCategoryType>
+        
+        let itemSelected: ControlEvent<IndexPath>
     }
     struct Output {
         // 버튼 8개 고정 (전체 버튼 포함) -> MakeTour에서는 7개 (전체 x)
         let tourItems: BehaviorSubject<[Datum]>
         let resultLookPost: PublishSubject<AttemptLookPost>
+        
+        let itemSelected: ControlEvent<IndexPath>
+        let nextTourInfo: PublishSubject<Datum>
     }
     
     func tranform(_ input: Input) -> Output {
@@ -153,6 +158,25 @@ class ContentsViewModel: ViewModelType {
         
         
         
+        // 다음 화면으로 넘겨줘야 하는 투어 정보
+        let nextTourInfo = PublishSubject<Datum>()
+                
+        input.itemSelected
+            .withLatestFrom(tourItems) { v1, v2 in
+                return (v1, v2)
+            }
+            .subscribe(with: self) { owner , value in
+                nextTourInfo.onNext(value.1[value.0.item])
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(
+            tourItems: tourItems,
+            resultLookPost: resultLookPost,
+            itemSelected: input.itemSelected,
+            nextTourInfo: nextTourInfo
+        )
+        
         
         
         // 페이지네이션 -> nextCursor 값 변경 (tmpNextCursor에 통신 결과로 받은 커서 값 저장)
@@ -275,11 +299,6 @@ class ContentsViewModel: ViewModelType {
 //                }
 //            }
 //            .disposed(by: disposeBag)
-        
-        
-        return Output(
-            tourItems: tourItems,
-            resultLookPost: resultLookPost
-        )
+
     }
 }

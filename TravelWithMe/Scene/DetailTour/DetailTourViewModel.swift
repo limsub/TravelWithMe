@@ -7,21 +7,8 @@
 
 import Foundation
 
-//class DetailTourViewModel: ViewModelType {
-//    
-//    
-//    struct Input {
-//        
-//    }
-//    
-//    struct Output {
-//        
-//    }
-//    
-//    func tranform(_ input: Input) -> Output {
-//        print("ViewModel transform 공부")
-//    }
-//    
-//    
-//    
-//}
+class DetailTourViewModel {
+    
+    var tourItem: Datum? = nil
+    
+}
