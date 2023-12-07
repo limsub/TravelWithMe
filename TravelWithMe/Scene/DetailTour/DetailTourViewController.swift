@@ -19,13 +19,16 @@ class DetailTourViewController: BaseViewController {
     
     override func loadView() {
         self.view = mainView
+        
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("뷰모델 데이터 : \(viewModel.tourItem)")
+//        print("뷰모델 데이터 - 상세 투어 정보 : \(viewModel.tourItem)")
+//        print("기존 화면의 뷰모델 데이터 - 전체 투어 정보 : \(try! viewModel.wholeContentsViewModel?.tourItems.value())")
         
         setSwipeImageCollectionViewDataSource()
         
@@ -75,7 +78,27 @@ class DetailTourViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        
         // 2. 좋아요 기능 구현
+        output.resultApplyTour
+            .subscribe(with: self) { owner , value in
+                print(value)
+                
+                // 1. 성공
+                // 버튼 카운트 업데이트
+                
+                // 2. 실패
+                // 얼럿 띄워주기
+                
+                
+                
+            }
+            .disposed(by: disposeBag)
+        // (1). 네트워크 쏘기
+        
+        
+        
+        // (2). ContentsVC에서 물고있는 데이터 변경해주기
         
         
 

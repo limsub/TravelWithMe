@@ -14,6 +14,9 @@ class ContentsViewModel: ViewModelType {
     // 일단..?
     var nextCursor = BehaviorSubject<String>(value: "")
     
+    // 컬렉션뷰에 보여줄 데이터 배열
+    var tourItems = BehaviorSubject<[Datum]>(value: [])
+    
     let disposeBag = DisposeBag()
     
     
@@ -33,8 +36,7 @@ class ContentsViewModel: ViewModelType {
     
     func tranform(_ input: Input) -> Output {
         
-        // 컬렉션뷰에 보여줄 데이터 배열
-        let tourItems = BehaviorSubject<[Datum]>(value: [])
+
         
         // 네트워크 통신 결과
         let resultLookPost = PublishSubject<AttemptLookPost>()
@@ -90,7 +92,7 @@ class ContentsViewModel: ViewModelType {
                 switch response {
                 case .success(let result):
                     print("게시글 조회 성공")
-                    print(result)
+//                    print(result)
                     return  AttemptLookPost.success(result: result)
                 case .failure(let error):
                     print("게시글 조회 실패")
@@ -136,20 +138,20 @@ class ContentsViewModel: ViewModelType {
                     
                     if (nextCursorText == "") {
                         print("-- nextCursor가 빈 문자열입니다.")
-                        tourItems.onNext(result.data)
+                        owner.tourItems.onNext(result.data)
                         
                     } else {
                         print("-- nextCursor가 빈 문자열이 아닙니다.")
                         
                         var oldValues: [Datum] = []
                         do {
-                            oldValues = try tourItems.value()
+                            oldValues = try owner.tourItems.value()
                         } catch {
                             print("기존 배열을 가져오는 과정에서 오류 발생. 빈 배열로 처리")
                         }
                         oldValues.append(contentsOf: result.data)
 
-                        tourItems.onNext(oldValues)
+                        owner.tourItems.onNext(oldValues)
                         print("배열 뒤에 추가하기 성공")
                     }
                 }
@@ -167,6 +169,8 @@ class ContentsViewModel: ViewModelType {
             }
             .subscribe(with: self) { owner , value in
                 nextTourInfo.onNext(value.1[value.0.item])
+                
+                print("넥스트 투어 인포 : \(value.1[value.0.item])")
             }
             .disposed(by: disposeBag)
         

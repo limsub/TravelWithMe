@@ -32,7 +32,7 @@ class DetailTourApplyButton: UIButton {
         setTitle("신청하기 1/3", for: .normal)
     }
     
-    func update(_ likesCnt: Int, maxCnt: Int, isMine: Bool, isApplied: Bool) {
+    func updateButton(_ likesCnt: Int, maxCnt: Int, isMine: Bool, isApplied: Bool) {
         
         var buttonType: ApplyButtonType
         

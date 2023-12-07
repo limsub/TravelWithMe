@@ -346,12 +346,21 @@ class DetailTourView: BaseView {
         
         locationView
         
+        // 버튼 타입 잡아주기
+        // 1. 내가 만든 투어인지
+        let isMine = sender.creator._id == KeychainStorage.shared._id
+        // 2. 내가 신청한 투어인지
+        let isApplied = sender.likes.contains(KeychainStorage.shared._id ?? "-1")
+        // 3. 신청 수 / 최대 인원 수
         let likesCnt = sender.likes.count
         let maxCnt = cntInt
-        let isMine = sender.creator._id == KeychainStorage.shared._id
-        print("isMine : \(isMine)")
-        bottomView.applyButton.updateCnt(likesCnt, maxCnt: maxCnt, isMine: isMine)
+        bottomView.applyButton.updateButton(
+            likesCnt,
+            maxCnt: maxCnt,
+            isMine: isMine,
+            isApplied: isApplied
+        )
         
-
+        print("isMine : \(isMine), isApplied: \(isApplied)")
     }
 }

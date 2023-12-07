@@ -10,6 +10,10 @@ import RxSwift
 import RxCocoa
 
 class DetailTourViewModel: ViewModelType {
+    
+    let disposeBag = DisposeBag()
+    
+    var wholeContentsViewModel: ContentsViewModel? = nil
 
     // 샘플 데이터. 화면 전환할 때 받을 예정
     var tourItem = Datum(
@@ -31,19 +35,136 @@ class DetailTourViewModel: ViewModelType {
     )
     
     
+    
+    
     struct Input {
         let applyButtonClicked: ControlEvent<Void>
         let goToProfileButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
-        let resultApplyTour: PublishSubject<Int>
+        let resultApplyTour: PublishSubject<AttemptLikePost>
         
         let goToProfileButtonClicked: ControlEvent<Void>
     }
     
+    func updateWholeTourData(_ likeStatus: Bool) {
+        
+        
+        
+        do {
+            var values = try wholeContentsViewModel?.tourItems.value() ?? []
+            
+            
+            // 1. 현재 투어 찾기
+            for i in 0..<values.count {
+                
+                if values[i].id == tourItem.id {
+                    print("전체 투어 아이템에서 디테일 투어의 아이템 찾았다")
+                    
+                    if likeStatus {
+                        print("여행 신청이기 때문에 좋아요 배열에 유저 아이디 추가")
+                        if let userId = KeychainStorage.shared._id {
+                            values[i].likes.append(userId)
+                        }
+                        
+                        print("추가 후 likes 배열 : \(values[i].likes)")
+                    }
+                    else {
+                        print("여행 취소이기 때문에 좋아요 배열에서 유저 아이디 삭제")
+                        
+                        values[i].likes = values[i].likes.filter { $0 != KeychainStorage.shared._id}
+                        
+                        print("삭제 후 likes 배열 : \(values[i].likes)")
+                    }
+                }
+            }
+            
+            wholeContentsViewModel?.tourItems.onNext(values)
+            
+        } catch {
+            print("기존 화면의 데이터 가져오는 과정에서 try 에러")
+            return
+        }
+    
+        
+    }
+    
     func tranform(_ input: Input) -> Output {
-        let resultApplyTour = PublishSubject<Int>()
+        let resultApplyTour = PublishSubject<AttemptLikePost>()
+        
+        
+        // 좋아요 기능 구현
+        // (1). 네트워크 쏘기
+        input.applyButtonClicked
+            .flatMap {
+                RouterAPIManager.shared.request(
+                    type: LikePostResponse.self,
+                    error: LikePostAPIError.self,
+                    api: .likePost(
+                        idStruct: LikePostRequest(
+                            id: self.tourItem.id
+                        )
+                    )
+                )
+            }
+            .map { [weak self] response in
+                
+                switch response {
+                case .success(let result):
+                    print("게시글 좋아요 성공")
+                    
+                    // (2). ContentsVC에서 물고있는 데이터 변경해주기
+                    self?.updateWholeTourData(result.like_status)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    return AttemptLikePost.sucees(result: result)
+                    
+                case .failure(let error):
+                    print("게시글 좋아요 실패")
+                    
+                    // 1. 공통 에러 확인
+                    if let commonError = error as? CommonAPIError {
+                        print("(게시글 좋아요) 공통 에러")
+                        return AttemptLikePost.commonError(error: commonError)
+                    }
+                    
+                    // 2. 게시글 좋아요 에러
+                    if let likePostError = error as? LikePostAPIError {
+                        print("(게시글 좋아요) 게시글 좋아요 에러")
+                        return AttemptLikePost.likePostError(error: likePostError)
+                    }
+                    
+                    // 3. 토큰 관련 에러
+                    if let refreshTokenError = error as? RefreshTokenAPIError {
+                        print("(게시글 좋아요) 토큰 관련 에러")
+                        return AttemptLikePost.refreshTokenError(error: refreshTokenError)
+                    }
+                    
+                    // 4. 알 수 없는 에러
+                    print("(게시글 좋아요) 알 수 없는 에러")
+                    return AttemptLikePost.commonError(error: .unknownError)
+                    
+                }
+            }
+            .subscribe(with: self) { owner, value in
+                resultApplyTour.onNext(value)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        
+        
+        
+        
+        
+        
         
         return Output(
             resultApplyTour: resultApplyTour,

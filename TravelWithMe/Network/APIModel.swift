@@ -117,7 +117,7 @@ struct LookPostResponse: Decodable {
 }
 
 struct Datum: Codable {
-    let likes: [String]
+    var likes: [String]
     let image: [String]
     let hashTags, comments: [String]
     let id: String
