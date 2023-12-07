@@ -48,10 +48,26 @@ class DetailTourViewModel: ViewModelType {
         let goToProfileButtonClicked: ControlEvent<Void>
     }
     
+    
+    func updateTourData(_ likeStatus: Bool) {
+        
+        if likeStatus {
+            print("(DetailTourViewModel) - 여행 신청이기 때문에 배열에 유저 아이디 추가")
+            if let userId = KeychainStorage.shared._id {
+                tourItem.likes.append(userId)
+            }
+            
+        } else {
+            print("(DetailTourViewModel) - 여행 취소이기 때문에 배열에서 유저 아이디 삭제")
+            tourItem.likes = tourItem.likes.filter { $0 != KeychainStorage.shared._id }
+        }
+        
+        
+        
+    }
+    
     func updateWholeTourData(_ likeStatus: Bool) {
-        
-        
-        
+
         do {
             var values = try wholeContentsViewModel?.tourItems.value() ?? []
             
@@ -117,9 +133,8 @@ class DetailTourViewModel: ViewModelType {
                     // (2). ContentsVC에서 물고있는 데이터 변경해주기
                     self?.updateWholeTourData(result.like_status)
                     
-                    
-                    
-                    
+                    // (3). DetailVC에서 물고 있는 데이터도 변경해주기
+                    self?.updateTourData(result.like_status)
                     
                     
                     
@@ -157,13 +172,6 @@ class DetailTourViewModel: ViewModelType {
                 resultApplyTour.onNext(value)
             }
             .disposed(by: disposeBag)
-        
-        
-        
-        
-        
-        
-        
         
         
         return Output(

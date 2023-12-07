@@ -84,8 +84,17 @@ class DetailTourViewController: BaseViewController {
             .subscribe(with: self) { owner , value in
                 print(value)
                 
-                // 1. 성공
-                // 버튼 카운트 업데이트
+                switch value {
+                case .sucees(result: let result):
+                    // 1. 성공
+                    // 버튼 카운트 업데이트
+                    owner.mainView.setUpBottomApplyButton(sender: owner.viewModel.tourItem)
+                    
+                default:
+                    print("에러났슴당")
+                }
+                
+                
                 
                 // 2. 실패
                 // 얼럿 띄워주기
