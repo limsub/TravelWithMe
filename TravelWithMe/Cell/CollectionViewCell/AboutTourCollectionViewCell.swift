@@ -15,6 +15,8 @@ import RxCocoa
 
 class AboutTourCollectionViewCell: BaseCollectionViewCell {
     
+    var menuCallBackMethod: ( () -> Void )?
+    
     var disposeBag = DisposeBag()
     
     // 이미지 뷰 얹고, 코너레디우스 주기. 굳이 패딩 안줘도 될듯
@@ -42,13 +44,14 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
     let menuButton = {
         let view = UIButton()
         view.setImage(UIImage(named: "dots")?.withTintColor(.white), for: .normal)
+        
+        view.addTarget(self, action: #selector(menuButtonClicked), for: .touchUpInside)
         return view
     }()
     
     let tourTitleLabel = ContentsTourTitleLabel(.white)
     
     let profileNameLabel = ContentsTourProfileNameLabel(.white)
-    
     
     let lineView = {
         let view = UIView()
@@ -129,6 +132,13 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         super.prepareForReuse()
         
         disposeBag = DisposeBag()
+    }
+    
+    @objc
+    func menuButtonClicked() {
+        if let closure = menuCallBackMethod {
+            closure()
+        }
     }
     
     func designCell(_ sender: Datum) {

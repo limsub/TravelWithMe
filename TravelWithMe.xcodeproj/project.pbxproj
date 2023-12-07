@@ -41,6 +41,9 @@
 		484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C85A12B1628C90052B247 /* ImageCacheManager.swift */; };
 		484C85A52B162C360052B247 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 484C85A42B162C360052B247 /* SkeletonView */; };
 		485321F62B21ADF6006D0930 /* ApplyButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321F52B21ADF6006D0930 /* ApplyButtonType.swift */; };
+		485321F92B21DCBD006D0930 /* ApplicantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321F82B21DCBD006D0930 /* ApplicantViewController.swift */; };
+		485321FB2B21DCC2006D0930 /* ApplicantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321FA2B21DCC2006D0930 /* ApplicantView.swift */; };
+		485321FD2B21DCC7006D0930 /* ApplicantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321FC2B21DCC7006D0930 /* ApplicantViewModel.swift */; };
 		4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */; };
 		4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */; };
 		486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 486732412B0C8EA900BC24A4 /* RxCocoa */; };
@@ -155,6 +158,9 @@
 		48474C072B0F712A00B73261 /* RouterAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterAPIManager.swift; sourceTree = "<group>"; };
 		484C85A12B1628C90052B247 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		485321F52B21ADF6006D0930 /* ApplyButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyButtonType.swift; sourceTree = "<group>"; };
+		485321F82B21DCBD006D0930 /* ApplicantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantViewController.swift; sourceTree = "<group>"; };
+		485321FA2B21DCC2006D0930 /* ApplicantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantView.swift; sourceTree = "<group>"; };
+		485321FC2B21DCC7006D0930 /* ApplicantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantViewModel.swift; sourceTree = "<group>"; };
 		4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		486732452B0C8EBD00BC24A4 /* BaseViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelType.swift; sourceTree = "<group>"; };
@@ -335,6 +341,7 @@
 				484059562B1D909E006A8AAC /* DetailTourViewController.swift */,
 				484059582B1D90A4006A8AAC /* DetailTourView.swift */,
 				4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */,
+				485321F72B21DC9C006D0930 /* Applicant */,
 			);
 			path = DetailTour;
 			sourceTree = "<group>";
@@ -382,6 +389,16 @@
 				485321F52B21ADF6006D0930 /* ApplyButtonType.swift */,
 			);
 			path = DetailTour;
+			sourceTree = "<group>";
+		};
+		485321F72B21DC9C006D0930 /* Applicant */ = {
+			isa = PBXGroup;
+			children = (
+				485321F82B21DCBD006D0930 /* ApplicantViewController.swift */,
+				485321FA2B21DCC2006D0930 /* ApplicantView.swift */,
+				485321FC2B21DCC7006D0930 /* ApplicantViewModel.swift */,
+			);
+			path = Applicant;
 			sourceTree = "<group>";
 		};
 		486732472B0C902C00BC24A4 /* Enum */ = {
@@ -773,6 +790,7 @@
 				484711682B0E2B8600C68490 /* ErrorEnum.swift in Sources */,
 				4847115E2B0DD56000C68490 /* APIManager.swift in Sources */,
 				486AA0062B12C2E100CB5179 /* Date<->String.swift in Sources */,
+				485321FD2B21DCC7006D0930 /* ApplicantViewModel.swift in Sources */,
 				4840595B2B1D90AB006A8AAC /* DetailTourViewModel.swift in Sources */,
 				486AA0022B12BE0600CB5179 /* SelectDateView.swift in Sources */,
 				48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */,
@@ -792,6 +810,7 @@
 				484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
 				48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */,
+				485321FB2B21DCC2006D0930 /* ApplicantView.swift in Sources */,
 				481CCCBB2B1F0E6E00B3B40F /* SelectedDateType.swift in Sources */,
 				486AA0162B131E0300CB5179 /* BaseCollectionViewCell.swift in Sources */,
 				4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */,
@@ -829,6 +848,7 @@
 				48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */,
 				480443022B18132800E5C70B /* CALayer+Extension.swift in Sources */,
 				4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */,
+				485321F92B21DCBD006D0930 /* ApplicantViewController.swift in Sources */,
 				48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
 				4840595D2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift in Sources */,

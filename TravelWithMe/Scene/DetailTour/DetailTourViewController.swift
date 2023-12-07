@@ -20,7 +20,6 @@ class DetailTourViewController: BaseViewController {
     override func loadView() {
         self.view = mainView
         
-        
     }
     
     
@@ -73,8 +72,12 @@ class DetailTourViewController: BaseViewController {
         // 1. 여행 제작자 프로필 화면으로 이동
         output.goToProfileButtonClicked
             .subscribe(with: self) { owner , _ in
-                let vc = ProfileViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+//                let vc = ProfileViewController()
+//                owner.navigationController?.pushViewController(vc, animated: true)
+                
+                let vc = ApplicantViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -112,6 +115,8 @@ class DetailTourViewController: BaseViewController {
         
 
     }
+    
+
 }
 
 extension DetailTourViewController: UICollectionViewDataSource, UICollectionViewDelegate {

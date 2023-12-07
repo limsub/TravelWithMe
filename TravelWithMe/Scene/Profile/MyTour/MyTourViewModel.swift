@@ -14,19 +14,22 @@ class MyTourViewModel: ViewModelType {
     let disposeBag = DisposeBag()
     
     var nextCursor = BehaviorSubject(value: "")
+    
+    var tourItems: [Datum] = []
+    
 
     struct Input {
         let a: String
     }
 
     struct Output {
-        let myTourItems: BehaviorSubject<[Datum]>
+//        let myTourItems: BehaviorSubject<[Datum]>
         let resultLookPost: PublishSubject<AttemptLookPost>
     }
     
     func tranform(_ input: Input) -> Output {
         
-        let tourItems = BehaviorSubject<[Datum]>(value: [])
+//        let tourItems = BehaviorSubject<[Datum]>(value: [])
         let resultLookPost = PublishSubject<AttemptLookPost>()
         
         
@@ -81,22 +84,15 @@ class MyTourViewModel: ViewModelType {
                 
                 if case AttemptLookPost.success(let result) = value {
                     print("데이터 로딩에 성공했습니다. 배열 뒤에 추가합니다")
-                    var oldValues: [Datum] = []
-                    do {
-                        oldValues = try tourItems.value()
-                    } catch {
-                        print("기존 배열을 가져오는 과정에서 오류 발생")
-                    }
-                    oldValues.append(contentsOf: result.data)
-                    
-                    tourItems.onNext(oldValues)
+                    print(result.data)
+                    owner.tourItems.append(contentsOf: result.data)
                     print("배열 뒤에 추가 성공")
                 }
             }
             .disposed(by: disposeBag)
         
+        
         return Output(
-            myTourItems: tourItems,
             resultLookPost: resultLookPost
         )
     }
