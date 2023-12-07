@@ -28,6 +28,8 @@ enum Router: URLRequestConvertible {
     
     case deletePost(idStruct: DeletePostRequest)
     
+    case likePost(idStruct: LikePostRequest)
+    
     case imageDownload(sender: String)  // (사용 x)
     
     var path: String {
@@ -58,6 +60,11 @@ enum Router: URLRequestConvertible {
             
         case .deletePost(let idStruct):
             return "/post/\(idStruct.id)"
+            
+        case .likePost(let idStruct):
+            return "/post/like/\(idStruct.id)"
+            
+            
         case .imageDownload(let urlString):
             return "/" + urlString
         }
@@ -86,7 +93,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .lookPost, .deletePost, .imageDownload:
+        case .lookPost, .deletePost, .likePost, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "SesacKey": SeSACAPI.subKey
@@ -96,7 +103,7 @@ enum Router: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .validEmail, .join, .login, .makePost:
+        case .validEmail, .join, .login, .makePost, .likePost:
             return .post
         case .refreshToken, .lookPost, .imageDownload:
             return .get

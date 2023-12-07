@@ -74,6 +74,10 @@ class DetailTourViewController: BaseViewController {
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        // 2. 좋아요 기능 구현
+        
+        
 
     }
 }

@@ -40,6 +40,7 @@
 		48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48474C072B0F712A00B73261 /* RouterAPIManager.swift */; };
 		484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C85A12B1628C90052B247 /* ImageCacheManager.swift */; };
 		484C85A52B162C360052B247 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 484C85A42B162C360052B247 /* SkeletonView */; };
+		485321F62B21ADF6006D0930 /* ApplyButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321F52B21ADF6006D0930 /* ApplyButtonType.swift */; };
 		4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */; };
 		4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */; };
 		486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 486732412B0C8EA900BC24A4 /* RxCocoa */; };
@@ -153,6 +154,7 @@
 		484711692B0E2FF700C68490 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		48474C072B0F712A00B73261 /* RouterAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterAPIManager.swift; sourceTree = "<group>"; };
 		484C85A12B1628C90052B247 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		485321F52B21ADF6006D0930 /* ApplyButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyButtonType.swift; sourceTree = "<group>"; };
 		4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		486732452B0C8EBD00BC24A4 /* BaseViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelType.swift; sourceTree = "<group>"; };
@@ -374,9 +376,18 @@
 			path = ImageCache;
 			sourceTree = "<group>";
 		};
+		485321F42B21ADEB006D0930 /* DetailTour */ = {
+			isa = PBXGroup;
+			children = (
+				485321F52B21ADF6006D0930 /* ApplyButtonType.swift */,
+			);
+			path = DetailTour;
+			sourceTree = "<group>";
+		};
 		486732472B0C902C00BC24A4 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				485321F42B21ADEB006D0930 /* DetailTour */,
 				487931AE2B208D3800F567D5 /* Button */,
 				481CCCB92B1F0E6700B3B40F /* MakeTour */,
 				486732522B0CA36700BC24A4 /* SignUp */,
@@ -806,6 +817,7 @@
 				486AA0082B12C30B00CB5179 /* Date+Extension.swift in Sources */,
 				48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */,
 				4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */,
+				485321F62B21ADF6006D0930 /* ApplyButtonType.swift in Sources */,
 				48F006C02B17194C00DB1FC1 /* ProfileViewController.swift in Sources */,
 				486AA0042B12C25700CB5179 /* DateFormatType.swift in Sources */,
 				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,

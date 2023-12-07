@@ -67,9 +67,7 @@ class DetailTourView: BaseView {
         view.showsHorizontalScrollIndicator = false
         
         view.isPagingEnabled = true
-        
-        view.dragInteractionEnabled = false
-        
+    
         view.backgroundColor = .red
         
         return view
