@@ -15,7 +15,10 @@ class MyTourViewModel: ViewModelType {
     
     var nextCursor = BehaviorSubject(value: "")
     
-    var tourItems: [Datum] = []
+//    var tourItems: [Datum] = []
+    
+    
+    let tourItems = BehaviorSubject<[Datum]>(value: [])
     
 
     struct Input {
@@ -23,7 +26,7 @@ class MyTourViewModel: ViewModelType {
     }
 
     struct Output {
-//        let myTourItems: BehaviorSubject<[Datum]>
+        let myTourItems: BehaviorSubject<[Datum]>
         let resultLookPost: PublishSubject<AttemptLookPost>
     }
     
@@ -83,9 +86,21 @@ class MyTourViewModel: ViewModelType {
                 resultLookPost.onNext(value)
                 
                 if case AttemptLookPost.success(let result) = value {
+//                    print("데이터 로딩에 성공했습니다. 배열 뒤에 추가합니다")
+//                    print(result.data)
+//                    owner.tourItems.append(contentsOf: result.data)
+//                    print("배열 뒤에 추가 성공")
+                    
                     print("데이터 로딩에 성공했습니다. 배열 뒤에 추가합니다")
-                    print(result.data)
-                    owner.tourItems.append(contentsOf: result.data)
+                    var oldValues: [Datum] = []
+                    do {
+                        oldValues = try owner.tourItems.value()
+                    } catch {
+                        print("기존 배열을 가져오는 과정에서 오류 발생")
+                    }
+                    oldValues.append(contentsOf: result.data)
+
+                    owner.tourItems.onNext(oldValues)
                     print("배열 뒤에 추가 성공")
                 }
             }
@@ -93,9 +108,28 @@ class MyTourViewModel: ViewModelType {
         
         
         return Output(
+            myTourItems: tourItems,
             resultLookPost: resultLookPost
         )
     }
     
     
+    
+    func deleteItem(_ result: DeletePostRespose) {
+        
+        let id = result.id
+        
+        do {
+            var values = try tourItems.value()
+            values = values.filter  { $0.id != id }
+            tourItems.onNext(values)
+            
+        } catch {
+            print("투어 아이템 에러 (do-catch)")
+            return
+        }
+        
+        
+        // 1. tourItem에서
+    }
 }
