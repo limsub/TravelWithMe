@@ -7,32 +7,13 @@
 
 import UIKit
 
-//extension CALayer {
-//    // Sketch 스타일의 그림자를 생성한다
-//    func applyShadow(color: UIColor = .black, alpha: Float = 0.5, x: CGFloat = 0, y: CGFloat = 2, blur: CGFloat = 4) {
-//        
-//        shadowColor = color.cgColor
-//        shadowOpacity = alpha
-//        shadowOffset = CGSize(width: x, height: y)
-//        shadowRadius = blur / 2.0
-//    }
-//}
-
-//extension UITabBar {
-//    // 기본 그림자 스타일을 초기화해서, 커스텀 스타일을 적용할 준비를 한다
-//    static func clearShadow() {
-//        UITabBar.appearance().shadowImage = UIImage()
-//        UITabBar.appearance().backgroundImage = UIImage()
-//        UITabBar.appearance().backgroundColor = UIColor.white
-//    }
-//}
-
 
 
 class StartTabBarViewController: UITabBarController {
     
     let a = StartViewController()
     let b = ContentsViewController()
+    let c = ProfileViewController()
     
     
     override func viewDidLoad() {
@@ -54,10 +35,11 @@ class StartTabBarViewController: UITabBarController {
         
         a.tabBarItem.image = UIImage(systemName: "music.note.house")
         b.tabBarItem.image = UIImage(systemName: "calendar")
+        c.tabBarItem.image = UIImage(systemName: "house")
         
         
         
-        [a, b].forEach { vc in
+        [a, b, c].forEach { vc in
             vc.tabBarItem.imageInsets = UIEdgeInsets(
                 top: -30,
                 left: 0,
@@ -70,9 +52,10 @@ class StartTabBarViewController: UITabBarController {
 //        let navPager = UINavigationController(rootViewController: pagerVC)
         let navA = UINavigationController(rootViewController: a)
         let navB = UINavigationController(rootViewController: b)
+        let navC = UINavigationController(rootViewController: c)
         
         
-        let tabItem = [navA, navB]
+        let tabItem = [navA, navB, navC]
         self.viewControllers = tabItem
         
         tabBarController?.hidesBottomBarWhenPushed = true

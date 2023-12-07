@@ -45,7 +45,8 @@ class MyTourViewModel: ViewModelType {
                     error: LookPostAPIError.self ,
                     api: .lookPost(
                         query: LookPostQueryString(next: $0, limit: "10"),
-                        userId: KeychainStorage.shared._id
+//                        userId: KeychainStorage.shared._id
+                        likePost: true
                     )
                 )
                 
@@ -129,7 +130,5 @@ class MyTourViewModel: ViewModelType {
             return
         }
         
-        
-        // 1. tourItem에서
     }
 }

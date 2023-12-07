@@ -20,15 +20,19 @@ enum Router: URLRequestConvertible {
     
     // userId를 넣으면 유저 별 조회, nil이면 전체 유저 조회라고 판단
     // hashTag가 있으면 특정 해시태그 게시글 조회. nil이면 전체 게시글 조회
+    // likePost가 true이면 내가 좋아요한 게시글 조회. false(디폴트)이면 x
     case lookPost(
         query: LookPostQueryString,
         userId: String? = nil,
-        hashTag: String? = nil
+        hashTag: String? = nil,
+        likePost: Bool = false
     ) // get이기 때문에 바디 대신 쿼리 스트링에 적을 내용을 전달받는다.
     
     case deletePost(idStruct: DeletePostRequest)
     
     case likePost(idStruct: LikePostRequest)
+    
+//    case lookLikePost
     
     case imageDownload(sender: String)  // (사용 x)
     
@@ -45,12 +49,15 @@ enum Router: URLRequestConvertible {
         case .makePost:
             return "/post"
             
-        case .lookPost(_, let userID, let hashTag):
+        case .lookPost(_, let userID, let hashTag, let likePost):
             if let userID {
                 return "/post/user/\(userID)"
             }
             if let hashTag {
                 return "/post/hashTag"
+            }
+            if likePost {
+                return "/post/like/me"
             }
             else {
                 return "/post"
@@ -161,7 +168,7 @@ enum Router: URLRequestConvertible {
     
     private var query: [String: String] {
         switch self {
-        case .lookPost(let queryString, _, let hashTag):
+        case .lookPost(let queryString, _, let hashTag, let likePost):
             
             if let hashTag {
                 
@@ -172,6 +179,13 @@ enum Router: URLRequestConvertible {
                     "hashTag": hashTag
                 ]
                 
+            }
+            
+            if likePost {
+                return [
+                    "next": queryString.next,
+                    "limit": queryString.limit
+                ]
             }
             
             else {

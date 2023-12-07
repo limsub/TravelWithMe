@@ -66,3 +66,7 @@ enum AttemptLikePost {
     case likePostError(error: LikePostAPIError)
     case refreshTokenError(error: RefreshTokenAPIError)
 }
+
+
+
+/* === 좋아요한 게시글 조회 === */
