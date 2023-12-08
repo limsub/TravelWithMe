@@ -100,6 +100,9 @@
 		48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */; };
 		48AB63E32B22D4BC00EC9444 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E22B22D4BC00EC9444 /* BaseTableViewCell.swift */; };
 		48AB63E52B22F2DA00EC9444 /* DetailTourLocationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E42B22F2DA00EC9444 /* DetailTourLocationLabel.swift */; };
+		48AB63E72B2300C300EC9444 /* JoinedTourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E62B2300C300EC9444 /* JoinedTourTableViewCell.swift */; };
+		48AB63E92B2304F500EC9444 /* JoinedTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E82B2304F500EC9444 /* JoinedTourView.swift */; };
+		48AB63EB2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */; };
 		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
 		48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */; };
 		48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE332B18658400B1B95E /* MyTourView.swift */; };
@@ -218,6 +221,9 @@
 		48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationTableViewCell.swift; sourceTree = "<group>"; };
 		48AB63E22B22D4BC00EC9444 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		48AB63E42B22F2DA00EC9444 /* DetailTourLocationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourLocationLabel.swift; sourceTree = "<group>"; };
+		48AB63E62B2300C300EC9444 /* JoinedTourTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourTableViewCell.swift; sourceTree = "<group>"; };
+		48AB63E82B2304F500EC9444 /* JoinedTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourView.swift; sourceTree = "<group>"; };
+		48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourTableViewHeaderView.swift; sourceTree = "<group>"; };
 		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCategoryButton.swift; sourceTree = "<group>"; };
 		48ADEE332B18658400B1B95E /* MyTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourView.swift; sourceTree = "<group>"; };
@@ -283,6 +289,8 @@
 			isa = PBXGroup;
 			children = (
 				480442FD2B18126200E5C70B /* JoinedTourViewController.swift */,
+				48AB63E82B2304F500EC9444 /* JoinedTourView.swift */,
+				48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */,
 			);
 			path = JoinedTour;
 			sourceTree = "<group>";
@@ -312,6 +320,7 @@
 				4840595C2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift */,
 				4840595E2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift */,
 				48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */,
+				48AB63E62B2300C300EC9444 /* JoinedTourTableViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -833,6 +842,7 @@
 				487786492B0B4A330091661F /* MakeTourTextView.swift in Sources */,
 				484C85A22B1628C90052B247 /* ImageCacheManager.swift in Sources */,
 				4818C8D82B10870F00BC8F02 /* MakeTourViewModel.swift in Sources */,
+				48AB63E72B2300C300EC9444 /* JoinedTourTableViewCell.swift in Sources */,
 				48ADEE3A2B1892C500B1B95E /* UIButton+Extension.swift in Sources */,
 				487931AD2B208D3500F567D5 /* ButtonSelectedType.swift in Sources */,
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
@@ -862,10 +872,12 @@
 				48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
 				4840595D2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift in Sources */,
+				48AB63E92B2304F500EC9444 /* JoinedTourView.swift in Sources */,
 				484059632B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift in Sources */,
 				48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */,
 				48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */,
 				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
+				48AB63EB2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift in Sources */,
 				486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */,
 				487931B02B208FE100F567D5 /* StartTabBarViewController.swift in Sources */,
 				48F006C72B17241D00DB1FC1 /* ProfileTopView.swift in Sources */,

@@ -9,6 +9,8 @@ import UIKit
 
 class MyTourView: BaseView {
     
+    // refreshControl하려면 위에 빈 뷰 하나 공간 차지하게 두는게 낫지 않을까 싶음!!!
+    
     lazy var myTourCollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createTourCollectionViewLayout(topInset: 10))
         

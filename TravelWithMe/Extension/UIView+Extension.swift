@@ -53,4 +53,18 @@ extension UIView {
         return layout
     }
     
+//    // 내가 신청한 투어 컬렉션뷰 레잉아웃 (JoinedTourCollectionView)
+//    func createJoinedTourCollectionViewLayout() -> UICollectionViewFlowLayout {
+//        let layout = UICollectionViewFlowLayout()
+//        let deviceWidth = UIScreen.main.bounds.width
+//        layout.itemSize = CGSize(width: deviceWidth, height: 140)
+//        layout.scrollDirection = .vertical
+//        layout.minimumLineSpacing = 0
+//        layout.minimumInteritemSpacing = 0
+//        layout.sectionInset = .zero
+//        
+//        return layout
+//    }
+    // => tableView로 수정 (섹션 헤더 넣을 때 더 편할 것 같음)
+    
 }
