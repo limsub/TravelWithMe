@@ -57,8 +57,8 @@ class ProfileTopBackView: UIView {
         let width = UIScreen.main.bounds.width
         
         UIColor.white.setFill()
-        UIColor.systemYellow.setStroke()
-        path.lineWidth = 1
+//        UIColor.systemYellow.setStroke()
+        path.lineWidth = 0
         
         
         let height = rect.height

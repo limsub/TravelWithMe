@@ -97,6 +97,8 @@
 		487931B02B208FE100F567D5 /* StartTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */; };
 		48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */; };
 		48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */; };
+		48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */; };
+		48AB63E32B22D4BC00EC9444 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E22B22D4BC00EC9444 /* BaseTableViewCell.swift */; };
 		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
 		48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */; };
 		48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE332B18658400B1B95E /* MyTourView.swift */; };
@@ -212,6 +214,8 @@
 		487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTabBarViewController.swift; sourceTree = "<group>"; };
 		48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourPriceLabel.swift; sourceTree = "<group>"; };
+		48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationTableViewCell.swift; sourceTree = "<group>"; };
+		48AB63E22B22D4BC00EC9444 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCategoryButton.swift; sourceTree = "<group>"; };
 		48ADEE332B18658400B1B95E /* MyTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourView.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 				48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */,
 				4840595C2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift */,
 				4840595E2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift */,
+				48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -542,6 +547,7 @@
 				487786292B0B2CEF0091661F /* BaseView.swift */,
 				486732452B0C8EBD00BC24A4 /* BaseViewModelType.swift */,
 				486AA0152B131E0300CB5179 /* BaseCollectionViewCell.swift */,
+				48AB63E22B22D4BC00EC9444 /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -791,6 +797,7 @@
 				4847115E2B0DD56000C68490 /* APIManager.swift in Sources */,
 				486AA0062B12C2E100CB5179 /* Date<->String.swift in Sources */,
 				485321FD2B21DCC7006D0930 /* ApplicantViewModel.swift in Sources */,
+				48AB63E32B22D4BC00EC9444 /* BaseTableViewCell.swift in Sources */,
 				4840595B2B1D90AB006A8AAC /* DetailTourViewModel.swift in Sources */,
 				486AA0022B12BE0600CB5179 /* SelectDateView.swift in Sources */,
 				48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */,
@@ -853,6 +860,7 @@
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
 				4840595D2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift in Sources */,
 				484059632B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift in Sources */,
+				48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */,
 				48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */,
 				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
 				486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */,

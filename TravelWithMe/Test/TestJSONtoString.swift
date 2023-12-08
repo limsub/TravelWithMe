@@ -14,6 +14,7 @@ struct TourDates: Codable {
 
 struct TourLocation: Codable {
     let name: String
+    let address: String
     let latitude: Double
     let longtitude: Double
 }

@@ -45,8 +45,8 @@ class MyTourViewModel: ViewModelType {
                     error: LookPostAPIError.self ,
                     api: .lookPost(
                         query: LookPostQueryString(next: $0, limit: "10"),
-//                        userId: KeychainStorage.shared._id
-                        likePost: true
+                        userId: KeychainStorage.shared._id
+//                        likePost: true
                     )
                 )
                 

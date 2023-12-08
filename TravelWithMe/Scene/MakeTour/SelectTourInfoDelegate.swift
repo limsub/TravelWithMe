@@ -19,7 +19,12 @@ protocol SelectTourDatesDelegate {
 @objc
 protocol SelectTourLocationDelegate {
     @objc
-    optional func sendLocation(name: String, latitude: Double, longitude: Double)
+    optional func sendLocation(
+        name: String,
+        address: String,
+        latitude: Double,
+        longitude: Double
+    )
 }
 
 class RxSelectTourDatesDelegateProxy: DelegateProxy<SelectDateViewController, SelectTourDatesDelegate>, DelegateProxyType, SelectTourDatesDelegate {
@@ -72,14 +77,15 @@ extension Reactive where Base: SelectLocationViewController {
     }
     
     var checkTourLocation: Observable<TourLocation> {
-        return tourLocationDelegate.methodInvoked(#selector(SelectTourLocationDelegate.sendLocation(name:latitude:longitude:)))
+        return tourLocationDelegate.methodInvoked(#selector(SelectTourLocationDelegate.sendLocation(name:address:latitude:longitude:)))
             .map { value in
                 // 위에 매개변수 세개가 배열 형태로 저장됨!
                 
                 let locationInfo = TourLocation(
-                    name: value[0] as? String ?? ""  ,
-                    latitude: value[1] as? Double ?? 0,
-                    longtitude: value[2] as? Double ?? 0
+                    name: value[0] as? String ?? "",
+                    address: value[1] as? String ?? "",
+                    latitude: value[2] as? Double ?? 0,
+                    longtitude: value[3] as? Double ?? 0
                 )
                 
                 return locationInfo

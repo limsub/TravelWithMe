@@ -16,97 +16,121 @@ class SelectLocationViewController: BaseViewController {
     private var searchResults = [MKLocalSearchCompletion]()
     
     
-//    let mainView = SelectLocationView()
-//    
-//    override func loadView() {
-//        self.view = mainView
-//    }
+    private var localSearch: MKLocalSearch? = nil {
+        willSet {
+            localSearch?.cancel()
+        }
+    }
+    
+    let mainView = SelectLocationView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
     
     
-    
-    let button = UIButton()
-    
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(button)
-        button.snp.makeConstraints { make in
-            make.size.equalTo(200)
-            make.center.equalTo(view)
-        }
-        button.addTarget(self , action: #selector(clicked), for: .touchUpInside)
-        
-        
-//        settingSearch()
-//        settingTableView()
+        settingSearch()
+        settingTableView()
     }
     
-//    func settingSearch() {
-//        mainView.searchBar.delegate = self
-//        
-//        searchCompleter.delegate = self
-//        searchCompleter.resultTypes = .pointOfInterest
-//    }
-//    
-//    func settingTableView() {
-//        mainView.tableView.delegate = self
-//        mainView.tableView.dataSource = self
-//    }
-    
-    
-    
-    
-    
-    @objc
-    func clicked() {
-        delegate?.sendLocation?(name: "청년취업사관학교 영등포캠퍼스", latitude: 37.517742, longitude: 126.886463)
+    func settingSearch() {
+        mainView.searchBar.delegate = self
         
-        navigationController?.popViewController(animated: true)
+        searchCompleter.delegate = self
+        searchCompleter.resultTypes = .pointOfInterest
     }
+    
+    func settingTableView() {
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
+    }
+    
 }
 
-//extension SelectLocationViewController: UISearchBarDelegate {
-//    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        // 서치바에 입력할 때마다 텍스트 넘겨주기
-//        if searchText.count != 0 {
-//            searchCompleter.queryFragment = searchText
-//        }
-//    }
-//    
-//}
-//
-//extension SelectLocationViewController: MKLocalSearchCompleterDelegate {
-//    
-//    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-//        searchResults = completer.results   // 결과 데이터 받기
-//        print("서치 결과 : \(searchResults)")
-//        mainView.tableView.reloadData()
-//    }
-//    
-//    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-//        print("location 가져오기 에러 발생 : \(error.localizedDescription)")
-//    }
-//    
-//}
-//
-//
-//extension SelectLocationViewController: UITableViewDataSource, UITableViewDelegate {
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return searchResults.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "SelectLocationTableViewCell", for: indexPath)
-//        
-//        cell.textLabel?.text = searchResults[indexPath.row].title
-//        
-//        return cell
-//    }
-//    
-//    
-//}
+extension SelectLocationViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // 서치바에 입력할 때마다 텍스트 넘겨주기
+        if searchText.count != 0 {
+            searchCompleter.queryFragment = searchText
+        }
+    }
+    
+}
+
+extension SelectLocationViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        searchResults = completer.results   // 결과 데이터 받기
+        print("서치 결과 : \(searchResults)")
+        
+        mainView.tableView.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print("location 가져오기 에러 발생 : \(error.localizedDescription)")
+    }
+    
+}
+
+
+extension SelectLocationViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectLocationTableViewCell", for: indexPath) as? SelectLocationTableViewCell else { return UITableViewCell() }
+        
+        cell.titleLabel.text = searchResults[indexPath.row].title
+        cell.subTitleLabel.text = searchResults[indexPath.row].subtitle
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        search(for: searchResults[indexPath.row])
+    }
+    
+    func search(for suggestedCompletion: MKLocalSearchCompletion) {
+        let searchRequest = MKLocalSearch.Request(completion: suggestedCompletion)
+        search(using: searchRequest)
+    }
+    
+    func search(using searchRequest: MKLocalSearch.Request) {
+        searchRequest.resultTypes = .pointOfInterest
+        
+        localSearch = MKLocalSearch(request: searchRequest)
+        
+        localSearch?.start { [weak self] (response, error) in
+            guard error == nil else { return }
+            
+            guard let place = response?.mapItems[0] else { return }
+            
+            let placeName = place.name ?? ""
+            let placeAddress = place.placemark.title ?? ""
+            let placeLatitude = Double(place.placemark.coordinate.latitude)
+            let placeLongtitude = Double(place.placemark.coordinate.longitude)
+            
+            
+            self?.delegate?.sendLocation?(
+                name: placeName,
+                address: placeAddress,
+                latitude: placeLatitude,
+                longitude: placeLongtitude
+            )
+            
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+}

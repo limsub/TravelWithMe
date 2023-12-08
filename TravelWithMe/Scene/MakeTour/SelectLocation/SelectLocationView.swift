@@ -15,7 +15,8 @@ class SelectLocationView: BaseView {
     
     let tableView = {
         let view = UITableView(frame: .zero, style: .plain)
-        view.register(UITableViewCell.self, forCellReuseIdentifier: "SelectLocationTableViewCell")
+        view.register(SelectLocationTableViewCell.self, forCellReuseIdentifier: "SelectLocationTableViewCell")
+        view.rowHeight = 66
         return view
     }()
     

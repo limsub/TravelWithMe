@@ -95,7 +95,7 @@ class StartViewController: BaseViewController {
     }
     @objc
     func button6Clicked() {
-        let vc = DetailTourViewController()
+        let vc = SelectLocationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

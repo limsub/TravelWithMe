@@ -67,14 +67,16 @@ class ProfileViewController: TabmanViewController {
         bar.layout.interButtonSpacing = 20
         bar.backgroundView.style = .clear
         bar.indicator.overscrollBehavior = .none
-        bar.indicator.tintColor = .black
-        bar.indicator.weight = .custom(value: 3)
-        bar.indicator.cornerStyle = .square
+        bar.indicator.tintColor = UIColor.appColor(.main1)
+//        bar.indicator.weight = .custom(value: 1)
+        bar.indicator.weight = .light
+//        bar.indicator.cornerStyle = .square
+        bar.indicator.cornerStyle = .rounded
         bar.buttons.customize { button in
             button.tintColor = .lightGray
-            button.selectedTintColor = .blue
+            button.selectedTintColor = UIColor.appColor(.main1)
         }
-        bar.spacing = CGFloat(10.0)
+        bar.spacing = CGFloat(4)
         
         bar.backgroundColor = .white
         
