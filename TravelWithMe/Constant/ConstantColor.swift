@@ -21,10 +21,10 @@ enum ColorSet: String {
     case black1 = "202020"
     case black2 = "1F1F1F"
     
-    case gray1 = "938E8F"
+    case gray1 = "938E8F"   // middle
     
-    case disabledGray1 = "D0CCCD" // disabled button text
-    case disabledGray2 = "F1EEF0" // disabled button background
+    case disabledGray1 = "D0CCCD" // (light) disabled button text
+    case disabledGray2 = "F1EEF0" // (light light) disabled button background
     
     case inputGray = "FBF8F9"  // textfield background
     

@@ -12,7 +12,8 @@ class SelectLocationTableViewCell: BaseTableViewCell {
     
     let pinImageView = {
         let view = UIImageView()
-        view.backgroundColor = .red
+        view.image = UIImage(systemName: "mappin")
+        view.tintColor = UIColor.appColor(.main1)
         return view
     }()
     
@@ -26,6 +27,7 @@ class SelectLocationTableViewCell: BaseTableViewCell {
     let subTitleLabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 12)
+        view.textColor = .lightGray
         view.text = "HIhihihi"
         return view
     }()
@@ -50,10 +52,12 @@ class SelectLocationTableViewCell: BaseTableViewCell {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).inset(15)
             make.leading.equalTo(pinImageView.snp.trailing).offset(10)
+            make.trailing.equalTo(contentView).inset(15)
         }
         subTitleLabel.snp.makeConstraints { make in
             make.bottom.equalTo(contentView).inset(15)
             make.leading.equalTo(pinImageView.snp.trailing).offset(10)
+            make.trailing.equalTo(contentView).inset(15)
         }
     }
     
