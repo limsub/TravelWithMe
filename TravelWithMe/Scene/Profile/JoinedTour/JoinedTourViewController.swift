@@ -81,10 +81,8 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = JoinedTourTableViewHeaderView()
         
-        headerView.monthLabel.text = viewModel.items[section].month
-        
-//        headerView.monthLabel.text = "\(Int.random(in: 1...100)) 하이"
-        
+        headerView.setUp(viewModel.items[section].month)
+
         return headerView
     }
 
@@ -97,7 +95,20 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileJoinedTourView - JoinedTourTableView", for: indexPath) as? JoinedTourTableViewCell else { return UITableViewCell() }
         
-        cell.tourTitleLabel.text = viewModel.items[indexPath.section].tours[indexPath.item].title
+        if indexPath.item == 0 {
+            cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .top)
+        }
+        else if indexPath.item == viewModel.items[indexPath.section].tours.count - 1 {
+            cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .bottom)
+        }
+        else {
+            cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .middle)
+        }
+        
+        
+        
+        
+//        cell.tourTitleLabel.text = viewModel.items[indexPath.section].tours[indexPath.item].title
         
         return cell
     }

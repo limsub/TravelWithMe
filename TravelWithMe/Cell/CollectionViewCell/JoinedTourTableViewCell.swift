@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import SkeletonView
 
 class JoinedTourTableViewCell: BaseTableViewCell {
     
     let dateLabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 12)
-        view.text = "12th"
+        view.text = "1st"
         return view
     }()
     
@@ -20,34 +21,50 @@ class JoinedTourTableViewCell: BaseTableViewCell {
     let dotView = {
         let view = UIView()
         view.clipsToBounds = true
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 3
+        view.backgroundColor = UIColor.appColor(.main1)
         return view
     }()
     let topLineView = {
         let view = UIView()
+        view.backgroundColor = UIColor.appColor(.main1)
         return view
     }()
     let bottomLineView = {
         let view = UIView()
+        view.backgroundColor = UIColor.appColor(.main1)
         return view
     }()
     
     let backImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
+        view.layer.cornerCurve = .continuous
+        view.isSkeletonable = true
         return view
     }()
     let imageButton = {
         let view = UIButton()
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
+        view.layer.cornerCurve = .continuous
+        view.backgroundColor = .black.withAlphaComponent(0.5)
         return view
     }()
     
     let tourTitleLabel = {
         let view = UILabel()
+        view.textColor = .white
+        view.font = .boldSystemFont(ofSize: 18)
         view.text = "투어 제목"
         return view
     }()
     let tourMakerLabel = {
         let view = UILabel()
+        view.textColor = .white
+        view.font = .systemFont(ofSize: 14)
         view.text = "투어 제작자"
         return view
     }()
@@ -62,7 +79,7 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         
         [dateLabel, dotView, topLineView, bottomLineView, backImageView, imageButton, tourTitleLabel, tourMakerLabel, reviewButton].forEach { item in
             contentView.addSubview(item)
-            item.backgroundColor = [.red, .blue, .black, .purple].randomElement()!
+//            item.backgroundColor = [.red, .blue, .black, .purple].randomElement()!
         }
     }
     
@@ -75,7 +92,7 @@ class JoinedTourTableViewCell: BaseTableViewCell {
             make.width.equalTo(30)
         }
         dotView.snp.makeConstraints { make in
-            make.size.equalTo(10)
+            make.size.equalTo(6)
             make.leading.equalTo(dateLabel.snp.trailing).offset(17)
             make.centerY.equalTo(dateLabel)
         }
@@ -122,4 +139,55 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         
         
     }
+    
+    func setUp(_ sender: Datum, pos: TopMiddleBottom) {
+
+        
+        // 1. dateLabel
+        if let firstDateString = decodingStringToStruct(type: TourDates.self, sender: sender.dates)?.dates.first, let firstDateDayString = firstDateString.toDate(to: .full)?.toString(of: .day), let firstDateDayInt = Int(firstDateDayString) {
+            
+            var text = firstDateDayString
+            let suffix: String
+            switch firstDateDayInt % 10 {
+            case 1:
+                suffix = "st"
+            case 2:
+                suffix = "nd"
+            case 3:
+                suffix = "rd"
+            default:
+                suffix = "th"
+            }
+            text += suffix
+            
+            dateLabel.text = text
+        }
+        
+        // 2. top / bottom line
+        topLineView.isHidden = (pos == .top) ? true : false
+        bottomLineView.isHidden = (pos == .bottom) ? true : false
+        
+        
+        // 3. backImageView
+        if !sender.image.isEmpty {
+            let imageEndString = sender.image[0]
+            backImageView.loadImage(endURLString: imageEndString)
+        } else {
+            print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함 - 2")
+        }
+        
+        
+        // 4. tourTitleLabel
+        tourTitleLabel.text = sender.title ?? ""
+        
+        
+        // 5. tourMakerLabel
+        tourMakerLabel.text = sender.creator.nick
+        
+        // 6. reviewButton
+        reviewButton
+    }
 }
+
+
+

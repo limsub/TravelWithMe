@@ -23,6 +23,8 @@ class JoinedTourView: BaseView {
         view.separatorInset = .zero
         view.separatorStyle = .none
         
+        view.backgroundColor = .white
+        
         
         return view
     }()

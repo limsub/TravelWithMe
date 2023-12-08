@@ -104,6 +104,7 @@
 		48AB63E92B2304F500EC9444 /* JoinedTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E82B2304F500EC9444 /* JoinedTourView.swift */; };
 		48AB63EB2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */; };
 		48AB63ED2B23284D00EC9444 /* JoinedTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63EC2B23284D00EC9444 /* JoinedTourViewModel.swift */; };
+		48AB63EF2B233C9300EC9444 /* TopMiddleBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63EE2B233C9300EC9444 /* TopMiddleBottom.swift */; };
 		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
 		48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */; };
 		48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE332B18658400B1B95E /* MyTourView.swift */; };
@@ -226,6 +227,7 @@
 		48AB63E82B2304F500EC9444 /* JoinedTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourView.swift; sourceTree = "<group>"; };
 		48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourTableViewHeaderView.swift; sourceTree = "<group>"; };
 		48AB63EC2B23284D00EC9444 /* JoinedTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourViewModel.swift; sourceTree = "<group>"; };
+		48AB63EE2B233C9300EC9444 /* TopMiddleBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMiddleBottom.swift; sourceTree = "<group>"; };
 		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCategoryButton.swift; sourceTree = "<group>"; };
 		48ADEE332B18658400B1B95E /* MyTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourView.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				486AA0032B12C25700CB5179 /* DateFormatType.swift */,
 				48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */,
 				484059652B1DAAC8006A8AAC /* TourTypeInfo.swift */,
+				48AB63EE2B233C9300EC9444 /* TopMiddleBottom.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */,
 				48F0A55A2B0F83A700859828 /* LoginViewController.swift in Sources */,
 				486AA00E2B12D51600CB5179 /* SelectTourInfoDelegate.swift in Sources */,
+				48AB63EF2B233C9300EC9444 /* TopMiddleBottom.swift in Sources */,
 				4847116A2B0E2FF700C68490 /* Router.swift in Sources */,
 				48ADEE382B1866AF00B1B95E /* MyTourViewModel.swift in Sources */,
 				4840595F2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift in Sources */,

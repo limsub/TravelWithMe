@@ -35,4 +35,13 @@ class JoinedTourTableViewHeaderView: BaseView {
         
         backgroundColor = .white
     }
+    
+    func setUp(_ monthYearString: String) {
+//        monthLabel.text = monthYearString
+//        print("-- 1", monthYearString.toDate(to: .yearMonth))
+        let monthString = monthYearString.toDate(to: .yearMonth)?.toString(of: .fullMonth).prefix(3) ?? ""
+        let yearString = monthYearString.toDate(to: .yearMonth)?.toString(of: .fullYear) ?? ""
+        
+        monthLabel.text = "\(monthString) \(yearString)"
+    }
 }
