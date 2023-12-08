@@ -32,5 +32,7 @@ class ReviewButton: UIButton {
         setTitle(sender.buttonTitle, for: .normal)
         setTitleColor(sender.textColor, for: .normal)
         setBackgroundColor(sender.backgroundColor, for: .normal)
+        isEnabled = sender.isEnabled
     }
+    
 }

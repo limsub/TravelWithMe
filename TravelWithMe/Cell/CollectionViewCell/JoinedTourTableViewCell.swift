@@ -139,7 +139,6 @@ class JoinedTourTableViewCell: BaseTableViewCell {
     }
     
     func setUp(_ sender: Datum, pos: TopMiddleBottom) {
-
         
         // 1. dateLabel
         if let firstDateString = decodingStringToStruct(type: TourDates.self, sender: sender.dates)?.dates.first, let firstDateDayString = firstDateString.toDate(to: .full)?.toString(of: .day), let firstDateDayInt = Int(firstDateDayString) {
@@ -182,8 +181,28 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         // 5. tourMakerLabel
         tourMakerLabel.text = sender.creator.nick
         
+        
         // 6. reviewButton
-        reviewButton
+        // * firstDate과 lastDate 뽑아내기 (.full string)
+        guard let datesStruct = decodingStringToStruct(type: TourDates.self, sender: sender.dates), let firstDateString = datesStruct.dates.first, let lastDateString = datesStruct.dates.last else { return }
+        let todayDateString = Date().toString(of: .full)
+        
+        // 오늘 날짜 기반으로 후기 버튼 디자인
+        if todayDateString < firstDateString {
+            reviewButton.update(.beforeTravel)
+        } else if todayDateString >= firstDateString && todayDateString <= lastDateString {
+            reviewButton.update(.duringTravel)
+        } else if todayDateString > lastDateString && !checkAlreadyReviewed() {
+            reviewButton.update(.writeReview)
+        } else {
+            reviewButton.update(.checkReview)
+        }
+    }
+    
+    // sender.comments가 현재 어떤 식인지 잘 모르겠다. 여기에 KeychainStorage.shared.id가 포함되어 있으면 이미 후기를 작성했다고 간주하고, true를 반환한다
+    func checkAlreadyReviewed() -> Bool {
+        
+        return true
     }
 }
 
