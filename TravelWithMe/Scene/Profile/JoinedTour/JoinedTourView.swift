@@ -10,6 +10,7 @@ import UIKit
 class JoinedTourView: BaseView {
     
     // refreshControl하려면 위에 빈 뷰 하나 공간 차지하게 두는게 낫지 않을까 싶음!!!
+    let spacerView = UIView()
     
     lazy var joinedTourTableView = {
         let view = UITableView(frame: .zero, style: .grouped)
@@ -32,15 +33,20 @@ class JoinedTourView: BaseView {
     override func setConfigure() {
         super.setConfigure()
         
+        addSubview(spacerView)
         addSubview(joinedTourTableView)
     }
     
     override func setConstraints() {
         super.setConstraints()
         
+        spacerView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(self)
+            make.height.equalTo(270)
+        }
         joinedTourTableView.snp.makeConstraints { make in
-            make.top.equalTo(self).inset(270)
             make.horizontalEdges.bottom.equalTo(self)
+            make.top.equalTo(spacerView.snp.bottom)
         }
     }
     

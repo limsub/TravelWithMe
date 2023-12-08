@@ -15,12 +15,13 @@ class ProfileViewController: TabmanViewController {
     
     let myTourVC = MyTourViewController()
     let joinedTourVC = JoinedTourViewController()
+    let profileInfoVC = ProfileInfoViewController()
     
-    private lazy var VCs = [myTourVC, joinedTourVC]
+    
+    private lazy var VCs = [myTourVC, joinedTourVC, profileInfoVC]
     
     let customBarView = UIView()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,7 +101,16 @@ extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSourc
     }
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-        return TMBarItem(title: (index == 0) ? "나의 투어" : "내가 신청한 투어")
+        switch index {
+        case 0:
+            return TMBarItem(title: "나의 여행")
+        case 1:
+            return TMBarItem(title: "예정된 여행")
+        case 2:
+            return TMBarItem(title: "정보")
+        default:
+            return TMBarItem(title: "")
+        }
     }
 }
 

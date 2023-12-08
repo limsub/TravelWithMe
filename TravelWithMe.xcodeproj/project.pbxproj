@@ -19,6 +19,9 @@
 		481CCCB82B1F014C00B3B40F /* SelectDatesCustomCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481CCCB72B1F014C00B3B40F /* SelectDatesCustomCalendarCell.swift */; };
 		481CCCBB2B1F0E6E00B3B40F /* SelectedDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481CCCBA2B1F0E6E00B3B40F /* SelectedDateType.swift */; };
 		481CCCBD2B1F112400B3B40F /* ButtonEnabledType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481CCCBC2B1F112400B3B40F /* ButtonEnabledType.swift */; };
+		483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */; };
+		483748BD2B23DF4300CD1398 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */; };
+		483748BF2B23DF4900CD1398 /* ProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */; };
 		484059572B1D909E006A8AAC /* DetailTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059562B1D909E006A8AAC /* DetailTourViewController.swift */; };
 		484059592B1D90A4006A8AAC /* DetailTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059582B1D90A4006A8AAC /* DetailTourView.swift */; };
 		4840595B2B1D90AB006A8AAC /* DetailTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */; };
@@ -150,6 +153,9 @@
 		481CCCB72B1F014C00B3B40F /* SelectDatesCustomCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDatesCustomCalendarCell.swift; sourceTree = "<group>"; };
 		481CCCBA2B1F0E6E00B3B40F /* SelectedDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDateType.swift; sourceTree = "<group>"; };
 		481CCCBC2B1F112400B3B40F /* ButtonEnabledType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonEnabledType.swift; sourceTree = "<group>"; };
+		483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
+		483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
+		483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewModel.swift; sourceTree = "<group>"; };
 		484059562B1D909E006A8AAC /* DetailTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourViewController.swift; sourceTree = "<group>"; };
 		484059582B1D90A4006A8AAC /* DetailTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourView.swift; sourceTree = "<group>"; };
 		4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourViewModel.swift; sourceTree = "<group>"; };
@@ -358,6 +364,16 @@
 				48F0A55D2B0F83B300859828 /* LoginView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		483748B92B23DF1300CD1398 /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */,
+				483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */,
+				483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */,
+			);
+			path = ProfileInfo;
 			sourceTree = "<group>";
 		};
 		484059552B1D9090006A8AAC /* DetailTour */ = {
@@ -726,6 +742,7 @@
 				48F006C62B17241D00DB1FC1 /* ProfileTopView.swift */,
 				480442F92B18120B00E5C70B /* MyTour */,
 				480442FA2B18121200E5C70B /* JoinedTour */,
+				483748B92B23DF1300CD1398 /* ProfileInfo */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -863,6 +880,7 @@
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F006CA2B172A6400DB1FC1 /* ProfileModifyButton.swift in Sources */,
+				483748BD2B23DF4300CD1398 /* ProfileInfoViewController.swift in Sources */,
 				484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */,
 				48AB63F22B233E7100EC9444 /* ReviewButton.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
@@ -949,9 +967,11 @@
 				486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */,
 				4840596A2B1E01BA006A8AAC /* DetailTourBottomView.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
+				483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */,
 				48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */,
 				480443002B18126C00E5C70B /* MyTourViewController.swift in Sources */,
 				486AA01A2B1338A800CB5179 /* UIImage+Extension.swift in Sources */,
+				483748BF2B23DF4900CD1398 /* ProfileInfoViewModel.swift in Sources */,
 				48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */,
 				480443042B18133F00E5C70B /* UITabBar+Extension.swift in Sources */,
 				486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */,
