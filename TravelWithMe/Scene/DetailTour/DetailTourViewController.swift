@@ -36,6 +36,8 @@ class DetailTourViewController: BaseViewController {
         settingMainView()
         
         bind()
+        
+        print(viewModel.tourItem.location)
     }
     
     override func viewWillAppear(_ animated: Bool) {

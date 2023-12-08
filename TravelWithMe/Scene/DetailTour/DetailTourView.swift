@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import MapKit
 
 
 class HideHalfDetailTourImageBezierView: UIView {
@@ -160,12 +160,19 @@ class DetailTourView: BaseView {
     let priceLabel = DetailTourPriceLabel()
     
     // 14. 투어 위치 - 이름 레이블
-    let locationNameLabel = SignUpSmallLabel("여행 장소")
+    let locationNameLabel = SignUpSmallLabel("대표 여행지")
+    
+    // 14.25 투어 위치 점선
+    let locationDotLineView = DetailTourDotLineView()
+    
+    // 14.5 투어 위치 장소 이름
+    let locationLabel = DetailTourLocationLabel()
     
     // 15. 투어 위치 - 지도 뷰
     let locationView = {
-        let view = UIView()
-        view.backgroundColor = .red
+        let view = MKMapView()
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
         return view
     }()
     
@@ -181,7 +188,7 @@ class DetailTourView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourProfileChevronImageView, goToProfileButton, tourMaxPeopleInfoView, tourDatesInfoView, contentNameLabel, contentLabel, priceNameLabel, priceDotLineView, priceLabel, locationNameLabel, locationView].forEach { item  in
+        [swipeImagesCollectionView, curveView, swipeImagesPageControl, tourCategoryCollectionView, tourTitleLabel, tourProfileImageView, tourProfileLabel, tourProfileChevronImageView, goToProfileButton, tourMaxPeopleInfoView, tourDatesInfoView, contentNameLabel, contentLabel, priceNameLabel, priceDotLineView, priceLabel, locationNameLabel, locationDotLineView, locationLabel, locationView].forEach { item  in
             contentView.addSubview(item)
         }
         
@@ -299,12 +306,23 @@ class DetailTourView: BaseView {
             make.centerY.equalTo(priceNameLabel)
         }
         
+        
         locationNameLabel.snp.makeConstraints { make in
             make.top.equalTo(priceNameLabel.snp.bottom).offset(40)
             make.leading.equalTo(contentView).inset(18)
         }
+        locationLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(locationNameLabel)
+            make.trailing.equalTo(contentView).inset(18)
+        }
+        locationDotLineView.snp.makeConstraints { make in
+            make.leading.equalTo(locationNameLabel.snp.trailing).offset(12)
+            make.trailing.equalTo(locationLabel.snp.leading).offset(-12)
+            make.height.equalTo(1)
+            make.centerY.equalTo(locationNameLabel)
+        }
         locationView.snp.makeConstraints { make in
-            make.top.equalTo(locationNameLabel.snp.bottom).offset(10)
+            make.top.equalTo(locationLabel.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(contentView).inset(18)
             make.height.equalTo(150)
             make.bottom.equalTo(contentView).inset(120)
@@ -344,8 +362,8 @@ class DetailTourView: BaseView {
         
         priceLabel.updatePrice(sender.price ?? "")
         
-        locationView
         
+        setUpMapView(sender: sender)
         setUpBottomApplyButton(sender: sender)
     }
     
@@ -369,6 +387,27 @@ class DetailTourView: BaseView {
         )
         
         print("isMine : \(isMine), isApplied: \(isApplied)")
-        
+    }
+    
+    func setUpMapView(sender: Datum) {
+        let locationStruct = decodingStringToStruct(
+            type: TourLocation.self,
+            sender: sender.location
+        ) ?? TourLocation(name: "", address: "", latitude: 0, longtitude: 0)
+        let centerLocation = CLLocationCoordinate2D(
+            latitude: locationStruct.latitude,
+            longitude: locationStruct.longtitude
+        )
+        let region = MKCoordinateRegion(
+            center: centerLocation,
+            latitudinalMeters: 100,
+            longitudinalMeters: 100
+        )
+        let annotation = MKPointAnnotation()
+        annotation.title = locationStruct.name
+        annotation.coordinate = centerLocation
+        locationView.addAnnotation(annotation)
+        locationView.setRegion(region, animated: true)
+        locationLabel.updateLocation(locationStruct.name)
     }
 }
