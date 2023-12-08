@@ -105,6 +105,8 @@
 		48AB63EB2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */; };
 		48AB63ED2B23284D00EC9444 /* JoinedTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63EC2B23284D00EC9444 /* JoinedTourViewModel.swift */; };
 		48AB63EF2B233C9300EC9444 /* TopMiddleBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63EE2B233C9300EC9444 /* TopMiddleBottom.swift */; };
+		48AB63F22B233E7100EC9444 /* ReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63F12B233E7100EC9444 /* ReviewButton.swift */; };
+		48AB63F62B233EAC00EC9444 /* ReviewButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63F52B233EAC00EC9444 /* ReviewButtonType.swift */; };
 		48AC063A2B15B3DA00B73B79 /* SubTourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */; };
 		48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */; };
 		48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE332B18658400B1B95E /* MyTourView.swift */; };
@@ -228,6 +230,8 @@
 		48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourTableViewHeaderView.swift; sourceTree = "<group>"; };
 		48AB63EC2B23284D00EC9444 /* JoinedTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedTourViewModel.swift; sourceTree = "<group>"; };
 		48AB63EE2B233C9300EC9444 /* TopMiddleBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMiddleBottom.swift; sourceTree = "<group>"; };
+		48AB63F12B233E7100EC9444 /* ReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButton.swift; sourceTree = "<group>"; };
+		48AB63F52B233EAC00EC9444 /* ReviewButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButtonType.swift; sourceTree = "<group>"; };
 		48AC06392B15B3DA00B73B79 /* SubTourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTourCollectionViewCell.swift; sourceTree = "<group>"; };
 		48AC063B2B15B88E00B73B79 /* ContentsCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCategoryButton.swift; sourceTree = "<group>"; };
 		48ADEE332B18658400B1B95E /* MyTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourView.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 		486732472B0C902C00BC24A4 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				48AB63F32B233E9600EC9444 /* Profile */,
 				485321F42B21ADEB006D0930 /* DetailTour */,
 				487931AE2B208D3800F567D5 /* Button */,
 				481CCCB92B1F0E6700B3B40F /* MakeTour */,
@@ -658,6 +663,30 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		48AB63F02B233E6500EC9444 /* JoinedTour */ = {
+			isa = PBXGroup;
+			children = (
+				48AB63F12B233E7100EC9444 /* ReviewButton.swift */,
+			);
+			path = JoinedTour;
+			sourceTree = "<group>";
+		};
+		48AB63F32B233E9600EC9444 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				48AB63F42B233EA100EC9444 /* JoinedTour */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		48AB63F42B233EA100EC9444 /* JoinedTour */ = {
+			isa = PBXGroup;
+			children = (
+				48AB63F52B233EAC00EC9444 /* ReviewButtonType.swift */,
+			);
+			path = JoinedTour;
+			sourceTree = "<group>";
+		};
 		48B7CC082B1452F000AD854F /* KeyChain */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +734,7 @@
 			isa = PBXGroup;
 			children = (
 				48F006C92B172A6400DB1FC1 /* ProfileModifyButton.swift */,
+				48AB63F02B233E6500EC9444 /* JoinedTour */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -834,6 +864,7 @@
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F006CA2B172A6400DB1FC1 /* ProfileModifyButton.swift in Sources */,
 				484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */,
+				48AB63F22B233E7100EC9444 /* ReviewButton.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
 				48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */,
 				48AB63ED2B23284D00EC9444 /* JoinedTourViewModel.swift in Sources */,
@@ -871,6 +902,7 @@
 				484059592B1D90A4006A8AAC /* DetailTourView.swift in Sources */,
 				4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */,
 				486732492B0C903D00BC24A4 /* ValidEmail.swift in Sources */,
+				48AB63F62B233EAC00EC9444 /* ReviewButtonType.swift in Sources */,
 				487786412B0B43AD0091661F /* SignUpCompleteButton.swift in Sources */,
 				48B7CC182B14C16200AD854F /* ContentsTourInfoView.swift in Sources */,
 				48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */,

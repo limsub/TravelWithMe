@@ -12,8 +12,9 @@ class JoinedTourTableViewCell: BaseTableViewCell {
     
     let dateLabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 12)
+        view.font = .systemFont(ofSize: 14)
         view.text = "1st"
+        view.textColor = .lightGray
         return view
     }()
     
@@ -27,12 +28,12 @@ class JoinedTourTableViewCell: BaseTableViewCell {
     }()
     let topLineView = {
         let view = UIView()
-        view.backgroundColor = UIColor.appColor(.main1)
+        view.backgroundColor = UIColor.appColor(.main2)
         return view
     }()
     let bottomLineView = {
         let view = UIView()
-        view.backgroundColor = UIColor.appColor(.main1)
+        view.backgroundColor = UIColor.appColor(.main2)
         return view
     }()
     
@@ -68,16 +69,13 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         view.text = "투어 제작자"
         return view
     }()
-    let reviewButton = {
-        let view = UIButton()
-        return view
-    }()
+    let reviewButton = ReviewButton()
     
     
     override func setConfigure() {
         super.setConfigure()
         
-        [dateLabel, dotView, topLineView, bottomLineView, backImageView, imageButton, tourTitleLabel, tourMakerLabel, reviewButton].forEach { item in
+        [dateLabel, topLineView, bottomLineView, dotView, backImageView, imageButton, tourTitleLabel, tourMakerLabel, reviewButton].forEach { item in
             contentView.addSubview(item)
 //            item.backgroundColor = [.red, .blue, .black, .purple].randomElement()!
         }
@@ -87,13 +85,13 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         super.setConstraints()
         
         dateLabel.snp.makeConstraints { make in
-            make.leading.equalTo(contentView).inset(18)
+            make.leading.equalTo(contentView).inset(24)
             make.top.equalTo(contentView).inset(26)
-            make.width.equalTo(30)
+            make.width.equalTo(36)
         }
         dotView.snp.makeConstraints { make in
             make.size.equalTo(6)
-            make.leading.equalTo(dateLabel.snp.trailing).offset(17)
+            make.leading.equalTo(dateLabel.snp.trailing).offset(12)
             make.centerY.equalTo(dateLabel)
         }
         topLineView.snp.makeConstraints { make in
@@ -120,17 +118,17 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         }
         
         tourTitleLabel.snp.makeConstraints { make in
-            make.top.leading.equalTo(backImageView).inset(20)
+            make.top.horizontalEdges.equalTo(backImageView).inset(20)
         }
         tourMakerLabel.snp.makeConstraints { make in
-            make.top.equalTo(tourTitleLabel.snp.bottom).offset(12)
+            make.top.equalTo(tourTitleLabel.snp.bottom).offset(8)
             make.leading.equalTo(tourTitleLabel)
         }
         
         reviewButton.snp.makeConstraints { make in
             make.height.equalTo(40)
-            make.width.equalTo(100)
-            make.trailing.bottom.equalTo(backImageView).inset(20)
+            make.width.equalTo(90)
+            make.trailing.bottom.equalTo(backImageView).inset(12)
         }
     }
     
