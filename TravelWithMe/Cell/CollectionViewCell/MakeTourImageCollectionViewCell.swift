@@ -18,13 +18,20 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
         let view = UIImageView()
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
+        view.backgroundColor = UIColor.appColor(.disabledGray1)
+        return view
+    }()
+    let plusImageView = {
+        let view = UIImageView()
         view.image = UIImage(systemName: "plus")
+        view.tintColor = UIColor.appColor(.gray1)
         return view
     }()
     
     let cancelButton = {
         let view = UIButton()
         view.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
+        view.tintColor = UIColor.appColor(.gray1)
         return view
     }()
     
@@ -33,6 +40,7 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
         super.setConfigure()
         
         contentView.addSubview(imageView)
+        contentView.addSubview(plusImageView)
         contentView.addSubview(cancelButton)
     }
     
@@ -42,6 +50,10 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView).inset(8)
         }
+        plusImageView.snp.makeConstraints { make in
+            make.size.equalTo(24)
+            make.center.equalTo(imageView)
+        }
         cancelButton.snp.makeConstraints { make in
             make.top.trailing.equalTo(contentView)
             make.size.equalTo(24)
@@ -49,15 +61,16 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
     }
     
     func designPlusCell() {
-        imageView.backgroundColor = UIColor(hexCode: ConstantColor.textFieldBackground.hexCode)
-        imageView.image = UIImage(systemName: "plus")
+        imageView.image = UIImage()
         cancelButton.isHidden = true
         cancelButton.isEnabled = false
+        plusImageView.isHidden = false
     }
     
     func designCell(_ imageData: Data) {
         imageView.image = UIImage(data: imageData)
         cancelButton.isHidden = false
         cancelButton.isEnabled = true
+        plusImageView.isHidden = true
     }
 }
