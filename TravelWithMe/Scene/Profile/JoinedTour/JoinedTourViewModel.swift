@@ -71,7 +71,7 @@ class JoinedTourViewModel {
             )?.dates.first
             
             // * (2). firstDate끼리 비교한다
-            return d1FirstDate ?? ""  < d2FirstDate ?? ""
+            return d1FirstDate ?? ""  > d2FirstDate ?? ""
         }
         
         
@@ -103,10 +103,10 @@ class JoinedTourViewModel {
         }
         
         // 4. 배열 정렬
-        joinedTours.sort { $0.month < $1.month }
+        joinedTours.sort { $0.month > $1.month }
         
         print("--- 정렬 완료? ---")
-        print(joinedTours)
+//        print(joinedTours)
             
         return joinedTours
     }

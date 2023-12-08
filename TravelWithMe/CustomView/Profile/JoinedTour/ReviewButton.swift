@@ -31,7 +31,7 @@ class ReviewButton: UIButton {
     func update(_ sender: ReviewButtonType) {
         setTitle(sender.buttonTitle, for: .normal)
         setTitleColor(sender.textColor, for: .normal)
-        setBackgroundColor(sender.backgroundColor, for: .normal)
+        backgroundColor = sender.backgroundColor
         isEnabled = sender.isEnabled
     }
     
