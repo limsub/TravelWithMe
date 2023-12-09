@@ -158,7 +158,9 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         tourTitleLabel.text = sender.title
         
         // 3. 닉네임
-        profileNameLabel.text = sender.creator.nick
+        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: sender.creator.nick) {
+            profileNameLabel.text = nickStruct.nick
+        }
         
             // 닉네임 길이에 따라 라인 길이 조절
         lineView.snp.makeConstraints { make in

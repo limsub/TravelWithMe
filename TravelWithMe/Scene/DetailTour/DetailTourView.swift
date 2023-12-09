@@ -346,7 +346,10 @@ class DetailTourView: BaseView {
         
         tourProfileImageView
         
-        tourProfileLabel.text = sender.creator.nick
+        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: sender.creator.nick) {
+            tourProfileLabel.text = nickStruct.nick
+        }
+        
         
         let cntString = sender.maxPeopleCnt ?? "0"
         let cntInt = Int(cntString) ?? 0

@@ -179,7 +179,9 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         
         
         // 5. tourMakerLabel
-        tourMakerLabel.text = sender.creator.nick
+        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: sender.creator.nick) {
+            tourMakerLabel.text = nickStruct.nick
+        }
         
         
         // 6. reviewButton

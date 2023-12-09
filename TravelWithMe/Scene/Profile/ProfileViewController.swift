@@ -28,7 +28,9 @@ class ProfileViewController: TabmanViewController {
         setConfigure()
         setConstraints()
         
-        view.backgroundColor = .white
+        fetchProfileInfo()
+        
+//        view.backgroundColor = .white
         
         settingCustomBarView()
         settingTabman()
@@ -50,6 +52,10 @@ class ProfileViewController: TabmanViewController {
             make.horizontalEdges.equalTo(view).inset(18)
             make.height.equalTo(50)
         }
+    }
+    
+    // 1. profileView 적용. 2. profileInfoVC의 뷰모델에 전달 적용
+    func fetchProfileInfo() {
         
     }
     
