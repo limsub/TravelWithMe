@@ -165,9 +165,11 @@ extension SelectDateViewController: FSCalendarDataSource, FSCalendarDelegate {
         return cell
     }
     
-    func minimumDate(for calendar: FSCalendar) -> Date {
-        return Date()
-    }
+    
+    // 테스트용. 일단 주석
+//    func minimumDate(for calendar: FSCalendar) -> Date {
+//        return Date()
+//    }
 
 }
 

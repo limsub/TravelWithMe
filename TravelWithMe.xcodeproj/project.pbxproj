@@ -101,6 +101,11 @@
 		4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */; };
 		487931AD2B208D3500F567D5 /* ButtonSelectedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487931AC2B208D3500F567D5 /* ButtonSelectedType.swift */; };
 		487931B02B208FE100F567D5 /* StartTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */; };
+		4896785C2B243E670098E0EB /* MakeReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896785B2B243E670098E0EB /* MakeReviewViewController.swift */; };
+		4896785E2B243E6D0098E0EB /* MakeReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896785D2B243E6D0098E0EB /* MakeReviewViewModel.swift */; };
+		489678602B243E720098E0EB /* MakeReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896785F2B243E720098E0EB /* MakeReviewView.swift */; };
+		489678632B243FE70098E0EB /* ReviewCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678622B243FE70098E0EB /* ReviewCategoryType.swift */; };
+		489678662B24407A0098E0EB /* ReviewCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678652B24407A0098E0EB /* ReviewCategoryButton.swift */; };
 		48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */; };
 		48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */; };
 		48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */; };
@@ -232,6 +237,11 @@
 		4877864A2B0B4B110091661F /* MakeTourPeopleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourPeopleCountView.swift; sourceTree = "<group>"; };
 		487931AC2B208D3500F567D5 /* ButtonSelectedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectedType.swift; sourceTree = "<group>"; };
 		487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTabBarViewController.swift; sourceTree = "<group>"; };
+		4896785B2B243E670098E0EB /* MakeReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReviewViewController.swift; sourceTree = "<group>"; };
+		4896785D2B243E6D0098E0EB /* MakeReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReviewViewModel.swift; sourceTree = "<group>"; };
+		4896785F2B243E720098E0EB /* MakeReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReviewView.swift; sourceTree = "<group>"; };
+		489678622B243FE70098E0EB /* ReviewCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryType.swift; sourceTree = "<group>"; };
+		489678652B24407A0098E0EB /* ReviewCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryButton.swift; sourceTree = "<group>"; };
 		48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourPriceLabel.swift; sourceTree = "<group>"; };
 		48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -312,6 +322,7 @@
 				48AB63E82B2304F500EC9444 /* JoinedTourView.swift */,
 				48AB63EA2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift */,
 				48AB63EC2B23284D00EC9444 /* JoinedTourViewModel.swift */,
+				489678582B243E460098E0EB /* Review */,
 			);
 			path = JoinedTour;
 			sourceTree = "<group>";
@@ -468,6 +479,7 @@
 		486732472B0C902C00BC24A4 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				489678612B243FDE0098E0EB /* Review */,
 				48AB63F32B233E9600EC9444 /* Profile */,
 				485321F42B21ADEB006D0930 /* DetailTour */,
 				487931AE2B208D3800F567D5 /* Button */,
@@ -618,6 +630,7 @@
 		4877862B2B0B2E430091661F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				489678642B2440710098E0EB /* Review */,
 				484059642B1DAAAC006A8AAC /* DetailTour */,
 				48F006C82B172A5300DB1FC1 /* Profile */,
 				48B7CC162B14C15000AD854F /* Contents */,
@@ -701,6 +714,48 @@
 				487931AC2B208D3500F567D5 /* ButtonSelectedType.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		489678582B243E460098E0EB /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				4896785A2B243E5B0098E0EB /* CheckReview */,
+				489678592B243E570098E0EB /* MakeReview */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		489678592B243E570098E0EB /* MakeReview */ = {
+			isa = PBXGroup;
+			children = (
+				4896785B2B243E670098E0EB /* MakeReviewViewController.swift */,
+				4896785D2B243E6D0098E0EB /* MakeReviewViewModel.swift */,
+				4896785F2B243E720098E0EB /* MakeReviewView.swift */,
+			);
+			path = MakeReview;
+			sourceTree = "<group>";
+		};
+		4896785A2B243E5B0098E0EB /* CheckReview */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CheckReview;
+			sourceTree = "<group>";
+		};
+		489678612B243FDE0098E0EB /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				489678622B243FE70098E0EB /* ReviewCategoryType.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		489678642B2440710098E0EB /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				489678652B24407A0098E0EB /* ReviewCategoryButton.swift */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		48AB63F02B233E6500EC9444 /* JoinedTour */ = {
@@ -893,6 +948,7 @@
 				48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */,
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
 				48ADEE3E2B18A23000B1B95E /* TourCategoryType.swift in Sources */,
+				4896785C2B243E670098E0EB /* MakeReviewViewController.swift in Sources */,
 				4818C8D32B106E4000BC8F02 /* LoginCheckLoginLabel.swift in Sources */,
 				487786282B0B2AA50091661F /* BaseViewController.swift in Sources */,
 				48ADEE342B18658400B1B95E /* MyTourView.swift in Sources */,
@@ -907,6 +963,7 @@
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F006CA2B172A6400DB1FC1 /* ProfileModifyButton.swift in Sources */,
 				483748BD2B23DF4300CD1398 /* ProfileInfoViewController.swift in Sources */,
+				489678632B243FE70098E0EB /* ReviewCategoryType.swift in Sources */,
 				484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */,
 				48AB63F22B233E7100EC9444 /* ReviewButton.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
@@ -936,6 +993,7 @@
 				48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */,
 				48ADEE362B18660F00B1B95E /* UIView+Extension.swift in Sources */,
 				4818C8D62B10721100BC8F02 /* TestJSONtoString.swift in Sources */,
+				489678662B24407A0098E0EB /* ReviewCategoryButton.swift in Sources */,
 				486AA0082B12C30B00CB5179 /* Date+Extension.swift in Sources */,
 				48AC063C2B15B88E00B73B79 /* ContentsCategoryButton.swift in Sources */,
 				4877863D2B0B378C0091661F /* SignUpGenderSegmentControl.swift in Sources */,
@@ -994,10 +1052,12 @@
 				48BCD9CE2B1E0EAD004E8838 /* DetailTourDotLineView.swift in Sources */,
 				486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */,
 				4840596A2B1E01BA006A8AAC /* DetailTourBottomView.swift in Sources */,
+				489678602B243E720098E0EB /* MakeReviewView.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
 				483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */,
 				48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */,
 				480443002B18126C00E5C70B /* MyTourViewController.swift in Sources */,
+				4896785E2B243E6D0098E0EB /* MakeReviewViewModel.swift in Sources */,
 				486AA01A2B1338A800CB5179 /* UIImage+Extension.swift in Sources */,
 				483748BF2B23DF4900CD1398 /* ProfileInfoViewModel.swift in Sources */,
 				48F0A55E2B0F83B300859828 /* LoginView.swift in Sources */,

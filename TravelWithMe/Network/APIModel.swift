@@ -97,6 +97,7 @@ struct MakePostResponse: Decodable {
 struct Creator: Codable {
     let _id: String
     let nick: String
+    let profile: String? = nil
 }
 
 

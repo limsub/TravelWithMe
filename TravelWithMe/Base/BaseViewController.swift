@@ -19,6 +19,10 @@ class BaseViewController: UIViewController {
         setting()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     func setConfigure() { }
     func setConstraints() { }
     func setting() { }

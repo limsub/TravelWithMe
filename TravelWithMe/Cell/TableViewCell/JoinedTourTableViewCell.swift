@@ -197,6 +197,7 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         if todayDateString < firstDateString {
             reviewButton.update(.beforeTravel)
         } else if todayDateString >= firstDateString && todayDateString <= lastDateString {
+            // 단일 여행인 경우도 여기서 잡힘
             reviewButton.update(.duringTravel)
         } else if todayDateString > lastDateString && !checkAlreadyReviewed() {
             reviewButton.update(.writeReview)
@@ -208,7 +209,7 @@ class JoinedTourTableViewCell: BaseTableViewCell {
     // sender.comments가 현재 어떤 식인지 잘 모르겠다. 여기에 KeychainStorage.shared.id가 포함되어 있으면 이미 후기를 작성했다고 간주하고, true를 반환한다
     func checkAlreadyReviewed() -> Bool {
         
-        return true
+        return [false, true].randomElement()!
     }
 }
 
