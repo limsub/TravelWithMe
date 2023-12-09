@@ -83,9 +83,15 @@ class MakeReviewView: BaseView {
 //            make.top.equalTo(writingReviewTextView.snp.bottom).offset(40)
             make.horizontalEdges.equalTo(self).inset(18)
             make.height.equalTo(52)
-            make.bottom.equalTo(self).inset(20)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).inset(50)
         }
         
         
+    }
+    
+    override func setting() {
+        super.setting()
+        
+        backgroundColor = .white
     }
 }
