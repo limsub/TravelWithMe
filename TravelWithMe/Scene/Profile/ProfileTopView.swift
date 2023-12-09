@@ -72,14 +72,9 @@ class ProfileTopBackView: UIView {
     
         path.stroke()
         path.fill()
-        
-        
-        
-        
-
-
     }
 }
+
 
 class ProfileTopView: BaseView {
     

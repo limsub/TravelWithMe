@@ -24,4 +24,15 @@ enum GenderType: Int {
             return "male"
         }
     }
+    
+    var koreanDescription: String {
+        switch self {
+        case .nothing:
+            return ""
+        case .female:
+            return "여성"
+        case .male:
+            return "남성"
+        }
+    }
 }

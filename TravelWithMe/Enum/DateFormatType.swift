@@ -19,6 +19,8 @@ enum DateFormatType: String {
     case fullYear = "yyyy"
     
     case day = "d"
+    
+    case koreanFullString = "yyyy년 M월 d일"
 }
 
 

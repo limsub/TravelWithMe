@@ -10,6 +10,7 @@ import UIKit
 class ProfileInfoViewController: BaseViewController {
     
     let mainView = ProfileInfoView()
+    let viewModel = ProfileInfoViewModel()
     
     override func loadView() {
         self.view = mainView
@@ -21,16 +22,9 @@ class ProfileInfoViewController: BaseViewController {
         
 //        mainView.backgroundColor = .blue
         
-        
-        RouterAPIManager.shared.requestNormal(
-            type: LookProfileResponse.self,
-            error: LookProfileAPIError.self,
-            api: .lookMyProfile) { response in
-                print(" * === 프로필 조회 === * ")
-                print(response)
-            }
-        
+            
         settingFollowCollectionView()
+        updateView()
     }
     
     func settingFollowCollectionView() {
@@ -40,6 +34,16 @@ class ProfileInfoViewController: BaseViewController {
         mainView.followingCollectionView.delegate = self
         mainView.followingCollectionView.dataSource = self
     }
+    
+    func updateView() {
+        // 뷰모델의 데이터를 기반으로 뷰 새로 그리기
+        mainView.updateView(viewModel.profileInfoData)
+        
+        // 컬렉션뷰 2개 reload
+        mainView.followerCollectionView.reloadData()
+        mainView.followingCollectionView.reloadData()
+        
+    }
 }
 
 
@@ -48,7 +52,6 @@ extension ProfileInfoViewController: UICollectionViewDataSource, UICollectionVie
     func checkFollowerCollectionView(_ collectionView: UICollectionView) -> Bool {
         // 팔로워 : true
         // 팔로잉 : false
-        
         return collectionView == mainView.followerCollectionView
     }
     
@@ -56,11 +59,11 @@ extension ProfileInfoViewController: UICollectionViewDataSource, UICollectionVie
         
         if checkFollowerCollectionView(collectionView) {
             // 팔로워
-            return 8
+            return 12 // viewModel.profileInfoData.followers.count
             
         } else {
             // 팔로잉
-            return 12
+            return 8 // viewModel.profileInfoData.following.count
             
         }
        

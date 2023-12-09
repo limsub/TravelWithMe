@@ -9,6 +9,9 @@ import UIKit
 
 class ProfileInfoViewModel {
     
-    
+    var profileInfoData: LookProfileResponse = LookProfileResponse(
+        posts: [], followers: [], following: [], _id: "", email: "", nick: "", phoneNum: nil, birthDay: nil, profile: nil
+    )
     
 }
+

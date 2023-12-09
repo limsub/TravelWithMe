@@ -12,6 +12,7 @@ import Pageboy
 class ProfileViewController: TabmanViewController {
     
     let profileView = ProfileTopView()
+    let viewModel = ProfileViewModel()
     
     let myTourVC = MyTourViewController()
     let joinedTourVC = JoinedTourViewController()
@@ -40,7 +41,6 @@ class ProfileViewController: TabmanViewController {
     func setConfigure() {
         view.addSubview(profileView)
         view.addSubview(customBarView)
-        
     }
     func setConstraints() {
         profileView.snp.makeConstraints { make in
@@ -54,9 +54,46 @@ class ProfileViewController: TabmanViewController {
         }
     }
     
-    // 1. profileView 적용. 2. profileInfoVC의 뷰모델에 전달 적용
+    // 1. profileView 적용. 2. profileInfoVC의 뷰모델에 전달
     func fetchProfileInfo() {
-        
+        viewModel.fetchData { [weak self] response  in
+            switch response {
+            case .success(let result):
+                self?.settingDataProfileTopView(result)
+                self?.settingDataProfileInfoView(result)
+            case .failure(let error):
+                // 1. 공통 에러
+                if let commonError = error as? CommonAPIError {
+                    print("-- 공통 에러")
+                    return
+                }
+                
+                // 2. 프로필 조회 에러
+                if let lookProfileError = error as? LookProfileAPIError {
+                    print("-- 프로필 조회 에러")
+                    return
+                }
+                
+                // 3. 토큰 관련 에러
+                if let refreshTokenError = error as? RefreshTokenAPIError {
+                    print("-- 토큰 관련 에러")
+                    return
+                }
+                
+                // 4. 알 수 없음
+                print("-- 알 수 없는 에러")
+            }
+        }
+    }
+    
+    func settingDataProfileTopView(_ result: LookProfileResponse) {
+        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: result.nick) {
+            profileView.nameLabel.text = nickStruct.nick
+        }
+    }
+    func settingDataProfileInfoView(_ result: LookProfileResponse) {
+        profileInfoVC.viewModel.profileInfoData = result
+        profileInfoVC.updateView()
     }
     
     
@@ -111,7 +148,7 @@ extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSourc
         case 0:
             return TMBarItem(title: "나의 여행")
         case 1:
-            return TMBarItem(title: "예정된 여행")
+            return TMBarItem(title: "신청한 여행")
         case 2:
             return TMBarItem(title: "정보")
         default:

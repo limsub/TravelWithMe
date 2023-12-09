@@ -29,6 +29,7 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
 //        view.backgroundColor = .systemGray6
         
         view.isSkeletonable = true
+        view.contentMode = .scaleAspectFill
         
         return view
     }()
