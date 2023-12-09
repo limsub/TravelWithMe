@@ -11,4 +11,5 @@ enum TopMiddleBottom {
     case top
     case middle
     case bottom
+    case single
 }

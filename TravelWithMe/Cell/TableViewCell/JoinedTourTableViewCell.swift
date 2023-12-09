@@ -163,6 +163,10 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         // 2. top / bottom line
         topLineView.isHidden = (pos == .top) ? true : false
         bottomLineView.isHidden = (pos == .bottom) ? true : false
+        if pos == .single {
+            topLineView.isHidden = true
+            bottomLineView.isHidden = true
+        }
         
         
         // 3. backImageView

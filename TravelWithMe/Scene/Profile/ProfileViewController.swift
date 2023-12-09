@@ -146,9 +146,9 @@ extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSourc
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         switch index {
         case 0:
-            return TMBarItem(title: "나의 여행")
+            return TMBarItem(title: "만든거")
         case 1:
-            return TMBarItem(title: "신청한 여행")
+            return TMBarItem(title: "신청한거")
         case 2:
             return TMBarItem(title: "정보")
         default:

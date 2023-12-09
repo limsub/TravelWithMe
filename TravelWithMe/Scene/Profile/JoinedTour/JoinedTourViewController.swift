@@ -96,7 +96,14 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileJoinedTourView - JoinedTourTableView", for: indexPath) as? JoinedTourTableViewCell else { return UITableViewCell() }
         
         if indexPath.item == 0 {
-            cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .top)
+            
+            if viewModel.items[indexPath.section].tours.count == 1 {
+                cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .single)
+            } else {
+                cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .top)
+            }
+            
+            
         }
         else if indexPath.item == viewModel.items[indexPath.section].tours.count - 1 {
             cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .bottom)

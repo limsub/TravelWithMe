@@ -26,6 +26,8 @@ class JoinedTourView: BaseView {
         
         view.backgroundColor = .white
         
+        view.allowsSelection = false
+        
         
         return view
     }()
