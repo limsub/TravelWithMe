@@ -107,6 +107,9 @@
 		489678632B243FE70098E0EB /* ReviewCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678622B243FE70098E0EB /* ReviewCategoryType.swift */; };
 		489678662B24407A0098E0EB /* ReviewCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678652B24407A0098E0EB /* ReviewCategoryButton.swift */; };
 		489678682B249B800098E0EB /* ReviewSmallTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678672B249B800098E0EB /* ReviewSmallTourView.swift */; };
+		4896786A2B252BB20098E0EB /* CheckReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678692B252BB20098E0EB /* CheckReviewView.swift */; };
+		4896786C2B252BBD0098E0EB /* CheckReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896786B2B252BBD0098E0EB /* CheckReviewViewController.swift */; };
+		4896786E2B252BC30098E0EB /* CheckReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896786D2B252BC30098E0EB /* CheckReviewViewModel.swift */; };
 		48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */; };
 		48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */; };
 		48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */; };
@@ -244,6 +247,9 @@
 		489678622B243FE70098E0EB /* ReviewCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryType.swift; sourceTree = "<group>"; };
 		489678652B24407A0098E0EB /* ReviewCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryButton.swift; sourceTree = "<group>"; };
 		489678672B249B800098E0EB /* ReviewSmallTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSmallTourView.swift; sourceTree = "<group>"; };
+		489678692B252BB20098E0EB /* CheckReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckReviewView.swift; sourceTree = "<group>"; };
+		4896786B2B252BBD0098E0EB /* CheckReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckReviewViewController.swift; sourceTree = "<group>"; };
+		4896786D2B252BC30098E0EB /* CheckReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckReviewViewModel.swift; sourceTree = "<group>"; };
 		48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourPriceLabel.swift; sourceTree = "<group>"; };
 		48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -740,6 +746,9 @@
 		4896785A2B243E5B0098E0EB /* CheckReview */ = {
 			isa = PBXGroup;
 			children = (
+				489678692B252BB20098E0EB /* CheckReviewView.swift */,
+				4896786B2B252BBD0098E0EB /* CheckReviewViewController.swift */,
+				4896786D2B252BC30098E0EB /* CheckReviewViewModel.swift */,
 			);
 			path = CheckReview;
 			sourceTree = "<group>";
@@ -969,6 +978,7 @@
 				489678632B243FE70098E0EB /* ReviewCategoryType.swift in Sources */,
 				484059662B1DAAC8006A8AAC /* TourTypeInfo.swift in Sources */,
 				48AB63F22B233E7100EC9444 /* ReviewButton.swift in Sources */,
+				4896786A2B252BB20098E0EB /* CheckReviewView.swift in Sources */,
 				48F0A55C2B0F83AE00859828 /* LoginViewModel.swift in Sources */,
 				48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */,
 				48AB63ED2B23284D00EC9444 /* JoinedTourViewModel.swift in Sources */,
@@ -1009,6 +1019,8 @@
 				4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */,
 				486732492B0C903D00BC24A4 /* ValidEmail.swift in Sources */,
 				48AB63F62B233EAC00EC9444 /* ReviewButtonType.swift in Sources */,
+				4896786E2B252BC30098E0EB /* CheckReviewViewModel.swift in Sources */,
+				4896786C2B252BBD0098E0EB /* CheckReviewViewController.swift in Sources */,
 				487786412B0B43AD0091661F /* SignUpCompleteButton.swift in Sources */,
 				48B7CC182B14C16200AD854F /* ContentsTourInfoView.swift in Sources */,
 				48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */,

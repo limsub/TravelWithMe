@@ -121,7 +121,8 @@ struct LookPostResponse: Decodable {
 struct Datum: Codable {
     var likes: [String]
     let image: [String]
-    let hashTags, comments: [String]
+    let hashTags: [String]
+    let comments: [Comment]
     let id: String
     let creator: Creator
     let time: String
@@ -133,6 +134,7 @@ struct Datum: Codable {
     let price: String?       // content4. 예상 가격
     let content5: String?    // 미정
     let productID: String
+    
 
     enum CodingKeys: String, CodingKey {
         case likes, image, hashTags, comments
@@ -147,6 +149,13 @@ struct Datum: Codable {
         case content5
         case productID = "product_id"
     }
+}
+
+struct Comment: Codable {
+    let _id: String
+    let content: String
+    let time: String
+    let creator: Creator
 }
 
 

@@ -11,7 +11,7 @@ class MakeReviewView: BaseView {
     
     let tourView = ReviewSmallTourView()
     
-    let categoryNameLabel = SignUpSmallLabel("여행이 어땠나요? (최대 3개 선택할 수 있습니다")
+    let categoryNameLabel = SignUpSmallLabel("여행이 어땠나요? (최대 3개의 항목을 선택할 수 있습니다)")
     
     let reviewCategoryButtons = [
         ReviewCategoryButton(.fun),

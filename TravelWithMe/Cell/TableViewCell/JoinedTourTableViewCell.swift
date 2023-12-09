@@ -69,7 +69,20 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         view.text = "투어 제작자"
         return view
     }()
-    let reviewButton = ReviewButton()
+    let reviewButton = {
+        let view = ReviewButton()
+        view.addTarget(self, action: #selector(reviewButtonClicked), for: .touchUpInside)
+        return view
+    }()
+    
+    var reviewButtonCallBackMethod: ( () -> Void )?
+    
+    @objc
+    func reviewButtonClicked() {
+        if let closure = reviewButtonCallBackMethod {
+            closure()
+        }
+    }
     
     
     override func setConfigure() {
@@ -199,17 +212,19 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         } else if todayDateString >= firstDateString && todayDateString <= lastDateString {
             // 단일 여행인 경우도 여기서 잡힘
             reviewButton.update(.duringTravel)
-        } else if todayDateString > lastDateString && !checkAlreadyReviewed() {
+        } else if todayDateString > lastDateString && !checkAlreadyReviewed(sender.comments) {
             reviewButton.update(.writeReview)
         } else {
             reviewButton.update(.checkReview)
         }
     }
     
-    // sender.comments가 현재 어떤 식인지 잘 모르겠다. 여기에 KeychainStorage.shared.id가 포함되어 있으면 이미 후기를 작성했다고 간주하고, true를 반환한다
-    func checkAlreadyReviewed() -> Bool {
+    // [Comment] 배열에 현재 사용자의 id(KeychainStorage.shared._id) 가 있는지 확인. 있으면 true
+    func checkAlreadyReviewed(_ sender: [Comment]) -> Bool {
         
-        return [false, true].randomElement()!
+        return sender.contains { comment in
+            comment._id == KeychainStorage.shared._id
+        }
     }
 }
 

@@ -95,22 +95,51 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileJoinedTourView - JoinedTourTableView", for: indexPath) as? JoinedTourTableViewCell else { return UITableViewCell() }
         
+        let tourItem = viewModel.items[indexPath.section].tours[indexPath.item]
+        
         if indexPath.item == 0 {
             
             if viewModel.items[indexPath.section].tours.count == 1 {
-                cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .single)
+                cell.setUp(tourItem, pos: .single)
             } else {
-                cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .top)
+                cell.setUp(tourItem, pos: .top)
             }
             
             
         }
         else if indexPath.item == viewModel.items[indexPath.section].tours.count - 1 {
-            cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .bottom)
+            cell.setUp(tourItem, pos: .bottom)
         }
         else {
-            cell.setUp(viewModel.items[indexPath.section].tours[indexPath.item], pos: .middle)
+            cell.setUp(tourItem, pos: .middle)
         }
+        
+        cell.reviewButtonCallBackMethod = { [weak self] in
+            
+            print("이미 후기를 작성했는가 : \(self?.checkAlreadyReviewed((tourItem.comments)))")
+            
+            
+            
+            // 1. 후기 작성 화면
+            guard let self else { return }
+            if self.checkAlreadyReviewed(tourItem.comments) {
+                print("이미 후기를 작성했습니다. 후기 확인 화면으로 전환합니다")
+                
+                let vc = CheckReviewViewController()
+                navigationController?.pushViewController(vc, animated: true)
+                
+            }
+            
+            // 2. 후기 확인 화면
+            else {
+                print("아직 후기를 작성하지 않았습니다. 후기 작성 화면으로 전환합니다")
+                
+                let vc = MakeReviewViewController()
+                navigationController?.pushViewController(vc, animated: true)
+                
+            }
+        }
+        
         
         
         
@@ -118,6 +147,14 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
 //        cell.tourTitleLabel.text = viewModel.items[indexPath.section].tours[indexPath.item].title
         
         return cell
+    }
+    
+    // [Comment] 배열에 현재 사용자의 id(KeychainStorage.shared._id) 가 있는지 확인. 있으면 true
+    func checkAlreadyReviewed(_ sender: [Comment]) -> Bool {
+        
+        return sender.contains { comment in
+            comment._id == KeychainStorage.shared._id
+        }
     }
     
     
