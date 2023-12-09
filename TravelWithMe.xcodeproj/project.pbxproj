@@ -106,6 +106,7 @@
 		489678602B243E720098E0EB /* MakeReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896785F2B243E720098E0EB /* MakeReviewView.swift */; };
 		489678632B243FE70098E0EB /* ReviewCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678622B243FE70098E0EB /* ReviewCategoryType.swift */; };
 		489678662B24407A0098E0EB /* ReviewCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678652B24407A0098E0EB /* ReviewCategoryButton.swift */; };
+		489678682B249B800098E0EB /* ReviewSmallTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489678672B249B800098E0EB /* ReviewSmallTourView.swift */; };
 		48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */; };
 		48A6919E2B204714005B0B22 /* DetailTourPriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */; };
 		48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */; };
@@ -242,6 +243,7 @@
 		4896785F2B243E720098E0EB /* MakeReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReviewView.swift; sourceTree = "<group>"; };
 		489678622B243FE70098E0EB /* ReviewCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryType.swift; sourceTree = "<group>"; };
 		489678652B24407A0098E0EB /* ReviewCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCategoryButton.swift; sourceTree = "<group>"; };
+		489678672B249B800098E0EB /* ReviewSmallTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSmallTourView.swift; sourceTree = "<group>"; };
 		48A6919B2B202BD9005B0B22 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		48A6919D2B204714005B0B22 /* DetailTourPriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourPriceLabel.swift; sourceTree = "<group>"; };
 		48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 			isa = PBXGroup;
 			children = (
 				489678652B24407A0098E0EB /* ReviewCategoryButton.swift */,
+				489678672B249B800098E0EB /* ReviewSmallTourView.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -974,6 +977,7 @@
 				486AA0162B131E0300CB5179 /* BaseCollectionViewCell.swift in Sources */,
 				4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */,
 				48A6919C2B202BDA005B0B22 /* SelectLocationView.swift in Sources */,
+				489678682B249B800098E0EB /* ReviewSmallTourView.swift in Sources */,
 				4818C8D12B105C8300BC8F02 /* ResultNetwork.swift in Sources */,
 				4877862D2B0B2F5A0091661F /* SignUpSmallLabel.swift in Sources */,
 				487786112B0B29F60091661F /* ViewController.swift in Sources */,

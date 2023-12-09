@@ -9,6 +9,8 @@ import UIKit
 
 class MakeReviewView: BaseView {
     
+    let tourView = ReviewSmallTourView()
+    
     let categoryNameLabel = SignUpSmallLabel("여행이 어땠나요? (최대 3개 선택할 수 있습니다")
     
     let reviewCategoryButtons = [
@@ -32,7 +34,7 @@ class MakeReviewView: BaseView {
     override func setConfigure() {
         super.setConfigure()
         
-        [categoryNameLabel, writingReviewNameLabel, writingReviewTextView, completeButton].forEach { item in
+        [tourView, categoryNameLabel, writingReviewNameLabel, writingReviewTextView, completeButton].forEach { item in
             addSubview(item)
 //            item.backgroundColor = .red
         }
@@ -45,8 +47,14 @@ class MakeReviewView: BaseView {
     override func setConstraints() {
         super.setConstraints()
         
-        categoryNameLabel.snp.makeConstraints { make in
+        tourView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(30)
+            make.horizontalEdges.equalTo(self).inset(18)
+            make.height.equalTo(90)
+        }
+        
+        categoryNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(tourView.snp.bottom).offset(40)
             make.horizontalEdges.equalTo(self).inset(18)
         }
         
