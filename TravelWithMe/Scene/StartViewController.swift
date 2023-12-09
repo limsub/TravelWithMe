@@ -31,7 +31,7 @@ class StartViewController: BaseViewController {
         button1.snp.makeConstraints { make in
             make.size.equalTo(60)
             make.centerX.equalTo(view)
-            make.top.equalTo(view).inset(50)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(50)
         }
         button2.snp.makeConstraints { make in
             make.size.equalTo(60)

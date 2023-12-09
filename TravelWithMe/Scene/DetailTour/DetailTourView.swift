@@ -215,8 +215,8 @@ class DetailTourView: BaseView {
 //            make.edges.equalTo(scrollView.contentLayoutGuide)
             make.top.equalTo(scrollView).inset(-100)
             
-            
-            make.height.greaterThanOrEqualTo(self.snp.height).priority(.low)
+            // (self.snp.height -> scrollView.snp.height) 변경
+            make.height.greaterThanOrEqualTo(scrollView.snp.height).priority(.low)
             make.width.equalTo(scrollView.snp.width)
         }
         

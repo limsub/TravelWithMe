@@ -14,7 +14,7 @@ enum Gender: Int {
     case male = 1
     
     
-    var description: String {
+    var description: String {   // -> rawValue로 바꾸는게 더 낫지 않을까 싶다
         switch self {
         case .nothing:
             return ""

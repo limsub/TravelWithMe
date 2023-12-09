@@ -32,6 +32,8 @@ enum Router: URLRequestConvertible {
     
     case likePost(idStruct: LikePostRequest)
     
+    case lookMyProfile
+
 //    case lookLikePost
     
     case imageDownload(sender: String)  // (사용 x)
@@ -53,7 +55,7 @@ enum Router: URLRequestConvertible {
             if let userID {
                 return "/post/user/\(userID)"
             }
-            if let hashTag {
+            if hashTag != nil {
                 return "/post/hashTag"
             }
             if likePost {
@@ -70,6 +72,9 @@ enum Router: URLRequestConvertible {
             
         case .likePost(let idStruct):
             return "/post/like/\(idStruct.id)"
+            
+        case .lookMyProfile:
+            return "/profile/me"
             
             
         case .imageDownload(let urlString):
@@ -100,7 +105,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .lookPost, .deletePost, .likePost, .imageDownload:
+        case .lookPost, .deletePost, .likePost, .lookMyProfile, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "SesacKey": SeSACAPI.subKey
@@ -112,7 +117,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .validEmail, .join, .login, .makePost, .likePost:
             return .post
-        case .refreshToken, .lookPost, .imageDownload:
+        case .refreshToken, .lookPost, .lookMyProfile, .imageDownload:
             return .get
         case .deletePost:
             return .delete

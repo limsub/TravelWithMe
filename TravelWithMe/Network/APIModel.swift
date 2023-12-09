@@ -169,3 +169,18 @@ struct LikePostRequest {
 struct LikePostResponse: Decodable {
     let like_status: Bool
 }
+
+
+/* === (내) 프로필 조회 === */
+
+struct LookProfileResponse: Decodable {
+    let posts: [String]
+    let followers: [String]
+    let following: [String]
+    let _id: String
+    let email: String
+    let nick: String
+    let phoneNum: String
+    let birthDay: String
+    let profile: String? // ????
+}

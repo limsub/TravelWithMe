@@ -27,8 +27,8 @@ class SignUpSmallLabel: UILabel {
     }
     
     func setUpView() {
-        textColor = UIColor(hexCode: "938E8F")
-        font = .systemFont(ofSize: 14)
+        textColor = UIColor.appColor(.gray1)
+        font = .systemFont(ofSize: 12)
         textAlignment = .left
     }
 }

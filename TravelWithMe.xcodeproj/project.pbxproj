@@ -22,6 +22,7 @@
 		483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */; };
 		483748BD2B23DF4300CD1398 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */; };
 		483748BF2B23DF4900CD1398 /* ProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */; };
+		483748C22B23F08100CD1398 /* ProfileInfoContentLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748C12B23F08100CD1398 /* ProfileInfoContentLabel.swift */; };
 		484059572B1D909E006A8AAC /* DetailTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059562B1D909E006A8AAC /* DetailTourViewController.swift */; };
 		484059592B1D90A4006A8AAC /* DetailTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484059582B1D90A4006A8AAC /* DetailTourView.swift */; };
 		4840595B2B1D90AB006A8AAC /* DetailTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */; };
@@ -156,6 +157,7 @@
 		483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewModel.swift; sourceTree = "<group>"; };
+		483748C12B23F08100CD1398 /* ProfileInfoContentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoContentLabel.swift; sourceTree = "<group>"; };
 		484059562B1D909E006A8AAC /* DetailTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourViewController.swift; sourceTree = "<group>"; };
 		484059582B1D90A4006A8AAC /* DetailTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourView.swift; sourceTree = "<group>"; };
 		4840595A2B1D90AB006A8AAC /* DetailTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourViewModel.swift; sourceTree = "<group>"; };
@@ -376,6 +378,14 @@
 			path = ProfileInfo;
 			sourceTree = "<group>";
 		};
+		483748C02B23F06300CD1398 /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				483748C12B23F08100CD1398 /* ProfileInfoContentLabel.swift */,
+			);
+			path = ProfileInfo;
+			sourceTree = "<group>";
+		};
 		484059552B1D9090006A8AAC /* DetailTour */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,13 +484,13 @@
 		486732552B0CA3DA00BC24A4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				484711662B0E2B7600C68490 /* Error */,
 				4818C8CD2B105C4600BC8F02 /* ResultNetwork */,
 				486732562B0CA3E200BC24A4 /* APIKey.swift */,
 				4847115B2B0DD46A00C68490 /* APIModel.swift */,
 				484711692B0E2FF700C68490 /* Router.swift */,
 				48474C072B0F712A00B73261 /* RouterAPIManager.swift */,
 				48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */,
-				484711662B0E2B7600C68490 /* Error */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -751,6 +761,7 @@
 			isa = PBXGroup;
 			children = (
 				48F006C92B172A6400DB1FC1 /* ProfileModifyButton.swift */,
+				483748C02B23F06300CD1398 /* ProfileInfo */,
 				48AB63F02B233E6500EC9444 /* JoinedTour */,
 			);
 			path = Profile;
@@ -938,6 +949,7 @@
 				48AB63EB2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift in Sources */,
 				486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */,
 				487931B02B208FE100F567D5 /* StartTabBarViewController.swift in Sources */,
+				483748C22B23F08100CD1398 /* ProfileInfoContentLabel.swift in Sources */,
 				48F006C72B17241D00DB1FC1 /* ProfileTopView.swift in Sources */,
 				487786252B0B2A820091661F /* SignUpViewController.swift in Sources */,
 				48474C082B0F712A00B73261 /* RouterAPIManager.swift in Sources */,

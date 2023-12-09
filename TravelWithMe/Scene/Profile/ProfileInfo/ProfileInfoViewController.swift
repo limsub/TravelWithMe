@@ -19,6 +19,15 @@ class ProfileInfoViewController: BaseViewController {
         super.viewDidLoad()
         
         
-        mainView.backgroundColor = .blue
+//        mainView.backgroundColor = .blue
+        
+        
+        RouterAPIManager.shared.requestNormal(
+            type: LookProfileResponse.self,
+            error: LookProfileAPIError.self,
+            api: .lookMyProfile) { response in
+                print(" * === 프로필 조회 === * ")
+                print(response)
+            }
     }
 }
