@@ -67,4 +67,20 @@ extension UIView {
 //    }
     // => tableView로 수정 (섹션 헤더 넣을 때 더 편할 것 같음)
     
+    
+    // 프로필 - 팔로워 컬렉션뷰 셀 레이아웃
+    func createFollowerCollectionViewLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.itemSize = CGSize(width: 80, height: 100)
+        layout.scrollDirection = .horizontal
+        
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
+        
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        
+        return layout
+    }
+    
 }
