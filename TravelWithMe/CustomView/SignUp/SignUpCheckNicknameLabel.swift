@@ -23,7 +23,7 @@ class SignUpCheckNicknameLabel: UILabel {
     
     func setUpView() {
         textColor = UIColor(hexCode: "938E8F")
-        font = .systemFont(ofSize: 14)
+        font = .systemFont(ofSize: 12)
         textAlignment = .left
     }
     

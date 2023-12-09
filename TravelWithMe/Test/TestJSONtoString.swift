@@ -24,6 +24,13 @@ struct TourContent: Codable {
     let hashTags: String 
 }
 
+struct ProfileInfo: Codable {
+    let nick: String
+    let gender: Int // 0: female, 1: male
+    let birthday: String // .full
+    let introduce: String
+}
+
 func encodingStructToString<T: Codable>(sender: T) -> String? {
     do {
         let jsonData = try JSONEncoder().encode(sender)

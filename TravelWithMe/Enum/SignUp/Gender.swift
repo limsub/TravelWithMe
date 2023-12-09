@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Gender: Int {
+enum GenderType: Int {
     
     case nothing = -1
     case female = 0

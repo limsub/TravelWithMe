@@ -135,8 +135,8 @@ enum Router: URLRequestConvertible {
                 "email" : sender.email,
                 "password": sender.password,
                 "nick": sender.nick,
-                "phoneNum": sender.gender,
-                "birthDay": sender.birthDay
+//                "phoneNum": sender.gender,
+//                "birthDay": sender.birthDay
             ]
             
         case .login(let sender):

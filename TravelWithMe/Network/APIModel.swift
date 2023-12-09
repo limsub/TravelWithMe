@@ -8,6 +8,7 @@
 import Foundation
 //import UIKit    // file 저장을 [UIImage]..
 
+
 /* ===== 이메일 중복 확인 ===== */
 struct ValidEmailRequest: Encodable {
     let email: String
@@ -24,8 +25,8 @@ struct JoinRequest: Encodable {
     let email: String
     let password: String
     let nick: String
-    let gender: String
-    let birthDay: String
+//    let gender: String
+//    let birthDay: String
 }
 
 struct JoinResponse: Decodable {
@@ -180,7 +181,7 @@ struct LookProfileResponse: Decodable {
     let _id: String
     let email: String
     let nick: String
-    let phoneNum: String
-    let birthDay: String
+    let phoneNum: String?
+    let birthDay: String?
     let profile: String? // ????
 }

@@ -23,6 +23,8 @@ class SignUpViewModel: ViewModelType {
         let birthdayText: ControlProperty<String>
         let genderSelectedIndex: ControlProperty<Int>
         
+        let introduceText: ControlProperty<String>
+        
         let signUpButtonClicked: ControlEvent<Void>
     }
     
@@ -153,9 +155,17 @@ class SignUpViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
+        /* + 6. 소개 - 글이 작성되어있는지만 확인 */
+        let validIntroduceText = BehaviorSubject<Bool>(value: false)
+        input.introduceText
+            .subscribe(with: self) { owner , value in
+                validIntroduceText.onNext(!value.isEmpty)
+            }
+            .disposed(by: disposeBag)
+        
         
         /* 라스트. 회원가입 버튼 활성화 여부 */
-        let validSignUp =  Observable.combineLatest(validEmailFormat, validPWFormat, validNicknameFormat, validBirthdayFormat, validGenderSelected) { v1 , v2, v3, v4, v5  in
+        let validSignUp =  Observable.combineLatest(validEmailFormat, validPWFormat, validNicknameFormat, validBirthdayFormat, validGenderSelected, validIntroduceText) { v1 , v2, v3, v4, v5, v6  in
             
             // 모든 객체가 편집 시작해야 그때부터 작동됨
                 
@@ -164,32 +174,33 @@ class SignUpViewModel: ViewModelType {
             && (v3 == ValidNickname.available)
             && (v4 == ValidBirthday.available)
             && (v5 == 0 || v5 == 1)
+            && (v6 == true)
         }
         
         /* 찐 라스트. 회원가입 버튼 클릭 */
-        let signUpInfo = Observable.combineLatest(input.emailText, input.pwText, input.nicknameText, input.birthdayText, input.genderSelectedIndex)
+        let signUpInfo = Observable.combineLatest(input.emailText, input.pwText, input.nicknameText, input.birthdayText, input.genderSelectedIndex, input.introduceText)
         
         let resultSignUpClicked = PublishSubject<AttemptSignUp>()
         input.signUpButtonClicked
             .withLatestFrom(signUpInfo)
-//            .flatMap { value in
-//                APIManager.shared.requestJoin(
-//                    JoinRequest(
-//                        email: value.0,
-//                        password: value.1,
-//                        nick: value.2,
-//                        gender: Gender(rawValue: value.4)!.description,
-//                        birthDay: value.3
-//                    )
-//                )
-//            }
             .flatMap { value in
-                RouterAPIManager.shared.request(
+                
+                let nickStruct = ProfileInfo(
+                    nick: value.2,
+                    gender: value.4,
+                    birthday: value.3,
+                    introduce: value.5
+                )
+                let nickString = encodingStructToString(sender: nickStruct) ?? ""
+                
+                
+                return RouterAPIManager.shared.request(
                     type: JoinResponse.self,
                     error: JoinAPIError.self,
                     api: .join(
                         sender: JoinRequest(
-                            email: value.0, password: value.1, nick: value.2, gender: Gender(rawValue: value.4)!.description, birthDay: value.3))
+                            email: value.0, password: value.1, nick: nickString)
+                    )
                 )
             }
             .map { response in

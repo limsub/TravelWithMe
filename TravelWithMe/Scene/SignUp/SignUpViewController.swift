@@ -75,6 +75,8 @@ class SignUpViewController: BaseViewController {
             birthdayText: mainView.birthdayTextField.rx.text.orEmpty,
             genderSelectedIndex: mainView.genderSelectSegmentControl.rx.selectedSegmentIndex,
             
+            introduceText: mainView.introduceTextView.rx.text.orEmpty,
+            
             signUpButtonClicked: mainView.completeButton.rx.tap
         )
         
