@@ -32,38 +32,58 @@ class MakeReviewViewController: BaseViewController {
     
     
     func settingCategoryButtons() {
-        mainView.reviewCategoryButtons.forEach { item in
+        
+        for (index, item) in mainView.reviewCategoryButtons.enumerated() {
+            
             item.rx.tap
                 .subscribe(with: self) { owner , _ in
-
-                    if (!item.isSelected) {
-                        if  (owner.viewModel.selectedButtonCnt < 3)  {
-                            // 선택
-                            item.isSelected = true
-                            owner.viewModel.selectedButtonCnt += 1
+                    do {
+                        var arr = try owner.viewModel.selectedButtonIndex.value()
+                        
+                        if !item.isSelected {
+                            if arr.count < 3 {
+                                item.isSelected = true
+                                
+                                arr.append(index)
+                                arr.sort()
+                                owner.viewModel.selectedButtonIndex.onNext(arr)
+                            }
                         }
+                        else {
+                            item.isSelected = false
+                            arr = arr.filter { $0 != index }
+                            arr.sort()
+                            owner.viewModel.selectedButtonIndex.onNext(arr)
+                        }
+                        
+                    } catch {
+                        print("에러났슈")
                     }
-                    else {
-                        // 선택 해제
-                        item.isSelected = false
-                        owner.viewModel.selectedButtonCnt -= 1
-                    }
-                    
-                    print(owner.viewModel.selectedButtonCnt)
-                    
                 }
                 .disposed(by: disposeBag)
         }
+    
     }
     
     func bind() {
         let input = MakeReviewViewModel.Input(
-            reviewCategoryButtons: mainView.reviewCategoryButtons.map { $0.rx.isSelected },
+            reviewTextViewText: mainView.writingReviewTextView.rx.text.orEmpty,
             completeButtonClicked: mainView.completeButton.rx.tap
         )
         
         let output = viewModel.tranform(input)
         
+        
+        output.enabledCompleteButton
+            .subscribe(with: self) { owner , value in
+                
+
+                owner.mainView.completeButton.update(
+                    value ? .enabled : .disabled
+                )
+                
+            }
+            .disposed(by: disposeBag)
         
     }
 }

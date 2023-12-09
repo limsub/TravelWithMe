@@ -19,7 +19,7 @@ class ReviewCategoryButton: UIButton {
         self.init()
         
      
-        setTitle(reviewCategoryType.rawValue, for: .normal)
+        setTitle(reviewCategoryType.buttonTitle, for: .normal)
     }
     
     required init?(coder: NSCoder) {

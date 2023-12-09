@@ -15,20 +15,29 @@ class MakeReviewViewModel: ViewModelType {
     
     var selectedButtonCnt = 0
     
+    var selectedButtonIndex = BehaviorSubject<[Int]>(value: [])
+    
+    
     struct Input {
-        let reviewCategoryButtons: [ControlProperty<Bool>]  // 총 10개 들어옴.
+        let reviewTextViewText: ControlProperty<String>
+        
         let completeButtonClicked: ControlEvent<Void>
     }
     struct Output {
-//        let enabledCompleteButton: Observable<Bool>
+        let enabledCompleteButton: Observable<Bool>
         let completeButtonClicked: ControlEvent<Void>
     }
     func tranform(_ input: Input) -> Output {
     
         
-//        let enabledCompleteButton = Observable.combineLatest(<#T##collection: Collection##Collection#>)
+        let enabledCompleteButton = Observable.combineLatest(selectedButtonIndex, input.reviewTextViewText) { v1, v2 in
+            
+            return v1.count > 0 && !v2.isEmpty
+        }
+        
         
         return Output(
+            enabledCompleteButton: enabledCompleteButton,
             completeButtonClicked: input.completeButtonClicked
         )
     }
