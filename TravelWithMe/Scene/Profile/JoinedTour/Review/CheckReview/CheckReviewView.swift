@@ -50,7 +50,7 @@ class CheckReviewView: BaseView {
         
         checkReviewTableView.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalTo(self)
-            make.top.equalTo(tourView.snp.bottom)
+            make.top.equalTo(tourView.snp.bottom).offset(5)
 //            make.edges.equalTo(self.safeAreaLayoutGuide)
         }
     }

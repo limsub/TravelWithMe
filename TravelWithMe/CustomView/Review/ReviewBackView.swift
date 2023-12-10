@@ -23,8 +23,10 @@ class ReviewNotMeBackView: UIView {
         let w = rect.width
         let h = rect.height
         
+        UIColor.appColor(.disabledGray2).setFill()
+//        UIColor.lightGray.withAlphaComponent(0.5).setFill()
+        
         let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: w, height: h - 10), cornerRadius: 20)
-        UIColor.blue.setFill()
         
         path.lineWidth = 0
         
@@ -58,8 +60,10 @@ class ReviewForMeBackView: UIView {
         let w = rect.width
         let h = rect.height
         
+//        UIColor.appColor(.main5).setFill()
+        UIColor.appColor(.main3).setFill()
+        
         let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: w, height: h - 10), cornerRadius: 20)
-        UIColor.blue.setFill()
         
         path.lineWidth = 0
         

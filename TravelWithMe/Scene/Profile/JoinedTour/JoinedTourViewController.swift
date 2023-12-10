@@ -130,6 +130,7 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
                 print("이미 후기를 작성했습니다. 후기 확인 화면으로 전환합니다")
                 
                 let vc = CheckReviewViewController()
+                vc.viewModel.tourItem = tourItem
                 navigationController?.pushViewController(vc, animated: true)
                 
             }

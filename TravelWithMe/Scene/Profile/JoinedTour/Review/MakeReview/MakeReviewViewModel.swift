@@ -18,9 +18,6 @@ class MakeReviewViewModel: ViewModelType {
     // 값전달로 받는 투어 정보
     var tourItem: Datum?
     
-    let tourId = "657507aae67e979795cfc1a1"
-    
-    
     
     let disposeBag = DisposeBag()
     

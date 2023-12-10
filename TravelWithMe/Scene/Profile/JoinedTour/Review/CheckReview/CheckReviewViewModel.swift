@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+class CheckReviewViewModel {
+    
+    var tourItem: Datum? = nil
+    
+    
+    
+    
+    
+}

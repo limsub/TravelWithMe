@@ -10,6 +10,7 @@ import Foundation
 enum DateFormatType: String {
     
     case full = "yyyyMMdd"
+    case fullWithDot = "yyyy. MM. dd"
     case monthSlashDay = "M/d"
     case yearMonthDaySlash = "yy/M/d"
     
@@ -21,6 +22,9 @@ enum DateFormatType: String {
     case day = "d"
     
     case koreanFullString = "yyyy년 M월 d일"
+    
+    case serverStyle = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    
 }
 
 
