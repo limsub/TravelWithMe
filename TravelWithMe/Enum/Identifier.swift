@@ -10,4 +10,6 @@ import Foundation
 enum Identifier: String {
     case profileInfoFollowerCollectionView
     case profileInfoFollowingCollectionView
+    
+    case checkReviewTableView
 }

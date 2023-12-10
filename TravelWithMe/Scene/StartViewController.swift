@@ -17,6 +17,7 @@ class StartViewController: BaseViewController {
     let button5 = UIButton()
     let button6 = UIButton()
     let button7 = UIButton()
+    let button8 = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class StartViewController: BaseViewController {
         
    
         
-        [button1, button2, button3, button4, button5, button6, button7].forEach { item in
+        [button1, button2, button3, button4, button5, button6, button7, button8].forEach { item in
             view.addSubview(item)
             item.backgroundColor = .gray
         }
@@ -65,6 +66,11 @@ class StartViewController: BaseViewController {
             make.leading.equalTo(button1.snp.trailing).offset(20)
             make.top.equalTo(button1)
         }
+        button8.snp.makeConstraints { make in
+            make.size.equalTo(60)
+            make.leading.equalTo(button7)
+            make.top.equalTo(button7.snp.bottom).offset(50)
+        }
         
         button1.addTarget(self, action: #selector(button1Clicked), for: .touchUpInside)
         button2.addTarget(self, action: #selector(button2Clicked), for: .touchUpInside)
@@ -73,6 +79,7 @@ class StartViewController: BaseViewController {
         button5.addTarget(self , action: #selector(button5Clicked), for: .touchUpInside)
         button6.addTarget(self , action: #selector(button6Clicked), for: .touchUpInside)
         button7.addTarget(self , action: #selector(button7Clicked), for: .touchUpInside)
+        button8.addTarget(self , action: #selector(button8Clicked), for: .touchUpInside)
     }
     
     @objc
@@ -109,6 +116,11 @@ class StartViewController: BaseViewController {
     @objc
     func button7Clicked() {
         let vc = MakeReviewViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc
+    func button8Clicked() {
+        let vc = CheckReviewViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -130,6 +130,7 @@
 		48ADEE3A2B1892C500B1B95E /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE392B1892C500B1B95E /* UIButton+Extension.swift */; };
 		48ADEE3C2B189D4700B1B95E /* Reactive+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE3B2B189D4700B1B95E /* Reactive+Extension.swift */; };
 		48ADEE3E2B18A23000B1B95E /* TourCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */; };
+		48B239C72B2549D600D558F1 /* CheckReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B239C62B2549D600D558F1 /* CheckReviewTableViewCell.swift */; };
 		48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */; };
 		48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC092B1452FB00AD854F /* KeychainStorage.swift */; };
 		48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */; };
@@ -270,6 +271,7 @@
 		48ADEE392B1892C500B1B95E /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		48ADEE3B2B189D4700B1B95E /* Reactive+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+Extension.swift"; sourceTree = "<group>"; };
 		48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCategoryType.swift; sourceTree = "<group>"; };
+		48B239C62B2549D600D558F1 /* CheckReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckReviewTableViewCell.swift; sourceTree = "<group>"; };
 		48B7CC092B1452FB00AD854F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
 		48B7CC0E2B14835500AD854F /* ContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewController.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 			children = (
 				48AB63E02B22D47A00EC9444 /* SelectLocationTableViewCell.swift */,
 				48AB63E62B2300C300EC9444 /* JoinedTourTableViewCell.swift */,
+				48B239C62B2549D600D558F1 /* CheckReviewTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 				48B7CC1A2B14C82600AD854F /* ContentsProfileImageView.swift in Sources */,
 				480443022B18132800E5C70B /* CALayer+Extension.swift in Sources */,
 				4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */,
+				48B239C72B2549D600D558F1 /* CheckReviewTableViewCell.swift in Sources */,
 				485321F92B21DCBD006D0930 /* ApplicantViewController.swift in Sources */,
 				48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
