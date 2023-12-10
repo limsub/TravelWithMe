@@ -7,16 +7,20 @@
 
 import UIKit
 
-enum profileButtonType {
+enum ProfileButtonType {
     case modify
     case follow
+    case unfollow
     
     var buttonTitle: String {
         switch self {
         case .modify:
             return "수정하기"
         case .follow:
-            return "팔로우"    // 이미 팔로우 했으면 "팔로잉"으로 바꾸기
+            return "팔로우"
+        case .unfollow:
+            return "언팔로우"
+            
         }
     }
 }
@@ -47,6 +51,11 @@ class ProfileModifyButton: UIButton {
         backgroundColor = UIColor.appColor(.main4)
         setTitleColor(UIColor.appColor(.main1), for: .normal)
 
+    }
+    
+    func updateButton(_ userType: UserType) {
+        
+        setTitle(userType.profileButtonType.buttonTitle, for: .normal)
     }
     
 }

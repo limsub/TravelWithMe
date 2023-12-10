@@ -135,7 +135,7 @@ class ProfileInfoView: BaseView {
     }
     
     func updateView(_ sender: LookProfileResponse) {
-        
+
         if let infoStruct = decodingStringToStruct(type: ProfileInfo.self, sender: sender.nick) {
             
             introduceContentLabel.text = infoStruct.introduce

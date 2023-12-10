@@ -170,7 +170,7 @@ class ContentsViewModel: ViewModelType {
             .subscribe(with: self) { owner , value in
                 nextTourInfo.onNext(value.1[value.0.item])
                 
-                print("넥스트 투어 인포 : \(value.1[value.0.item])")
+//                print("넥스트 투어 인포 : \(value.1[value.0.item])")
             }
             .disposed(by: disposeBag)
         

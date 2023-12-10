@@ -74,12 +74,25 @@ class DetailTourViewController: BaseViewController {
         // 1. 여행 제작자 프로필 화면으로 이동
         output.goToProfileButtonClicked
             .subscribe(with: self) { owner , _ in
-                let vc = ProfileViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+                print("프로필 화면으로 이동. 나의 프로필인지 남의 프로필인지 체크")
                 
-//                let vc = ApplicantViewController()
-//                vc.modalPresentationStyle = .overFullScreen
-//                owner.present(vc, animated: true)
+                if owner.viewModel.tourItem.creator._id == KeychainStorage.shared._id {
+                    print(" -> 나의 프로필 화면으로 이동합니다")
+                    let vc = ProfileViewController()
+                    vc.viewModel.userType = .me
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                    
+                } else {
+                    let vc = ProfileViewController()
+                    vc.viewModel.userType = .other(userId: owner.viewModel.tourItem.creator._id, isFollowing: false)
+                    // (isFollowing: false) 일단 모르니까 false로 전달하고, DetailView에서 직접 네트워크 콜 해서 확인할 예정
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                    print(" -> 남의 프로필 화면으로 이동합니다")
+                }
+                
+//                let vc = ProfileViewController()
+//                owner.navigationController?.pushViewController(vc, animated: true)
+                
             }
             .disposed(by: disposeBag)
         

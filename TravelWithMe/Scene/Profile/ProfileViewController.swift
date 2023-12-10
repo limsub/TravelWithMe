@@ -54,13 +54,43 @@ class ProfileViewController: TabmanViewController {
         }
     }
     
+    
+    
     // 1. profileView 적용. 2. profileInfoVC의 뷰모델에 전달
     func fetchProfileInfo() {
+
         viewModel.fetchData { [weak self] response  in
             switch response {
             case .success(let result):
-                self?.settingDataProfileTopView(result)
+                
+                /* == 프로필 관련 (topView, infoVC) 데이터는 여기서 정리해서 뷰에 반영한다 ==*/
+                print("프로필 정보 뷰에 반영")
+//                print(result)
+                // 1. 내 프로필
+                if self?.viewModel.userType == .me {
+                    print("- 내 프로필")
+                    self?.settingDataProfileTopView(result, userType: .me)
+                }
+                // 2. 남 프로필
+                else {
+                    print("- 남 프로필")
+                    self?.viewModel.checkFollowOrNot(result._id, completionHandler: { value in
+                        if value {
+                            print("애 팔로우 함")
+                            self?.settingDataProfileTopView(result, userType: .other(userId: result._id, isFollowing: true))
+                            
+                        } else {
+                            print("얘 팔로우 안함")
+                            self?.settingDataProfileTopView(result, userType: .other(userId: result._id, isFollowing: false))
+                            
+                        }
+                    })
+                    
+                }
+                
+                // info View는 받는 데이터가 동일하다
                 self?.settingDataProfileInfoView(result)
+                
             case .failure(let error):
                 // 1. 공통 에러
                 if let commonError = error as? CommonAPIError {
@@ -86,10 +116,10 @@ class ProfileViewController: TabmanViewController {
         }
     }
     
-    func settingDataProfileTopView(_ result: LookProfileResponse) {
-        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: result.nick) {
-            profileView.nameLabel.text = nickStruct.nick
-        }
+    // topView는 직접 업데이트, infoVC에는 VM에 전달 후, infoVC 업데이트 실행
+    func settingDataProfileTopView(_ result: LookProfileResponse, userType: UserType) {
+        // 얘가 profileTopView임
+        profileView.updateProfileTopView(result, userType: userType)
     }
     func settingDataProfileInfoView(_ result: LookProfileResponse) {
         profileInfoVC.viewModel.profileInfoData = result

@@ -32,7 +32,9 @@ enum Router: URLRequestConvertible {
     
     case likePost(idStruct: LikePostRequest)
     
-    case lookMyProfile
+//    case lookMyProfile
+    
+    case lookProfile(usetType: UserType)
     
     case makeReview(sender: MakeReviewRequest, postID: String)
 
@@ -75,8 +77,16 @@ enum Router: URLRequestConvertible {
         case .likePost(let idStruct):
             return "/post/like/\(idStruct.id)"
             
-        case .lookMyProfile:
-            return "/profile/me"
+//        case .lookMyProfile:
+//            return "/profile/me"
+            
+        case .lookProfile(let userType):
+            switch userType {
+            case .me:
+                return "/profile/me"
+            case .other(let userId, _):
+                return "/profile/\(userId)"
+            }
             
         case .makeReview(_, let postID):
             return "/post/\(postID)/comment"
@@ -116,7 +126,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "application/json",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .lookPost, .deletePost, .likePost, .lookMyProfile, .imageDownload:
+        case .lookPost, .deletePost, .likePost, .lookProfile, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "SesacKey": SeSACAPI.subKey
@@ -128,7 +138,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .validEmail, .join, .login, .makePost, .likePost, .makeReview:
             return .post
-        case .refreshToken, .lookPost, .lookMyProfile, .imageDownload:
+        case .refreshToken, .lookPost, .lookProfile, .imageDownload:
             return .get
         case .deletePost:
             return .delete

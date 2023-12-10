@@ -50,6 +50,7 @@
 		485321F92B21DCBD006D0930 /* ApplicantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321F82B21DCBD006D0930 /* ApplicantViewController.swift */; };
 		485321FB2B21DCC2006D0930 /* ApplicantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321FA2B21DCC2006D0930 /* ApplicantView.swift */; };
 		485321FD2B21DCC7006D0930 /* ApplicantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485321FC2B21DCC7006D0930 /* ApplicantViewModel.swift */; };
+		485E48312B2586BE00A56025 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485E48302B2586BE00A56025 /* UserType.swift */; };
 		4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */; };
 		4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */; };
 		486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 486732412B0C8EA900BC24A4 /* RxCocoa */; };
@@ -145,7 +146,6 @@
 		48BCD9CE2B1E0EAD004E8838 /* DetailTourDotLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BCD9CD2B1E0EAD004E8838 /* DetailTourDotLineView.swift */; };
 		48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */; };
 		48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */; };
-		48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006BD2B17194400DB1FC1 /* ProfileView.swift */; };
 		48F006C02B17194C00DB1FC1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006BF2B17194C00DB1FC1 /* ProfileViewController.swift */; };
 		48F006C22B17195100DB1FC1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006C12B17195100DB1FC1 /* ProfileViewModel.swift */; };
 		48F006C72B17241D00DB1FC1 /* ProfileTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F006C62B17241D00DB1FC1 /* ProfileTopView.swift */; };
@@ -194,6 +194,7 @@
 		485321F82B21DCBD006D0930 /* ApplicantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantViewController.swift; sourceTree = "<group>"; };
 		485321FA2B21DCC2006D0930 /* ApplicantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantView.swift; sourceTree = "<group>"; };
 		485321FC2B21DCC7006D0930 /* ApplicantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantViewModel.swift; sourceTree = "<group>"; };
+		485E48302B2586BE00A56025 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		486732452B0C8EBD00BC24A4 /* BaseViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelType.swift; sourceTree = "<group>"; };
@@ -286,7 +287,6 @@
 		48BCD9CD2B1E0EAD004E8838 /* DetailTourDotLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTourDotLineView.swift; sourceTree = "<group>"; };
 		48F006B82B16F1B400DB1FC1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		48F006BA2B16F7E600DB1FC1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		48F006BD2B17194400DB1FC1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		48F006BF2B17194C00DB1FC1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		48F006C12B17195100DB1FC1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		48F006C62B17241D00DB1FC1 /* ProfileTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTopView.swift; sourceTree = "<group>"; };
@@ -788,6 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				48AB63F42B233EA100EC9444 /* JoinedTour */,
+				485E48302B2586BE00A56025 /* UserType.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -833,7 +834,6 @@
 		48F006BC2B17193600DB1FC1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				48F006BD2B17194400DB1FC1 /* ProfileView.swift */,
 				48F006BF2B17194C00DB1FC1 /* ProfileViewController.swift */,
 				48F006C12B17195100DB1FC1 /* ProfileViewModel.swift */,
 				48F006C62B17241D00DB1FC1 /* ProfileTopView.swift */,
@@ -1034,7 +1034,6 @@
 				4847115C2B0DD46A00C68490 /* APIModel.swift in Sources */,
 				48B239C72B2549D600D558F1 /* CheckReviewTableViewCell.swift in Sources */,
 				485321F92B21DCBD006D0930 /* ApplicantViewController.swift in Sources */,
-				48F006BE2B17194400DB1FC1 /* ProfileView.swift in Sources */,
 				4877864B2B0B4B110091661F /* MakeTourPeopleCountView.swift in Sources */,
 				4840595D2B1D9703006A8AAC /* DetailTourSwipeImageCollectionViewCell.swift in Sources */,
 				48AB63E92B2304F500EC9444 /* JoinedTourView.swift in Sources */,
@@ -1042,6 +1041,7 @@
 				48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */,
 				48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */,
 				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
+				485E48312B2586BE00A56025 /* UserType.swift in Sources */,
 				48AB63EB2B23095B00EC9444 /* JoinedTourTableViewHeaderView.swift in Sources */,
 				486AA0132B13065200CB5179 /* MakeTourPriceView.swift in Sources */,
 				487931B02B208FE100F567D5 /* StartTabBarViewController.swift in Sources */,

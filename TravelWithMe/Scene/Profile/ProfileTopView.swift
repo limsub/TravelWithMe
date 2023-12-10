@@ -133,4 +133,18 @@ class ProfileTopView: BaseView {
         nameLabel.text = "이름"
         nameLabel.textAlignment = .center
     }
+    
+    func updateProfileTopView(_ result: LookProfileResponse, userType: UserType) {
+        
+        // 프로필 이미지뷰
+        profileImageView
+        
+        // 닉네임 넣어주기
+        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: result.nick) {
+            nameLabel.text = nickStruct.nick
+        }
+        
+        // 버튼 수정
+        modifyButton.updateButton(userType)
+    }
 }

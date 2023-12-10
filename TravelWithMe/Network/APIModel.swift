@@ -182,14 +182,14 @@ struct LikePostResponse: Decodable {
 }
 
 
-/* === (내) 프로필 조회 === */
+/* === 내(x) 모두 프로필 조회 === */
 
 struct LookProfileResponse: Decodable {
     let posts: [String]
-    let followers: [String]
-    let following: [String]
+    let followers: [Creator]
+    let following: [Creator]
     let _id: String
-    let email: String
+    let email: String?
     let nick: String
     let phoneNum: String?
     let birthDay: String?
