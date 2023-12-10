@@ -35,6 +35,8 @@ class ProfileViewController: TabmanViewController {
         
         settingCustomBarView()
         settingTabman()
+        
+        settingDataTabman()
     }
     
     // BaseVC를 상속하지 않아서, 따로 만든다
@@ -53,7 +55,6 @@ class ProfileViewController: TabmanViewController {
             make.height.equalTo(50)
         }
     }
-    
     
     
     // 1. profileView 적용. 2. profileInfoVC의 뷰모델에 전달
@@ -91,6 +92,9 @@ class ProfileViewController: TabmanViewController {
                 // info View는 받는 데이터가 동일하다
                 self?.settingDataProfileInfoView(result)
                 
+                // myTourView에 데이터 새로 로드되게 하기
+                self?.settingDataMyTourView(result)
+                
             case .failure(let error):
                 // 1. 공통 에러
                 if let commonError = error as? CommonAPIError {
@@ -125,6 +129,10 @@ class ProfileViewController: TabmanViewController {
         profileInfoVC.viewModel.profileInfoData = result
         profileInfoVC.updateView()
     }
+    func settingDataMyTourView(_ result: LookProfileResponse) {
+        myTourVC.viewModel.userId = result._id
+        myTourVC.viewModel.nextCursor.onNext("")
+    }
     
     
     func settingCustomBarView() {
@@ -156,7 +164,15 @@ class ProfileViewController: TabmanViewController {
         
         addBar(bar, dataSource: self, at: .custom(view: customBarView, layout: nil))
     }
-
+    
+    func settingDataTabman() {
+        
+        if viewModel.userType != .me {
+            VCs = VCs.filter { $0 != joinedTourVC }
+            
+            self.reloadData()
+        }
+    }
 }
 
 extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSource {
@@ -174,16 +190,31 @@ extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSourc
     }
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-        switch index {
-        case 0:
-            return TMBarItem(title: "만든거")
-        case 1:
-            return TMBarItem(title: "신청한거")
-        case 2:
-            return TMBarItem(title: "정보")
-        default:
-            return TMBarItem(title: "")
+        
+        if viewModel.userType == .me {
+            switch index {
+            case 0:
+                return TMBarItem(title: "만든거")
+            case 1:
+                return TMBarItem(title: "신청한거")
+            case 2:
+                return TMBarItem(title: "정보")
+            default:
+                return TMBarItem(title: "")
+            }
+            
+        } else {
+            switch index {
+            case 0:
+                return TMBarItem(title: "만든거")
+            case 1:
+                return TMBarItem(title: "정보")
+            default:
+                return TMBarItem(title: "")
+            }
         }
+        
+        
     }
 }
 

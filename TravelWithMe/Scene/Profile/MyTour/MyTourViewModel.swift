@@ -20,6 +20,8 @@ class MyTourViewModel: ViewModelType {
     
     let tourItems = BehaviorSubject<[Datum]>(value: [])
     
+    var userId: String  = ""
+    
 
     struct Input {
         let a: String
@@ -45,7 +47,7 @@ class MyTourViewModel: ViewModelType {
                     error: LookPostAPIError.self ,
                     api: .lookPost(
                         query: LookPostQueryString(next: $0, limit: "10"),
-                        userId: KeychainStorage.shared._id
+                        userId: self.userId
 //                        likePost: true
                     )
                 )
