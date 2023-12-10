@@ -90,5 +90,29 @@ class ReviewSmallTourView: BaseView {
         self.layer.masksToBounds = false
     }
     
+    func setUp(_ sender: Datum) {
+        // 1. imageView
+        if !sender.image.isEmpty {
+            let imageEndString = sender.image[0]
+            tourImageView.loadImage(endURLString: imageEndString)
+        } else {
+            print("===== 이미지 배열이 비어서 보여줄 썸네일이 없다!!")
+        }
+        
+        // 2. tourTitle
+        tourNameLabel.text = sender.title ?? ""
+        
+        // 3. tourMaxPeopleView
+        let maxCnt = Int(sender.maxPeopleCnt ?? "0") ?? 0
+        tourMaxPeopleView.setUp(.maxPeople(cnt: maxCnt))
+        
+        // 4. tourDateView
+        let dates = decodingStringToStruct(
+            type: TourDates.self,
+            sender: sender.dates
+        )
+        tourDatesView.setUp(.tourDates(dates: dates?.dates ?? []))
+    }
+    
     
 }

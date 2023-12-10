@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ReloadJoinedTourTableViewProtocol {
-    func reloadItem(indexPath: IndexPath)
+    func reloadItem()
 }
 
 class JoinedTourViewController: BaseViewController {
@@ -139,7 +139,8 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
                 print("아직 후기를 작성하지 않았습니다. 후기 작성 화면으로 전환합니다")
                 
                 let vc = MakeReviewViewController()
-                vc.viewModel.tourItemIndexPath = indexPath
+                vc.viewModel.tourItem = tourItem
+//                vc.viewModel.tourItemIndexPath = indexPath
                 vc.delegate = self
                 navigationController?.pushViewController(vc, animated: true)
                 
@@ -169,9 +170,8 @@ extension JoinedTourViewController: ReloadJoinedTourTableViewProtocol {
     // 원래 reloadItem을 하려고 했는데, 어차피 네트워크 통신이 이루어지지 않기 때문에 여기서는 데이터의 변화가 없다
     // 그냥 네트워크 통신을 새로 받는 걸로 한다
     
-    func reloadItem(indexPath: IndexPath) {
+    func reloadItem() {
         callRequest()
-//        mainView.joinedTourTableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     

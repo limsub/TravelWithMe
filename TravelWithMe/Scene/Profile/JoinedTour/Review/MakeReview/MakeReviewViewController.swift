@@ -30,6 +30,13 @@ class MakeReviewViewController: BaseViewController {
         
         settingCategoryButtons()
         bind()
+        
+        settingView()
+    }
+    
+    func settingView() {
+        guard let tourItem = viewModel.tourItem else  { return }
+        mainView.tourView.setUp(tourItem)
     }
     
     
@@ -81,7 +88,7 @@ class MakeReviewViewController: BaseViewController {
                 switch value {
                 case .success(let result):
                     print("-- (VC) 성공! 화면 뒤로 백 해주고, 이전 화면 JoinedTourReload indexPath reload")
-                    owner.delegate?.reloadItem(indexPath: owner.viewModel.tourItemIndexPath)
+                    owner.delegate?.reloadItem()
                     owner.navigationController?.popViewController(animated: true)
                 default:
                     print("-- (VC) 실패! 아직 예외처리 안했다. 추후 예정")

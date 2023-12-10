@@ -15,6 +15,13 @@ class MakeReviewViewModel: ViewModelType {
     // 리뷰 성공 시 이전 화면 item reload를 위한 indexPath
     var tourItemIndexPath = IndexPath(row: 0, section: 0)
     
+    // 값전달로 받는 투어 정보
+    var tourItem: Datum?
+    
+    let tourId = "657507aae67e979795cfc1a1"
+    
+    
+    
     let disposeBag = DisposeBag()
     
     var selectedButtonCnt = 0
@@ -23,7 +30,7 @@ class MakeReviewViewModel: ViewModelType {
     
     
     
-    let tourId = "657507aae67e979795cfc1a1"
+    
     
     
     struct Input {
@@ -65,7 +72,7 @@ class MakeReviewViewModel: ViewModelType {
                     error: MakeReviewAPIError.self,
                     api: .makeReview(
                         sender: MakeReviewRequest(content: value),
-                        postID: self.tourId
+                        postID: self.tourItem?.id ?? ""
                     )
                 )
                 
