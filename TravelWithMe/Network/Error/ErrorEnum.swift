@@ -288,4 +288,26 @@ enum LookProfileAPIError: Int, APIError {
     }
 }
 
-
+/* === 댓글 작성 === */
+enum MakeReviewAPIError: Int, APIError {
+    case invalidRequest = 400
+    case invalidToken = 401
+    case forbidden = 403
+    case postNotFound = 410
+    case tokenExpired = 419
+    
+    var description: String {
+        switch self {
+        case .invalidRequest:
+            return "필수값이 누락되었습니다"
+        case .invalidToken:
+            return "유효하지 않은 액세스 토큰입니다"
+        case .forbidden:
+            return "접근 권한이 없습니다"
+        case .postNotFound:
+            return "게시글을 찾을 수 없습니다"
+        case .tokenExpired:
+            return "액세스 토큰이 만료되었습니다"
+        }
+    }
+}

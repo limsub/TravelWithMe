@@ -33,6 +33,8 @@ enum Router: URLRequestConvertible {
     case likePost(idStruct: LikePostRequest)
     
     case lookMyProfile
+    
+    case makeReview(sender: MakeReviewRequest, postID: String)
 
 //    case lookLikePost
     
@@ -76,6 +78,9 @@ enum Router: URLRequestConvertible {
         case .lookMyProfile:
             return "/profile/me"
             
+        case .makeReview(_, let postID):
+            return "/post/\(postID)/comment"
+            
             
         case .imageDownload(let urlString):
             return "/" + urlString
@@ -105,6 +110,12 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
+        case .makeReview:
+            return [
+                "Authorization": KeychainStorage.shared.accessToken ?? "",
+                "Content-Type": "application/json",
+                "SesacKey": SeSACAPI.subKey
+            ]
         case .lookPost, .deletePost, .likePost, .lookMyProfile, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
@@ -115,7 +126,7 @@ enum Router: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .validEmail, .join, .login, .makePost, .likePost:
+        case .validEmail, .join, .login, .makePost, .likePost, .makeReview:
             return .post
         case .refreshToken, .lookPost, .lookMyProfile, .imageDownload:
             return .get
@@ -156,6 +167,10 @@ enum Router: URLRequestConvertible {
                 "content3": sender.maxPeopleCnt,
                 "content4": sender.tourPrice,
                 "content5": ""
+            ]
+        case .makeReview(let sender, _):
+            return [
+                "content": sender.content
             ]
         default:    // get인 경우, 빈 딕셔너리 리턴하고, asURLRequest에서 아예 분기처리
             return [:]

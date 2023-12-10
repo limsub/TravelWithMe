@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ReloadJoinedTourTableViewProtocol {
+    func reloadItem(indexPath: IndexPath)
+}
+
 class JoinedTourViewController: BaseViewController {
     
     let matrix = [[Int]](repeating: [Int](repeating: 0, count: 10), count: 4)
@@ -120,7 +124,7 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
             
             
             
-            // 1. 후기 작성 화면
+            // 1. 후기 확인 화면
             guard let self else { return }
             if self.checkAlreadyReviewed(tourItem.comments) {
                 print("이미 후기를 작성했습니다. 후기 확인 화면으로 전환합니다")
@@ -130,11 +134,13 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
                 
             }
             
-            // 2. 후기 확인 화면
+            // 2. 후기 작성 화면
             else {
                 print("아직 후기를 작성하지 않았습니다. 후기 작성 화면으로 전환합니다")
                 
                 let vc = MakeReviewViewController()
+                vc.viewModel.tourItemIndexPath = indexPath
+                vc.delegate = self
                 navigationController?.pushViewController(vc, animated: true)
                 
             }
@@ -153,11 +159,20 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
     func checkAlreadyReviewed(_ sender: [Comment]) -> Bool {
         
         return sender.contains { comment in
-            comment._id == KeychainStorage.shared._id
+            comment.creator._id == KeychainStorage.shared._id
         }
     }
+}
+
+
+extension JoinedTourViewController: ReloadJoinedTourTableViewProtocol {
+    // 원래 reloadItem을 하려고 했는데, 어차피 네트워크 통신이 이루어지지 않기 때문에 여기서는 데이터의 변화가 없다
+    // 그냥 네트워크 통신을 새로 받는 걸로 한다
     
-    
+    func reloadItem(indexPath: IndexPath) {
+        callRequest()
+//        mainView.joinedTourTableView.reloadRows(at: [indexPath], with: .automatic)
+    }
     
     
 }

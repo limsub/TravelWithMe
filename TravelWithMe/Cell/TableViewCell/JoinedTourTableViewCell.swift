@@ -223,7 +223,7 @@ class JoinedTourTableViewCell: BaseTableViewCell {
     func checkAlreadyReviewed(_ sender: [Comment]) -> Bool {
         
         return sender.contains { comment in
-            comment._id == KeychainStorage.shared._id
+            comment.creator._id == KeychainStorage.shared._id
         }
     }
 }

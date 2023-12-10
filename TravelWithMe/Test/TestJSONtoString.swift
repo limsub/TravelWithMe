@@ -31,6 +31,11 @@ struct ProfileInfo: Codable {
     let introduce: String
 }
 
+struct ReviewContent: Codable {
+    let categoryArr: [Int]
+    let content: String
+}
+
 func encodingStructToString<T: Codable>(sender: T) -> String? {
     do {
         let jsonData = try JSONEncoder().encode(sender)

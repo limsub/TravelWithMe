@@ -77,3 +77,10 @@ enum AttemptLookProfile {
 }
 
 
+/* === 댓글 작성 === */
+enum AttempMakeReview {
+    case success(result: MakeReviewResponse)
+    case commonError(error: CommonAPIError)
+    case makeReviewError(error: MakeReviewAPIError)
+    case refreshTokenError(error: RefreshTokenAPIError)
+}

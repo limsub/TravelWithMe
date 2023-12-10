@@ -15,6 +15,8 @@ class MakeReviewViewController: BaseViewController {
     let viewModel = MakeReviewViewModel()
     let disposeBag = DisposeBag()
     
+    var delegate: ReloadJoinedTourTableViewProtocol?
+    
     
     override func loadView() {
         self.view = mainView
@@ -72,6 +74,20 @@ class MakeReviewViewController: BaseViewController {
         )
         
         let output = viewModel.tranform(input)
+        
+        output.resultCompleteButtonClicked
+            .subscribe(with: self) { owner, value in
+                print("-- (VC) 결과 전달 받음")
+                switch value {
+                case .success(let result):
+                    print("-- (VC) 성공! 화면 뒤로 백 해주고, 이전 화면 JoinedTourReload indexPath reload")
+                    owner.delegate?.reloadItem(indexPath: owner.viewModel.tourItemIndexPath)
+                    owner.navigationController?.popViewController(animated: true)
+                default:
+                    print("-- (VC) 실패! 아직 예외처리 안했다. 추후 예정")
+                }
+                
+            }
         
         
         output.enabledCompleteButton

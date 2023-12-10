@@ -8,6 +8,7 @@
 import UIKit
 
 class MakeReviewView: BaseView {
+
     
     let tourView = ReviewSmallTourView()
     

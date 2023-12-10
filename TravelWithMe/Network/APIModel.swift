@@ -195,3 +195,16 @@ struct LookProfileResponse: Decodable {
     let birthDay: String?
     let profile: String? // ????
 }
+
+/* === 댓글 작성 === */
+struct MakeReviewRequest: Encodable {
+    let content: String
+}
+
+
+struct MakeReviewResponse: Decodable {  // Comment와 동일
+    let _id: String
+    let time: String
+    let content: String
+    let creator: Creator
+}
