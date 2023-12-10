@@ -131,6 +131,7 @@
 		48ADEE3C2B189D4700B1B95E /* Reactive+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE3B2B189D4700B1B95E /* Reactive+Extension.swift */; };
 		48ADEE3E2B18A23000B1B95E /* TourCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */; };
 		48B239C72B2549D600D558F1 /* CheckReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B239C62B2549D600D558F1 /* CheckReviewTableViewCell.swift */; };
+		48B239C92B2559CD00D558F1 /* ReviewBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B239C82B2559CD00D558F1 /* ReviewBackView.swift */; };
 		48B7CC072B1451FB00AD854F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 48B7CC062B1451FB00AD854F /* SwiftKeychainWrapper */; };
 		48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC092B1452FB00AD854F /* KeychainStorage.swift */; };
 		48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */; };
@@ -272,6 +273,7 @@
 		48ADEE3B2B189D4700B1B95E /* Reactive+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+Extension.swift"; sourceTree = "<group>"; };
 		48ADEE3D2B18A23000B1B95E /* TourCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCategoryType.swift; sourceTree = "<group>"; };
 		48B239C62B2549D600D558F1 /* CheckReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckReviewTableViewCell.swift; sourceTree = "<group>"; };
+		48B239C82B2559CD00D558F1 /* ReviewBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewBackView.swift; sourceTree = "<group>"; };
 		48B7CC092B1452FB00AD854F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		48B7CC0B2B145EDD00AD854F /* APIRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterceptor.swift; sourceTree = "<group>"; };
 		48B7CC0E2B14835500AD854F /* ContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewController.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 			children = (
 				489678652B24407A0098E0EB /* ReviewCategoryButton.swift */,
 				489678672B249B800098E0EB /* ReviewSmallTourView.swift */,
+				48B239C82B2559CD00D558F1 /* ReviewBackView.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 				487786382B0B32B10091661F /* UIColor+Extension.swift in Sources */,
 				4867324B2B0C938E00BC24A4 /* SignUpCheckEmailLabel.swift in Sources */,
 				48BCD9CE2B1E0EAD004E8838 /* DetailTourDotLineView.swift in Sources */,
+				48B239C92B2559CD00D558F1 /* ReviewBackView.swift in Sources */,
 				486A9FFD2B12BCC600CB5179 /* SelectDateViewController.swift in Sources */,
 				4840596A2B1E01BA006A8AAC /* DetailTourBottomView.swift in Sources */,
 				489678602B243E720098E0EB /* MakeReviewView.swift in Sources */,

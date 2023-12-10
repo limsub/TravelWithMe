@@ -20,7 +20,7 @@ class CheckReviewView: BaseView {
         
         view.showsVerticalScrollIndicator = false
         
-        view.estimatedRowHeight = 100
+        view.estimatedRowHeight = 60
         view.rowHeight = UITableView.automaticDimension
         
         view.contentInset = .zero

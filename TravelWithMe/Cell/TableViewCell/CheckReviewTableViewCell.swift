@@ -8,7 +8,13 @@
 import UIKit
 import SnapKit
 
+
+
+
 class CheckReviewTableViewCell: BaseTableViewCell {
+    
+    let backViewNotMe = ReviewNotMeBackView()
+    let backViewForMe = ReviewForMeBackView()
     
     let profileImageView = ContentsProfileImageView(frame: .zero)
     let profileNameLabel = {
@@ -36,7 +42,7 @@ class CheckReviewTableViewCell: BaseTableViewCell {
         view.numberOfLines = 0
         view.textAlignment = .left
         
-        view.text = ["안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일", "aaaaaaaaaaaaaaaaaaaaaaaaa", "bbbb", "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "d"].randomElement()!
+        view.text = ["안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일안녕하세요 도쿄 여행 3박 4일", "aaaaaaaaaaaaaaaaaaaaaaaaa", "bbbb", "cccc\nccccc\nccccccccccccccccccccccccc\nccc\nccccc\ncccccccccccc\ncccccccc\ncccccccccc\ncccccc", "d"].randomElement()!
         
         return view
     }()
@@ -58,6 +64,11 @@ class CheckReviewTableViewCell: BaseTableViewCell {
     override func setConfigure() {
         super.setConfigure()
         
+        [backViewForMe, backViewNotMe].forEach { item in
+            contentView.addSubview(item)
+            item.backgroundColor = .white
+        }
+        
         [profileImageView, profileNameLabel, seperateLineView, reviewCategoryCollectionView, reviewContentsLabel, reviewDateLabel].forEach { item in
             contentView.addSubview(item)
             item.backgroundColor = .red
@@ -67,11 +78,14 @@ class CheckReviewTableViewCell: BaseTableViewCell {
     override func setConstraints() {
         super.setConstraints()
         
+        
+        
         let padding = 18 + 5
         
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(20)
-            make.top.leading.equalTo(contentView).inset(padding)
+            make.top.equalTo(contentView).inset(5)
+            make.leading.equalTo(contentView).inset(padding)
         }
         profileNameLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
@@ -96,8 +110,19 @@ class CheckReviewTableViewCell: BaseTableViewCell {
         reviewDateLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView).inset(padding)
             make.top.equalTo(reviewContentsLabel.snp.bottom).offset(8)
-            make.bottom.equalTo(contentView).inset(5)
+//            make.bottom.equalTo(contentView).inset(15)
         }
+        
+        backViewNotMe.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentView).inset(18)
+            make.top.equalTo(profileImageView.snp.top).offset(-5)
+            make.bottom.equalTo(reviewDateLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(contentView).inset(10)
+        }
+        backViewForMe.snp.makeConstraints { make in
+            make.edges.equalTo(backViewNotMe)
+        }
+        backViewNotMe.isHidden = true
         
     }
     
