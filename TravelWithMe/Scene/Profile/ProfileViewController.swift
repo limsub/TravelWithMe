@@ -160,6 +160,10 @@ class ProfileViewController: TabmanViewController {
         switch viewModel.userType {
         case .me:
             print("수정하기 기능 넣어주기")
+            let vc = ModifyProfileViewController()
+            vc.viewModel.profileInfo = viewModel.profileData
+            navigationController?.pushViewController(vc, animated: true)
+            
         case .other(let _, let isFollowing):
             viewModel.followOrUnfollow(
                 follow: !isFollowing) { response in

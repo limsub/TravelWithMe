@@ -635,6 +635,7 @@
 				487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */,
 				4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */,
 				484059552B1D9090006A8AAC /* DetailTour */,
+				482278452B26D6F000E02264 /* ModifyProfile */,
 				48F006BC2B17193600DB1FC1 /* Profile */,
 				48B7CC0D2B1482DC00AD854F /* Contents */,
 				4826FF2D2B0B97D20077B2D1 /* Login */,
@@ -671,6 +672,7 @@
 			children = (
 				489678642B2440710098E0EB /* Review */,
 				484059642B1DAAAC006A8AAC /* DetailTour */,
+				4822784C2B26DF2200E02264 /* ModifyProfile */,
 				48F006C82B172A5300DB1FC1 /* Profile */,
 				48B7CC162B14C15000AD854F /* Contents */,
 				48F0A55F2B0F848900859828 /* Login */,
@@ -866,7 +868,6 @@
 				480442F92B18120B00E5C70B /* MyTour */,
 				480442FA2B18121200E5C70B /* JoinedTour */,
 				483748B92B23DF1300CD1398 /* ProfileInfo */,
-				482278452B26D6F000E02264 /* ModifyProfile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -877,7 +878,6 @@
 				48F006C92B172A6400DB1FC1 /* ProfileModifyButton.swift */,
 				483748C02B23F06300CD1398 /* ProfileInfo */,
 				48AB63F02B233E6500EC9444 /* JoinedTour */,
-				4822784C2B26DF2200E02264 /* ModifyProfile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

@@ -31,6 +31,11 @@ class ModifyProfileView: BaseView {
         view.tintColor = .black
         return view
     }()
+    let modifyProfileImageClearButton = {
+        let view = UIButton()
+        view.backgroundColor = .clear
+        return view
+    }()
     let nicknameTextField = SignUpTextField("닉네임을 입력해주세요")
     let birthdayTextField = SignUpTextField("YYYYMMDD")
     let genderSelectSegmentControl = SignUpGenderSegmentControl(items: ["여성", "남성"])
@@ -49,7 +54,7 @@ class ModifyProfileView: BaseView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [profileImageLabel, nicknameLabel, birthdayLabel, genderLabel, introduceLabel, profileImageView, smallCameraImageView, nicknameTextField, birthdayTextField, genderSelectSegmentControl, introduceTextView, checkNicknameLabel, checkBirthdayLabel, completeButton].forEach { item in
+        [profileImageLabel, nicknameLabel, birthdayLabel, genderLabel, introduceLabel, profileImageView, smallCameraImageView, modifyProfileImageClearButton,  nicknameTextField, birthdayTextField, genderSelectSegmentControl, introduceTextView, checkNicknameLabel, checkBirthdayLabel, completeButton].forEach { item in
             contentView.addSubview(item)
         }
     }
@@ -78,6 +83,9 @@ class ModifyProfileView: BaseView {
         smallCameraImageView.snp.makeConstraints { make in
             make.size.equalTo(30)
             make.bottom.trailing.equalTo(profileImageView)
+        }
+        modifyProfileImageClearButton.snp.makeConstraints { make in
+            make.edges.equalTo(profileImageView)
         }
         
         nicknameLabel.snp.makeConstraints { make in
@@ -142,6 +150,21 @@ class ModifyProfileView: BaseView {
     override func setting() {
         super.setting()
         
-        backgroundColor = .blue
+    }
+    
+    func initView(_ sender: LookProfileResponse) {
+        // imageView
+        if let profileImageUrl = sender.profile {
+            profileImageView.loadImage(endURLString: profileImageUrl)
+        }
+        
+        // nickname, birthday, gender, introduce
+        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: sender.nick) {
+            nicknameTextField.text = nickStruct.nick
+            birthdayTextField.text = nickStruct.birthday
+            genderSelectSegmentControl.selectedSegmentIndex = nickStruct.gender
+            introduceTextView.text = nickStruct.introduce
+        }
+
     }
 }
