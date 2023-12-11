@@ -51,4 +51,21 @@ class ProfileInfoFollowCollectionViewCell: BaseCollectionViewCell {
         }
         
     }
+    
+    func designCell(_ sender: Creator) {
+        
+        // imageView
+        if let imageUrl = sender.profile {
+            profileImageView.loadImage(endURLString: imageUrl)
+        } else {
+            print("-- 셀 디자인. 저장된 profile image 링크가 없기 때문에 기본 이미지 세팅")
+            profileImageView.image = UIImage(named: "sample")
+        }
+        
+        // name
+        if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: sender.nick) {
+            profileNameLabel.text = nickStruct.nick
+        }
+        
+    }
 }

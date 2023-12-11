@@ -82,7 +82,7 @@ class ContentsViewModel: ViewModelType {
                     type: LookPostResponse.self,
                     error: LookPostAPIError.self ,
                     api: .lookPost(
-                        query: LookPostQueryString(next: $0, limit: "10"),
+                        query: LookPostQueryString(next: $0, limit: "100"),
                         userId: nil,    // 모든 유저가 올린 포스트에 대한 검색임
                         hashTag: hashTagText
                     )

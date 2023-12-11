@@ -13,5 +13,7 @@ class ProfileInfoViewModel {
         posts: [], followers: [], following: [], _id: "", email: "", nick: "", phoneNum: nil, birthDay: nil, profile: nil
     )
     
+    
+    
 }
 

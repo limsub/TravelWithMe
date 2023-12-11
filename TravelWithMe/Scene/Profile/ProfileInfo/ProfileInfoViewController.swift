@@ -59,11 +59,13 @@ extension ProfileInfoViewController: UICollectionViewDataSource, UICollectionVie
         
         if checkFollowerCollectionView(collectionView) {
             // 팔로워
-            return 12 // viewModel.profileInfoData.followers.count
+            return viewModel.profileInfoData.followers.count
+//            return 12  viewModel.profileInfoData.followers.count
             
         } else {
             // 팔로잉
-            return 8 // viewModel.profileInfoData.following.count
+            return viewModel.profileInfoData.following.count
+//            return 8  viewModel.profileInfoData.following.count
             
         }
        
@@ -75,10 +77,14 @@ extension ProfileInfoViewController: UICollectionViewDataSource, UICollectionVie
             // 팔로워
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.profileInfoFollowerCollectionView.rawValue, for: indexPath) as? ProfileInfoFollowCollectionViewCell else { return UICollectionViewCell() }
             
+            cell.designCell(viewModel.profileInfoData.followers[indexPath.item])
+            
             return cell
         } else {
             // 팔로잉
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.profileInfoFollowingCollectionView.rawValue, for: indexPath) as? ProfileInfoFollowCollectionViewCell else { return UICollectionViewCell()}
+            
+            cell.designCell(viewModel.profileInfoData.following[indexPath.item])
             
             return cell
         }
