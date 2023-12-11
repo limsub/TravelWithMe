@@ -39,15 +39,49 @@ class ModifyProfileViewController: BaseViewController {
     
     // 수정 네트워크 콜이 200 나왓으면, delegate pattern 이용해서 이전 뷰컨(ProfileVC)에서 fetchData 시켜주자-> 프로필 정보 새로 받아서 뷰 업데이트함.
     func bind() {
+        
+        // 전달해준 값을 수정 안하고 그대로 쓸 수도 있기 때문에, 초기값과 변경값을 둘 다 반영하기 위함
+        let nick1 = mainView.nicknameTextField.rx.text.orEmpty
+        let nick2 = mainView.nicknameTextField.rx.observe(String.self, "text")
+        let nick = PublishSubject<String>()
+        
+        let birth1 = mainView.birthdayTextField.rx.text.orEmpty
+        let birth2 = mainView.birthdayTextField.rx.observe(String.self, "text")
+        let birth = PublishSubject<String>()
+        
+        let gender1 = mainView.genderSelectSegmentControl.rx.selectedSegmentIndex
+        let gender2 = mainView.genderSelectSegmentControl.rx.observe(Int.self, "selectedSegmentIndex")
+        let gender = PublishSubject<Int>()
+        
+        
+        nick1.subscribe(with: self) { owner , value in
+            nick.onNext(value)
+        }.disposed(by: disposeBag)
+        nick2.subscribe(with: self) { owner , value in
+            nick.onNext(value!)
+        }.disposed(by: disposeBag)
+        
+        birth1.subscribe(with: self) { owner , value in
+            birth.onNext(value)
+        }.disposed(by: disposeBag)
+        birth2.subscribe(with: self) { owner , value in
+            birth.onNext(value!)
+        }.disposed(by: disposeBag)
+        
+        gender1.subscribe(with: self) { owner , value in
+            gender.onNext(value)
+        }.disposed(by: disposeBag)
+        gender2.subscribe(with: self) { owner , value in
+            gender.onNext(value!)
+        }.disposed(by: disposeBag)
+        
+        
+        
         let input = ModifyProfileViewModel.Input(
-            firstNickName: mainView.nicknameTextField.rx.observe(String.self, "text"),
-            firstBirthday: mainView.birthdayTextField.rx.observe(String.self, "text"),
-            firstGender: mainView.genderSelectSegmentControl.rx.observe(Int.self, "selectedSegmentIndex"),
+            nicknameText: nick,
+            birthdayText: birth,
+            genderSelectedIndex: gender,
             
-            nicknameText:
-                mainView.nicknameTextField.rx.text.orEmpty,
-            birthdayText: mainView.birthdayTextField.rx.text.orEmpty,
-            genderSelectedIndex: mainView.genderSelectSegmentControl.rx.selectedSegmentIndex,
             introduceText: mainView.introduceTextView.rx.text.orEmpty,
             modifyButtonClicked: mainView.completeButton.rx.tap
         )

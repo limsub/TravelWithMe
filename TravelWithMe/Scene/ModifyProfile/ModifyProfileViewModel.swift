@@ -18,13 +18,13 @@ class ModifyProfileViewModel: ViewModelType {
     
     
     struct Input {
-        let firstNickName: Observable<String?>
-        let firstBirthday: Observable<String?>
-        let firstGender: Observable<Int?>
+//        let firstNickName: Observable<String?>
+//        let firstBirthday: Observable<String?>
+//        let firstGender: Observable<Int?>
         
-        let nicknameText: ControlProperty<String>
-        let birthdayText: ControlProperty<String>
-        let genderSelectedIndex: ControlProperty<Int>
+        let nicknameText: PublishSubject<String>
+        let birthdayText: PublishSubject<String>
+        let genderSelectedIndex: PublishSubject<Int>
         let introduceText: ControlProperty<String>
         
         let modifyButtonClicked: ControlEvent<Void>
@@ -41,11 +41,7 @@ class ModifyProfileViewModel: ViewModelType {
     
     func tranform(_ input: Input) -> Output {
         
-        var finalNickName: String
-        var finalBirthday: String
-        var finalGender: Int
-        var finalIntroduce: String
-        
+
         // 수정하러 들어왔기 때문에 기본적으로 맨 처음 값은 무조건 available, true이다
         // (textfield.rx.text는 포커스를 받았을 때만 이벤트를 방출하기 때문에 이렇게 하는걸로..)
         // -> textField.rx.observe(String.self, "text") 이용해야 한다..
@@ -111,55 +107,7 @@ class ModifyProfileViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        
-        // 초기값 대응
-        input.firstNickName
-            .map { text in
-                guard let text else { return ValidNickname.nothing }
-                if text.isEmpty {
-                    return ValidNickname.nothing
-                } else {
-                    if text.count < 2 || text.count > 6 {
-                        return ValidNickname.invalidLength
-                    } else {
-                        return ValidNickname.available
-                    }
-                }
-            }
-            .subscribe(with: self, onNext: { owner , value in
-                print("-- (first) validnickname \(value) ")
-                validNicknameFormat.onNext(value)
-            })
-            .disposed(by: disposeBag)
-        input.firstBirthday
-            .map { text in
-                guard let text else { return ValidBirthday.nothing }
-                if text.count == 0 {
-                    return ValidBirthday.nothing
-                } else {
-                    if !self.checkBirthdayFormat(text) {
-                        return ValidBirthday.invalidFormat
-                    } else {
-                        return ValidBirthday.available
-                    }
-                }
-            }
-            .subscribe(with: self) { owner , value in
-                print("-- (first) validbirthday \(value) ")
-                validBirthdayFormat.onNext(value)
-            }
-            .disposed(by: disposeBag)
-        input.firstGender
-            .subscribe(with: self) { owner , value in
-                
-                print("-- (first) validgender \(value) ")
-                validGenderSelected.onNext(value ?? -1)
-            }
-            .disposed(by: disposeBag)
-        
-        
-        
-        
+     
         // 버튼 enabled
         let enabledModifyButton = Observable.combineLatest(validNicknameFormat, validBirthdayFormat, validGenderSelected, validIntroduceText) { v1, v2, v3,  v4 in
             
