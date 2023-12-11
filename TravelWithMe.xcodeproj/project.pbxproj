@@ -19,6 +19,10 @@
 		481CCCB82B1F014C00B3B40F /* SelectDatesCustomCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481CCCB72B1F014C00B3B40F /* SelectDatesCustomCalendarCell.swift */; };
 		481CCCBB2B1F0E6E00B3B40F /* SelectedDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481CCCBA2B1F0E6E00B3B40F /* SelectedDateType.swift */; };
 		481CCCBD2B1F112400B3B40F /* ButtonEnabledType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481CCCBC2B1F112400B3B40F /* ButtonEnabledType.swift */; };
+		482278472B26D70F00E02264 /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482278462B26D70F00E02264 /* ModifyProfileViewController.swift */; };
+		482278492B26D71400E02264 /* ModifyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482278482B26D71400E02264 /* ModifyProfileView.swift */; };
+		4822784B2B26D71A00E02264 /* ModifyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4822784A2B26D71A00E02264 /* ModifyProfileViewModel.swift */; };
+		4822784E2B26DF3100E02264 /* ModifyProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4822784D2B26DF3100E02264 /* ModifyProfileImageView.swift */; };
 		483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */; };
 		483748BD2B23DF4300CD1398 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */; };
 		483748BF2B23DF4900CD1398 /* ProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */; };
@@ -167,6 +171,10 @@
 		481CCCB72B1F014C00B3B40F /* SelectDatesCustomCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDatesCustomCalendarCell.swift; sourceTree = "<group>"; };
 		481CCCBA2B1F0E6E00B3B40F /* SelectedDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDateType.swift; sourceTree = "<group>"; };
 		481CCCBC2B1F112400B3B40F /* ButtonEnabledType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonEnabledType.swift; sourceTree = "<group>"; };
+		482278462B26D70F00E02264 /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
+		482278482B26D71400E02264 /* ModifyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileView.swift; sourceTree = "<group>"; };
+		4822784A2B26D71A00E02264 /* ModifyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewModel.swift; sourceTree = "<group>"; };
+		4822784D2B26DF3100E02264 /* ModifyProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileImageView.swift; sourceTree = "<group>"; };
 		483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewModel.swift; sourceTree = "<group>"; };
@@ -382,6 +390,24 @@
 				481CCCBA2B1F0E6E00B3B40F /* SelectedDateType.swift */,
 			);
 			path = MakeTour;
+			sourceTree = "<group>";
+		};
+		482278452B26D6F000E02264 /* ModifyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				482278462B26D70F00E02264 /* ModifyProfileViewController.swift */,
+				482278482B26D71400E02264 /* ModifyProfileView.swift */,
+				4822784A2B26D71A00E02264 /* ModifyProfileViewModel.swift */,
+			);
+			path = ModifyProfile;
+			sourceTree = "<group>";
+		};
+		4822784C2B26DF2200E02264 /* ModifyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				4822784D2B26DF3100E02264 /* ModifyProfileImageView.swift */,
+			);
+			path = ModifyProfile;
 			sourceTree = "<group>";
 		};
 		4826FF2D2B0B97D20077B2D1 /* Login */ = {
@@ -840,6 +866,7 @@
 				480442F92B18120B00E5C70B /* MyTour */,
 				480442FA2B18121200E5C70B /* JoinedTour */,
 				483748B92B23DF1300CD1398 /* ProfileInfo */,
+				482278452B26D6F000E02264 /* ModifyProfile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -850,6 +877,7 @@
 				48F006C92B172A6400DB1FC1 /* ProfileModifyButton.swift */,
 				483748C02B23F06300CD1398 /* ProfileInfo */,
 				48AB63F02B233E6500EC9444 /* JoinedTour */,
+				4822784C2B26DF2200E02264 /* ModifyProfile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -962,6 +990,7 @@
 				485321FD2B21DCC7006D0930 /* ApplicantViewModel.swift in Sources */,
 				48AB63E32B22D4BC00EC9444 /* BaseTableViewCell.swift in Sources */,
 				4840595B2B1D90AB006A8AAC /* DetailTourViewModel.swift in Sources */,
+				482278472B26D70F00E02264 /* ModifyProfileViewController.swift in Sources */,
 				486AA0022B12BE0600CB5179 /* SelectDateView.swift in Sources */,
 				48F006BB2B16F7E600DB1FC1 /* UIViewController+Extension.swift in Sources */,
 				487786462B0B47D30091661F /* MakeTourView.swift in Sources */,
@@ -1008,6 +1037,7 @@
 				486732512B0CA36300BC24A4 /* ValidNickname.swift in Sources */,
 				486732572B0CA3E200BC24A4 /* APIKey.swift in Sources */,
 				4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */,
+				4822784E2B26DF3100E02264 /* ModifyProfileImageView.swift in Sources */,
 				484711632B0E1CE100C68490 /* Gender.swift in Sources */,
 				481CCCB82B1F014C00B3B40F /* SelectDatesCustomCalendarCell.swift in Sources */,
 				48B7CC0A2B1452FB00AD854F /* KeychainStorage.swift in Sources */,
@@ -1039,6 +1069,7 @@
 				48AB63E92B2304F500EC9444 /* JoinedTourView.swift in Sources */,
 				484059632B1DA719006A8AAC /* ContentsTourProfileNameLabel.swift in Sources */,
 				48AB63E12B22D47A00EC9444 /* SelectLocationTableViewCell.swift in Sources */,
+				4822784B2B26D71A00E02264 /* ModifyProfileViewModel.swift in Sources */,
 				48B7CC112B14836800AD854F /* ContentsViewModel.swift in Sources */,
 				4877862A2B0B2CEF0091661F /* BaseView.swift in Sources */,
 				485E48312B2586BE00A56025 /* UserType.swift in Sources */,
@@ -1088,6 +1119,7 @@
 				480443042B18133F00E5C70B /* UITabBar+Extension.swift in Sources */,
 				486732592B0CA53000BC24A4 /* SignUpCheckNicknameLabel.swift in Sources */,
 				48F006C22B17195100DB1FC1 /* ProfileViewModel.swift in Sources */,
+				482278492B26D71400E02264 /* ModifyProfileView.swift in Sources */,
 				484059682B1DAAF2006A8AAC /* DetailTourInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

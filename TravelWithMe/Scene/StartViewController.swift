@@ -18,6 +18,7 @@ class StartViewController: BaseViewController {
     let button6 = UIButton()
     let button7 = UIButton()
     let button8 = UIButton()
+    let button9 = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class StartViewController: BaseViewController {
         
    
         
-        [button1, button2, button3, button4, button5, button6, button7, button8].forEach { item in
+        [button1, button2, button3, button4, button5, button6, button7, button8, button9].forEach { item in
             view.addSubview(item)
             item.backgroundColor = .gray
         }
@@ -71,6 +72,11 @@ class StartViewController: BaseViewController {
             make.leading.equalTo(button7)
             make.top.equalTo(button7.snp.bottom).offset(50)
         }
+        button9.snp.makeConstraints { make in
+            make.size.equalTo(60)
+            make.leading.equalTo(button8)
+            make.top.equalTo(button8.snp.bottom).offset(50)
+        }
         
         button1.addTarget(self, action: #selector(button1Clicked), for: .touchUpInside)
         button2.addTarget(self, action: #selector(button2Clicked), for: .touchUpInside)
@@ -80,6 +86,8 @@ class StartViewController: BaseViewController {
         button6.addTarget(self , action: #selector(button6Clicked), for: .touchUpInside)
         button7.addTarget(self , action: #selector(button7Clicked), for: .touchUpInside)
         button8.addTarget(self , action: #selector(button8Clicked), for: .touchUpInside)
+        button9.addTarget(self, action: #selector(button9Clicked), for: .touchUpInside)
+        
     }
     
     @objc
@@ -121,6 +129,11 @@ class StartViewController: BaseViewController {
     @objc
     func button8Clicked() {
         let vc = CheckReviewViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc
+    func button9Clicked() {
+        let vc = ModifyProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }
