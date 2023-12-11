@@ -49,8 +49,8 @@ class ProfileTopBackView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        print("----rect : ", rect)
-        print("----rect : ", rect)
+//        print("----rect : ", rect)
+//        print("----rect : ", rect)
         
         let path = UIBezierPath()
         

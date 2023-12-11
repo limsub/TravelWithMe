@@ -51,4 +51,51 @@ class ProfileViewModel {
         
     }
     
+    func followOrUnfollow(follow: Bool, completionHandler: @escaping (Result<FollowResponse, Error>) -> Void) {
+        
+        if follow {
+            // 팔로우하기
+            RouterAPIManager.shared.requestNormal(
+                type: FollowResponse.self,
+                error: FollowAPIError.self,
+                api: .follow(sender: FollowRequest(
+                    id: profileData._id,
+                    followBool: true))) { response in
+//                        print("-- 팔로우하기 결과 --")
+//                        print(response)
+                        switch response {
+                        case .success(let result):
+                            print("-- 팔로우 성공")
+                            completionHandler(.success(result))
+                        case .failure(let error):
+                            print("-- 팔로우 실패")
+                            completionHandler(.failure(error))
+                        }
+                    }
+            
+        } else {
+            // 언팔로우하기
+            RouterAPIManager.shared.requestNormal(
+                type: FollowResponse.self,
+                error: UnFollowAPIError.self,
+                api: .follow(sender: FollowRequest(
+                    id: profileData._id,
+                    followBool: false))) { response  in
+//                        print("-- 언팔로우하기 결과 --")
+//                        print(response)
+                        
+                        switch response {
+                        case .success(let result):
+                            print("-- 언팔로우 성공")
+                            completionHandler(.success(result))
+                        case .failure(let error):
+                            print("-- 언팔로우 실패")
+                            completionHandler(.failure(error))
+                        }
+                    }
+            
+        }
+                
+    }
+    
 }

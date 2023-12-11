@@ -37,10 +37,15 @@ enum Router: URLRequestConvertible {
     case lookProfile(usetType: UserType)
     
     case makeReview(sender: MakeReviewRequest, postID: String)
+    
+    case follow(sender: FollowRequest)
 
 //    case lookLikePost
     
     case imageDownload(sender: String)  // (사용 x)
+    
+    
+    
     
     var path: String {
         switch self {
@@ -91,6 +96,8 @@ enum Router: URLRequestConvertible {
         case .makeReview(_, let postID):
             return "/post/\(postID)/comment"
             
+        case .follow(sender: let idStruct):
+            return "/follow/\(idStruct.id)"
             
         case .imageDownload(let urlString):
             return "/" + urlString
@@ -126,7 +133,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "application/json",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .lookPost, .deletePost, .likePost, .lookProfile, .imageDownload:
+        case .lookPost, .deletePost, .likePost, .lookProfile, .follow, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "SesacKey": SeSACAPI.subKey
@@ -142,6 +149,12 @@ enum Router: URLRequestConvertible {
             return .get
         case .deletePost:
             return .delete
+        case .follow(let followRequest):
+            if followRequest.followBool {
+                return .post    // true : 팔로우 : post
+            } else {
+                return .delete  // false : 언팔로우 : delete
+            }
         }
     }
     

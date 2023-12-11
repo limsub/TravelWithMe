@@ -37,6 +37,7 @@ class ProfileViewController: TabmanViewController {
         settingTabman()
         
         settingDataTabman()
+        settingModifyButtonAction()
     }
     
     // BaseVC를 상속하지 않아서, 따로 만든다
@@ -78,11 +79,13 @@ class ProfileViewController: TabmanViewController {
                     self?.viewModel.checkFollowOrNot(result._id, completionHandler: { value in
                         if value {
                             print("애 팔로우 함")
-                            self?.settingDataProfileTopView(result, userType: .other(userId: result._id, isFollowing: true))
+                            self?.viewModel.userType = UserType.other(userId: result._id, isFollowing: true)
+                            self?.settingDataProfileTopView(result, userType: self?.viewModel.userType ?? .me)
                             
                         } else {
                             print("얘 팔로우 안함")
-                            self?.settingDataProfileTopView(result, userType: .other(userId: result._id, isFollowing: false))
+                            self?.viewModel.userType = UserType.other(userId: result._id, isFollowing: false)
+                            self?.settingDataProfileTopView(result, userType: self?.viewModel.userType ?? .me)
                             
                         }
                     })
@@ -125,13 +128,94 @@ class ProfileViewController: TabmanViewController {
         // 얘가 profileTopView임
         profileView.updateProfileTopView(result, userType: userType)
     }
+    
     func settingDataProfileInfoView(_ result: LookProfileResponse) {
         profileInfoVC.viewModel.profileInfoData = result
         profileInfoVC.updateView()
     }
+    
     func settingDataMyTourView(_ result: LookProfileResponse) {
         myTourVC.viewModel.userId = result._id
         myTourVC.viewModel.nextCursor.onNext("")
+    }
+    
+    func settingDataTabman() {
+        
+        if viewModel.userType != .me {
+            VCs = VCs.filter { $0 != joinedTourVC }
+            
+            self.reloadData()
+        }
+    }
+    
+    
+    func settingModifyButtonAction() {
+        profileView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
+    }
+    @objc
+    func modifyButtonClicked() {
+        print("버튼 클릭")
+        print("현재 유저 타입 : \(viewModel.userType)")
+        
+        switch viewModel.userType {
+        case .me:
+            print("수정하기 기능 넣어주기")
+        case .other(let _, let isFollowing):
+            viewModel.followOrUnfollow(
+                follow: !isFollowing) { response in
+//                    print(response)
+                    
+                    // 네트워크 콜 성공했다면 (200)
+                    // 프로필 정보에 대한 콜을 다시 해서 뷰를 한 번에 업데이트하자
+                    // 1. viewModel의 userType 바꿔주기
+                    // (func fetchProfileInfo)
+                    // 2. viewModel의 profileData의 follower에 내 아이디 추가하기
+                    // (func fetchProfileInfo - viewModel.fetchData)
+                    // 3. modifyButton update 해주기
+                    // (func fetchProfileInfo - settingDataProfileTopView)
+                    
+                    switch response {
+                    case .success(_):
+                        print("팔로우/언팔로우 네트워크 통신 성공. 프로필 정보 불러오는 네트워크 재통신 및 뷰 업데이트")
+                        self.fetchProfileInfo()
+                    case .failure(let error):
+                        // 1. 공통 에러
+                        if let commonError = error as? CommonAPIError {
+                            print("-- 공통 에러")
+                            return
+                        }
+                        
+                        // 2. 팔로우 에러
+                        if let followError = error as? FollowAPIError {
+                            print("-- 팔로우 에러")
+                            return
+                        }
+                        
+                        // 3. 언팔로우 에러
+                        if let unfollowError = error as? UnFollowAPIError {
+                            print("-- 언팔로우 에러")
+                            return
+                        }
+                        
+                        // 4. 토큰 관련 에러
+                        if let refreshTokenError = error as? RefreshTokenAPIError {
+                            print("-- 토큰 관련 에러")
+                            return
+                        }
+                        
+                        // 4. 알 수 없음
+                        print("-- 알 수 없는 에러")
+                        
+                        
+                    }
+                    
+                }
+            
+        
+            
+        }
+        
+        
     }
     
     
@@ -165,14 +249,7 @@ class ProfileViewController: TabmanViewController {
         addBar(bar, dataSource: self, at: .custom(view: customBarView, layout: nil))
     }
     
-    func settingDataTabman() {
-        
-        if viewModel.userType != .me {
-            VCs = VCs.filter { $0 != joinedTourVC }
-            
-            self.reloadData()
-        }
-    }
+    
 }
 
 extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSource {

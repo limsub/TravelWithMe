@@ -201,10 +201,22 @@ struct MakeReviewRequest: Encodable {
     let content: String
 }
 
-
 struct MakeReviewResponse: Decodable {  // Comment와 동일
     let _id: String
     let time: String
     let content: String
     let creator: Creator
+}
+
+
+/* === 팔로우 / 언팔로우 === */
+struct FollowRequest {  // body로 넣어주는게 아니라, url에 추가함
+    let id: String
+    let followBool: Bool    // true이면 팔로우, false이면 언팔로우
+}
+
+struct FollowResponse: Decodable {
+    let user: String
+    let following: String
+    let following_status: Bool
 }
