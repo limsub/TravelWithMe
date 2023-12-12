@@ -38,8 +38,11 @@ class MyTourViewController: BaseViewController {
 
     
     func bind() {
-        let input = MyTourViewModel.Input(a: "hi")
-        let output = viewModel.tranform(input) 
+        let input = MyTourViewModel.Input(
+            a: "hi",
+            itemSelected: mainView.myTourCollectionView.rx.itemSelected
+        )
+        let output = viewModel.tranform(input)
         
         // 1. items
         output.myTourItems
@@ -90,6 +93,17 @@ class MyTourViewController: BaseViewController {
                     }
                     .disposed(by: cell.disposeBag)
                 
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.itemSelected
+            .withLatestFrom(output.nextTourInfo)
+            .subscribe(with: self) { owner , value in
+                let vc = DetailTourViewController()
+                vc.viewModel.tourItem = value
+                vc.viewModel.tourItemsDelegate1 = owner.viewModel
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }

@@ -26,11 +26,16 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
 
     struct Input {
         let a: String
+        
+        let itemSelected: ControlEvent<IndexPath>
     }
 
     struct Output {
         let myTourItems: BehaviorSubject<[Datum]>
         let resultLookPost: PublishSubject<AttemptLookPost>
+        
+        let itemSelected: ControlEvent<IndexPath>
+        let nextTourInfo: PublishSubject<Datum>
     }
     
     func tranform(_ input: Input) -> Output {
@@ -111,9 +116,25 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
             .disposed(by: disposeBag)
         
         
+        
+        // 다음 화면으로 넘겨줘야 하는 투어 정보
+        let nextTourInfo = PublishSubject<Datum>()
+        
+        input.itemSelected
+            .withLatestFrom(tourItems) { v1, v2 in
+                return (v1, v2)
+            }
+            .subscribe(with: self) { owner , value in
+                nextTourInfo.onNext(value.1[value.0.item])
+            }
+            .disposed(by: disposeBag)
+        
+        
         return Output(
             myTourItems: tourItems,
-            resultLookPost: resultLookPost
+            resultLookPost: resultLookPost,
+            itemSelected: input.itemSelected,
+            nextTourInfo: nextTourInfo
         )
     }
     

@@ -143,7 +143,8 @@ class ContentsViewController: BaseViewController {
             .subscribe(with: self) { owner , value in
                 let vc = DetailTourViewController()
                 vc.viewModel.tourItem = value
-                vc.viewModel.wholeContentsViewModel = owner.viewModel
+                vc.viewModel.tourItemsDelegate1 = owner.viewModel
+//                vc.viewModel.wholeContentsViewModel = owner.viewModel
                 
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
