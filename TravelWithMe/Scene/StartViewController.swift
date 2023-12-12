@@ -20,6 +20,12 @@ class StartViewController: BaseViewController {
     let button8 = UIButton()
     let button9 = UIButton()
     
+    let a = {
+        let view = ContentsProfileImageView(frame: .zero)
+        view.loadImage(endURLString: "hihi")
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +33,7 @@ class StartViewController: BaseViewController {
         
    
         
-        [button1, button2, button3, button4, button5, button6, button7, button8, button9].forEach { item in
+        [button1, button2, button3, button4, button5, button6, button7, button8, button9, a].forEach { item in
             view.addSubview(item)
             item.backgroundColor = .gray
         }
@@ -77,6 +83,16 @@ class StartViewController: BaseViewController {
             make.leading.equalTo(button8)
             make.top.equalTo(button8.snp.bottom).offset(50)
         }
+        a.snp.makeConstraints { make in
+            make.height.equalTo(60)
+            make.width.equalTo(60)
+            make.leading.equalTo(button9)
+            make.top.equalTo(button9.snp.bottom).offset(50)
+        }
+        print("0000000")
+        
+        print(a.frame.width)
+        print(a.frame.height)
         
         button1.addTarget(self, action: #selector(button1Clicked), for: .touchUpInside)
         button2.addTarget(self, action: #selector(button2Clicked), for: .touchUpInside)

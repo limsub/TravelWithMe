@@ -23,6 +23,7 @@ class ModifyProfileImageView: UIImageView {
     func setUp() {
         clipsToBounds = true
         backgroundColor = UIColor.appColor(.disabledGray2)
+        contentMode = .scaleAspectFill
         
         image = UIImage(named: "basicProfile2")
     }

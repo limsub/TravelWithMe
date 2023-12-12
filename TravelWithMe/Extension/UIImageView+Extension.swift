@@ -32,6 +32,7 @@ extension UIImageView {
         
         self.kf.setImage(
             with: imageURL,
+            placeholder: UIImage(named: "sample"),
             options: [
                 .requestModifier(modifier),
                 .transition(.fade(0.5)),

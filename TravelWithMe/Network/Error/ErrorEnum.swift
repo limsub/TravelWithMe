@@ -288,6 +288,28 @@ enum LookProfileAPIError: Int, APIError {
     }
 }
 
+
+/* ===== 프로필 수정 ===== */
+enum ModifyMyProfileAPIError: Int, APIError {
+    case invalidRequest = 400
+    case invalidToken = 401
+    case forbidden = 403
+    case tokenExpired = 419
+    
+    var description: String {
+        switch self {
+        case .invalidRequest:
+            return "파일의 제한 사항과 맞지 않습니다"
+        case .invalidToken:
+            return "유효하지 않은 액세스 토큰입니다"
+        case .forbidden:
+            return "접근 권한이 없습니다"
+        case .tokenExpired:
+            return "액세스 토큰이 만료되었습니다"
+        }
+    }
+}
+
 /* === 댓글 작성 === */
 enum MakeReviewAPIError: Int, APIError {
     case invalidRequest = 400

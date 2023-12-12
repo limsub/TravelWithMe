@@ -196,6 +196,15 @@ struct LookProfileResponse: Decodable {
     let profile: String? // ????
 }
 
+
+/* === 내 프로필 수정 === */
+struct ModifyMyProfileRequest: Encodable {
+    let nick: String
+    let profile: Data?
+}
+
+
+
 /* === 댓글 작성 === */
 struct MakeReviewRequest: Encodable {
     let content: String

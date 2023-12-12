@@ -35,6 +35,7 @@ enum Router: URLRequestConvertible {
 //    case lookMyProfile
     
     case lookProfile(usetType: UserType)
+    case modifyMyProfile(sender: ModifyMyProfileRequest)
     
     case makeReview(sender: MakeReviewRequest, postID: String)
     
@@ -93,6 +94,9 @@ enum Router: URLRequestConvertible {
                 return "/profile/\(userId)"
             }
             
+        case .modifyMyProfile:
+            return "/profile/me"
+            
         case .makeReview(_, let postID):
             return "/post/\(postID)/comment"
             
@@ -121,7 +125,7 @@ enum Router: URLRequestConvertible {
                 "SesacKey": SeSACAPI.subKey,
                 "Refresh": KeychainStorage.shared.refreshToken ?? ""
             ]
-        case .makePost:
+        case .makePost, .modifyMyProfile:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "Content-Type": "multipart/form-data",
@@ -155,7 +159,10 @@ enum Router: URLRequestConvertible {
             } else {
                 return .delete  // false : 언팔로우 : delete
             }
+        case .modifyMyProfile:
+            return .put
         }
+        
     }
     
     var parameter: [String: Any] {
@@ -195,6 +202,8 @@ enum Router: URLRequestConvertible {
             return [
                 "content": sender.content
             ]
+        case .modifyMyProfile(let sender):
+            return ["nick": sender.nick]
         default:    // get인 경우, 빈 딕셔너리 리턴하고, asURLRequest에서 아예 분기처리
             return [:]
         }
@@ -204,6 +213,11 @@ enum Router: URLRequestConvertible {
         switch self {
         case .makePost(let sender):
             return sender.file
+        case .modifyMyProfile(let sender):
+            guard let profileData = sender.profile else {
+                return []
+            }
+            return [profileData]
         default:
             return []
         }

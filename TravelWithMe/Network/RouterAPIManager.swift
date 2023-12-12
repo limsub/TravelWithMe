@@ -99,14 +99,25 @@ class RouterAPIManager {
                     print("=== 이미지 크기 ===")
                     print((Double(image.count)/1024.0)/1024.0)
                     
-                    _ = String(image.hashValue)
+                    switch api {
+                    case .makePost:
+                        multipartFormData.append(
+                            image,
+                            withName: "file",
+                            fileName: "image.jpeg",
+                            mimeType: "image/jpeg"
+                        )
+                    case .modifyMyProfile:
+                        multipartFormData.append(
+                            image,
+                            withName: "profile",
+                            fileName: "image.jpeg",
+                            mimeType: "image/jpeg"
+                        )
+                    default:
+                        break
+                    }
                     
-                    multipartFormData.append(
-                        image,
-                        withName: "file",
-                        fileName: "image.jpeg",
-                        mimeType: "image/jpeg"
-                    )
                 }
             }, to: api.url, method: api.method, headers: api.header, interceptor: APIRequestInterceptor())
             .validate()

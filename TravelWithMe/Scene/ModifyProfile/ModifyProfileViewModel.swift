@@ -16,6 +16,9 @@ class ModifyProfileViewModel: ViewModelType {
     // 이전 화면에서 값전달로 받아야 하는 프로필 데이터 -> 초기 뷰에 띄워준다
     var profileInfo: LookProfileResponse?
     
+    // 화면에 보여주는 이미지 데이터 (url String 타입으로만 가지고 있기 때문에, Data 타입으로 가지고 있는 변수를 하나 생성한다
+    var profileImageData: Data?
+    
     
     struct Input {
 //        let firstNickName: Observable<String?>
@@ -35,7 +38,7 @@ class ModifyProfileViewModel: ViewModelType {
         let validBirthdayFormat: PublishSubject<ValidBirthday>
 //        
         let enabledModifyButton: Observable<Bool>
-//        let resultModifyClicked: publ
+        let resultModifyButtonClicked: PublishSubject<AttemptModifyMyProfile>
     }
     
     
@@ -124,10 +127,77 @@ class ModifyProfileViewModel: ViewModelType {
         }
         
         
+        // 요청할 정보
+        let modifyMyProfileInfo = Observable.combineLatest(input.nicknameText, input.birthdayText, input.genderSelectedIndex, input.introduceText) { v1, v2, v3, v4 in
+            
+            let nickStruct = ProfileInfo(
+                nick: v1,
+                gender: v3,
+                birthday: v2,
+                introduce: v4
+            )
+            
+            let nickString = encodingStructToString(sender: nickStruct)
+            
+            return nickString ?? ""
+        }
+        
+        // 버튼 클릭
+        let resultModifyButtonClicked = PublishSubject<AttemptModifyMyProfile>()
+        input.modifyButtonClicked
+            .withLatestFrom(modifyMyProfileInfo)
+            .flatMap { value in
+                
+                // 뷰모델의 ProfileImageData가 nil이라면 이미지 수정을 하지 않았다. 이럴 때는 request의 profile을 nil로 해서 보내자 (수정하지 않겠다는 뜻)
+                // -> profileImageData의 타입도 Data? 이고, ModifyMyProfileRequest의 파라미터 타입도 Data? 이기 때문에 그대로 넣어주면 알아서 걸러지겠다.
+                
+                return RouterAPIManager.shared.requestMultiPart(
+                    type: LookProfileResponse.self,  // 응답 타입이 동일해서 같이 쓴다
+                    error: ModifyMyProfileAPIError.self,
+                    api: .modifyMyProfile(sender: ModifyMyProfileRequest(
+                        nick: value, profile: self.profileImageData
+                    )))
+            }
+            .map { response in
+                switch response {
+                case .success(let result):
+                    print("프로필 수정 성공")
+                    return AttemptModifyMyProfile.success(result: result)
+                case .failure(let error):
+                    print("프로필 수정 실퍠")
+                    
+                    if let commonError = error as? CommonAPIError {
+                        print("  공통 에러 중 하나")
+                        return AttemptModifyMyProfile.commonError(error: commonError)
+                    }
+                    
+                    if let modifyMyProfileError = error as? ModifyMyProfileAPIError {
+                        print("  프로필 수정 에러 중 하나")
+                        return AttemptModifyMyProfile.modifyMyProfileError(error: modifyMyProfileError)
+                    }
+                    
+                    if let expiredTokenError = error as? RefreshTokenAPIError {
+                        print ("  토큰 만료 에러 중 하나")
+                        print("  만약 에러 내용이 '리프레시 토큰 만료'이면 로그인 화면으로 돌아가야 합니다")
+                        return AttemptModifyMyProfile.refreshTokenError(error: expiredTokenError)
+                    }
+                    
+                    print("  알 수 없는 에러.. 뭔 에러일까..?")
+                    return AttemptModifyMyProfile.commonError(error: .unknownError)
+                }
+                
+            }
+            .subscribe(with: self) { owner , value in
+                resultModifyButtonClicked.onNext(value)
+            }
+            .disposed(by: disposeBag)
+        
+        
         return Output(
             validNicknameFormat: validNicknameFormat,
             validBirthdayFormat: validBirthdayFormat,
-            enabledModifyButton: enabledModifyButton
+            enabledModifyButton: enabledModifyButton,
+            resultModifyButtonClicked: resultModifyButtonClicked
         )
     }
     

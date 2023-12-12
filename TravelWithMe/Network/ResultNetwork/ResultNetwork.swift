@@ -76,6 +76,14 @@ enum AttemptLookProfile {
     case refreshTokenError(error: RefreshTokenAPIError)
 }
 
+/* === 내 프로필 수정 === */
+enum AttemptModifyMyProfile {
+    case success(result: LookProfileResponse)   // 프로필 조회와 같은 응답 형식
+    case commonError(error: CommonAPIError)
+    case modifyMyProfileError(error: ModifyMyProfileAPIError)
+    case refreshTokenError(error: RefreshTokenAPIError)
+}
+
 
 /* === 댓글 작성 === */
 enum AttempMakeReview {

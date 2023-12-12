@@ -8,12 +8,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PhotosUI
 
 class ModifyProfileViewController: BaseViewController {
     
     let mainView = ModifyProfileView()
     let viewModel = ModifyProfileViewModel()
     let disposeBag = DisposeBag()
+    
+    var delegate: RetryNetworkAndUpdateView?
     
     override func loadView() {
         self.view = mainView
@@ -24,6 +27,7 @@ class ModifyProfileViewController: BaseViewController {
         
         bind()
         settingInitialDataOnView()
+        settingProfileImageButton()
         
 //        mainView.birthdayTextField.text = "19991010"
     }
@@ -36,8 +40,25 @@ class ModifyProfileViewController: BaseViewController {
         }
     }
     
+    // 프로필 이미지 버튼 addTarget 연결
+    func settingProfileImageButton() {
+        mainView.modifyProfileImageClearButton.addTarget(self , action: #selector(modifyProfileImageButtonClicked), for: .touchUpInside)
+    }
+    @objc
+    func modifyProfileImageButtonClicked() {
+        print("hi")
+        showPHPicker()
+    }
     
-    // 수정 네트워크 콜이 200 나왓으면, delegate pattern 이용해서 이전 뷰컨(ProfileVC)에서 fetchData 시켜주자-> 프로필 정보 새로 받아서 뷰 업데이트함.
+    // 프로필 이미지 업데이트
+    func updateProfileImage() {
+        if let newProfileImageData = viewModel.profileImageData {
+            mainView.profileImageView.image = UIImage(data: newProfileImageData)
+        }
+    }
+    
+    
+
     func bind() {
         
         // 전달해준 값을 수정 안하고 그대로 쓸 수도 있기 때문에, 초기값과 변경값을 둘 다 반영하기 위함
@@ -109,7 +130,89 @@ class ModifyProfileViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
- 
+        
+        output.resultModifyButtonClicked
+            .subscribe(with: self) { owner , value in
+                print(" --- VC에서 결과 받음 --- ")
+                switch value {
+                case .success(let result):
+                    print("성공했대")
+                    
+                    // 해야 할 것
+                    // 1. delegate pattern 이용해서 profileView의 fetchData 로드
+                    // -> 자동으로 네트워크 콜 하고 뷰 업데이트 할겨
+                    owner.delegate?.reload()
+                    
+                    
+                    // 2. navigation pop
+                    owner.navigationController?.popViewController(animated: true)
+                    
+                case .commonError(let error):
+                    print("공통 에러래")
+                    print(error.description)
+                    
+                case .refreshTokenError(let error):
+                    print("토큰 에러래")
+                    print(error.description)
+                    
+                case .modifyMyProfileError(let error):
+                    print("프로필 수정 에러래")
+                    print(error.description)
+                }
+                
+                print(value)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    
+    
+    // 프로필 이미지 추가
+    func showPHPicker() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+}
+
+extension ModifyProfileViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        guard let result = results.first else { return }
+        
+        let itemProvider = result.itemProvider
+        
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image , error in
+                
+                print("이미지 : ", image)
+                print("에러 : ", error)
+                
+                guard let image = image as? UIImage else { return }
+                
+                guard let imageData = image.jpegData(compressionQuality: 0.0000000000001) else { return }
+                
+                self?.viewModel.profileImageData = imageData
+                
+                print("--- 용량?(bytes) : \(imageData.count)")
+                let bytesInMegaByte = 1024.0 * 1024.0
+                let mb = Double(imageData.count) / bytesInMegaByte
+                print("--- 용량?(megabytes) : \(mb)")
+                
+                DispatchQueue.main.async {
+                    self?.updateProfileImage()
+                }
+                
+            }
+        }
+        
+        picker.dismiss(animated: true)
         
     }
 }

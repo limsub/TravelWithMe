@@ -22,6 +22,7 @@ class ContentsProfileImageView: UIImageView {
     
     func setUp() {
         clipsToBounds = true
+        contentMode = .scaleAspectFill
         
         image = UIImage(named: "sample")
     }

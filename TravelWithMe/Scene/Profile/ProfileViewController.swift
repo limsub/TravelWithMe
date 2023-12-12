@@ -9,6 +9,10 @@ import UIKit
 import Tabman
 import Pageboy
 
+protocol RetryNetworkAndUpdateView {
+    func reload()
+}
+
 class ProfileViewController: TabmanViewController {
     
     let profileView = ProfileTopView()
@@ -162,6 +166,7 @@ class ProfileViewController: TabmanViewController {
             print("수정하기 기능 넣어주기")
             let vc = ModifyProfileViewController()
             vc.viewModel.profileInfo = viewModel.profileData
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
             
         case .other(let _, let isFollowing):
@@ -299,3 +304,8 @@ extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSourc
     }
 }
 
+extension ProfileViewController: RetryNetworkAndUpdateView {
+    func reload() {
+        self.fetchProfileInfo()
+    }
+}
