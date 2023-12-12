@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ContentsViewModel: ViewModelType {
+class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
     
     // 일단..?
     var nextCursor = BehaviorSubject<String>(value: "")

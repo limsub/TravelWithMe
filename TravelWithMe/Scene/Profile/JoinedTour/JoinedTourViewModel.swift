@@ -12,9 +12,10 @@ struct JoinedTourForMonth {
     let tours: [Datum]
 }
 
-class JoinedTourViewModel {
+class JoinedTourViewModel: TourItemsProtocol2 {
+
     
-    var items: [JoinedTourForMonth] = []
+    var tourItems: [JoinedTourForMonth] = []
     
     var nextCursor = ""
     
@@ -46,7 +47,7 @@ class JoinedTourViewModel {
                 case .success(let result):
                     print("좋아요 누른 게시글 조회 성공")
                     
-                    self.items = self.manufactureData(result.data)
+                    self.tourItems = self.manufactureData(result.data)
                     
                     completionHandler(.success(result))
                 case .failure(let error):

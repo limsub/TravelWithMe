@@ -74,18 +74,18 @@ class JoinedTourViewController: BaseViewController {
 extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.items.count
+        return viewModel.tourItems.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items[section].tours.count
+        return viewModel.tourItems[section].tours.count
     }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = JoinedTourTableViewHeaderView()
         
-        headerView.setUp(viewModel.items[section].month)
+        headerView.setUp(viewModel.tourItems[section].month)
 
         return headerView
     }
@@ -99,11 +99,11 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileJoinedTourView - JoinedTourTableView", for: indexPath) as? JoinedTourTableViewCell else { return UITableViewCell() }
         
-        let tourItem = viewModel.items[indexPath.section].tours[indexPath.item]
+        let tourItem = viewModel.tourItems[indexPath.section].tours[indexPath.item]
         
         if indexPath.item == 0 {
             
-            if viewModel.items[indexPath.section].tours.count == 1 {
+            if viewModel.tourItems[indexPath.section].tours.count == 1 {
                 cell.setUp(tourItem, pos: .single)
             } else {
                 cell.setUp(tourItem, pos: .top)
@@ -111,7 +111,7 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
             
             
         }
-        else if indexPath.item == viewModel.items[indexPath.section].tours.count - 1 {
+        else if indexPath.item == viewModel.tourItems[indexPath.section].tours.count - 1 {
             cell.setUp(tourItem, pos: .bottom)
         }
         else {

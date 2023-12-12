@@ -11,6 +11,9 @@ import RxCocoa
 
 class DetailTourViewModel: ViewModelType {
     
+    var tourItemsDelegate: TourItemsProtocol1?
+    var tourItemsDelegate2: TourItemsProtocol2?
+    
     let disposeBag = DisposeBag()
     
     var wholeContentsViewModel: ContentsViewModel? = nil

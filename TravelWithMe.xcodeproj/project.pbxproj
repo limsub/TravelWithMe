@@ -83,6 +83,7 @@
 		486AA0162B131E0300CB5179 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0152B131E0300CB5179 /* BaseCollectionViewCell.swift */; };
 		486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0172B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift */; };
 		486AA01A2B1338A800CB5179 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486AA0192B1338A800CB5179 /* UIImage+Extension.swift */; };
+		4872D7D62B284F4100512CCB /* TourItemsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4872D7D52B284F4100512CCB /* TourItemsProtocol.swift */; };
 		4877860D2B0B29F60091661F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860C2B0B29F60091661F /* AppDelegate.swift */; };
 		4877860F2B0B29F60091661F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877860E2B0B29F60091661F /* SceneDelegate.swift */; };
 		487786112B0B29F60091661F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487786102B0B29F60091661F /* ViewController.swift */; };
@@ -228,6 +229,7 @@
 		486AA0152B131E0300CB5179 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		486AA0172B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTourImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		486AA0192B1338A800CB5179 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		4872D7D52B284F4100512CCB /* TourItemsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourItemsProtocol.swift; sourceTree = "<group>"; };
 		487786092B0B29F60091661F /* TravelWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4877860C2B0B29F60091661F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4877860E2B0B29F60091661F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -587,6 +589,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		4872D7D42B284F2000512CCB /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4872D7D52B284F4100512CCB /* TourItemsProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		487786002B0B29F60091661F = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +616,7 @@
 		4877860B2B0B29F60091661F /* TravelWithMe */ = {
 			isa = PBXGroup;
 			children = (
+				4872D7D42B284F2000512CCB /* Protocol */,
 				484C85A02B1628BF0052B247 /* ImageCache */,
 				48405B482B15CDAF00B3144F /* 버릴거 */,
 				48B7CC082B1452F000AD854F /* KeyChain */,
@@ -1006,6 +1017,7 @@
 				48ADEE382B1866AF00B1B95E /* MyTourViewModel.swift in Sources */,
 				4840595F2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift in Sources */,
 				483748C72B23F8C200CD1398 /* Identifier.swift in Sources */,
+				4872D7D62B284F4100512CCB /* TourItemsProtocol.swift in Sources */,
 				4867325D2B0CBD5400BC24A4 /* SignUpCheckBirthdayLabel.swift in Sources */,
 				486AA0112B12D60600CB5179 /* SelectLocationViewController.swift in Sources */,
 				48F006CA2B172A6400DB1FC1 /* ProfileModifyButton.swift in Sources */,

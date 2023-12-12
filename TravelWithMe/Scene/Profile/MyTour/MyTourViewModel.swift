@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MyTourViewModel: ViewModelType {
+class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
+
 
     let disposeBag = DisposeBag()
     
@@ -18,7 +19,7 @@ class MyTourViewModel: ViewModelType {
 //    var tourItems: [Datum] = []
     
     
-    let tourItems = BehaviorSubject<[Datum]>(value: [])
+    var tourItems =  BehaviorSubject<[Datum]>(value: [])
     
     var userId: String  = ""
     
