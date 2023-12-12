@@ -84,6 +84,12 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        backImageView.image = nil
+    }
+    
     
     override func setConfigure() {
         super.setConfigure()

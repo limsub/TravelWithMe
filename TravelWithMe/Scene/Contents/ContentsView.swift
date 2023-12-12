@@ -24,27 +24,7 @@ class ContentsView: BaseView {
         ContentsCategoryButton(.local)
     ]
     
-    
-//    /* 서브 컬렉션뷰 */
-//    lazy var subTourCollectionView = {
-//        let view = UICollectionView(frame: .zero, collectionViewLayout: createSubTourCollectionViewLayout())
-//
-//        view.register(SubTourCollectionViewCell.self , forCellWithReuseIdentifier: "ContentsView - subCollectionView")
-//
-//        view.showsHorizontalScrollIndicator = false
-//
-//        return view
-//    }()
-//
-//    func createSubTourCollectionViewLayout() -> UICollectionViewFlowLayout  {
-//        let layout = UICollectionViewFlowLayout()
-//
-//        layout.itemSize = CGSize(width: 150, height: 200)
-//        layout.minimumLineSpacing = 10
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
-//
-//        return layout
-//    }
+
     
     /* 메인 컬렉션뷰 */
     lazy var tourCollectionView = {

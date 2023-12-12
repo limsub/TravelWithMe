@@ -22,7 +22,7 @@ class DetailTourViewModel: ViewModelType {
         hashTags: ["자연", "문화", "역사"],
         comments: [],
         id: "65700821d3b44c277c358b38",
-        creator: Creator(_id: "65700821d3b44c277c358b38", nick: "{\"nick\":\"닉네임 구조\",\"gender\":1,\"birthday\":\"19911128\",\"introduce\":\"안녕하세요. 닉네임 구조 새로 바꿔서 생년월일 성병 프로퍼티 빼고 닉네임 스트링에다 스트럭트로 다 때려박은 새로 가입한 계정. \\n으아아아아아아아\"}"),
+        creator: Creator(_id: "65700821d3b44c277c358b38", nick: "{\"nick\":\"닉네임 구조\",\"gender\":1,\"birthday\":\"19911128\",\"introduce\":\"안녕하세요. 닉네임 구조 새로 바꿔서 생년월일 성병 프로퍼티 빼고 닉네임 스트링에다 스트럭트로 다 때려박은 새로 가입한 계정. \\n으아아아아아아아\"}", profile: nil), 
         time: "2023-12-06T05:35:29.630Z",
         title: Optional("자연 역사 문화"),
         content: "{\"content\":\"ㅂㅂ\\n\\n\",\"hashTags\":\"#자연 #문화 #역사 \"}",

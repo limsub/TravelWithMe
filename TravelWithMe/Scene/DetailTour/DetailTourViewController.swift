@@ -159,6 +159,8 @@ extension DetailTourViewController: UICollectionViewDataSource, UICollectionView
             
             cell.mainImageView.image = UIImage(named: "sample")
             
+            cell.mainImageView.loadImage(endURLString: viewModel.tourItem.image[indexPath.item])
+            
             return cell
             
         case mainView.tourCategoryCollectionView:

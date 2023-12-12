@@ -36,6 +36,8 @@ class ProfileInfoViewController: BaseViewController {
     }
     
     func updateView() {
+//        print("-----------------")
+//        print(viewModel.profileInfoData)
         // 뷰모델의 데이터를 기반으로 뷰 새로 그리기
         mainView.updateView(viewModel.profileInfoData)
         

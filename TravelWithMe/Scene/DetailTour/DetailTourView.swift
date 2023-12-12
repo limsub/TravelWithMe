@@ -68,7 +68,10 @@ class DetailTourView: BaseView {
         
         view.isPagingEnabled = true
     
-        view.backgroundColor = .red
+        view.backgroundColor = .white
+        
+        view.bounces = false
+        view.alwaysBounceHorizontal = false
         
         return view
     }()
@@ -344,7 +347,11 @@ class DetailTourView: BaseView {
         
         tourTitleLabel.text = sender.title ?? ""
         
-        tourProfileImageView
+        if let profileImageUrl = sender.creator.profile {
+            tourProfileImageView.loadImage(endURLString: profileImageUrl)
+        } else {
+            tourProfileImageView.image = UIImage(named: "basicProfile2")
+        }
         
         if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: sender.creator.nick) {
             tourProfileLabel.text = nickStruct.nick

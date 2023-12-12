@@ -128,7 +128,7 @@ class ProfileTopView: BaseView {
         super.setting()
         
         self.backgroundColor = .white
-        profileImageView.image = UIImage(named: "sample")
+        profileImageView.image = UIImage(named: "basicProfile2")
         
         nameLabel.text = "이름"
         nameLabel.textAlignment = .center
@@ -137,7 +137,9 @@ class ProfileTopView: BaseView {
     func updateProfileTopView(_ result: LookProfileResponse, userType: UserType) {
         
         // 프로필 이미지뷰
-        profileImageView
+        if let imageUrl = result.profile {
+            profileImageView.loadImage(endURLString: imageUrl)
+        }
         
         // 닉네임 넣어주기
         if let nickStruct = decodingStringToStruct(type: ProfileInfo.self, sender: result.nick) {

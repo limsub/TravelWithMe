@@ -129,6 +129,8 @@ class ContentsViewController: BaseViewController {
         output.tourItems
             .bind(to: mainView.tourCollectionView.rx.items(cellIdentifier: "ContentsView - tourCollectionView", cellType: AboutTourCollectionViewCell.self)) { (row, element, cell) in
                 
+                print("------------------")
+                print(element)
                 
                 cell.designCell(element)
                 

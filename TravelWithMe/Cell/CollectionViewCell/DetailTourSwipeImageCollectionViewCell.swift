@@ -12,7 +12,7 @@ class DetailTourSwipeImageCollectionViewCell: BaseCollectionViewCell {
     
     let mainImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleToFill
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
@@ -27,6 +27,12 @@ class DetailTourSwipeImageCollectionViewCell: BaseCollectionViewCell {
         mainImageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        mainImageView.image = nil
     }
     
 }

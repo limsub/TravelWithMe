@@ -23,8 +23,9 @@ class ContentsProfileImageView: UIImageView {
     func setUp() {
         clipsToBounds = true
         contentMode = .scaleAspectFill
+        backgroundColor = UIColor.appColor(.disabledGray2)
         
-        image = UIImage(named: "sample")
+        image = UIImage(named: "basicProfile2")
     }
     
     override func layoutSubviews() {

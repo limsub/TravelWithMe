@@ -14,6 +14,7 @@ class ReviewSmallTourView: BaseView {
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
         view.image = UIImage(named: "sample")
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
