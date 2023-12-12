@@ -52,8 +52,18 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         view.layer.cornerRadius = 20
         view.layer.cornerCurve = .continuous
         view.backgroundColor = .black.withAlphaComponent(0.5)
+        view.addTarget(self , action: #selector(imageButtonClicked), for: .touchUpInside )
         return view
     }()
+    
+    var imageButtonCallBackMethod: ( () -> Void )?
+    
+    @objc
+    func imageButtonClicked() {
+        if let closure = imageButtonCallBackMethod {
+            closure()
+        }
+    }
     
     let tourTitleLabel = {
         let view = UILabel()

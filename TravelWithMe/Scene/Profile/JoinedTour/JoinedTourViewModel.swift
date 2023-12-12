@@ -9,7 +9,7 @@ import Foundation
 
 struct JoinedTourForMonth {
     let month: String
-    let tours: [Datum]
+    var tours: [Datum]
 }
 
 class JoinedTourViewModel: TourItemsProtocol2 {

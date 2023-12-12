@@ -25,7 +25,7 @@ class DetailTourViewModel: ViewModelType {
         hashTags: ["자연", "문화", "역사"],
         comments: [],
         id: "65700821d3b44c277c358b38",
-        creator: Creator(_id: "65700821d3b44c277c358b38", nick: "{\"nick\":\"닉네임 구조\",\"gender\":1,\"birthday\":\"19911128\",\"introduce\":\"안녕하세요. 닉네임 구조 새로 바꿔서 생년월일 성병 프로퍼티 빼고 닉네임 스트링에다 스트럭트로 다 때려박은 새로 가입한 계정. \\n으아아아아아아아\"}", profile: nil), 
+        creator: Creator(_id: "65700821d3b44c277c358b38", nick: "{\"nick\":\"닉네임 구조\",\"gender\":1,\"birthday\":\"19911128\",\"introduce\":\"안녕하세요. 닉네임 구조 새로 바꿔서 생년월일 성별 프로퍼티 빼고 닉네임 스트링에다 스트럭트로 다 때려박은 새로 가입한 계정. \\n으아아아아아아아\"}", profile: nil), 
         time: "2023-12-06T05:35:29.630Z",
         title: Optional("자연 역사 문화"),
         content: "{\"content\":\"ㅂㅂ\\n\\n\",\"hashTags\":\"#자연 #문화 #역사 \"}",
@@ -109,6 +109,32 @@ class DetailTourViewModel: ViewModelType {
         
     }
     
+    func updateDelegate2Data(_ likeStatus: Bool) {
+        
+        for (monthIndex, monthItem) in tourItemsDelegate2!.tourItems.enumerated() {
+            
+            for (tourIndex, tourItem) in tourItemsDelegate2!.tourItems[monthIndex].tours.enumerated() {
+                
+                if tourItem.id == tourItem.id {
+                    print("JoinedTourItem에서 디테일 투어의 아이템을 찾았다")
+                    
+                    if likeStatus {
+                        print("여행 신청이기 때문에 좋아요 배열에 유저 아이디 추가")
+                        if let userId = KeychainStorage.shared._id {
+                            tourItemsDelegate2!.tourItems[monthIndex].tours[tourIndex].likes.append(userId)
+                        }
+                        
+                    } else {
+                        print("여행 취소이기 때문에 좋아요 배열에 유저 아이디 삭제")
+                        tourItemsDelegate2!.tourItems[monthIndex].tours[tourIndex].likes = tourItemsDelegate2!.tourItems[monthIndex].tours[tourIndex].likes.filter { $0 != KeychainStorage.shared._id }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    
     func tranform(_ input: Input) -> Output {
         let resultApplyTour = PublishSubject<AttemptLikePost>()
         
@@ -141,6 +167,7 @@ class DetailTourViewModel: ViewModelType {
                         
                     } else  {
                         print("tourItemProtocol2가 nil이 아님")
+                        self?.updateDelegate2Data(result.like_status)
                         
                     }
                     

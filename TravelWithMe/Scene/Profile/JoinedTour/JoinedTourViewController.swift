@@ -148,6 +148,15 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+        cell.imageButtonCallBackMethod = { [weak self] in
+            print("이미지 버튼 클릭!!")
+            
+            let vc = DetailTourViewController()
+            vc.viewModel.tourItem = self!.viewModel.tourItems[indexPath.section].tours[indexPath.item]
+            vc.viewModel.tourItemsDelegate2 = self?.viewModel
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+        
         
         
         
