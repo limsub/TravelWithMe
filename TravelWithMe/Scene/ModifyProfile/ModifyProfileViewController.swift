@@ -46,14 +46,30 @@ class ModifyProfileViewController: BaseViewController {
     }
     @objc
     func modifyProfileImageButtonClicked() {
-        print("hi")
-        showPHPicker()
+        print("프로필 수정하기 - 이미지 클릭")
+        
+        showActionSheet("프로필 사진 설정", message: nil, firstTitle: "앨범에서 사진 선택", secondTitle: "기본 이미지로 변경") {
+            self.showPHPicker()
+        } secondCompletionHandler: {
+            self.settingBasicProfileImage()
+        }
+    }
+    
+    // 기본 이미지로 변경 (저장된 profileImage를 없애는 것이 아니라, 기본 이미지를 저장시킨다)
+    func settingBasicProfileImage() {
+        let basicImage = UIImage(named: "basicProfile2")
+        guard let imageData = basicImage?.jpegData(compressionQuality: 0.00000001) else { return }
+        viewModel.profileImageData = imageData
+        
+        updateProfileImage()
     }
     
     // 프로필 이미지 업데이트
     func updateProfileImage() {
         if let newProfileImageData = viewModel.profileImageData {
             mainView.profileImageView.image = UIImage(data: newProfileImageData)
+        } else {
+            mainView.profileImageView.image = UIImage(named: "basicProfile2")
         }
     }
     
