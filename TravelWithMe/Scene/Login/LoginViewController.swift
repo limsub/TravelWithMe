@@ -23,6 +23,7 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         bind()
     }
     
@@ -31,7 +32,8 @@ class LoginViewController: BaseViewController {
         let input = LoginViewModel.Input(
             emailText: mainView.emailTextField.rx.text.orEmpty,
             pwText: mainView.pwTextField.rx.text.orEmpty,
-            loginButtonClicked: mainView.loginButton.rx.tap
+            loginButtonClicked: mainView.loginButton.rx.tap,
+            signUpButtonClicked: mainView.signUpButton.rx.tap
         )
         
         let output = viewModel.tranform(input)
@@ -73,6 +75,15 @@ class LoginViewController: BaseViewController {
                         print("== 빈 칸 존재!")
                     }
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        
+        // 3. 회원가입 화면전환
+        output.signUpButtonClicked
+            .subscribe(with: self) { owner , _ in
+                let vc = SignUpViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }

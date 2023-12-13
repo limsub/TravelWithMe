@@ -37,7 +37,7 @@ class LoginView: BaseView {
     override func setConstraints() {
         
         logoImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(150)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(130)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(120)
             make.height.equalTo(logoImageView.snp.width)
         }

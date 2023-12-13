@@ -17,11 +17,13 @@ class LoginViewModel: ViewModelType {
         let emailText: ControlProperty<String>
         let pwText: ControlProperty<String>
         let loginButtonClicked: ControlEvent<Void>
+        let signUpButtonClicked: ControlEvent<Void>
     }
     
     struct Output {
         let enabledLoginButton: Observable<Bool>
         let resultLogin: PublishSubject<AttemptLogin>
+        let signUpButtonClicked: ControlEvent<Void>
     }
     
     func tranform(_ input: Input) -> Output {
@@ -84,7 +86,8 @@ class LoginViewModel: ViewModelType {
         
         return Output(
             enabledLoginButton: enabledLoginButton,
-            resultLogin: resultLogin
+            resultLogin: resultLogin,
+            signUpButtonClicked: input.signUpButtonClicked
         )
     }
 }

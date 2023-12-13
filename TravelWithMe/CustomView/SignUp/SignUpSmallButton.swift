@@ -19,7 +19,7 @@ class SignUpCheckEmailButton: UIButton {
         self.init()
         
         setTitle(title, for: .normal)
-        titleLabel?.font = .boldSystemFont(ofSize: 14)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -27,13 +27,23 @@ class SignUpCheckEmailButton: UIButton {
     }
     
     func setUp() {
-//        backgroundColor = UIColor(hexCode: ConstantColor.Main2.hexCode)
-//        setTitleColor(UIColor(hexCode: ConstantColor.Main1.hexCode), for: .normal)
+        update(.disabled)
         
-        backgroundColor = .lightGray
-        setTitleColor(.darkGray, for: .normal)
+        titleLabel?.font = .boldSystemFont(ofSize: 14)
         
         clipsToBounds = true
         layer.cornerRadius = 10
+    }
+    
+    func update(_ state: ButtonEnabledType) {
+        self.isEnabled = state.isEnabled
+        
+        if state == .enabled {
+            backgroundColor = UIColor.appColor(.main3)
+            setTitleColor(UIColor.appColor(.main1), for: .normal)
+        } else {
+            backgroundColor = state.backgroundColor
+            setTitleColor(state.textColor, for: .normal)
+        }   
     }
 }

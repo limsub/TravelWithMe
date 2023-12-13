@@ -27,6 +27,8 @@ class SignUpViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
 
         setNavigation()
         settingBirthTextField()
@@ -76,11 +78,10 @@ class SignUpViewController: BaseViewController {
                 owner.mainView.checkEmailLabel.setUpText(value)
                 
                 if value == .invalidFormat || value == .nothing {
-                    owner.mainView.emailCheckButton.isEnabled = false
-                    owner.mainView.emailCheckButton.backgroundColor = .lightGray
+                    owner.mainView.emailCheckButton.update(.disabled)
+                    
                 } else {
-                    owner.mainView.emailCheckButton.isEnabled = true
-                    owner.mainView.emailCheckButton.backgroundColor = .red
+                    owner.mainView.emailCheckButton.update(.enabled)
                 }
                 
                 
@@ -115,10 +116,7 @@ class SignUpViewController: BaseViewController {
         output.enabledSignUpButton
             .subscribe(with: self) { owner , value in
                 print("버튼 체크 === ", value)
-                owner.mainView.completeButton.isEnabled = value
-                owner.mainView.completeButton.backgroundColor = UIColor(hexCode: value ? ConstantColor.enabledButtonBackground.hexCode : ConstantColor.disabledButtonBackground.hexCode)
-                
-                
+                owner.mainView.completeButton.update(value ? .enabled : .disabled)
             }
             .disposed(by: disposeBag)
         
@@ -127,7 +125,10 @@ class SignUpViewController: BaseViewController {
             .subscribe(with: self) { owner , value in
                 switch value {
                 case .success:
-                    print("회원가입 성공! 다음 화면 전환")
+                    print("회원가입 성공! 로그인 화면으로 돌아감")
+                    owner.showNoButtonAlert("회원가입 성공 🎉🎉", message: "가입한 계정으로 로그인 해주세요") {
+                        owner.navigationController?.popViewController(animated: true)
+                    }
                 case .emptyParameter:
                     print("=== 실패 === 빈 칸 존재! 다시 체크")
                 case .alreadyRegistered:

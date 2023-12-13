@@ -61,7 +61,7 @@ class SplashViewController: BaseViewController {
             switch self.viewModel.nextPage {
             case .loginView:
                 self.setUpViewFadeEffect()
-                let vc = LoginViewController()
+                let vc = UINavigationController(rootViewController: LoginViewController()) 
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: false)
             case .mainView:

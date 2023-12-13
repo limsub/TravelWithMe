@@ -32,6 +32,33 @@ extension UIViewController {
     }
     
     
+    func showNoButtonAlert(_ title: String? = nil, message: String? = nil, completionHandler: @escaping () -> Void) {
+        
+        if title == nil && message == nil { return }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        present(alert, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.dismiss(animated: true)
+            completionHandler()
+        }
+    }
+    
+    
+    func showSingleAlert(_ title: String? = nil, message: String? = nil, completionHandler: @escaping () -> Void) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(okButton)
+        
+        present(alert, animated: true)
+    }
+    
+    
     func showAPIErrorAlert() {
         
     }
@@ -41,9 +68,11 @@ extension UIViewController {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
-        let vc = LoginViewController()
+        let vc = UINavigationController(rootViewController: LoginViewController()) 
         sceneDelegate?.window?.rootViewController = vc
         sceneDelegate?.window?.makeKeyAndVisible()
     }
+    
+
     
 }
