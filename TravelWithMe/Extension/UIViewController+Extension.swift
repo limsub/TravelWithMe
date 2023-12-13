@@ -40,7 +40,7 @@ extension UIViewController {
         
         present(alert, animated: true)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.dismiss(animated: true)
             completionHandler()
         }
@@ -65,12 +65,16 @@ extension UIViewController {
     
     
     func goToLoginViewController() {
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
-        let vc = UINavigationController(rootViewController: LoginViewController()) 
-        sceneDelegate?.window?.rootViewController = vc
-        sceneDelegate?.window?.makeKeyAndVisible()
+        showNoButtonAlert("토큰이 만료되었습니다", message: "로그인 화면으로 돌아갑니다. 재로그인 해주세요") {
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            let sceneDelegate = windowScene?.delegate as? SceneDelegate
+            
+            let vc = UINavigationController(rootViewController: LoginViewController())
+            sceneDelegate?.window?.rootViewController = vc
+            sceneDelegate?.window?.makeKeyAndVisible()
+        }
+        
     }
     
 

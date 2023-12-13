@@ -125,7 +125,7 @@ class ContentsViewController: BaseViewController {
         // - 데이터 로딩에 실패했습니다 - 에러 :
         
         
-        // 1. items에 테이블뷰 엮어두기
+        // 1. items에 컬렉션뷰 엮어두기
         output.tourItems
             .bind(to: mainView.tourCollectionView.rx.items(cellIdentifier: "ContentsView - tourCollectionView", cellType: AboutTourCollectionViewCell.self)) { (row, element, cell) in
                 

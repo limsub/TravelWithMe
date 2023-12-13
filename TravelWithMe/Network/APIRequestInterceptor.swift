@@ -39,7 +39,7 @@ final class APIRequestInterceptor: RequestInterceptor {
         }
         
         print("토큰 만료 에러. 토큰 갱신 네트워크 요청 실행")
-        RouterAPIManager.shared.requestNormal(
+        RouterAPIManager.shared.requestNormalWithNoIntercept(
             type: RefreshTokenResponse.self,
             error: RefreshTokenAPIError.self,
             api: .refreshToken) { response  in

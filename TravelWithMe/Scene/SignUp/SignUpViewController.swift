@@ -131,8 +131,12 @@ class SignUpViewController: BaseViewController {
                     }
                 case .emptyParameter:
                     print("=== 실패 === 빈 칸 존재! 다시 체크")
+                    owner.showSingleAlert("빈 칸을 채워주세요") {
+                        print("hi")
+                    }
                 case .alreadyRegistered:
                     print("=== 실패 === 이미 가입된 유저!!")
+                    
                 }
             }
             .disposed(by: disposeBag)
