@@ -16,10 +16,11 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
     
     var nextCursor = BehaviorSubject(value: "")
     
-//    var tourItems: [Datum] = []
-    
-    
+    /* 네트워크 통신 결과를 저장 */
+    // 컬렉션뷰에 보여줄 데이터 배열
     var tourItems =  BehaviorSubject<[Datum]>(value: [])
+    // 다음 페이지네이션에서 사용할 nextCursor
+    var nextCursorItem: String = ""
     
     var userId: String  = ""
     
@@ -28,6 +29,7 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
         let a: String
         
         let itemSelected: ControlEvent<IndexPath>
+        let prefetchItem: ControlEvent<[IndexPath]>
     }
 
     struct Output {
@@ -43,8 +45,23 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
 //        let tourItems = BehaviorSubject<[Datum]>(value: [])
         let resultLookPost = PublishSubject<AttemptLookPost>()
         
+        // pagination
+        input.prefetchItem
+            .subscribe(with: self) { owner , value in
+                do {
+                    let tourItemCnt = try owner.tourItems.value().count
+                    
+                    if value.contains(where: { $0.row == tourItemCnt - 2 }) {
+                        if owner.nextCursorItem != "0" {
+                            owner.nextCursor.onNext(owner.nextCursorItem)
+                        }
+                    }
+                } catch {
+                    print("tourItemCnt 가져오는 과정에서 do try 에러.")
+                }
+            }
+            .disposed(by: disposeBag)
         
-        // 로그인을 했는데, 키체인에 id가 없을리가 없다. ok
         
         nextCursor
             .flatMap {
@@ -100,17 +117,36 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
 //                    owner.tourItems.append(contentsOf: result.data)
 //                    print("배열 뒤에 추가 성공")
                     
-                    print("데이터 로딩에 성공했습니다. 배열 뒤에 추가합니다")
-                    var oldValues: [Datum] = []
+                    print("데이터 로딩에 성공했습니다.")
+                    owner.nextCursorItem = result.nextCursor
+                    
+                    print("현재 nextCursor 값에 따라 배열을 통으로 바꿀지, 뒤에 append할 지 결정합니다")
+                    
+                    var nextCursorText: String
                     do {
-                        oldValues = try owner.tourItems.value()
+                        nextCursorText = try owner.nextCursor.value()
                     } catch {
-                        print("기존 배열을 가져오는 과정에서 오류 발생")
+                        print("nextCursor do try 에러. 빈 문자열로 처리")
+                        nextCursorText = ""
                     }
-                    oldValues.append(contentsOf: result.data)
-
-                    owner.tourItems.onNext(oldValues)
-                    print("배열 뒤에 추가 성공")
+                    
+                    
+                    if nextCursorText == "" {
+                        print("-- nextCursor가 빈 문자열입니다. 통으로 바꿉니다")
+                        owner.tourItems.onNext(result.data)
+                    } else {
+                        print("-- nextCursor가 빈 문자열이 아닙니다. 뒤에 붙입니다")
+                        
+                        var oldValues: [Datum] = []
+                        do {
+                            oldValues = try owner.tourItems.value()
+                        } catch {
+                            print("기존 배열 가져오는 과정에서 do try 에러. 빈 배열로 처리")
+                        }
+                        oldValues.append(contentsOf: result.data)
+                        owner.tourItems.onNext(oldValues)
+                    }
+                    
                 }
             }
             .disposed(by: disposeBag)

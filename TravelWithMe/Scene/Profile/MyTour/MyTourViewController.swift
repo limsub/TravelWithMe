@@ -27,20 +27,16 @@ class MyTourViewController: BaseViewController {
         
         
         bind()
-//        settingMyTourCollectionView()
     }
     
-//    func settingMyTourCollectionView() {
-//        mainView.myTourCollectionView.dataSource = self
-//        mainView.myTourCollectionView.delegate = self
-//    }
-    
+
 
     
     func bind() {
         let input = MyTourViewModel.Input(
             a: "hi",
-            itemSelected: mainView.myTourCollectionView.rx.itemSelected
+            itemSelected: mainView.myTourCollectionView.rx.itemSelected,
+            prefetchItem: mainView.myTourCollectionView.rx.prefetchItems
         )
         let output = viewModel.tranform(input)
         
@@ -109,51 +105,3 @@ class MyTourViewController: BaseViewController {
     }
 }
 
-//extension MyTourViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        
-//        return viewModel.tourItems.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileMyTourView - tourCollectionView", for: indexPath) as?  AboutTourCollectionViewCell else { return UICollectionViewCell() }
-//        
-//        cell.designCell(viewModel.tourItems[indexPath.item])
-//        
-//        cell.menuCallBackMethod = { [weak self] in
-//            
-//            self?.showActionSheet(
-//                nil, message: nil, firstTitle: "게시글 수정", secondTitle: "게시글 삭제",
-//                firstCompletionHandler: {
-//                    print("게시글 수정하기")
-//                    
-//                }, secondCompletionHandler: {
-//                    print("게시글 삭제하기")
-//                    
-//                    RouterAPIManager.shared.requestNormal(
-//                        type: DeletePostRespose.self,
-//                        error: DeletePostAPIError.self,
-//                        api: .deletePost(idStruct: DeletePostRequest(id: self?.viewModel.tourItems[indexPath.item].id ?? ""))) { response in
-//                            
-//                            print(response)
-//                            
-//                            switch response {
-//                            case .success(let result):
-//                                print("게시글 삭제 성공")
-//                                
-//                            case .failure(let error):
-//                                print("게시글 삭제 실패")
-//                            }
-//                        }
-//                    
-//                })
-//            
-//            
-//        }
-//        
-//        return cell
-//    }
-//    
-//    
-//}
