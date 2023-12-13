@@ -96,5 +96,42 @@ extension ProfileInfoViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+     
+        let vc = ProfileViewController()
+        if checkFollowerCollectionView(collectionView) {
+            print("팔로워 프로필 화면으로 이동. 내 프로필인지 남 프로필인지 체크")
+            let userId = viewModel.profileInfoData.followers[indexPath.item]._id
+            
+            if userId == KeychainStorage.shared._id {
+                print("-> 내 프로필 화면으로 이동")
+                vc.viewModel.userType = .me
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                print("-> 남 프로필 화면으로 이동")
+                vc.viewModel.userType = .other(
+                    userId: userId, isFollowing: false
+                )
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        } else {
+            print("팔로잉 프로필 화면으로 이동. 내 프로필인지 남 프로필인지 체크")
+            let userId = viewModel.profileInfoData.following[indexPath.item]._id
+            
+            if userId == KeychainStorage.shared._id {
+                print("-> 내 프로필 화면으로 이동")
+                vc.viewModel.userType = .me
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                print("-> 남 프로필 화면으로 이동")
+                vc.viewModel.userType = .other(
+                    userId: userId, isFollowing: false
+                )
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
+    }
 }

@@ -63,10 +63,10 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
                 switch response {
                     
                 case .success(let result):
-                    print("내 게시글 조회 성공")
+                    print("만든거 게시글 조회 성공")
                     return AttemptLookPost.success(result: result)
                 case .failure(let error):
-                    print("내 게시글 조회 실패")
+                    print("만든거 게시글 조회 실패")
                     
                     // 1. 공통 에러
                     if let commonError = error as? CommonAPIError {
@@ -76,7 +76,7 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
                     
                     // 2. 게시글 조회 에러
                     if let lookPostError = error as? LookPostAPIError {
-                        print("- 게시글 조회 에러")
+                        print("- 만든거 게시글 조회 에러")
                         return AttemptLookPost.lookPostError(error: lookPostError)
                     }
                     
