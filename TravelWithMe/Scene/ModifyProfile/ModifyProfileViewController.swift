@@ -80,6 +80,7 @@ class ModifyProfileViewController: BaseViewController {
         // 전달해준 값을 수정 안하고 그대로 쓸 수도 있기 때문에, 초기값과 변경값을 둘 다 반영하기 위함
         let nick1 = mainView.nicknameTextField.rx.text.orEmpty
         let nick2 = mainView.nicknameTextField.rx.observe(String.self, "text")
+        
         let nick = PublishSubject<String>()
         
         let birth1 = mainView.birthdayTextField.rx.text.orEmpty

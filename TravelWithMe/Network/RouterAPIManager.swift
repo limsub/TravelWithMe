@@ -41,7 +41,50 @@ class RouterAPIManager {
         
     }
     
-    // 기본
+    // 기본 (interceptor x)
+    func requestNormalWithNoIntercept<T: Decodable, U: APIError>(type: T.Type, error: U.Type, api: Router, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        
+        AF.request(api, interceptor: nil)
+            .responseDecodable(of: T.self) { response in
+                print(response)
+                
+                switch response.result {
+                case .success(let data):
+                    print("(노말 네트워크) 통신 성공")
+                    completionHandler(.success(data))
+                    
+                case .failure(let error):
+                    
+                    let statusCode = response.response?.statusCode ?? 500
+                    print("(노말 네트워크) 노말 네트워크 통신 실패. 상태 코드 \(statusCode)에 따라 에러 탐색")
+                    
+                    
+                    // 1. 공통 에러인 경우
+                    if [420, 429, 444, 500].contains(statusCode) {
+                        print("(노말 네트워크) 공통 에러를 받았습니다")
+                        let returnError = CommonAPIError(rawValue: statusCode)!
+                        completionHandler(.failure(returnError))
+                    }
+                    
+                    // 2. 리프레시 토큰 에러인 경우
+                    else if case .requestRetryFailed(let retryError as RefreshTokenAPIError, _) = error {
+                        print("(노말 네트워크) 리프레시 토큰 에러를 받았습니다. 상태 코드와 관계없이 refreshTokenAPIError를 던집니다")
+                        completionHandler(.failure(retryError))
+                    }
+
+                    // 3. U 타입 에러인 경우
+                    else if let returnError = U(rawValue: statusCode) {
+                        print("(노말 네트워크) U 타입 에러를 받았습니다")
+                        completionHandler(.failure(returnError))
+                    }
+                    
+                }
+            }
+        
+        
+    }
+    
+    // 기본 (interceptor o)
     func requestNormal<T: Decodable, U: APIError>(type: T.Type, error: U.Type, api: Router, completionHandler: @escaping (Result<T, Error>) -> Void) {
         
         AF.request(api, interceptor: /*nil*/ APIRequestInterceptor())

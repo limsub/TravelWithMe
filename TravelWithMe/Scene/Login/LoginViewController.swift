@@ -39,8 +39,8 @@ class LoginViewController: BaseViewController {
         // 1. 텍스트필드에 값이 있을 때만 버튼 활성화
         output.enabledLoginButton
             .subscribe(with: self) { owner , value in
-                owner.mainView.loginButton.isEnabled = value
-                owner.mainView.loginButton.backgroundColor = UIColor(hexCode: value ? ConstantColor.enabledButtonBackground.hexCode : ConstantColor.disabledButtonBackground.hexCode)
+                owner.mainView.loginButton.update(value ? .enabled : .disabled)
+                
             }
             .disposed(by: disposeBag)
         
@@ -50,9 +50,14 @@ class LoginViewController: BaseViewController {
                 
                 switch value {
                 case .success:  // 결과값 (result)는 토큰 저장 용으로만 사용하고, 이 과정은 viewModel에서 끝난다. 여기서는 화면 전환만 시켜주면 됨
-                    print("로그인 성공! 다음 화면 전환!")
-                    let vc = MakeTourViewController()
-                    owner.navigationController?.pushViewController(vc , animated: true)
+                    print("로그인 성공! 다음 화면 전환! (window rootView 교체!!!")
+                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                    let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                    
+                    let vc = StartTabBarViewController()
+                    sceneDelegate?.window?.rootViewController = vc
+                    sceneDelegate?.window?.makeKeyAndVisible()
+                    
                     
                 case .commonError(let error):
                     print("공통 에러 발생!")
@@ -70,8 +75,6 @@ class LoginViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
-        
-        
     }
     
     

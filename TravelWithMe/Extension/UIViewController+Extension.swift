@@ -32,5 +32,13 @@ extension UIViewController {
     }
     
     
+    func showAPIErrorAlert() {
+        
+    }
+    
+    
+    func goToLoginViewController() {
+        
+    }
     
 }
