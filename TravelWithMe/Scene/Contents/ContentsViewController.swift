@@ -112,10 +112,10 @@ class ContentsViewController: BaseViewController {
         
         let input = ContentsViewModel.Input(
             searchCategory: searchCategory,
-            itemSelected: mainView.tourCollectionView.rx.itemSelected
+            itemSelected: mainView.tourCollectionView.rx.itemSelected,
+            prefetchItem: mainView.tourCollectionView.rx.prefetchItems
         )
-        
-        
+    
     
         
         let output = viewModel.tranform(input)
@@ -129,8 +129,8 @@ class ContentsViewController: BaseViewController {
         output.tourItems
             .bind(to: mainView.tourCollectionView.rx.items(cellIdentifier: "ContentsView - tourCollectionView", cellType: AboutTourCollectionViewCell.self)) { (row, element, cell) in
                 
-                print("------------------")
-                print(element)
+//                print("------------------")
+//                print(element)
                 
                 cell.designCell(element)
                 

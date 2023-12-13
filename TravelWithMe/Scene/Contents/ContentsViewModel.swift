@@ -14,8 +14,12 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
     // 일단..?
     var nextCursor = BehaviorSubject<String>(value: "")
     
+    
+    /* 네트워크 통신 결과를 저장 */
     // 컬렉션뷰에 보여줄 데이터 배열
     var tourItems = BehaviorSubject<[Datum]>(value: [])
+    // 다음 페이지네이션에서 사용할 nextCursor
+    var nextCursorItem: String = ""
     
     let disposeBag = DisposeBag()
     
@@ -24,6 +28,7 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
         let searchCategory: BehaviorSubject<TourCategoryType>
         
         let itemSelected: ControlEvent<IndexPath>
+        let prefetchItem: ControlEvent<[IndexPath]>
     }
     struct Output {
         // 버튼 8개 고정 (전체 버튼 포함) -> MakeTour에서는 7개 (전체 x)
@@ -37,11 +42,27 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
     func tranform(_ input: Input) -> Output {
         
 
+        // pagination
+        input.prefetchItem
+            .subscribe(with: self) { owner , value in
+                do {
+                    let tourItemsCnt = try owner.tourItems.value().count
+                    
+                    if value.contains(where: { $0.row == tourItemsCnt - 2 }) {
+                        // pagination 실행
+                        if owner.nextCursorItem != "0" {
+                            owner.nextCursor.onNext(owner.nextCursorItem)
+                        }
+                    }
+                } catch {
+                    print("에러났슈")
+                }
+            }
+            .disposed(by: disposeBag)
+
         
         // 네트워크 통신 결과
         let resultLookPost = PublishSubject<AttemptLookPost>()
-        
-        
         
         // 네트워크 통신을 하는 시점 :
             // 1. (input.searchCategory 변경) 다른 카테고리 버튼 클릭
@@ -82,7 +103,7 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
                     type: LookPostResponse.self,
                     error: LookPostAPIError.self ,
                     api: .lookPost(
-                        query: LookPostQueryString(next: $0, limit: "100"),
+                        query: LookPostQueryString(next: $0, limit: "10"),
                         userId: nil,    // 모든 유저가 올린 포스트에 대한 검색임
                         hashTag: hashTagText
                     )
@@ -124,7 +145,8 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
                 resultLookPost.onNext(value)
 
                 if case AttemptLookPost.success(let result) = value {
-                    print("데이터 로딩에 성공했습니다. 배열 뒤에 추가합니다")
+                    print("데이터 로딩에 성공했습니다.")
+                    owner.nextCursorItem = result.nextCursor
                     
                     print("현재 nextCursor 값에 따라 배열을 통으로 바꿀지, 배열 뒤에 append 할지 결정합니다")
                     
