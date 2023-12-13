@@ -22,7 +22,7 @@ class LoginView: BaseView {
     let pwTextField = SignUpTextField("비밀번호를 입력해주세요")
     
     let loginButton = SignUpCompleteButton("로그인")
-    let signUpButton = SignUpCompleteButton("회원가입")
+    let signUpButton = LoginSignUpButton()
     
     let checkLoginLabel = LoginCheckLoginLabel()
     
@@ -37,7 +37,7 @@ class LoginView: BaseView {
     override func setConstraints() {
         
         logoImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(60)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(150)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(120)
             make.height.equalTo(logoImageView.snp.width)
         }
@@ -66,7 +66,7 @@ class LoginView: BaseView {
             make.height.equalTo(52)
         }
         signUpButton.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(18)
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(18)
             make.height.equalTo(52)
         }

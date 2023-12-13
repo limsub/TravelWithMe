@@ -27,19 +27,7 @@ class SignUpViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        APIManager.shared.abc(type: ValidEmailResponse.self, api: .validEmail(sender: ValidEmailRequest(email: "aa@nasdfasfaver.com")))
-        
-//        APIManager.shared.abc(type: ValidEmailResponse.self , api: .validEmail(sender: ValidEmailRequest(email: "aa@nasdfasfaver.com")), error: ValidEmailAPIError.self)
-        
-//        APIManager.shared.requestValidEmail("11@naver.commm")
-//        APIManager.shared.requestJoin(JoinRequest(email: "aa@naver.com", password: "aaa", nick: "abcd", phoneNum: "male", birthDay: "20231012"))
-        
 
-//        APIManager.shared.requestLogin(LoginRequest(email: "aa@naver.com", password: "aaa"))
-//        APIManager.shared.requestWithDraw(accessToken)
-            
-        
         setNavigation()
         settingBirthTextField()
         bind()
@@ -48,8 +36,6 @@ class SignUpViewController: BaseViewController {
     
     func setNavigation() {
         navigationItem.title = "회원가입"
-//        navigationItem.largeTitleDisplayMode = .always
-//        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func settingBirthTextField() {

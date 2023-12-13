@@ -58,6 +58,7 @@
 		486195D12B298C88001D3CC8 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486195D02B298C88001D3CC8 /* SplashView.swift */; };
 		486195D32B298C8F001D3CC8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486195D22B298C8F001D3CC8 /* SplashViewController.swift */; };
 		486195D52B298C95001D3CC8 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486195D42B298C95001D3CC8 /* SplashViewModel.swift */; };
+		486195D72B29A83B001D3CC8 /* LoginSignUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486195D62B29A83B001D3CC8 /* LoginSignUpButton.swift */; };
 		4867323D2B0C8D1F00BC24A4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */; };
 		4867323F2B0C8E9300BC24A4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */; };
 		486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 486732412B0C8EA900BC24A4 /* RxCocoa */; };
@@ -210,6 +211,7 @@
 		486195D02B298C88001D3CC8 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		486195D22B298C8F001D3CC8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		486195D42B298C95001D3CC8 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		486195D62B29A83B001D3CC8 /* LoginSignUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpButton.swift; sourceTree = "<group>"; };
 		4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4867323E2B0C8E9300BC24A4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		486732452B0C8EBD00BC24A4 /* BaseViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelType.swift; sourceTree = "<group>"; };
@@ -914,6 +916,7 @@
 			isa = PBXGroup;
 			children = (
 				4818C8D22B106E4000BC8F02 /* LoginCheckLoginLabel.swift */,
+				486195D62B29A83B001D3CC8 /* LoginSignUpButton.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1115,6 +1118,7 @@
 				48B7CC132B14836D00AD854F /* ContentsView.swift in Sources */,
 				48B7CC0C2B145EDD00AD854F /* APIRequestInterceptor.swift in Sources */,
 				48B7CC0F2B14835500AD854F /* ContentsViewController.swift in Sources */,
+				486195D72B29A83B001D3CC8 /* LoginSignUpButton.swift in Sources */,
 				48F006B92B16F1B400DB1FC1 /* UIImageView+Extension.swift in Sources */,
 				486AA0182B131E4C00CB5179 /* MakeTourImageCollectionViewCell.swift in Sources */,
 				48BCD9CC2B1E03FF004E8838 /* DetailTourApplyButton.swift in Sources */,

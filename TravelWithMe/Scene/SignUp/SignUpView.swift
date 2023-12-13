@@ -26,7 +26,7 @@ class SignUpView: BaseView {
     let birthdayTextField = SignUpTextField("YYYYMMDD")
     let introduceTextView = MakeTourTextView()
     
-    let emailCheckButton = SignUpSmallButton("중복 확인")
+    let emailCheckButton = SignUpCheckEmailButton("중복 확인")
     let genderSelectSegmentControl = SignUpGenderSegmentControl(items: ["여성", "남성"])
     
     let completeButton = SignUpCompleteButton("완료")
