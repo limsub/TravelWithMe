@@ -206,5 +206,9 @@ class ContentsViewController: BaseViewController {
 extension ContentsViewController: ReloadContentsView {
     func reload() {
         viewModel.nextCursor.onNext("")
+        
+        
+//        mainView.tourCollectionView.setContentOffset(.zero, animated: true) // 스크롤 시점 맨 위로
+        mainView.tourCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
 }

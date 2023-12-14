@@ -24,16 +24,34 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
     let plusImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "plus")
+        view.contentMode = .scaleAspectFill
         view.tintColor = UIColor.appColor(.gray1)
         return view
     }()
     
-    let cancelButton = {
+    lazy var cancelButton = {
         let view = UIButton()
-        view.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let image = UIImage(systemName: "x.circle.fill", withConfiguration: imageConfig)
+        view.setImage(image, for: .normal)
         view.tintColor = UIColor.appColor(.gray1)
+        view.backgroundColor = .white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 15
+        
+        view.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
+        
         return view
     }()
+    
+    var cancelButtonCallBackMethod: ( () -> Void )?
+    
+    @objc
+    func cancelButtonClicked() {
+        if let closure = cancelButtonCallBackMethod {
+            closure()
+        }
+    }
     
     
     override func setConfigure() {
@@ -56,7 +74,7 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
         }
         cancelButton.snp.makeConstraints { make in
             make.top.trailing.equalTo(contentView)
-            make.size.equalTo(24)
+            make.size.equalTo(30)
         }
     }
     

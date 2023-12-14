@@ -90,8 +90,8 @@ class MakeTourViewController: BaseViewController {
         output.enabledCompleteButton
             .subscribe(with: self) { owner , value in
                 print("여행 제작 버튼 활성화 여부 : ", value)
-                owner.mainView.makeTourButton.isEnabled = value
-                owner.mainView.makeTourButton.backgroundColor = UIColor(hexCode: value ? ConstantColor.enabledButtonBackground.hexCode : ConstantColor.disabledButtonBackground.hexCode)
+                
+                owner.mainView.makeTourButton.update(value ? .enabled : .disabled)
             }
             .disposed(by: disposeBag)
         
@@ -208,6 +208,8 @@ class MakeTourViewController: BaseViewController {
         
         mainView.imageCollectionView.delegate = self
         mainView.imageCollectionView.dataSource = self
+        
+        
     }
 }
 
@@ -220,11 +222,26 @@ extension MakeTourViewController: UICollectionViewDataSource, UICollectionViewDe
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "여행 만들기 - 이미지 컬렉션뷰", for: indexPath) as? MakeTourImageCollectionViewCell else { return UICollectionViewCell() }
         
         
+        
         if (indexPath.item == 0) {
             cell.designPlusCell()
         }
         else {
             cell.designCell(viewModel.tourImages[indexPath.row - 1])
+            
+            cell.cancelButtonCallBackMethod = { [weak self] in
+                print("캔슬 버튼 클릭!! indexPath : \(indexPath)")
+                
+                
+                self?.mainView.imageCollectionView.performBatchUpdates {
+                    self?.viewModel.tourImages.remove(at: indexPath.item - 1)
+                    
+                    self?.mainView.imageCollectionView.deleteItems(at: [IndexPath(item: indexPath.item, section: 0)])
+                } completion: { _ in
+                    self?.mainView.imageCollectionView.reloadData()
+                    print(self?.viewModel.tourImages)
+                }
+            }
         }
         
         
@@ -265,8 +282,8 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
                 if itemProvider.canLoadObject(ofClass: UIImage.self) {
                     itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image , error  in
                         
-                        print("이미지 : ", image)
-                        print("에러 : ", error)
+//                        print("이미지 : ", image)
+//                        print("에러 : ", error)
                         
                         // 시뮬레이터 맨 첫번째 사진 로드 불가
                         guard let image = image as? UIImage else { return }
@@ -274,18 +291,25 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
                         
                         // image를 jpegData로 변환해서 저장
                         guard let imageData = image.jpegData(compressionQuality: 0.01) else { return }
+                        
+                        
+                        
+                        // 로드되는 순서가 달라서... 이미지가 append되는 순서가 달라진다..ㅠ index로 접근하는 방법이 없을라나
                         self?.viewModel.tourImages.append(imageData)
-                        print(self?.viewModel.tourImages)
+//                        print(self?.viewModel.tourImages)
                         
-                        DispatchQueue.main.async {
-                            self?.mainView.imageCollectionView.reloadData()
+                        if self?.viewModel.tourImages.count == results.count {
+                            DispatchQueue.main.async {
+                                self?.mainView.imageCollectionView.reloadData()
+                            }
                         }
-                            
-                        
                         
                     }
                 }
             }
+            
+            
+            
             
         }
         
