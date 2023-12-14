@@ -21,6 +21,7 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
     // 다음 페이지네이션에서 사용할 nextCursor
     var nextCursorItem: String = ""
     
+    
     let disposeBag = DisposeBag()
     
     
@@ -29,6 +30,7 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
         
         let itemSelected: ControlEvent<IndexPath>
         let prefetchItem: ControlEvent<[IndexPath]>
+        let refreshControlValueChanged: ControlEvent<Void>
     }
     struct Output {
         // 버튼 8개 고정 (전체 버튼 포함) -> MakeTour에서는 7개 (전체 x)
@@ -37,10 +39,26 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
         
         let itemSelected: ControlEvent<IndexPath>
         let nextTourInfo: PublishSubject<Datum>
+        
+        let refreshLoading: BehaviorSubject<Bool>
     }
     
     func tranform(_ input: Input) -> Output {
         
+        
+        // refreshControl
+        let refreshLoading = BehaviorSubject<Bool>(value: false)
+        input.refreshControlValueChanged
+            .subscribe(with: self) { owner , value in
+                print("새로고침")
+                refreshLoading.onNext(true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    owner.nextCursor.onNext("")
+                    refreshLoading.onNext(false)
+                }
+            }
+            .disposed(by: disposeBag)
 
         // pagination
         input.prefetchItem
@@ -76,7 +94,7 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
         input.searchCategory
             .subscribe(with: self) { owner , value  in
                 print("버튼 클릭 : ", value)
-                
+                // 커서 초기화 -> 첫번째 페이지로 네트워크 재요청
                 owner.nextCursor.onNext("")
             }
             .disposed(by: disposeBag)
@@ -191,8 +209,6 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
             }
             .subscribe(with: self) { owner , value in
                 nextTourInfo.onNext(value.1[value.0.item])
-                
-//                print("넥스트 투어 인포 : \(value.1[value.0.item])")
             }
             .disposed(by: disposeBag)
         
@@ -200,7 +216,8 @@ class ContentsViewModel: ViewModelType, TourItemsProtocol1 {
             tourItems: tourItems,
             resultLookPost: resultLookPost,
             itemSelected: input.itemSelected,
-            nextTourInfo: nextTourInfo
+            nextTourInfo: nextTourInfo,
+            refreshLoading: refreshLoading
         )
     }
 }

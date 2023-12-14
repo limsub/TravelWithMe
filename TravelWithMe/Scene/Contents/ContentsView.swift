@@ -34,8 +34,12 @@ class ContentsView: BaseView {
         
         view.showsVerticalScrollIndicator = false
         
+        view.refreshControl = tourRefreshControl
+        
         return view
     }()
+    
+    let tourRefreshControl = UIRefreshControl()
     
     
     

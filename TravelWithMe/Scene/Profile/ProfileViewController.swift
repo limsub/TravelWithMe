@@ -213,9 +213,14 @@ class ProfileViewController: TabmanViewController {
                         // 4. 토큰 관련 에러
                         if let refreshTokenError = error as? RefreshTokenAPIError {
 
-                            print("---- 토큰 관련 에러!!")
-                            print("---- 에러내용 : \(refreshTokenError.description)")
-                            self.goToLoginViewController()
+                            if refreshTokenError == .refreshTokenExpired {
+                                
+                                print("---- 리프레시 토큰 만료 에러!!")
+                                print("---- 에러내용 : \(refreshTokenError.description)")
+                                self.goToLoginViewController()
+                                
+                            }
+                            
                             
                             return
                         }

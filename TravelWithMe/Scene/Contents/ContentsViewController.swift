@@ -113,7 +113,8 @@ class ContentsViewController: BaseViewController {
         let input = ContentsViewModel.Input(
             searchCategory: searchCategory,
             itemSelected: mainView.tourCollectionView.rx.itemSelected,
-            prefetchItem: mainView.tourCollectionView.rx.prefetchItems
+            prefetchItem: mainView.tourCollectionView.rx.prefetchItems,
+            refreshControlValueChanged: mainView.tourRefreshControl.rx.controlEvent(.valueChanged)
         )
     
     
@@ -148,6 +149,12 @@ class ContentsViewController: BaseViewController {
                 
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
+            .disposed(by: disposeBag)
+        
+        
+        // 리프레시가 끝나는 시점을 잡아줌
+        output.refreshLoading
+            .bind(to: mainView.tourRefreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
     }
     
