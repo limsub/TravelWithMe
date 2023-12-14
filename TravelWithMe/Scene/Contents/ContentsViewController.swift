@@ -9,6 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol ReloadContentsView: AnyObject {
+    func reload()
+}
+
 class ContentsViewController: BaseViewController {
     
     let mainView = ContentsView()
@@ -28,13 +32,14 @@ class ContentsViewController: BaseViewController {
         
         settingNavigation()
         settingCategoryButtons()
+        settingMakePostButton()
         bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        tabBarController?.tabBar.isHidden = false
+//        tabBarController?.tabBar.isHidden = false
     }
     
     private func settingNavigation() {
@@ -185,6 +190,21 @@ class ContentsViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    func settingMakePostButton() {
+        mainView.makePostButton.addTarget(self, action: #selector(makePostButtonClicked), for: .touchUpInside)
+    }
+    @objc
+    func makePostButtonClicked() {
+        let vc = MakeTourViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
-    
+}
+
+
+extension ContentsViewController: ReloadContentsView {
+    func reload() {
+        viewModel.nextCursor.onNext("")
+    }
 }

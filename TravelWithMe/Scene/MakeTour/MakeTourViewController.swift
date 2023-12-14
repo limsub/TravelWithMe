@@ -16,6 +16,8 @@ class MakeTourViewController: BaseViewController {
     let viewModel = MakeTourViewModel()
     let disposeBag = DisposeBag()
     
+    weak var delegate: ReloadContentsView?
+    
     override func loadView() {
         self.view = mainView
     }
@@ -97,25 +99,31 @@ class MakeTourViewController: BaseViewController {
             .subscribe(with: self) { owner, value  in
                 switch value {
                 case .success(_):
-                    print("네트워크 응답 성공!")
+                    print("(MakeTour) 네트워크 응답 성공!")
+                    print("1. ContentsView reload  2. popView")
+                    
+                    // 1.
+                    owner.delegate?.reload()
+                    
+                    // 2.
+                    owner.navigationController?.popViewController(animated: true)
                     
                 case .commonError(let error):
-                    print("네트워크 응답 실패! - 공통 에러")
+                    print("(MakeTour) 네트워크 응답 실패! - 공통 에러")
                     owner.showAPIErrorAlert(error.description)
                         
                 case .makePostError(let error):
-                    print("네트워크 응답 실패! - 게시글 작성 에러")
+                    print("(MakeTour) 네트워크 응답 실패! - 게시글 작성 에러")
                     owner.showAPIErrorAlert(error.description)
                     
                 case .refreshTokenError(let error):
-                    print("네트워크 응답 실패! - 토큰 에러")
+                    print("(MakeTour) 네트워크 응답 실패! - 토큰 에러")
                     if error == .refreshTokenExpired {
                         print("- 리프레시 토큰 만료!!")
                         owner.goToLoginViewController()
                     } else {
                         owner.showAPIErrorAlert(error.description)
                     }
-                    
                 }
             }
             .disposed(by: disposeBag)

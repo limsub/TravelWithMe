@@ -42,6 +42,22 @@ class ContentsView: BaseView {
     let tourRefreshControl = UIRefreshControl()
     
     
+    // 게시글 작성하기 버튼
+    let makePostButton = {
+        let view = UIButton()
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 30
+        view.backgroundColor = UIColor.appColor(.main1)
+        view.tintColor = .white
+        
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let image = UIImage(systemName: "plus", withConfiguration: imageConfig)
+
+        view.setImage(image, for: .normal)
+        
+        return view
+    }()
+    
     
     override func setConfigure() {
         super.setConfigure()
@@ -54,6 +70,7 @@ class ContentsView: BaseView {
             categoryContentView.addSubview(item)
         }
         
+        addSubview(makePostButton)
     }
     
     override func setConstraints() {
@@ -95,6 +112,11 @@ class ContentsView: BaseView {
             make.top.equalTo(categoryScrollView.snp.bottom).offset(8)
             make.bottom.equalTo(self)
             make.horizontalEdges.equalTo(self)
+        }
+        
+        makePostButton.snp.makeConstraints { make in
+            make.size.equalTo(60)
+            make.trailing.bottom.equalTo(self.safeAreaLayoutGuide).inset(18)
         }
     }
     
