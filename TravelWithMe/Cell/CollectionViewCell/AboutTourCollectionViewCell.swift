@@ -143,8 +143,7 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
     }
     
     func designCell(_ sender: Datum) {
-        
-        
+
         // 1. 배경 이미지 (아직)
         if !sender.image.isEmpty {
             let imageEndString = sender.image[0]    // 맨 처음 이미지

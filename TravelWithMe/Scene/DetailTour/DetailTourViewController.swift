@@ -43,7 +43,7 @@ class DetailTourViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = true
+//        tabBarController?.tabBar.isHidden = true
     }
     
     func setSwipeImageCollectionViewDataSource() {

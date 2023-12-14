@@ -81,6 +81,22 @@ class ProfileTopView: BaseView {
     let backBackView = ProfileTopBackBackView()
     let backView = ProfileTopBackView()
     
+    let myLabel = {
+        let view = UILabel()
+        view.font = .boldSystemFont(ofSize: 25)
+        view.textColor = .white
+        view.text = "My"
+        return view
+    }()
+    let settingButton = {
+        let view = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let image = UIImage(systemName: "trash.circle", withConfiguration: imageConfig)
+        view.setImage(image, for: .normal)
+        view.tintColor = .white
+        return view
+    }()
+    
     let profileImageView = ContentsProfileImageView(frame: .zero)
     
     let nameLabel = ContentsTourTitleLabel(.black)
@@ -90,7 +106,7 @@ class ProfileTopView: BaseView {
     override func setConfigure() {
         super.setConfigure()
         
-        [backBackView, backView, profileImageView, nameLabel, modifyButton].forEach { item  in
+        [backBackView, backView, myLabel, settingButton, profileImageView, nameLabel, modifyButton].forEach { item  in
             addSubview(item)
         }
     }
@@ -104,6 +120,16 @@ class ProfileTopView: BaseView {
         backView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
+        
+        myLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self).inset(18)
+            make.top.equalTo(self).inset(60)
+        }
+        settingButton.snp.makeConstraints { make in
+            make.trailing.equalTo(self).inset(18)
+            make.centerY.equalTo(myLabel)
+        }
+        
         profileImageView.snp.makeConstraints { make in
             make.centerY.equalTo(150)
             make.leading.equalTo(self).inset(24)
@@ -134,7 +160,7 @@ class ProfileTopView: BaseView {
         nameLabel.textAlignment = .center
     }
     
-    func updateProfileTopView(_ result: LookProfileResponse, userType: UserType) {
+    func updateProfileTopView(_ result: LookProfileResponse, userType: UserType, fromTabBar: Bool) {
         
         // 프로필 이미지뷰
         if let imageUrl = result.profile {
@@ -148,5 +174,9 @@ class ProfileTopView: BaseView {
         
         // 버튼 수정
         modifyButton.updateButton(userType)
+        
+        
+        myLabel.isHidden = !fromTabBar
+        settingButton.isHidden = !fromTabBar
     }
 }

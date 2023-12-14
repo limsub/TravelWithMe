@@ -15,6 +15,9 @@ protocol RetryNetworkAndUpdateView {
 
 class ProfileViewController: TabmanViewController {
     
+    // 탭바에서 바로 보는 프로필 화면 -> 설정 버튼을 달아준다
+    var fromTabBar = false
+    
     let profileView = ProfileTopView()
     let viewModel = ProfileViewModel()
     
@@ -138,7 +141,7 @@ class ProfileViewController: TabmanViewController {
     // topView는 직접 업데이트, infoVC에는 VM에 전달 후, infoVC 업데이트 실행
     func settingDataProfileTopView(_ result: LookProfileResponse, userType: UserType) {
         // 얘가 profileTopView임
-        profileView.updateProfileTopView(result, userType: userType)
+        profileView.updateProfileTopView(result, userType: userType, fromTabBar: fromTabBar)
     }
     
     func settingDataProfileInfoView(_ result: LookProfileResponse) {
@@ -250,6 +253,8 @@ class ProfileViewController: TabmanViewController {
     
     func settingTabman() {
         self.dataSource = self
+        
+        view.backgroundColor = .white
         
         let bar = TMBar.ButtonBar()
         bar.layout.transitionStyle = .snap

@@ -45,6 +45,10 @@ class MyTourViewController: BaseViewController {
                 
                 cell.designCell(element)
                 
+                if self.viewModel.userId != KeychainStorage.shared._id {
+                    cell.disabledMenuButton()
+                }
+                
                 cell.menuButton.rx.tap
                     .subscribe(with: self) { owner, _ in
                         owner.showActionSheet(nil, message: nil, firstTitle: "게시글 수정", secondTitle: "게시글 삭제") {

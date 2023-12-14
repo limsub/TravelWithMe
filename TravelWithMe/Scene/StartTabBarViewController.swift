@@ -19,6 +19,7 @@ class StartTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        c.fromTabBar = true
         
         view.backgroundColor = .clear
         
