@@ -170,10 +170,10 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         
         // 4. 유저 프로필 이미지 (아직)
         if let profileImageUrl = sender.creator.profile {
-            print("저장된 프로필 이미지가 있다!!")
+//            print("저장된 프로필 이미지가 있다!!")
             profileImageView.loadImage(endURLString: profileImageUrl)
         } else {
-            print("저장된 프로필 이미지가 없다")
+//            print("저장된 프로필 이미지가 없다")
             profileImageView.image = UIImage(named: "basicProfile2")
         }
         

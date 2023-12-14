@@ -25,12 +25,10 @@ class MyTourViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        bind()
+        // 무작정 bind를 해버리면 아직 viewModel.userId를 값전달로 받지 못했기 때문에 에러가 발생한다
+        // 상위 뷰컨(ProfileVC)에서 값 전달이 완료된 후 bind 함수를 실행시킨다
+//        bind()
     }
-    
-
-
     
     func bind() {
         let input = MyTourViewModel.Input(
@@ -132,15 +130,15 @@ class MyTourViewController: BaseViewController {
             .subscribe(with: self) { owner , response  in
                 switch response {
                 case .success(_):
-                    print("네트워크 응답 성공!")
+                    print("(만든 게시글 조회) 네트워크 응답 성공!")
                 case .commonError(let error):
-                    print("네트워크 응답 실패! - 공통 에러")
+                    print("(만든 게시글 조회) 네트워크 응답 실패! - 공통 에러")
                     owner.showAPIErrorAlert(error.description)
                 case .lookPostError(let error):
-                    print("네트워크 응답 실패! - 내가 작성한 게시글 조회 에러")
+                    print("(만든 게시글 조회) 네트워크 응답 실패! - 내가 작성한 게시글 조회 에러")
                     owner.showAPIErrorAlert(error.description)
                 case .refreshTokenError(let error):
-                    print("네트워크 응답 실패! - 토큰 에러")
+                    print("(만든 게시글 조회) 네트워크 응답 실패! - 토큰 에러")
                     if error == .refreshTokenExpired {
                         print("- 리프레시 토큰 만료!")
                         owner.goToLoginViewController()

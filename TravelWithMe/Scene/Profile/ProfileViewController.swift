@@ -35,9 +35,7 @@ class ProfileViewController: TabmanViewController {
         
         fetchProfileInfo()
         
-//        view.backgroundColor = .white
-        
-        settingCustomBarView()
+
         settingTabman()
         
         settingDataTabman()
@@ -149,8 +147,11 @@ class ProfileViewController: TabmanViewController {
     }
     
     func settingDataMyTourView(_ result: LookProfileResponse) {
+        let pastId = myTourVC.viewModel.userId
         myTourVC.viewModel.userId = result._id
         myTourVC.viewModel.nextCursor.onNext("")
+//        // myTourVC의 viewDidLoad가 아니라, 여기서 bind 함수를 실행시킨다!
+        if pastId == "" { myTourVC.bind() }
     }
     
     func settingDataTabman() {
@@ -161,7 +162,6 @@ class ProfileViewController: TabmanViewController {
             self.reloadData()
         }
     }
-    
     
     func settingModifyButtonAction() {
         profileView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
@@ -247,9 +247,6 @@ class ProfileViewController: TabmanViewController {
     }
     
     
-    func settingCustomBarView() {
-        customBarView.backgroundColor = .purple
-    }
     
     func settingTabman() {
         self.dataSource = self
