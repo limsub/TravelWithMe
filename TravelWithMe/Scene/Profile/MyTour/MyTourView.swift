@@ -19,8 +19,12 @@ class MyTourView: BaseView {
         
         view.showsVerticalScrollIndicator = false
         
+        view.refreshControl = myTourRefreshControl
+        
         return view
     }()
+    
+    let myTourRefreshControl = UIRefreshControl()
     
     
     override func setConfigure() {

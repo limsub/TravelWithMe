@@ -36,7 +36,8 @@ class MyTourViewController: BaseViewController {
         let input = MyTourViewModel.Input(
             a: "hi",
             itemSelected: mainView.myTourCollectionView.rx.itemSelected,
-            prefetchItem: mainView.myTourCollectionView.rx.prefetchItems
+            prefetchItem: mainView.myTourCollectionView.rx.prefetchItems,
+            refreshControlValueChanged: mainView.myTourRefreshControl.rx.controlEvent(.valueChanged)
         )
         let output = viewModel.tranform(input)
         
@@ -101,6 +102,11 @@ class MyTourViewController: BaseViewController {
                 vc.viewModel.tourItemsDelegate1 = owner.viewModel
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
+            .disposed(by: disposeBag)
+        
+        // 리프레시가 끝나는 시점을 잡아줌
+        output.refreshLoading
+            .bind(to: mainView.myTourRefreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
     }
 }

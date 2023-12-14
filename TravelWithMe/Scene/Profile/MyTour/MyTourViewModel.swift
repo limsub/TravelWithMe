@@ -30,6 +30,7 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
         
         let itemSelected: ControlEvent<IndexPath>
         let prefetchItem: ControlEvent<[IndexPath]>
+        let refreshControlValueChanged: ControlEvent<Void>
     }
 
     struct Output {
@@ -38,12 +39,29 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
         
         let itemSelected: ControlEvent<IndexPath>
         let nextTourInfo: PublishSubject<Datum>
+        let refreshLoading: BehaviorSubject<Bool>
     }
     
     func tranform(_ input: Input) -> Output {
         
 //        let tourItems = BehaviorSubject<[Datum]>(value: [])
         let resultLookPost = PublishSubject<AttemptLookPost>()
+        
+        // refreshControl
+        let refreshLoading = BehaviorSubject(value: false)
+        input.refreshControlValueChanged
+            .subscribe(with: self) { owner , value in
+                print("새로고침")
+                refreshLoading.onNext(true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    owner.nextCursor.onNext("")
+                    refreshLoading.onNext(false)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
         
         // pagination
         input.prefetchItem
@@ -170,7 +188,8 @@ class MyTourViewModel: ViewModelType, TourItemsProtocol1 {
             myTourItems: tourItems,
             resultLookPost: resultLookPost,
             itemSelected: input.itemSelected,
-            nextTourInfo: nextTourInfo
+            nextTourInfo: nextTourInfo,
+            refreshLoading: refreshLoading
         )
     }
     
