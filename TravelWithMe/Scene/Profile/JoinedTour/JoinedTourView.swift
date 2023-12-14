@@ -28,9 +28,13 @@ class JoinedTourView: BaseView {
         
         view.allowsSelection = false
         
+        view.refreshControl = joinedTourRefreshControl
+        
         
         return view
     }()
+    
+    let joinedTourRefreshControl = UIRefreshControl()
     
     override func setConfigure() {
         super.setConfigure()

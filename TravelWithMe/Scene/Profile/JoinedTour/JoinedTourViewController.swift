@@ -27,7 +27,22 @@ class JoinedTourViewController: BaseViewController {
         super.viewDidLoad()
         
         settingTableView()
+        settingRefreshControl()
         callRequest()
+    }
+    
+    func settingRefreshControl() {
+        mainView.joinedTourRefreshControl.addTarget(self, action: #selector(refreshTable(refreshControl:)), for: .valueChanged)
+    }
+    
+    @objc
+    func refreshTable(refreshControl: UIRefreshControl) {
+        print("새로고침")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.callRequest()
+            self.mainView.joinedTourRefreshControl.endRefreshing()
+        }
+        
     }
     
     
