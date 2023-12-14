@@ -12,6 +12,12 @@ import PhotosUI
 
 class MakeTourViewController: BaseViewController {
     
+    // 유입 경로
+    // 1. 여행 만들기
+    // 2. 여행 수정하기 * -> 초기 데이터를 값전달로 받는다
+    
+
+    
     let mainView = MakeTourView()
     let viewModel = MakeTourViewModel()
     let disposeBag = DisposeBag()
@@ -25,25 +31,103 @@ class MakeTourViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        //        RouterAPIManager.shared.request(
-        //            type: makePostResponse.self,
-        //            error: makePostAPIError.self,
-        //            api: .makePost(sender: makePostRequest(title: "테스트 타이틀", content: "테스트 컨텐츠", tourDates: "20230919", tourLocations: "위도, 경도", locationName: "영등포캠퍼스", maxPeopleCnt: "5", tourPrice: "30000")
-        //)
-        //        )
-        
-        
-        
-        // 여행 일자와 여행 장소 다른 뷰컨에서 받아오는 건 (버튼 탭) Input으로 넣지 말고, 일단 Rx Delegate Pattern만 이용하자.
-        
+
         selectDatesLocation()
         
         settingCollectionView()
         
         settingCategoryButtons()    // 버튼 토글을 먼저 걸어줘야 하기 때문에 얘가 반드시 bind 함수보다 먼저 실행되어야 함!!
-        
         bind()
+        
+        setInitData()
+    }
+    
+    // "게시글 수정하기"를 통해서 들어왔다면, 초기 데이터를 세팅해준다
+    func setInitData() {
+        guard let data = viewModel.initData else { return }
+        
+        // 1. 이미지 데이터 배열
+        data.image.forEach { item in
+    
+            let sampleImageView = UIImageView()
+            sampleImageView.loadImage(endURLString: item)
+            
+            
+            if let sampleImageData = sampleImageView.image?.jpegData(compressionQuality: 0.00001) {
+                viewModel.tourImages.append(sampleImageData)
+            }
+            
+            if viewModel.tourImages.count == data.image.count {
+                DispatchQueue.main.async {
+                    self.mainView.imageCollectionView.reloadData()
+                }
+            }
+        }
+      
+        mainView.imageCollectionView.reloadData()
+        
+        
+        // 2. 제목
+        mainView.titleTextField.text = data.title
+        mainView.titleTextField.sendActions(for: .valueChanged)
+        
+        
+        // 3. 소개
+        if let contentStruct = decodingStringToStruct(type: TourContent.self, sender: data.content) {
+            mainView.contentTextView.text = contentStruct.content
+        }
+        
+        
+        // 4. 유형 선택
+        let dict: [String: Int] = [ // 해시태그: 버튼 배열의 인덱스
+            "도시": 0,
+            "자연": 1,
+            "문화": 2,
+            "음식": 3,
+            "모험": 4,
+            "역사": 5,
+            "로컬": 6
+        ]
+        data.hashTags.forEach { item in
+            if let index = dict[item] {
+                mainView.categoryButtons[index].sendActions(for: .touchUpInside)
+                mainView.categoryButtons[index].rx.isSelected.onNext(true)
+            }
+        }
+        
+        
+        // 5. 최대 모집 인원
+        if let maxCntString = data.maxPeopleCnt,
+           let maxCntInt = Int(maxCntString) {
+            viewModel.tourPeopleCnt.accept(maxCntInt)
+        }
+        
+        
+        // 6. 예상 금액
+        if let priceText = data.price {
+            mainView.priceView.textField.text = priceText
+            mainView.priceView.textField.sendActions(for: .valueChanged)
+        }
+        
+        // 7. 여행 일자
+        if let tourDatesStruct = decodingStringToStruct(type: TourDates.self, sender: data.dates) {
+            // 왜 이렇게 하고 있지,,?
+            mainView.tourDatesView.label.rx.text.onNext(calculateDateLabel(tourDatesStruct.dates))
+            
+            // 그리고 이걸 또해..?
+            viewModel.tourDates.onNext(tourDatesStruct)
+            
+            mainView.tourDatesView.label.textColor = .black
+        }
+        
+        // 8. 여행 장소
+        if let tourLocationStruct = decodingStringToStruct(type: TourLocation.self, sender: data.location) {
+            mainView.tourLocationView.label.rx.text.onNext(tourLocationStruct.name)
+            viewModel.tourLocation.onNext(tourLocationStruct)
+            
+            mainView.tourLocationView.label.textColor = .black
+        }
+        
     }
     
 
@@ -201,15 +285,10 @@ class MakeTourViewController: BaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    
-    
+            
     func settingCollectionView() {
-        
         mainView.imageCollectionView.delegate = self
         mainView.imageCollectionView.dataSource = self
-        
-        
     }
 }
 
@@ -282,17 +361,11 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
                 if itemProvider.canLoadObject(ofClass: UIImage.self) {
                     itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image , error  in
                         
-//                        print("이미지 : ", image)
-//                        print("에러 : ", error)
-                        
                         // 시뮬레이터 맨 첫번째 사진 로드 불가
                         guard let image = image as? UIImage else { return }
                         
-                        
                         // image를 jpegData로 변환해서 저장
                         guard let imageData = image.jpegData(compressionQuality: 0.01) else { return }
-                        
-                        
                         
                         // 로드되는 순서가 달라서... 이미지가 append되는 순서가 달라진다..ㅠ index로 접근하는 방법이 없을라나
                         self?.viewModel.tourImages.append(imageData)
@@ -307,17 +380,7 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
                     }
                 }
             }
-            
-            
-            
-            
         }
-        
         picker.dismiss(animated: true)
-        
     }
-    
-    
-    
-    
 }

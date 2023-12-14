@@ -11,9 +11,12 @@ import RxCocoa
 
 class MakeTourViewModel: ViewModelType {
     
+    // "수정하기" 로 들어왔다면, 초기 데이터
+    var initData: Datum?
+    
+    
     let disposeBag = DisposeBag()
     
-//    var tourImages: [UIImage] = []
     var tourImages: [Data] = []
     
     var tourPeopleCnt = BehaviorRelay(value: 0)
@@ -53,6 +56,7 @@ class MakeTourViewModel: ViewModelType {
         let resultCompleteButtonClicked: PublishSubject<AttemptMakePost>
     }
     
+    
     func tranform(_ input: Input) -> Output {
         
 //        tourImages[0].jpegData(compressionQuality: 1)
@@ -61,6 +65,10 @@ class MakeTourViewModel: ViewModelType {
         let enabledCompleteButton = Observable.combineLatest(input.titleText, input.contentText, tourPeopleCnt, input.priceText, tourDates, tourLocation) { v1, v2, v3, v4, v5, v6 in
             
             let isImage = !self.tourImages.isEmpty
+            
+            print("-----------------")
+            print(!v1.isEmpty, !v2.isEmpty, v3, !v4.isEmpty, !v5.dates.isEmpty, !v6.name.isEmpty, isImage)
+            print("-----------------")
             
             return (!v1.isEmpty && !v2.isEmpty && v3 != 0
                     && !v4.isEmpty && !v5.dates.isEmpty && !v6.name.isEmpty && isImage)
@@ -180,17 +188,17 @@ class MakeTourViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        // 날짜, 위치 테스트 (VC에서 VM의 데이터에 onNext로 넣어줌) (transform이랑 관련 x)
-        tourDates
-            .subscribe(with: self) { owner , value in
-                print("날짜 테스트중 : ", value)
-            }
-            .disposed(by: disposeBag)
-        tourLocation
-            .subscribe(with: self) { owner , value in
-                print("위치 테스트중 : ", value)
-            }
-            .disposed(by: disposeBag)
+//        // 날짜, 위치 테스트 (VC에서 VM의 데이터에 onNext로 넣어줌) (transform이랑 관련 x)
+//        tourDates
+//            .subscribe(with: self) { owner , value in
+//                print("날짜 테스트중 : ", value)
+//            }
+//            .disposed(by: disposeBag)
+//        tourLocation
+//            .subscribe(with: self) { owner , value in
+//                print("위치 테스트중 : ", value)
+//            }
+//            .disposed(by: disposeBag)
         
         return Output(
             peopleCnt: tourPeopleCnt,

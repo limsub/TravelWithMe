@@ -53,7 +53,14 @@ class MyTourViewController: BaseViewController {
                     .subscribe(with: self) { owner, _ in
                         owner.showActionSheet(nil, message: nil, firstTitle: "게시글 수정", secondTitle: "게시글 삭제") {
                             print("게시글 수정하기")
-                            print(element.id)
+//                            print(element.id)
+                            print(element)
+                            
+                            
+                            // 만약 신청한 사람이 있다면, 게시글 수정은 불가능하다
+                            let vc = MakeTourViewController()
+                            vc.viewModel.initData = element
+                            owner.navigationController?.pushViewController(vc, animated: true)
                             
                             
                         } secondCompletionHandler: {
