@@ -86,15 +86,33 @@ class MakeReviewViewController: BaseViewController {
             .subscribe(with: self) { owner, value in
                 print("-- (VC) 결과 전달 받음")
                 switch value {
-                case .success(let result):
-                    print("-- (VC) 성공! 화면 뒤로 백 해주고, 이전 화면 JoinedTourReload indexPath reload")
+                case .success(_):
+                    print("(MakeReview) 네트워크 응답 성공!")
+                    print("1. 화면 popView  2. 이전 화면 reloadItem")
+                    
                     owner.delegate?.reloadItem()
                     owner.navigationController?.popViewController(animated: true)
-                default:
-                    print("-- (VC) 실패! 아직 예외처리 안했다. 추후 예정")
+                    
+                case .commonError(let error):
+                    print("(MakeReview) 네트워크 응답 실패 - 공통 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .makeReviewError(let error):
+                    print("(MakeReview) 네트워크 응답 실패 - 후기 작성 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .refreshTokenError(let error):
+                    print("(MakeReview) 네트워크 응답 실패 - 토큰 에러")
+                    if error == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!")
+                        owner.goToLoginViewController()
+                    } else {
+                        owner.showAPIErrorAlert(error.description)
+                    }
                 }
                 
             }
+            .disposed(by: disposeBag)
         
         
         output.enabledCompleteButton

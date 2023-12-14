@@ -45,10 +45,7 @@ class MyTourViewController: BaseViewController {
         output.myTourItems
             .bind(to: mainView.myTourCollectionView.rx.items(cellIdentifier: "ProfileMyTourView - tourCollectionView", cellType: AboutTourCollectionViewCell.self)) { (row, element, cell) in
                 
-                print("---")
-                
                 cell.designCell(element)
-                
                 
                 cell.menuButton.rx.tap
                     .subscribe(with: self) { owner, _ in
@@ -70,15 +67,35 @@ class MyTourViewController: BaseViewController {
                                     
                                     switch response {
                                     case .success(let result):
-                                        print("게시글 삭제 성공")
-                                        print(result)
-                                        
+                                        print("(게시글 삭제) 성공")
+                                        print("배열의 요소 삭제. rx이기 때문에 알아서 뷰 업데이트")
                                         // 현재 뷰모델에서 가지고 있는 배열에 손을 대자
                                         self.viewModel.deleteItem(result)
                                         
-
                                     case .failure(let error):
-                                        print("게시글 삭제 실패")
+                                        if let commonError = error as? CommonAPIError {
+                                            print("(게시글 삭제) 네트워크 응답 실패! - 공통 에러")
+                                            owner.showAPIErrorAlert(commonError.description)
+                                        }
+                                        
+                                        if let deletePostError = error as? DeletePostAPIError {
+                                            print("(게시글 삭제) 네트워크 응답 실패! - 게시글 삭제 에러")
+                                            owner.showAPIErrorAlert(deletePostError.description)
+                                        }
+                                        
+                                        if let refreshTokenError = error as? RefreshTokenAPIError {
+                                            print("(게시글 삭제) 네트워크 응답 실패! - 토큰 에러")
+                                            if refreshTokenError == .refreshTokenExpired {
+                                                print("-- 리프레시 토큰 만료!!")
+                                                owner.goToLoginViewController()
+                                            } else {
+                                                owner.showAPIErrorAlert(refreshTokenError.description)
+                                            }
+                                        }
+                                        
+                                        // 4. 알 수 없음
+                                        print("(게시글 삭제) 네트워크 응답 실패! - 알 수 없는 에러")
+                                        owner.showAPIErrorAlert(error.localizedDescription)
                                     }
                                 }
                             
@@ -107,6 +124,31 @@ class MyTourViewController: BaseViewController {
         // 리프레시가 끝나는 시점을 잡아줌
         output.refreshLoading
             .bind(to: mainView.myTourRefreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
+        
+        // result
+        output.resultLookPost
+            .subscribe(with: self) { owner , response  in
+                switch response {
+                case .success(_):
+                    print("네트워크 응답 성공!")
+                case .commonError(let error):
+                    print("네트워크 응답 실패! - 공통 에러")
+                    owner.showAPIErrorAlert(error.description)
+                case .lookPostError(let error):
+                    print("네트워크 응답 실패! - 내가 작성한 게시글 조회 에러")
+                    owner.showAPIErrorAlert(error.description)
+                case .refreshTokenError(let error):
+                    print("네트워크 응답 실패! - 토큰 에러")
+                    if error == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!")
+                        owner.goToLoginViewController()
+                    } else {
+                        owner.showAPIErrorAlert(error.description)
+                    }
+                }
+            }
             .disposed(by: disposeBag)
     }
 }

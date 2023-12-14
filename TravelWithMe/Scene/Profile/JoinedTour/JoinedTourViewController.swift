@@ -60,25 +60,34 @@ class JoinedTourViewController: BaseViewController {
             case .failure(let error):
                 // 1. 공통 에러
                 if let commonError = error as? CommonAPIError {
-                    print("-- 공통 에러")
+                    print("(JoinedTour 조회) 네트워크 응답 실패! - 공통 에러")
+                    self.showAPIErrorAlert(commonError.description)
                     return
                 }
                 
                 // 2. 게시글 조회 에러
                 if let lookPostError = error as? LookPostAPIError {
-                    print("-- 게시글 조회 에러")
+                    print("(JoinedTour 조회) 네트워크 응답 실패! - 공통 에러")
+                    self.showAPIErrorAlert(lookPostError.description)
                     return
                 }
                 
                 // 3. 토큰 관련 에러
                 if let refreshTokenError = error as? RefreshTokenAPIError {
-                    print("-- 토큰 관련 에러")
+                    print("(JoinedTour 조회) 네트워크 응답 실패! - 토큰 에러")
+                    if refreshTokenError == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!!")
+                        self.goToLoginViewController()
+                    } else {
+                        self.showAPIErrorAlert(refreshTokenError.description)
+                    }
                     return
                     
                 }
                 
                 // 4. 알 수 없음
-                print("-- 알 수 없음")
+                print("(JoinedTour 조회) 네트워크 응답 실패! - 알 수 없음")
+                self.showAPIErrorAlert(error.localizedDescription)
                 return
             }
         }
@@ -171,12 +180,6 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
             vc.viewModel.tourItemsDelegate2 = self?.viewModel
             self?.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
-        
-        
-        
-//        cell.tourTitleLabel.text = viewModel.items[indexPath.section].tours[indexPath.item].title
         
         return cell
     }

@@ -121,13 +121,34 @@ class DetailTourViewController: BaseViewController {
                 
             }
             .disposed(by: disposeBag)
-        // (1). 네트워크 쏘기
         
         
-        
-        // (2). ContentsVC에서 물고있는 데이터 변경해주기
-        
-        
+        // result
+        output.resultApplyTour
+            .subscribe(with: self) { owner , response in
+                switch response {
+                case .sucees(_):
+                    print("네트워크 응답 성공!")
+                    
+                case .commonError(let error):
+                    print("네트워크 응답 실패! - 공통 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .likePostError(let error):
+                    print("네트워크 응답 실패! - 게시글 좋아요 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .refreshTokenError(let error):
+                    print("네트워크 응답 실패! - 토큰 에러")
+                    if error == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!!")
+                        owner.goToLoginViewController()
+                    } else {
+                        owner.showAPIErrorAlert(error.description)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
 
     }
     

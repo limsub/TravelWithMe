@@ -59,8 +59,14 @@ extension UIViewController {
     }
     
     
-    func showAPIErrorAlert() {
+    func showAPIErrorAlert(_ text: String?) {
+        let alert = UIAlertController(title: "네트워크 에러", message: text, preferredStyle: .alert)
         
+        let okButton = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(okButton)
+        
+        present(alert, animated: true)
     }
     
     
@@ -77,6 +83,13 @@ extension UIViewController {
         
     }
     
-
+    
+    
+    // case .failure(let error)로 받았을 때 에러처리. 해당 네트워크에 대한 에러 타입은 매개변수로 받는다
+    func handlerFailureError<T: APIError>(errorType: T, error: Error) {
+        
+        
+        
+    }
     
 }

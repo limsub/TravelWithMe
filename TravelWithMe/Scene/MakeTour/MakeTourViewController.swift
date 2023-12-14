@@ -95,32 +95,30 @@ class MakeTourViewController: BaseViewController {
         
         output.resultCompleteButtonClicked
             .subscribe(with: self) { owner, value  in
-                
-
                 switch value {
-                case .success(let result):
-                    print("게시글 작성에 성공하였습니다")
-                    print("=== result 출력 ===")
-                    print(result)
+                case .success(_):
+                    print("네트워크 응답 성공!")
                     
                 case .commonError(let error):
-                    print("게시글 작성에 실패하였습니다 - 공통 에러")
-                    print("여기 분기 처리 아직 안함")
+                    print("네트워크 응답 실패! - 공통 에러")
+                    owner.showAPIErrorAlert(error.description)
                         
                 case .makePostError(let error):
-                    print("게시글 작성에 실패했습니다 - 게시글 작성 에러")
-                    print("여기 분기 처리 아직 안함")
+                    print("네트워크 응답 실패! - 게시글 작성 에러")
+                    owner.showAPIErrorAlert(error.description)
                     
                 case .refreshTokenError(let error):
-                    print("게시글 작성에 실패했습니다 - 토큰 만료 에러")
-                    print("만약 refreshToken 만료 에러이면 로그인 화면으로 돌아갑니다")
+                    print("네트워크 응답 실패! - 토큰 에러")
+                    if error == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!!")
+                        owner.goToLoginViewController()
+                    } else {
+                        owner.showAPIErrorAlert(error.description)
+                    }
                     
                 }
-                
-        
-                
-            
             }
+            .disposed(by: disposeBag)
         
     
 
@@ -129,8 +127,6 @@ class MakeTourViewController: BaseViewController {
                 print("탭 뷰컨")
             }
             .disposed(by: disposeBag)
-
-        
     }
     
     func selectDatesLocation() {

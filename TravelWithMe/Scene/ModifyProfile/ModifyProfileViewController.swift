@@ -152,32 +152,34 @@ class ModifyProfileViewController: BaseViewController {
             .subscribe(with: self) { owner , value in
                 print(" --- VC에서 결과 받음 --- ")
                 switch value {
-                case .success(let result):
-                    print("성공했대")
+                case .success(_):
+                    print("(ModifyProfile) 네트워크 응답 성공")
                     
                     // 해야 할 것
                     // 1. delegate pattern 이용해서 profileView의 fetchData 로드
                     // -> 자동으로 네트워크 콜 하고 뷰 업데이트 할겨
                     owner.delegate?.reload()
                     
-                    
                     // 2. navigation pop
                     owner.navigationController?.popViewController(animated: true)
                     
                 case .commonError(let error):
-                    print("공통 에러래")
-                    print(error.description)
-                    
-                case .refreshTokenError(let error):
-                    print("토큰 에러래")
-                    print(error.description)
+                    print("(ModifyProfile) 네트워크 응답 실패 - 공통 에러")
+                    owner.showAPIErrorAlert(error.description)
                     
                 case .modifyMyProfileError(let error):
-                    print("프로필 수정 에러래")
-                    print(error.description)
+                    print("(ModifyProfile) 네트워크 응답 실패 - 프로필 수정 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .refreshTokenError(let error):
+                    print("(ModifyProfile) 네트워크 응답 실패 - 토큰 에러")
+                    if error == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!")
+                        owner.goToLoginViewController()
+                    } else {
+                        owner.showAPIErrorAlert(error.description)
+                    }
                 }
-                
-                print(value)
             }
             .disposed(by: disposeBag)
         

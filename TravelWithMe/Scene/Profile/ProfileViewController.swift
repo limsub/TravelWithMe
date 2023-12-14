@@ -68,6 +68,7 @@ class ProfileViewController: TabmanViewController {
         viewModel.fetchData { [weak self] response  in
             switch response {
             case .success(let result):
+                print("네트워크 응답 성공!")
                 
                 /* == 프로필 관련 (topView, infoVC) 데이터는 여기서 정리해서 뷰에 반영한다 ==*/
                 print("프로필 정보 뷰에 반영")
@@ -105,22 +106,27 @@ class ProfileViewController: TabmanViewController {
             case .failure(let error):
                 // 1. 공통 에러
                 if let commonError = error as? CommonAPIError {
-                    print("-- 공통 에러")
+                    print("네트워크 응답 실패! - 공통 에러")
+                    self?.showAPIErrorAlert(commonError.description)
                     return
                 }
                 
                 // 2. 프로필 조회 에러
                 if let lookProfileError = error as? LookProfileAPIError {
-                    print("-- 프로필 조회 에러")
+                    print("네트워크 응답 실패! - 프로필 조회 에러")
+                    self?.showAPIErrorAlert(lookProfileError.description)
                     return
                 }
                 
                 // 3. 토큰 관련 에러
                 if let refreshTokenError = error as? RefreshTokenAPIError {
-
-                    print("---- 토큰 관련 에러!!")
-                    print("---- 에러내용 : \(refreshTokenError.description)")
-                    self?.goToLoginViewController()
+                    print("네트워크 응답 실패! - 토큰 에러")
+                    if refreshTokenError == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!!")
+                        self?.goToLoginViewController()
+                    } else {
+                        self?.showAPIErrorAlert(refreshTokenError.description)
+                    }
                     
                     return
                 }
@@ -174,9 +180,9 @@ class ProfileViewController: TabmanViewController {
             navigationController?.pushViewController(vc, animated: true)
             
         case .other(let _, let isFollowing):
+            // 네트워크 통신
             viewModel.followOrUnfollow(
                 follow: !isFollowing) { response in
-//                    print(response)
                     
                     // 네트워크 콜 성공했다면 (200)
                     // 프로필 정보에 대한 콜을 다시 해서 뷰를 한 번에 업데이트하자
@@ -189,46 +195,46 @@ class ProfileViewController: TabmanViewController {
                     
                     switch response {
                     case .success(_):
+                        print("네트워크 응답 성공!")
                         print("팔로우/언팔로우 네트워크 통신 성공. 프로필 정보 불러오는 네트워크 재통신 및 뷰 업데이트")
                         self.fetchProfileInfo()
                     case .failure(let error):
                         // 1. 공통 에러
                         if let commonError = error as? CommonAPIError {
-                            print("-- 공통 에러")
+                            print("네트워크 응답 실패! - 공통 에러")
+                            self.showAPIErrorAlert(commonError.description)
                             return
                         }
                         
                         // 2. 팔로우 에러
                         if let followError = error as? FollowAPIError {
-                            print("-- 팔로우 에러")
+                            print("네트워크 응답 실패! - 팔로우 에러")
+                            self.showAPIErrorAlert(followError.description)
                             return
                         }
                         
                         // 3. 언팔로우 에러
                         if let unfollowError = error as? UnFollowAPIError {
-                            print("-- 언팔로우 에러")
+                            print("네트워크 응답 실패! - 언팔로우 에러")
+                            self.showAPIErrorAlert(unfollowError.description)
                             return
                         }
                         
                         // 4. 토큰 관련 에러
                         if let refreshTokenError = error as? RefreshTokenAPIError {
-
+                            print("네트워크 응답 실패! - 토큰 에러")
                             if refreshTokenError == .refreshTokenExpired {
-                                
-                                print("---- 리프레시 토큰 만료 에러!!")
-                                print("---- 에러내용 : \(refreshTokenError.description)")
+                                print("- 리프레시 토큰 만료!!")
                                 self.goToLoginViewController()
-                                
+                            } else {
+                                self.showAPIErrorAlert(refreshTokenError.description)
                             }
-                            
-                            
                             return
                         }
                         
                         // 4. 알 수 없음
-                        print("-- 알 수 없는 에러")
-                        
-                        
+                        print("네트워크 응답 실패! - 알 수 없는 에러")
+                        self.showAPIErrorAlert(error.localizedDescription)
                     }
                     
                 }

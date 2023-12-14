@@ -156,6 +156,33 @@ class ContentsViewController: BaseViewController {
         output.refreshLoading
             .bind(to: mainView.tourRefreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
+        
+        
+        // 결과 에러처리
+        output.resultLookPost
+            .subscribe(with: self) { owner , response in
+                switch response {
+                case .success(_):
+                    print("네트워크 응답 성공!")
+                case .commonError(let error) :
+                    print("네트워크 응답 실패! - 공통 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .lookPostError(let error):
+                    print("네트워크 응답 실패! - 게시글 조회 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .refreshTokenError(let error):
+                    print("네트워크 응답 실패! - 토큰 에러")
+                    if error == .refreshTokenExpired {
+                        print("- 리프레시 토큰 만료!!")
+                        owner.goToLoginViewController()
+                    } else {
+                        owner.showAPIErrorAlert(error.description)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     

@@ -203,6 +203,7 @@ enum Router: URLRequestConvertible {
                 "content": sender.content
             ]
         case .modifyMyProfile(let sender):
+//            return ["hihihih": 123123123]
             return ["nick": sender.nick]
         default:    // get인 경우, 빈 딕셔너리 리턴하고, asURLRequest에서 아예 분기처리
             return [:]

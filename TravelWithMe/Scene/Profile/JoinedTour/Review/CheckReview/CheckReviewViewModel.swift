@@ -12,8 +12,5 @@ class CheckReviewViewModel {
     
     var tourItem: Datum? = nil
     
-    
-    
-    
-    
+
 }

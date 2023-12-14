@@ -95,7 +95,6 @@ class MakeReviewViewModel: ViewModelType {
                     
                     if let expiredTokenError = error as? RefreshTokenAPIError {
                         print ("  토큰 만료 에러 중 하나")
-                        print("  만약 에러 내용이 '리프레시 토큰 만료'이면 로그인 화면으로 돌아가야 합니다")
                         return AttempMakeReview.refreshTokenError(error: expiredTokenError)
                     }
                     
