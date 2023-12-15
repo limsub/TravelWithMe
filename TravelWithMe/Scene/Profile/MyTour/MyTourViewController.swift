@@ -59,6 +59,7 @@ class MyTourViewController: BaseViewController {
                             
                             // 만약 신청한 사람이 있다면, 게시글 수정은 불가능하다
                             let vc = MakeTourViewController()
+                            vc.delegate = self
                             vc.type = .modify
                             vc.viewModel.initData = element
                             owner.navigationController?.pushViewController(vc, animated: true)
@@ -163,3 +164,10 @@ class MyTourViewController: BaseViewController {
     }
 }
 
+extension MyTourViewController: ReloadContentsView {
+    func reload() {
+        viewModel.nextCursor.onNext("")
+        
+        mainView.myTourCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+    }
+}
