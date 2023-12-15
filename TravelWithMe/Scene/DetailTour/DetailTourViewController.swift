@@ -178,9 +178,11 @@ extension DetailTourViewController: UICollectionViewDataSource, UICollectionView
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTourView - DetailTourSwipeImageCollectionViewCell", for: indexPath) as? DetailTourSwipeImageCollectionViewCell else { return UICollectionViewCell() }
             
             
-            cell.mainImageView.image = UIImage(named: "sample")
+            let size = cell.mainImageView.bounds.size
             
-            cell.mainImageView.loadImage(endURLString: viewModel.tourItem.image[indexPath.item])
+            print("-- DetailTourView - swipeImage -- downsampling size : \(size)")
+            
+            cell.mainImageView.loadImage(endURLString: viewModel.tourItem.image[indexPath.item], size: size)
             
             return cell
             

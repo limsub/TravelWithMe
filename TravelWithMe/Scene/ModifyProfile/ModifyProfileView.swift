@@ -155,7 +155,9 @@ class ModifyProfileView: BaseView {
     func initView(_ sender: LookProfileResponse) {
         // imageView
         if let profileImageUrl = sender.profile {
-            profileImageView.loadImage(endURLString: profileImageUrl)
+            let size = profileImageView.bounds.size
+            print("-- ModifyProfileView -- downsampling size : \(size)")
+            profileImageView.loadImage(endURLString: profileImageUrl, size: size)
         }
         
         // nickname, birthday, gender, introduce

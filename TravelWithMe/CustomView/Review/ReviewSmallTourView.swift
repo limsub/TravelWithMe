@@ -95,7 +95,9 @@ class ReviewSmallTourView: BaseView {
         // 1. imageView
         if !sender.image.isEmpty {
             let imageEndString = sender.image[0]
-            tourImageView.loadImage(endURLString: imageEndString)
+            let size = tourImageView.bounds.size
+            print("-- ReviewSmallTourView -- downsampling size : \(size)")
+            tourImageView.loadImage(endURLString: imageEndString, size: size)
         } else {
             print("===== 이미지 배열이 비어서 보여줄 썸네일이 없다!!")
         }

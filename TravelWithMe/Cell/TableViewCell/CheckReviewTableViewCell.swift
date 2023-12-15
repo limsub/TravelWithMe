@@ -177,7 +177,9 @@ class CheckReviewTableViewCell: BaseTableViewCell {
         
         // profileImageView
         if let imageEndString = sender.creator.profile {
-            profileImageView.loadImage(endURLString: imageEndString)
+            let size = profileImageView.bounds.size
+            print("-- CheckReview -- downsampling size : \(size)")
+            profileImageView.loadImage(endURLString: imageEndString, size: size)
         } else {
             print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함 - 3")
         }

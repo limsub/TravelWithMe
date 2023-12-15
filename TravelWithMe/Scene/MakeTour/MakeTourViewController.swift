@@ -50,7 +50,7 @@ class MakeTourViewController: BaseViewController {
         data.image.forEach { item in
     
             let sampleImageView = UIImageView()
-            sampleImageView.loadImage(endURLString: item)
+            sampleImageView.loadImage(endURLString: item, size: CGSize(width: 100, height: 100))
             
             
             if let sampleImageData = sampleImageView.image?.jpegData(compressionQuality: 0.00001) {

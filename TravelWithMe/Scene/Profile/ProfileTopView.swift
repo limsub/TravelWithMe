@@ -164,7 +164,9 @@ class ProfileTopView: BaseView {
         
         // 프로필 이미지뷰
         if let imageUrl = result.profile {
-            profileImageView.loadImage(endURLString: imageUrl)
+            let size = profileImageView.bounds.size
+            print("-- ProfileTopView -- downsampling size : \(size)")
+            profileImageView.loadImage(endURLString: imageUrl, size: size)
         }
         
         // 닉네임 넣어주기

@@ -58,7 +58,8 @@ class ProfileInfoFollowCollectionViewCell: BaseCollectionViewCell {
         
         // imageView
         if let imageUrl = sender.profile {
-            profileImageView.loadImage(endURLString: imageUrl)
+            let size = profileImageView.bounds.size
+            profileImageView.loadImage(endURLString: imageUrl, size: size)
         } else {
             print("-- 셀 디자인. 저장된 profile image 링크가 없기 때문에 기본 이미지 세팅")
             profileImageView.image = UIImage(named: "basicProfile2")

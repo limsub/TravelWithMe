@@ -348,7 +348,9 @@ class DetailTourView: BaseView {
         tourTitleLabel.text = sender.title ?? ""
         
         if let profileImageUrl = sender.creator.profile {
-            tourProfileImageView.loadImage(endURLString: profileImageUrl)
+            let size = tourProfileImageView.bounds.size
+            print("-- DetailTourView -- downsampling size : \(size)")
+            tourProfileImageView.loadImage(endURLString: profileImageUrl, size: size)
         } else {
             tourProfileImageView.image = UIImage(named: "basicProfile2")
         }

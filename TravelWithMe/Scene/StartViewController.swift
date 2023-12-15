@@ -22,7 +22,7 @@ class StartViewController: BaseViewController {
     
     let a = {
         let view = ContentsProfileImageView(frame: .zero)
-        view.loadImage(endURLString: "hihi")
+        view.loadImage(endURLString: "hihi", size: .zero)
         return view
     }()
     

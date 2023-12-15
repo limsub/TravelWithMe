@@ -148,7 +148,8 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         if !sender.image.isEmpty {
             let imageEndString = sender.image[0]    // 맨 처음 이미지
             
-            backImageView.loadImage(endURLString: imageEndString)
+            let size = self.backImageView.bounds.size
+            backImageView.loadImage(endURLString: imageEndString, size: size)
         } else {
             print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함")
 
@@ -169,10 +170,9 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         
         // 4. 유저 프로필 이미지 (아직)
         if let profileImageUrl = sender.creator.profile {
-//            print("저장된 프로필 이미지가 있다!!")
-            profileImageView.loadImage(endURLString: profileImageUrl)
+            let size = self.profileImageView.bounds.size
+            profileImageView.loadImage(endURLString: profileImageUrl, size: size)
         } else {
-//            print("저장된 프로필 이미지가 없다")
             profileImageView.image = UIImage(named: "basicProfile2")
         }
         

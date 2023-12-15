@@ -11,7 +11,7 @@ import Alamofire
 
 extension UIImageView {
     
-    func loadImage(endURLString: String) {
+    func loadImage(endURLString: String, size: CGSize) {
         
         let imageURLString = SeSACAPI.baseURL + "/" + endURLString
         let imageURL = URL(string: imageURLString)
@@ -29,12 +29,19 @@ extension UIImageView {
             return modifiedRequest
         }
         
+//        let value = CGSize(width: size.width * UIScreen.main.scale, height: size.height * UIScreen.main.scale)
+//        let processor = DownsamplingImageProcessor(size: CGSize(width: 400, height: 400))
+//        let processor = DownsamplingImageProcessor(size: size)
         
         self.kf.setImage(
             with: imageURL,
             placeholder: UIImage(named: "basicProfile2"),
             options: [
-                .requestModifier(modifier)
+                .requestModifier(modifier),
+//                .processor(processor),
+//                .scaleFactor(UIScreen.main.scale),
+                .cacheOriginalImage,
+                .progressiveJPEG(.init(isBlur: false, isFastestScan: true, scanInterval: 0.1))
             ]
         )
         
