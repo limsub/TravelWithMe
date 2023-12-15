@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIImage{
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
@@ -58,6 +59,40 @@ extension UIImage{
             }
             
             return renderImage
+        }
+    }
+    
+    
+    
+    func loadImageData(endURLString: String, completionHandler: @escaping (Result<Data?, Error>) -> Void ) {
+        
+        let imageURLString = SeSACAPI.baseURL + "/" + endURLString
+        let imageURL = URL(string: imageURLString)
+        
+        let header = [
+            "Authorization": KeychainStorage.shared.accessToken ?? "",
+            "SesacKey": SeSACAPI.subKey
+        ]
+        
+        let modifier = AnyModifier { request in
+            var modifiedRequest = request
+            for (key, value) in header {
+                modifiedRequest.headers.add(name: key, value: value)
+            }
+            return modifiedRequest
+        }
+        
+        KingfisherManager.shared.retrieveImage(with: imageURL!, options: [.requestModifier(modifier)]) { result in
+            switch result {
+            case .success(let result):
+                print("- 성공 : \(result)")
+                completionHandler(.success(result.data()))
+                
+            case .failure(let error):
+                print("- 실패 : \(error)")
+                completionHandler(.failure(error))
+                
+            }
         }
     }
 }

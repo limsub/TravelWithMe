@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import PhotosUI
+import Kingfisher
 
 class MakeTourViewController: BaseViewController {
     
@@ -47,21 +48,32 @@ class MakeTourViewController: BaseViewController {
         guard let data = viewModel.initData else { return }
         
         // 1. 이미지 데이터 배열
+        let group = DispatchGroup()
+        
         data.image.forEach { item in
-    
-            let sampleImageView = UIImageView()
-            sampleImageView.loadImage(endURLString: item, size: CGSize(width: 100, height: 100))
             
+            group.enter()
             
-            if let sampleImageData = sampleImageView.image?.jpegData(compressionQuality: 0.00001) {
-                viewModel.tourImages.append(sampleImageData)
-            }
-            
-            if viewModel.tourImages.count == data.image.count {
-                DispatchQueue.main.async {
-                    self.mainView.imageCollectionView.reloadData()
+            DispatchQueue.global().async {
+                
+                let sampleImage = UIImage()
+                
+                sampleImage.loadImageData(endURLString: item) { response in
+                    switch response {
+                    case .success(let result):
+                        self.viewModel.tourImages.append(result!)
+                    case .failure(let failure):
+                        print("페일")
+                    }
+                    
+                    group.leave()
                 }
             }
+        }
+        
+        group.notify(queue: .main) {
+            print("dispatchGroup End")
+            self.mainView.imageCollectionView.reloadData()
         }
       
         mainView.imageCollectionView.reloadData()

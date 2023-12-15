@@ -44,8 +44,5 @@ extension UIImageView {
                 .progressiveJPEG(.init(isBlur: false, isFastestScan: true, scanInterval: 0.1))
             ]
         )
-        
-        
-        
     }
 }
