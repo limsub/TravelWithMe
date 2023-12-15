@@ -375,7 +375,7 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
                                 
                                 let mbSize = Double(sampleData.count) / bytesInMegaByte
                                 
-                                print("image MB Size : \(mbSize), compression quality : \(compressionQuality)")
+                                print("image B size : \(sampleData), image MB Size : \(mbSize), compression quality : \(compressionQuality)")
                                 
                                 if mbSize < 1 {
                                     imageData = sampleData

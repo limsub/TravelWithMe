@@ -88,7 +88,8 @@ class MakeTourImageCollectionViewCell: BaseCollectionViewCell {
     func designCell(_ imageData: Data) {
         print(#function)
         print(imageData)
-        imageView.image = UIImage(data: imageData)
+//        imageView.image = UIImage(data: imageData)
+        imageView.image = UIImage(data: imageData)?.resizeImage2(newWidth: 100, newHeight: 100)
         cancelButton.isHidden = false
         cancelButton.isEnabled = true
         plusImageView.isHidden = true
