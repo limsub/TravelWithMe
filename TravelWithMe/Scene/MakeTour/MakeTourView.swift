@@ -236,6 +236,7 @@ class MakeTourView: BaseView {
         
         makeTourButton.isEnabled = false
         makeTourButton.backgroundColor = UIColor(hexCode:  ConstantColor.disabledButtonBackground.hexCode)
+        priceView.textField.keyboardType = .numberPad
     }
     
     

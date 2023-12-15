@@ -328,7 +328,7 @@ class DetailTourView: BaseView {
             make.top.equalTo(locationLabel.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(contentView).inset(18)
             make.height.equalTo(150)
-            make.bottom.equalTo(contentView).inset(120)
+            make.bottom.equalTo(contentView).inset(40)
         }
         
         

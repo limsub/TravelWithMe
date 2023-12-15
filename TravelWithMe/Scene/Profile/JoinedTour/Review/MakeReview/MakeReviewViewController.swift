@@ -20,18 +20,21 @@ class MakeReviewViewController: BaseViewController {
     
     override func loadView() {
         self.view = mainView
-        
-        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settingNavigation()
         settingCategoryButtons()
         bind()
         
         settingView()
+    }
+    
+    func settingNavigation() {
+        navigationItem.title = "후기 작성"
     }
     
     func settingView() {

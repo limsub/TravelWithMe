@@ -25,11 +25,16 @@ class ModifyProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settingNavigation()
         bind()
         settingInitialDataOnView()
         settingProfileImageButton()
         
 //        mainView.birthdayTextField.text = "19991010"
+    }
+    
+    func settingNavigation() {
+        navigationItem.title = "프로필 수정"
     }
     
     

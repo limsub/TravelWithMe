@@ -26,6 +26,7 @@
 		4832D0942B2C2EFA008B82BF /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4832D0932B2C2EFA008B82BF /* SettingView.swift */; };
 		4832D0962B2C2EFF008B82BF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4832D0952B2C2EFF008B82BF /* SettingViewController.swift */; };
 		4832D0982B2C2F05008B82BF /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4832D0972B2C2F05008B82BF /* SettingViewModel.swift */; };
+		4832D09B2B2C7F9D008B82BF /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4832D09A2B2C7F9D008B82BF /* IQKeyboardManagerSwift */; };
 		483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */; };
 		483748BD2B23DF4300CD1398 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */; };
 		483748BF2B23DF4900CD1398 /* ProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */; };
@@ -334,6 +335,7 @@
 				486732422B0C8EA900BC24A4 /* RxCocoa in Frameworks */,
 				486AA0002B12BDB100CB5179 /* FSCalendar in Frameworks */,
 				484C85A52B162C360052B247 /* SkeletonView in Frameworks */,
+				4832D09B2B2C7F9D008B82BF /* IQKeyboardManagerSwift in Frameworks */,
 				487786302B0B309F0091661F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -965,6 +967,7 @@
 				48405B4D2B16108200B3144F /* AlamofireImage */,
 				484C85A42B162C360052B247 /* SkeletonView */,
 				480442F72B1811D400E5C70B /* Tabman */,
+				4832D09A2B2C7F9D008B82BF /* IQKeyboardManagerSwift */,
 			);
 			productName = TravelWithMe;
 			productReference = 487786092B0B29F60091661F /* TravelWithMe.app */;
@@ -1004,6 +1007,7 @@
 				48405B4C2B16108200B3144F /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				484C85A32B162C360052B247 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				480442F62B1811D400E5C70B /* XCRemoteSwiftPackageReference "Tabman" */,
+				4832D0992B2C7F9D008B82BF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 4877860A2B0B29F60091661F /* Products */;
 			projectDirPath = "";
@@ -1396,6 +1400,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		4832D0992B2C7F9D008B82BF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.16;
+			};
+		};
 		48405B492B16044E00B3144F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1467,6 +1479,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 480442F62B1811D400E5C70B /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
+		};
+		4832D09A2B2C7F9D008B82BF /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4832D0992B2C7F9D008B82BF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 		48405B4A2B16044E00B3144F /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

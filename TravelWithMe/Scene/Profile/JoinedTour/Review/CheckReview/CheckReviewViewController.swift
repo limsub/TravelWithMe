@@ -23,8 +23,13 @@ class CheckReviewViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settingNavigation()
         settingTableView()
         settingView()
+    }
+    
+    func settingNavigation() {
+        navigationItem.title = "후기 확인"
     }
     
     func settingTableView() {

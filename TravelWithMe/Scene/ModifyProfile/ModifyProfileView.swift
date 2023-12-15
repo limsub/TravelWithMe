@@ -150,6 +150,7 @@ class ModifyProfileView: BaseView {
     override func setting() {
         super.setting()
         
+        birthdayTextField.keyboardType = .numberPad
     }
     
     func initView(_ sender: LookProfileResponse) {
