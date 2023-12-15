@@ -53,14 +53,16 @@ class LoginViewController: BaseViewController {
                 switch value {
                 case .success:  // 결과값 (result)는 토큰 저장 용으로만 사용하고, 이 과정은 viewModel에서 끝난다. 여기서는 화면 전환만 시켜주면 됨
                     print("로그인 성공! 다음 화면 전환! (window rootView 교체!!!")
-                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                    let sceneDelegate = windowScene?.delegate as? SceneDelegate
                     
-                    let vc = StartTabBarViewController()
-                    sceneDelegate?.window?.rootViewController = vc
-                    sceneDelegate?.window?.makeKeyAndVisible()
-                    
-                    
+                    self.showNoButtonAlert("로그인 성공 🎉🎉", message: "나와 맞는 여행을 찾아보세요") {
+                        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                        
+                        let vc = StartTabBarViewController()
+                        sceneDelegate?.window?.rootViewController = vc
+                        sceneDelegate?.window?.makeKeyAndVisible()
+                    }
+                   
                 case .commonError(let error):
                     print("공통 에러 발생!")
                     // 뷰컨트롤러 함수 하나 만들어서 에러 종류별로 얼럿 띄워주기

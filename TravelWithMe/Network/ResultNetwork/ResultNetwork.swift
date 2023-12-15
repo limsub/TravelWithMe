@@ -37,6 +37,9 @@ enum AttemptLogin {
 }
 
 
+
+
+
 /* === 게시글 작성 + 게시글 수정 === */
 enum AttemptPost {
     case success(result: MakePostResponse)

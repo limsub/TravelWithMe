@@ -57,7 +57,7 @@ struct RefreshTokenResponse: Decodable {
 
 
 /* ===== 탈퇴 (only response) ===== */
-struct WithDrawResponse: Decodable {
+struct WithdrawResponse: Decodable {
     let _id: String
     let email: String
     let nick: String

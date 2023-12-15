@@ -23,6 +23,9 @@
 		482278492B26D71400E02264 /* ModifyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482278482B26D71400E02264 /* ModifyProfileView.swift */; };
 		4822784B2B26D71A00E02264 /* ModifyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4822784A2B26D71A00E02264 /* ModifyProfileViewModel.swift */; };
 		4822784E2B26DF3100E02264 /* ModifyProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4822784D2B26DF3100E02264 /* ModifyProfileImageView.swift */; };
+		4832D0942B2C2EFA008B82BF /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4832D0932B2C2EFA008B82BF /* SettingView.swift */; };
+		4832D0962B2C2EFF008B82BF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4832D0952B2C2EFF008B82BF /* SettingViewController.swift */; };
+		4832D0982B2C2F05008B82BF /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4832D0972B2C2F05008B82BF /* SettingViewModel.swift */; };
 		483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */; };
 		483748BD2B23DF4300CD1398 /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */; };
 		483748BF2B23DF4900CD1398 /* ProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */; };
@@ -180,6 +183,9 @@
 		482278482B26D71400E02264 /* ModifyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileView.swift; sourceTree = "<group>"; };
 		4822784A2B26D71A00E02264 /* ModifyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewModel.swift; sourceTree = "<group>"; };
 		4822784D2B26DF3100E02264 /* ModifyProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileImageView.swift; sourceTree = "<group>"; };
+		4832D0932B2C2EFA008B82BF /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		4832D0952B2C2EFF008B82BF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4832D0972B2C2F05008B82BF /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		483748BA2B23DF3C00CD1398 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		483748BC2B23DF4300CD1398 /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		483748BE2B23DF4900CD1398 /* ProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewModel.swift; sourceTree = "<group>"; };
@@ -430,6 +436,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		4832D0922B2C2EF3008B82BF /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				4832D0932B2C2EFA008B82BF /* SettingView.swift */,
+				4832D0952B2C2EFF008B82BF /* SettingViewController.swift */,
+				4832D0972B2C2F05008B82BF /* SettingViewModel.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		483748B92B23DF1300CD1398 /* ProfileInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,6 +679,7 @@
 			children = (
 				487931AF2B208FE100F567D5 /* StartTabBarViewController.swift */,
 				4867323C2B0C8D1F00BC24A4 /* StartViewController.swift */,
+				4832D0922B2C2EF3008B82BF /* Setting */,
 				486195CF2B298C63001D3CC8 /* Splash */,
 				484059552B1D9090006A8AAC /* DetailTour */,
 				482278452B26D6F000E02264 /* ModifyProfile */,
@@ -1036,6 +1053,7 @@
 				48AB63EF2B233C9300EC9444 /* TopMiddleBottom.swift in Sources */,
 				4847116A2B0E2FF700C68490 /* Router.swift in Sources */,
 				486195D32B298C8F001D3CC8 /* SplashViewController.swift in Sources */,
+				4832D0942B2C2EFA008B82BF /* SettingView.swift in Sources */,
 				48ADEE382B1866AF00B1B95E /* MyTourViewModel.swift in Sources */,
 				4840595F2B1DA464006A8AAC /* DetailTourCategoryCollectionViewCell.swift in Sources */,
 				483748C72B23F8C200CD1398 /* Identifier.swift in Sources */,
@@ -1084,6 +1102,7 @@
 				485321F62B21ADF6006D0930 /* ApplyButtonType.swift in Sources */,
 				48F006C02B17194C00DB1FC1 /* ProfileViewController.swift in Sources */,
 				486AA0042B12C25700CB5179 /* DateFormatType.swift in Sources */,
+				4832D0982B2C2F05008B82BF /* SettingViewModel.swift in Sources */,
 				4877863B2B0B35A20091661F /* SignUpSmallButton.swift in Sources */,
 				484059592B1D90A4006A8AAC /* DetailTourView.swift in Sources */,
 				4867324F2B0CA13300BC24A4 /* SignUpCheckPWLabel.swift in Sources */,
@@ -1145,6 +1164,7 @@
 				489678602B243E720098E0EB /* MakeReviewView.swift in Sources */,
 				487786442B0B47C30091661F /* MakeTourViewController.swift in Sources */,
 				483748BB2B23DF3C00CD1398 /* ProfileInfoView.swift in Sources */,
+				4832D0962B2C2EFF008B82BF /* SettingViewController.swift in Sources */,
 				48B7CC152B14841E00AD854F /* AboutTourCollectionViewCell.swift in Sources */,
 				480443002B18126C00E5C70B /* MyTourViewController.swift in Sources */,
 				4896785E2B243E6D0098E0EB /* MakeReviewViewModel.swift in Sources */,

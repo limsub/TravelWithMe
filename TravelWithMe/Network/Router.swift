@@ -13,6 +13,7 @@ enum Router: URLRequestConvertible {
     case validEmail(sender: ValidEmailRequest)
     case join(sender: JoinRequest)
     case login(sender: LoginRequest)
+    case withdraw
     
     case refreshToken   // get 이기 때문에 바디가 없다.
     
@@ -59,6 +60,9 @@ enum Router: URLRequestConvertible {
             return "/login"
         case .refreshToken:
             return "/refresh"
+        case .withdraw:
+            return "/withdraw"
+            
         case .makePost:
             return "/post"
         case .modifyPost(_, let postID):
@@ -140,7 +144,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "application/json",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .lookPost, .deletePost, .likePost, .lookProfile, .follow, .imageDownload:
+        case .withdraw, .lookPost, .deletePost, .likePost, .lookProfile, .follow, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "SesacKey": SeSACAPI.subKey
@@ -153,7 +157,7 @@ enum Router: URLRequestConvertible {
         case .validEmail, .join, .login, .makePost, .likePost, .makeReview:
             return .post
             
-        case .refreshToken, .lookPost, .lookProfile, .imageDownload:
+        case .refreshToken, .withdraw, .lookPost, .lookProfile, .imageDownload:
             return .get
             
         case .deletePost:

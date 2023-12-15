@@ -59,6 +59,22 @@ extension UIViewController {
     }
     
     
+    func showDoubleButtonAlert(_ title: String? = nil, message: String? = nil, completionHandler: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "확인", style: .default) { _ in
+            completionHandler()
+        }
+        
+        let cancelButton = UIAlertAction(title: "취소", style: .default)
+        
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        
+        present(alert, animated: true)
+    }
+    
+    
     func showAPIErrorAlert(_ text: String?) {
         let alert = UIAlertController(title: "네트워크 에러", message: text, preferredStyle: .alert)
         

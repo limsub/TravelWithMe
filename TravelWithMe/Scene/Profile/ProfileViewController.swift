@@ -43,6 +43,7 @@ class ProfileViewController: TabmanViewController {
         
         settingDataTabman()
         settingModifyButtonAction()
+        settingSettingButtonAction()
     }
     
     // BaseVC를 상속하지 않아서, 따로 만든다
@@ -249,6 +250,27 @@ class ProfileViewController: TabmanViewController {
         
     }
     
+    
+    lazy var settingButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
+        let image = UIImage(systemName: "trash.circle", withConfiguration: imageConfig)
+        
+        let view = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingButtonClicked))
+        
+        view.tintColor = .white
+        return view
+    }()
+    
+    func settingSettingButtonAction() {
+        navigationItem.rightBarButtonItem = settingButton
+        navigationItem.rightBarButtonItem?.isHidden = !fromTabBar
+    }
+    @objc
+    func settingButtonClicked() {
+        print("hhi")
+        let vc = SettingViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     
     func settingTabman() {

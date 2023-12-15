@@ -88,14 +88,14 @@ class ProfileTopView: BaseView {
         view.text = "My"
         return view
     }()
-    let settingButton = {
-        let view = UIButton()
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
-        let image = UIImage(systemName: "trash.circle", withConfiguration: imageConfig)
-        view.setImage(image, for: .normal)
-        view.tintColor = .white
-        return view
-    }()
+//    let settingButton = {
+//        let view = UIButton()
+//        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+//        let image = UIImage(systemName: "trash.circle", withConfiguration: imageConfig)
+//        view.setImage(image, for: .normal)
+//        view.tintColor = .white
+//        return view
+//    }()
     
     let profileImageView = ContentsProfileImageView(frame: .zero)
     
@@ -106,7 +106,7 @@ class ProfileTopView: BaseView {
     override func setConfigure() {
         super.setConfigure()
         
-        [backBackView, backView, myLabel, settingButton, profileImageView, nameLabel, modifyButton].forEach { item  in
+        [backBackView, backView, myLabel, profileImageView, nameLabel, modifyButton].forEach { item  in
             addSubview(item)
         }
     }
@@ -125,11 +125,12 @@ class ProfileTopView: BaseView {
             make.leading.equalTo(self).inset(18)
             make.top.equalTo(self).inset(60)
         }
-        settingButton.snp.makeConstraints { make in
-            make.trailing.equalTo(self).inset(18)
-            make.centerY.equalTo(myLabel)
-        }
-        
+//        settingButton.snp.makeConstraints { make in
+//            make.trailing.equalTo(self).inset(18)
+//            make.centerY.equalTo(myLabel)
+//            make.size.equalTo(30)
+//        }
+//        
         profileImageView.snp.makeConstraints { make in
             make.centerY.equalTo(150)
             make.leading.equalTo(self).inset(24)
@@ -158,6 +159,9 @@ class ProfileTopView: BaseView {
         
         nameLabel.text = "이름"
         nameLabel.textAlignment = .center
+        
+//        settingButton.backgroundColor = .blue
+        
     }
     
     func updateProfileTopView(_ result: LookProfileResponse, userType: UserType, fromTabBar: Bool) {
@@ -179,6 +183,6 @@ class ProfileTopView: BaseView {
         
         
         myLabel.isHidden = !fromTabBar
-        settingButton.isHidden = !fromTabBar
+//        settingButton.isHidden = !fromTabBar
     }
 }
