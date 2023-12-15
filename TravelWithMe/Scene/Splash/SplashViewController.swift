@@ -23,13 +23,6 @@ class SplashViewController: BaseViewController {
         
         viewModel.testToken()
         transitionNextPage()
-        
-
-        
-        
-        
-        
-        mainView.nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
     }
     
     func setUpViewFadeEffect() {
@@ -37,20 +30,6 @@ class SplashViewController: BaseViewController {
         transition.duration = 0.5
         transition.type = .fade
         view.window?.layer.add(transition, forKey: kCATransition)
-    }
-    
-
-    
-    @objc
-    func nextButtonClicked() {
-//        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-//        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        
-        // fade 효과 주기 위해 present로 화면 전환
-        
-        
-//        sceneDelegate?.window?.rootViewController = vc
-//        sceneDelegate?.window?.makeKeyAndVisible()
     }
     
     func transitionNextPage() {

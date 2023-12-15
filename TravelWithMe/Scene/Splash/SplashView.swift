@@ -9,28 +9,26 @@ import UIKit
 
 class SplashView: BaseView {
     
-    let iconView = UIView()
-    
-    let nextButton = UIButton()
+    let iconView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "logo_login")
+        view.backgroundColor = .clear
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
     
     override func setConfigure() {
         super.setConfigure()
         
         addSubview(iconView)
-        addSubview(nextButton)
     }
     
     override func setConstraints() {
         super.setConstraints()
         
         iconView.snp.makeConstraints { make in
-            make.size.equalTo(100)
+            make.size.equalTo(160)
             make.center.equalTo(self)
-        }
-        nextButton.snp.makeConstraints { make in
-            make.size.equalTo(100)
-            make.centerX.equalTo(self)
-            make.top.equalTo(iconView.snp.bottom).offset(50)
         }
     }
     
@@ -38,7 +36,5 @@ class SplashView: BaseView {
         super.setting()
         
         backgroundColor = .white
-        iconView.backgroundColor = .blue
-        nextButton.backgroundColor = .yellow
     }
 }

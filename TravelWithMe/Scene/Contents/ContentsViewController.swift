@@ -15,6 +15,13 @@ protocol ReloadContentsView: AnyObject {
 
 class ContentsViewController: BaseViewController {
     
+    let navigationImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "logo_navigation")
+        
+        return view
+    }()
+    
     let mainView = ContentsView()
     let viewModel = ContentsViewModel()
     
@@ -43,8 +50,12 @@ class ContentsViewController: BaseViewController {
     }
     
     private func settingNavigation() {
-        navigationItem.title = "Travel With Me"
-        navigationItem.largeTitleDisplayMode = .always
+//        navigationItem.title = "Travel With Me"
+        
+//        navigationItem.titleView = navigationImageView
+        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navigation2"))
+        
     }
     
     func settingCategoryButtons() {
