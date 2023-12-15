@@ -215,15 +215,36 @@ extension ModifyProfileViewController: PHPickerViewControllerDelegate {
                 
                 guard let image = image as? UIImage else { return }
                 
-                guard let imageData = image.jpegData(compressionQuality: 0.0000000000001) else { return }
+                
+                // image를 jpegData로 변환해서 저장
+                // 파일 제한 사항 : 1MB
+                var compressionQuality: Double = 1
+                var imageData: Data? = image.jpegData(compressionQuality: compressionQuality)
+                let bytesInMegaByte = 1024.0 * 1024.0
+                
+                while (true) {
+                    if let sampleData = image.jpegData(compressionQuality: compressionQuality) {
+                        
+                        let mbSize = Double(sampleData.count) / bytesInMegaByte
+                        
+                        print("image MB Size :\(mbSize), compression quality : \(compressionQuality)")
+                        
+                        if mbSize < 1 {
+                            imageData = sampleData
+                            break
+                        }
+                        
+                        if compressionQuality < 0.01 {
+                            imageData = sampleData
+                            break
+                        }
+                        
+                        compressionQuality /= 2
+                    }
+                }
                 
                 self?.viewModel.profileImageData = imageData
-                
-                print("--- 용량?(bytes) : \(imageData.count)")
-                let bytesInMegaByte = 1024.0 * 1024.0
-                let mb = Double(imageData.count) / bytesInMegaByte
-                print("--- 용량?(megabytes) : \(mb)")
-                
+            
                 DispatchQueue.main.async {
                     self?.updateProfileImage()
                 }

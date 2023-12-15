@@ -58,9 +58,7 @@ class MakeTourViewModel: ViewModelType {
     
     
     func tranform(_ input: Input) -> Output {
-        
-//        tourImages[0].jpegData(compressionQuality: 1)
-        
+
         // 여행 제작 버튼 활성화
         let enabledCompleteButton = Observable.combineLatest(input.titleText, input.contentText, tourPeopleCnt, input.priceText, tourDates, tourLocation) { v1, v2, v3, v4, v5, v6 in
             

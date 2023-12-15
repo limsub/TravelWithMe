@@ -365,11 +365,60 @@ extension MakeTourViewController: PHPickerViewControllerDelegate {
                         guard let image = image as? UIImage else { return }
                         
                         // image를 jpegData로 변환해서 저장
-                        guard let imageData = image.jpegData(compressionQuality: 0.01) else { return }
+                        // 파일 제한 사항 : 10MB
+                        var compressionQuality: Double = 1
+                        var imageData: Data? = image.jpegData(compressionQuality: compressionQuality)
+                        let bytesInMegaByte = 1024.0 * 1024.0
+                        
+                        while (true) {
+                            if let sampleData = image.jpegData(compressionQuality: compressionQuality) {
+                                
+                                let mbSize = Double(sampleData.count) / bytesInMegaByte
+                                
+                                print("image MB Size : \(mbSize), compression quality : \(compressionQuality)")
+                                
+                                if mbSize < 1 {
+                                    imageData = sampleData
+                                    break
+                                }
+                                
+                                if compressionQuality < 0.01 {
+                                    imageData = sampleData
+                                    break
+                                }
+                                
+                                compressionQuality /= 2
+                            }
+                        }
+                        /*
+                         Double(image.count)/1024.0)/1024.0
+                         
+                         imageData : 2275097 bytes, compression quality : 1
+                         megabytes : 2.16970157623291
+                         imageData : 3425951 bytes, compression quality : 1
+                         megabytes : 3.2672414779663086
+                         
+                         imageData : 185418 bytes, compression quality : 0.1
+                         megabytes : 0.17682838439941406
+                         imageData : 244981 bytes, compression quality : 0.1
+                         megabytes : 0.23363208770751953
+                         
+                         imageData : 244981 bytes, compression quality : 0.01
+                         imageData : 185418 bytes, compression quality : 0.01
+                         
+                         imageData : 185418 bytes, compression quality : 0.001
+                         imageData : 244981 bytes, compression quality : 0.001
+                         
+                         imageData : 244981 bytes, compression quality : 1e-09
+                         imageData : 185418 bytes, compression quality : 1e-09
+                         */
+                        
                         
                         // 로드되는 순서가 달라서... 이미지가 append되는 순서가 달라진다..ㅠ index로 접근하는 방법이 없을라나
-                        self?.viewModel.tourImages.append(imageData)
-//                        print(self?.viewModel.tourImages)
+                        if imageData != nil {
+                            self?.viewModel.tourImages.append(imageData!)
+                        }
+
                         
                         if self?.viewModel.tourImages.count == results.count {
                             DispatchQueue.main.async {
