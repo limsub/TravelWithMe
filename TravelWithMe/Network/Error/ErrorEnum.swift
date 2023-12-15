@@ -127,6 +127,33 @@ enum MakePostAPIError: Int, APIError {
     }
 }
 
+/* ===== 게시글 수정 ===== */
+enum ModifyPostAPIError: Int, APIError {
+    case invalidRequest = 400
+    case invalidToken = 401
+    case forbidden = 403
+    case postNotSaved = 410
+    case tokenExpired = 419
+    case permissionDenied = 445
+    
+    var description: String {
+        switch self {
+        case .invalidRequest:
+            return "파일의 제한 사항과 맞지 않습니다"
+        case .invalidToken:
+            return "유효하지 않은 액세스 토큰입니다"
+        case .forbidden:
+            return "접근 권한이 없습니다"
+        case .postNotSaved:
+            return "서버 장애로 인해 게시글이 저장되지 않았습니다. 다시 시도해주세요"
+        case .tokenExpired:
+            return "액세스 토큰이 만료되었습니다"
+        case .permissionDenied:
+            return "게시글 수정 권한이 없습니다. 본인이 작성한 글만 수정이 가능합니다"
+        }
+    }
+}
+
 /* ===== 게시글 조회 ===== */
 enum LookPostAPIError: Int, APIError {
     case invalidRequest = 400

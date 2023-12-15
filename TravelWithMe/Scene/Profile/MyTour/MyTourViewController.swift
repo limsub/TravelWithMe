@@ -59,6 +59,7 @@ class MyTourViewController: BaseViewController {
                             
                             // 만약 신청한 사람이 있다면, 게시글 수정은 불가능하다
                             let vc = MakeTourViewController()
+                            vc.type = .modify
                             vc.viewModel.initData = element
                             owner.navigationController?.pushViewController(vc, animated: true)
                             

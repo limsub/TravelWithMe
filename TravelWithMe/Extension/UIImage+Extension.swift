@@ -88,6 +88,7 @@ extension UIImage{
                 print("- 성공 : \(result)")
                 completionHandler(.success(result.data()))
                 
+                
             case .failure(let error):
                 print("- 실패 : \(error)")
                 completionHandler(.failure(error))

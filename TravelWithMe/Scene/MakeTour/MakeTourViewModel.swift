@@ -15,6 +15,7 @@ class MakeTourViewModel: ViewModelType {
     var initData: Datum?
     
     
+    
     let disposeBag = DisposeBag()
     
     var tourImages: [Data] = []
@@ -53,7 +54,7 @@ class MakeTourViewModel: ViewModelType {
         let tap: ControlEvent<Void>
         let enabledCompleteButton: Observable<Bool>
         
-        let resultCompleteButtonClicked: PublishSubject<AttemptMakePost>
+        let resultCompleteButtonClicked: PublishSubject<AttemptPost>
     }
     
     
@@ -136,7 +137,7 @@ class MakeTourViewModel: ViewModelType {
             return (v1, newString ?? "", String(v3), String(price), v5, v6)
         }
         
-        let resultCompleteButtonClicked = PublishSubject<AttemptMakePost>()
+        let resultCompleteButtonClicked = PublishSubject<AttemptPost>()
         
         input.completeButtonClicked
             .withLatestFrom(makePostInfo)
@@ -144,59 +145,71 @@ class MakeTourViewModel: ViewModelType {
                 
                 let tourDatesString = encodingStructToString(sender: value.4) ?? ""
                 let tourLocationString = encodingStructToString(sender: value.5) ?? ""
-                return RouterAPIManager.shared.requestMultiPart(
-                    type: MakePostResponse.self,
-                    error: MakePostAPIError.self,
-                    api: .makePost(
-                        sender: MakePostRequest(title: value.0, content: value.1, file: self.tourImages, tourDates: tourDatesString, tourLocations: tourLocationString, maxPeopleCnt: value.2, tourPrice: value.3)
+                
+                // 게시글 작성 or 게시글 수정 (initData의 유무로 분기)
+                if self.initData == nil {
+                    // 게시글 작성
+                    return RouterAPIManager.shared.requestMultiPart(
+                        type: MakePostResponse.self,
+                        error: MakePostAPIError.self,
+                        api: .makePost(
+                            sender: MakePostRequest(title: value.0, content: value.1, file: self.tourImages, tourDates: tourDatesString, tourLocations: tourLocationString, maxPeopleCnt: value.2, tourPrice: value.3)
+                        )
                     )
-                )
+                    
+                } else {
+                    // 게시글 수정
+                    return RouterAPIManager.shared.requestMultiPart(
+                        type: MakePostResponse.self,
+                        error: ModifyPostAPIError.self,
+                        api: .modifyPost(
+                            sender: MakePostRequest(title: value.0, content: value.1, file: self.tourImages, tourDates: tourDatesString, tourLocations: tourLocationString, maxPeopleCnt: value.2, tourPrice: value.3),
+                            poseID: self.initData!.id
+                        ))
+                }
+                
+                
             }
             .map { response in
-                switch response {
-                case .success(let result):
-                    print("게시글 작성 성공")
-                    return AttemptMakePost.success(result: result)
-                case .failure(let error):
-                    print("게시글 작성 실퍠")
-                    
-                    if let commonError = error as? CommonAPIError {
-                        print("  공통 에러 중 하나")
-                        return AttemptMakePost.commonError(error: commonError)
+                    switch response {
+                    case .success(let result):
+                        print("게시글 작성/수정 성공")
+                        return AttemptPost.success(result: result)
+                    case .failure(let error):
+                        print("게시글 작성/수정 실퍠")
+                        
+                        if let commonError = error as? CommonAPIError {
+                            print("  공통 에러 중 하나")
+                            return AttemptPost.commonError(error: commonError)
+                        }
+                        
+                        if let makePostError = error as? MakePostAPIError {
+                            print("  게시글 작성 에러 중 하나")
+                            return AttemptPost.makePostError(error: makePostError)
+                        }
+                        
+                        if let modifyPostError = error as? ModifyPostAPIError {
+                            print("  게시글 수정 에러 중 하나")
+                            return AttemptPost.modifyPostError(error: modifyPostError)
+                        }
+                        
+                        if let expiredTokenError = error as? RefreshTokenAPIError {
+                            print ("  토큰 만료 에러 중 하나")
+                            return AttemptPost.refreshTokenError(error: expiredTokenError)
+                        }
+                        
+                        print("  알 수 없는 에러.. 뭔 에러일까..?")
+                        return AttemptPost.commonError(error: .unknownError)
+                        
                     }
-                    
-                    if let makePostError = error as? MakePostAPIError {
-                        print("  게시글 작성 에러 중 하나")
-                        return AttemptMakePost.makePostError(error: makePostError)
-                    }
-                    
-                    if let expiredTokenError = error as? RefreshTokenAPIError {
-                        print ("  토큰 만료 에러 중 하나")
-                        print("  만약 에러 내용이 '리프레시 토큰 만료'이면 로그인 화면으로 돌아가야 합니다")
-                        return AttemptMakePost.refreshTokenError(error: expiredTokenError)
-                    }
-                    
-                    print("  알 수 없는 에러.. 뭔 에러일까..?")
-                    return AttemptMakePost.commonError(error: .unknownError)
-                
-                }
+
             }
             .subscribe(with: self) { owner , value in
                 resultCompleteButtonClicked.onNext(value)
             }
             .disposed(by: disposeBag)
+
         
-//        // 날짜, 위치 테스트 (VC에서 VM의 데이터에 onNext로 넣어줌) (transform이랑 관련 x)
-//        tourDates
-//            .subscribe(with: self) { owner , value in
-//                print("날짜 테스트중 : ", value)
-//            }
-//            .disposed(by: disposeBag)
-//        tourLocation
-//            .subscribe(with: self) { owner , value in
-//                print("위치 테스트중 : ", value)
-//            }
-//            .disposed(by: disposeBag)
         
         return Output(
             peopleCnt: tourPeopleCnt,

@@ -11,13 +11,36 @@ import RxCocoa
 import PhotosUI
 import Kingfisher
 
+enum MakeOrModify {
+    case make
+    case modify
+    
+    var naviagationTitle: String {
+        switch self {
+        case .make:
+            return "여행 제작"
+        case .modify:
+            return "여행 수정"
+        }
+    }
+    
+    var completionButtonTitle: String {
+        switch self {
+        case .make:
+            return "여행 제작 완료"
+        case .modify:
+            return "여행 수정 완료"
+        }
+    }
+}
+
 class MakeTourViewController: BaseViewController {
     
     // 유입 경로
     // 1. 여행 만들기
     // 2. 여행 수정하기 * -> 초기 데이터를 값전달로 받는다
+    var type: MakeOrModify = .make
     
-
     
     let mainView = MakeTourView()
     let viewModel = MakeTourViewModel()
@@ -41,10 +64,13 @@ class MakeTourViewController: BaseViewController {
         bind()
         
         setInitData()
+        settingViewByType()
     }
     
     // "게시글 수정하기"를 통해서 들어왔다면, 초기 데이터를 세팅해준다
     func setInitData() {
+        if type == .make { return }
+        
         guard let data = viewModel.initData else { return }
         
         // 1. 이미지 데이터 배열
@@ -61,13 +87,43 @@ class MakeTourViewController: BaseViewController {
                 sampleImage.loadImageData(endURLString: item) { response in
                     switch response {
                     case .success(let result):
-                        self.viewModel.tourImages.append(result!)
+                        
+                        // 이미지 리사이징 시작
+                        let sample2Image = UIImage(data: result!)
+                        
+                        var compressionQuality: Double = 1
+                        var imageData: Data? = sample2Image?.jpegData(compressionQuality: compressionQuality)
+                        let bytesInMegaByte = 1024.0 * 1024.0
+                        
+                        while (true) {
+                            if let sampleData = sample2Image?.jpegData(compressionQuality: compressionQuality) {
+                                
+                                let mbSize = Double(sampleData.count) / bytesInMegaByte
+                                print("image B size : \(sampleData), image MB Size : \(mbSize), compression quality : \(compressionQuality)")
+                                
+                                if mbSize < 1 || compressionQuality < 0.01 {
+                                    imageData = sampleData
+                                    break
+                                }
+                                
+                                compressionQuality /= 2
+                            }
+                        }
+
+                        self.viewModel.tourImages.append(imageData!)
+                        
+                        
                     case .failure(let failure):
                         print("페일")
                     }
                     
                     group.leave()
                 }
+                
+                
+                
+                
+                
             }
         }
         
@@ -142,6 +198,11 @@ class MakeTourViewController: BaseViewController {
         
     }
     
+    // type에 따라 뷰 세팅
+    func settingViewByType() {
+        navigationItem.title = type.naviagationTitle
+        mainView.makeTourButton.setTitle(type.completionButtonTitle, for: .normal)
+    }
 
     func settingCategoryButtons() {
         // 버튼 클릭할 때마다 isSelected 변수 토글시켜주기.
@@ -210,6 +271,10 @@ class MakeTourViewController: BaseViewController {
                         
                 case .makePostError(let error):
                     print("(MakeTour) 네트워크 응답 실패! - 게시글 작성 에러")
+                    owner.showAPIErrorAlert(error.description)
+                    
+                case .modifyPostError(let error):
+                    print("(MakeTour) 네트워크 응답 실패! - 게시글 수정 에러")
                     owner.showAPIErrorAlert(error.description)
                     
                 case .refreshTokenError(let error):

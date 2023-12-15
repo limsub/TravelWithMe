@@ -143,7 +143,7 @@ class RouterAPIManager {
                     print((Double(image.count)/1024.0)/1024.0)
                     
                     switch api {
-                    case .makePost:
+                    case .makePost, .modifyPost:
                         multipartFormData.append(
                             image,
                             withName: "file",

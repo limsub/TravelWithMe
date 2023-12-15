@@ -17,6 +17,7 @@ enum Router: URLRequestConvertible {
     case refreshToken   // get 이기 때문에 바디가 없다.
     
     case makePost(sender: MakePostRequest)
+    case modifyPost(sender: MakePostRequest, poseID: String)
     
     // userId를 넣으면 유저 별 조회, nil이면 전체 유저 조회라고 판단
     // hashTag가 있으면 특정 해시태그 게시글 조회. nil이면 전체 게시글 조회
@@ -60,6 +61,8 @@ enum Router: URLRequestConvertible {
             return "/refresh"
         case .makePost:
             return "/post"
+        case .modifyPost(_, let postID):
+            return "/post/\(postID)"
             
         case .lookPost(_, let userID, let hashTag, let likePost):
             if let userID {
@@ -125,7 +128,7 @@ enum Router: URLRequestConvertible {
                 "SesacKey": SeSACAPI.subKey,
                 "Refresh": KeychainStorage.shared.refreshToken ?? ""
             ]
-        case .makePost, .modifyMyProfile:
+        case .makePost, .modifyPost, .modifyMyProfile:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "Content-Type": "multipart/form-data",
@@ -149,17 +152,21 @@ enum Router: URLRequestConvertible {
         switch self {
         case .validEmail, .join, .login, .makePost, .likePost, .makeReview:
             return .post
+            
         case .refreshToken, .lookPost, .lookProfile, .imageDownload:
             return .get
+            
         case .deletePost:
             return .delete
+            
         case .follow(let followRequest):
             if followRequest.followBool {
                 return .post    // true : 팔로우 : post
             } else {
                 return .delete  // false : 언팔로우 : delete
             }
-        case .modifyMyProfile:
+            
+        case .modifyPost, .modifyMyProfile:
             return .put
         }
         
@@ -185,7 +192,7 @@ enum Router: URLRequestConvertible {
                 "email": sender.email,
                 "password": sender.password
             ]
-        case .makePost(let sender):
+        case .makePost(let sender), .modifyPost(let sender, _):
             // 이미지(file)는 파라미터에 넣지 않고, 따로 data로 변환시켜서 전달한다
             return [
                 "title": sender.title,
@@ -212,7 +219,7 @@ enum Router: URLRequestConvertible {
     
     var imageData: [Data] {
         switch self {
-        case .makePost(let sender):
+        case .makePost(let sender), .modifyPost(let sender, _):
             return sender.file
         case .modifyMyProfile(let sender):
             guard let profileData = sender.profile else {

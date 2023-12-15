@@ -37,13 +37,16 @@ enum AttemptLogin {
 }
 
 
-/* === 게시글 작성 === */
-enum AttemptMakePost {
+/* === 게시글 작성 + 게시글 수정 === */
+enum AttemptPost {
     case success(result: MakePostResponse)
     case commonError(error: CommonAPIError)
     case makePostError(error: MakePostAPIError)
+    case modifyPostError(error: ModifyPostAPIError)
     case refreshTokenError(error: RefreshTokenAPIError)
 }
+
+
 
 
 /* === 게시글 조회 === *//* === 좋아요한 게시글 조회 === */
@@ -53,6 +56,8 @@ enum AttemptLookPost {
     case lookPostError(error: LookPostAPIError)
     case refreshTokenError(error: RefreshTokenAPIError)
 }
+
+
 
 
 /* === 게시글 삭제 === */
