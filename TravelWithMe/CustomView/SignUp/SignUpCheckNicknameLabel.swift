@@ -29,7 +29,8 @@ class SignUpCheckNicknameLabel: UILabel {
     
     func setUpText(_ type: ValidNickname) {
         self.text = type.description
-        self.textColor = UIColor(hexCode: type.color)
+        
+        self.textColor = (type == .available) ? UIColor.appColor(.success) : UIColor.appColor(.main1)
     }
     
 }

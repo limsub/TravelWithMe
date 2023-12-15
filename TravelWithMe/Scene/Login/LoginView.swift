@@ -77,9 +77,12 @@ class LoginView: BaseView {
             make.top.equalTo(pwTextField.snp.bottom).offset(8)
             make.trailing.equalTo(self).inset(24)
         }
+
+    }
+    
+    override func setting() {
+        super.setting()
         
-        
-        
-        
+        pwTextField.isSecureTextEntry = true
     }
 }

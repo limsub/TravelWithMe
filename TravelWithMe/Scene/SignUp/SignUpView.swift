@@ -22,6 +22,7 @@ class SignUpView: BaseView {
     
     let emailTextField = SignUpTextField("이메일을 입력해주세요")
     let pwTextField = SignUpTextField("비밀번호를 입력해주세요")
+    
     let nicknameTextField = SignUpTextField("닉네임을 입력해주세요")
     let birthdayTextField = SignUpTextField("YYYYMMDD")
     let introduceTextView = MakeTourTextView()
@@ -54,7 +55,7 @@ class SignUpView: BaseView {
         super.setConstraints()
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)
+            make.edges.equalTo(self)
         }
         contentView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView.contentLayoutGuide)
@@ -150,6 +151,7 @@ class SignUpView: BaseView {
             make.horizontalEdges.equalTo(contentView).inset(18)
             make.top.equalTo(introduceTextView.snp.bottom).offset(40)
             make.height.equalTo(52)
+            make.bottom.equalTo(contentView).inset(40)
         }
         
         
@@ -163,6 +165,7 @@ class SignUpView: BaseView {
         emailCheckButton.isEnabled = false
         
         birthdayTextField.keyboardType = .numberPad
+        pwTextField.isSecureTextEntry = true
     }
     
 }
