@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ReloadJoinedTourTableViewProtocol {
+protocol ReloadJoinedTourTableViewProtocol: AnyObject {
     func reloadItem()
 }
 
@@ -155,6 +155,7 @@ extension JoinedTourViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 let vc = CheckReviewViewController()
                 vc.viewModel.tourItem = tourItem
+                vc.delegate = self
                 navigationController?.pushViewController(vc, animated: true)
                 
             }

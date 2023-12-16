@@ -15,7 +15,7 @@ class MakeReviewViewController: BaseViewController {
     let viewModel = MakeReviewViewModel()
     let disposeBag = DisposeBag()
     
-    var delegate: ReloadJoinedTourTableViewProtocol?
+    weak var delegate: ReloadJoinedTourTableViewProtocol?
     
     
     override func loadView() {

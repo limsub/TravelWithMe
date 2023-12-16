@@ -17,7 +17,7 @@ class SplashViewModel {
     var nextPage: SetFirstView = .loginView
     
     // 현재 키체인에 저장된 토큰이 유효한지 판단한다
-    func testToken() {
+    func testToken(completionHandler: @escaping () -> Void) {
         
         RouterAPIManager.shared.requestNormalWithNoIntercept(
             type: RefreshTokenResponse.self,
@@ -28,6 +28,7 @@ class SplashViewModel {
                     print("(Splash) 토큰 갱신 성공 - 메인 화면으로 전환")
                     self.setUpKeychainInfo(result: result)
                     self.nextPage = .mainView
+                    completionHandler()
                     
                 case .failure(let error):
 
@@ -36,6 +37,7 @@ class SplashViewModel {
                         print("(Splash) 토큰 갱신 실패(but 409) -> 메인 화면으로 전환")
                         print(refreshTokenError.description)
                         self.nextPage = .mainView
+                        completionHandler()
                             
                         return
                     }
@@ -43,6 +45,7 @@ class SplashViewModel {
                     print("(Splash) 토큰 갱신 싪패  - 로그인 화면으로 전환")
                     self.initKeychainInfo()
                     self.nextPage = .loginView
+                    completionHandler()
                 }
             }
     }

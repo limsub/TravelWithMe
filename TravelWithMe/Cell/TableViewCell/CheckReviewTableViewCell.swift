@@ -25,19 +25,31 @@ class CheckReviewTableViewCell: BaseTableViewCell {
         return view
     }()
     
+    lazy var menuButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        view.tintColor = .black
+        view.addTarget(self, action: #selector(menuButtonClicked), for: .touchUpInside)
+        return view
+    }()
+    
+    var menuButtonCallBackMethod: ( () -> Void )?
+    
+    @objc
+    func menuButtonClicked() {
+        if let closure = menuButtonCallBackMethod {
+            closure()
+        }
+    }
+    
+    
     let seperateLineView = {
         let view = UIView()
         view.backgroundColor = .lightGray.withAlphaComponent(0.5)
         return view
     }()
     
-    // 리뷰 카테고리 개수가 정해져있지 않기 때문에 (1 ~ 3) 컬렉션뷰로 구성한다
-//    lazy var reviewCategoryCollectionView = {
-//        let view = UICollectionView(frame: .zero, collectionViewLayout: createCheckReviewCategoryCollectionViewLayout())
-////        let view = UIView()
-//        return view
-//    }()
-    
+ 
     static func makeReviewCategoryLabel() -> UILabel {
         let view = UILabel()
         view.clipsToBounds = true
@@ -95,7 +107,7 @@ class CheckReviewTableViewCell: BaseTableViewCell {
             item.backgroundColor = .white
         }
         
-        [profileImageView, profileNameLabel, seperateLineView, categoryLabel1, categoryLabel2, categoryLabel3, reviewContentsLabel, reviewDateLabel].forEach { item in
+        [profileImageView, profileNameLabel, menuButton, seperateLineView, categoryLabel1, categoryLabel2, categoryLabel3, reviewContentsLabel, reviewDateLabel].forEach { item in
             contentView.addSubview(item)
 //            item.backgroundColor = .red
         }
@@ -115,6 +127,10 @@ class CheckReviewTableViewCell: BaseTableViewCell {
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.centerY.equalTo(profileImageView)
         }
+        menuButton.snp.makeConstraints { make in
+            make.trailing.equalTo(contentView).inset(padding)
+            make.centerY.equalTo(profileImageView)
+        }
         
         seperateLineView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView).inset(padding)
@@ -122,11 +138,6 @@ class CheckReviewTableViewCell: BaseTableViewCell {
             make.height.equalTo(1)
         }
         
-//        reviewCategoryCollectionView.snp.makeConstraints { make in
-//            make.horizontalEdges.equalTo(contentView).inset(padding)
-//            make.top.equalTo(seperateLineView.snp.bottom).offset(8)
-//            make.height.equalTo(30)
-//        }
         
         categoryLabel1.snp.makeConstraints { make in
             make.leading.equalTo(contentView).inset(padding)
@@ -229,13 +240,17 @@ class CheckReviewTableViewCell: BaseTableViewCell {
         reviewDateLabel.text = sender.time.toDate(to: .serverStyle)?.toString(of: .fullWithDot)
         
         
-        // select backView
+        // select backView + menuButton Hidden
         if sender.creator._id == KeychainStorage.shared._id {
             backViewForMe.isHidden = false
             backViewNotMe.isHidden = true
+            
+            menuButton.isHidden = false
         } else {
             backViewForMe.isHidden = true
             backViewNotMe.isHidden = false
+            
+            menuButton.isHidden = true
         }
         
         

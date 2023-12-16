@@ -25,6 +25,7 @@ class LoginViewController: BaseViewController {
         
         
         bind()
+        settingTextFields()
     }
     
     func bind() {
@@ -90,5 +91,26 @@ class LoginViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    
+    func settingTextFields() {
+        mainView.emailTextField.delegate = self
+        mainView.pwTextField.delegate = self
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+        case mainView.emailTextField:
+            mainView.pwTextField.becomeFirstResponder()
+            
+        case mainView.pwTextField:
+            textField.resignFirstResponder()
+            
+        default:
+            break
+        }
+        
+        return true
+    }
 }

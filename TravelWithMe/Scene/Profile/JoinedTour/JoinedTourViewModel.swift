@@ -106,7 +106,7 @@ class JoinedTourViewModel: TourItemsProtocol2 {
         // 4. 배열 정렬
         joinedTours.sort { $0.month > $1.month }
         
-        print("--- 정렬 완료? ---")
+//        print("--- 정렬 완료? ---")
 //        print(joinedTours)
             
         return joinedTours

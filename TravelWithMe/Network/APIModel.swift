@@ -122,7 +122,7 @@ struct Datum: Codable {
     var likes: [String]
     let image: [String]
     let hashTags: [String]
-    let comments: [Comment]
+    var comments: [Comment]
     let id: String
     let creator: Creator
     let time: String
@@ -215,6 +215,14 @@ struct MakeReviewResponse: Decodable {  // Comment와 동일
     let time: String
     let content: String
     let creator: Creator
+}
+
+/* === 댓글 수정 === */
+
+/* === 댓글 삭제 === */
+struct DeleteReviewResponse: Decodable {
+    let postID: String
+    let commentID: String 
 }
 
 

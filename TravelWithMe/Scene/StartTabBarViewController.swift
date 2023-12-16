@@ -11,7 +11,7 @@ import UIKit
 
 class StartTabBarViewController: UITabBarController {
     
-    let a = StartViewController()
+//    let a = StartViewController()
     let b = ContentsViewController()
     let c = ProfileViewController()
     
@@ -34,13 +34,13 @@ class StartTabBarViewController: UITabBarController {
     
         tabBar.layer.cornerRadius = 30
         
-        a.tabBarItem.image = UIImage(systemName: "music.note.house")
+//        a.tabBarItem.image = UIImage(systemName: "music.note.house")
         b.tabBarItem.image = UIImage(systemName: "calendar")
         c.tabBarItem.image = UIImage(systemName: "house")
         
         
         
-        [a, b, c].forEach { vc in
+        [ b, c].forEach { vc in
             vc.tabBarItem.imageInsets = UIEdgeInsets(
                 top: -30,
                 left: 0,
@@ -51,12 +51,12 @@ class StartTabBarViewController: UITabBarController {
         }
         
 //        let navPager = UINavigationController(rootViewController: pagerVC)
-        let navA = UINavigationController(rootViewController: a)
+//        let navA = UINavigationController(rootViewController: a)
         let navB = UINavigationController(rootViewController: b)
         let navC = UINavigationController(rootViewController: c)
         
         
-        let tabItem = [navA, navB, navC]
+        let tabItem = [navB, navC]
         self.viewControllers = tabItem
         
         tabBarController?.hidesBottomBarWhenPushed = true

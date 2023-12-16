@@ -13,6 +13,7 @@ import Foundation
     - 실패 : APIError
  
  ViewController에 Output으로 전달해주기 위한 enum
+ 즉, rx + Input/Output으로 구현한 뷰에 대해서만 적용
  */
 
 
@@ -100,3 +101,4 @@ enum AttempMakeReview {
     case makeReviewError(error: MakeReviewAPIError)
     case refreshTokenError(error: RefreshTokenAPIError)
 }
+

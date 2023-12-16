@@ -21,8 +21,10 @@ class SplashViewController: BaseViewController {
         
         setUpViewFadeEffect()
         
-        viewModel.testToken()
-        transitionNextPage()
+        viewModel.testToken {
+            self.transitionNextPage()
+        }
+//        transitionNextPage()
     }
     
     func setUpViewFadeEffect() {

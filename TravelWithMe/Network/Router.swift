@@ -40,6 +40,7 @@ enum Router: URLRequestConvertible {
     case modifyMyProfile(sender: ModifyMyProfileRequest)
     
     case makeReview(sender: MakeReviewRequest, postID: String)
+    case deleteReview(postID: String, commentID: String)
     
     case follow(sender: FollowRequest)
 
@@ -106,6 +107,8 @@ enum Router: URLRequestConvertible {
             
         case .makeReview(_, let postID):
             return "/post/\(postID)/comment"
+        case .deleteReview(let postID, let commentID):
+            return "/post/\(postID)/comment/\(commentID)"
             
         case .follow(sender: let idStruct):
             return "/follow/\(idStruct.id)"
@@ -144,7 +147,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "application/json",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .withdraw, .lookPost, .deletePost, .likePost, .lookProfile, .follow, .imageDownload:
+        case .withdraw, .lookPost, .deletePost, .likePost, .lookProfile, .follow, .deleteReview, .imageDownload:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "SesacKey": SeSACAPI.subKey
@@ -160,7 +163,7 @@ enum Router: URLRequestConvertible {
         case .refreshToken, .withdraw, .lookPost, .lookProfile, .imageDownload:
             return .get
             
-        case .deletePost:
+        case .deletePost, .deleteReview:
             return .delete
             
         case .follow(let followRequest):
