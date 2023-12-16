@@ -11,7 +11,7 @@ import RxCocoa
 import PhotosUI
 import Kingfisher
 
-enum MakeOrModify {
+enum MakeOrModifyTour {
     case make
     case modify
     
@@ -39,7 +39,7 @@ class MakeTourViewController: BaseViewController {
     // 유입 경로
     // 1. 여행 만들기
     // 2. 여행 수정하기 * -> 초기 데이터를 값전달로 받는다
-    var type: MakeOrModify = .make
+    var type: MakeOrModifyTour = .make
     
     
     let mainView = MakeTourView()

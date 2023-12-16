@@ -40,6 +40,7 @@ enum Router: URLRequestConvertible {
     case modifyMyProfile(sender: ModifyMyProfileRequest)
     
     case makeReview(sender: MakeReviewRequest, postID: String)
+    case modifyReview(sender: MakeReviewRequest, postID: String, commentID: String)
     case deleteReview(postID: String, commentID: String)
     
     case follow(sender: FollowRequest)
@@ -107,6 +108,8 @@ enum Router: URLRequestConvertible {
             
         case .makeReview(_, let postID):
             return "/post/\(postID)/comment"
+        case .modifyReview(_, let postID, let commentID):
+            return "/post/\(postID)/comment/\(commentID)"
         case .deleteReview(let postID, let commentID):
             return "/post/\(postID)/comment/\(commentID)"
             
@@ -141,7 +144,7 @@ enum Router: URLRequestConvertible {
                 "Content-Type": "multipart/form-data",
                 "SesacKey": SeSACAPI.subKey
             ]
-        case .makeReview:
+        case .makeReview, .modifyReview:
             return [
                 "Authorization": KeychainStorage.shared.accessToken ?? "",
                 "Content-Type": "application/json",
@@ -173,7 +176,7 @@ enum Router: URLRequestConvertible {
                 return .delete  // false : 언팔로우 : delete
             }
             
-        case .modifyPost, .modifyMyProfile:
+        case .modifyPost, .modifyMyProfile, .modifyReview:
             return .put
         }
         
@@ -212,7 +215,7 @@ enum Router: URLRequestConvertible {
                 "content4": sender.tourPrice,
                 "content5": ""
             ]
-        case .makeReview(let sender, _):
+        case .makeReview(let sender, _), .modifyReview(let sender, _, _):
             return [
                 "content": sender.content
             ]
@@ -284,7 +287,7 @@ enum Router: URLRequestConvertible {
         request.method = method
         
         // post일 때 파라미터
-        if method == .post {
+        if method == .post || method == .put {
             let jsonData = try? JSONSerialization.data(withJSONObject: parameter)
             request.httpBody = jsonData
             

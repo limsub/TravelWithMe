@@ -28,6 +28,12 @@ class CheckReviewViewController: BaseViewController {
         settingView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainView.checkReviewTableView.reloadData()
+    }
+    
     func settingNavigation() {
         navigationItem.title = "후기 확인"
     }
@@ -62,6 +68,22 @@ extension CheckReviewViewController: UITableViewDelegate, UITableViewDataSource 
             
             self?.showActionSheet(nil, message: nil, firstTitle: "후기 수정", secondTitle: "후기 삭제", firstCompletionHandler: {
                 print("후기 수정")
+                                
+                // 후기 확인하는 창의 데이터는 값전달로 받아옴. 네트워크 콜 x. 그래서 reload를 할 수가 없음
+                // 1. 그래서 직접 viewModel에 접근해서 값을 바꿔버리고, 뷰를 다시 그리는 방법으로 구현하기
+                // 2. 또한, 결국 JoinedTour는 reload를 해줘야 하기 때문에 MakeReview에서 전전화면을 reload하게 함. 즉, delegate를 그대로 전달시킴
+                
+                
+                // 화면 전환!!
+                let vc = MakeReviewViewController()
+                vc.viewModel.tourItem = self?.viewModel.tourItem
+                vc.type = .modify
+                // 1.
+                vc.viewModel.initData = commentItem
+                vc.viewModel.checkReviewData = self?.viewModel
+                // 2.
+                vc.delegate = self?.delegate
+                self?.navigationController?.pushViewController(vc, animated: true)
                 
                 // 1. 네트워크 콜
                 
@@ -124,18 +146,10 @@ extension CheckReviewViewController: UITableViewDelegate, UITableViewDataSource 
                     }
                 }
                 
-                
-                
-                
-                
             })
-         
-            
-            
         }
         
         return cell
     }
-    
-    
 }
+

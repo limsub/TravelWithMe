@@ -300,12 +300,39 @@ enum MakeReviewAPIError: Int, APIError {
 }
 
 /* === 댓글 수정 === */
+enum ModifyReviewAPIError: Int, APIError {
+    case invalidRequest = 400
+    case invalidToken = 401
+    case forbidden = 403
+    case commentNotFound = 410
+    case tokenExpired = 419
+    case permissionDenied = 445
+    
+    var description: String {
+        switch self {
+        case .invalidRequest:
+            return "필수값이 누락되었습니다"
+        case .invalidToken:
+            return "유효하지 않은 액세스 토큰입니다"
+        case .forbidden:
+            return "접근 권한이 없습니다"
+        case .commentNotFound:
+            return "댓글을 찾을 수 없습니다"
+        case .tokenExpired:
+            return "액세스 토큰이 만료되었습니다"
+        case .permissionDenied:
+            return "댓글 삭제 권한이 없습니다. 본인이 작성한 댓글만 삭제가 가능합니다"
+        }
+    }
+}
+
+
 
 /* === 댓글 삭제 === */
 enum DeleteReviewAPIError: Int, APIError {
     case invalidToken = 401
     case forbidden = 403
-    case postNotFound = 410
+    case commentNotFound = 410
     case tokenExpired = 419
     case permissionDenied = 445
     
@@ -315,8 +342,8 @@ enum DeleteReviewAPIError: Int, APIError {
             return "유효하지 않은 액세스 토큰입니다"
         case .forbidden:
             return "접근 권한이 없습니다"
-        case .postNotFound:
-            return "게시글을 찾을 수 없습니다"
+        case .commentNotFound:
+            return "댓글을 찾을 수 없습니다"
         case .tokenExpired:
             return "액세스 토큰이 만료되었습니다"
         case .permissionDenied:

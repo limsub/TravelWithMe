@@ -94,11 +94,12 @@ enum AttemptModifyMyProfile {
 }
 
 
-/* === 댓글 작성 === */
-enum AttempMakeReview {
-    case success(result: MakeReviewResponse)
+/* === 댓글 작성 === */ /* === 댓글 수정 === */
+enum AttemptReview {
+    case success(result: Comment)   // 타입이 동일하기 때문에 편의를 위해 Comment 타입으로 받는다
     case commonError(error: CommonAPIError)
     case makeReviewError(error: MakeReviewAPIError)
+    case modifyReviewError(error: ModifyReviewAPIError)
     case refreshTokenError(error: RefreshTokenAPIError)
 }
 

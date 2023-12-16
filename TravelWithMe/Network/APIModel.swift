@@ -219,10 +219,11 @@ struct MakeReviewResponse: Decodable {  // Comment와 동일
 
 /* === 댓글 수정 === */
 
+
 /* === 댓글 삭제 === */
 struct DeleteReviewResponse: Decodable {
     let postID: String
-    let commentID: String 
+    let commentID: String
 }
 
 
