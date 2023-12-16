@@ -42,13 +42,7 @@ class ContentsViewController: BaseViewController {
         settingMakePostButton()
         bind()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        tabBarController?.tabBar.isHidden = false
-    }
-    
+  
     private func settingNavigation() {
 //        navigationItem.title = "Travel With Me"
         

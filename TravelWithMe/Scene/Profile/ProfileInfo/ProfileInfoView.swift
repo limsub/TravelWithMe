@@ -131,7 +131,12 @@ class ProfileInfoView: BaseView {
             make.height.equalTo(100)
             make.bottom.equalTo(contentView).inset(20)
         }
+    }
+    
+    override func setting() {
+        super.setting()
         
+        scrollView.showsVerticalScrollIndicator = false
     }
     
     func updateView(_ sender: LookProfileResponse) {
