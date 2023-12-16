@@ -31,17 +31,17 @@ extension UIImageView {
         
 //        let value = CGSize(width: size.width * UIScreen.main.scale, height: size.height * UIScreen.main.scale)
 //        let processor = DownsamplingImageProcessor(size: CGSize(width: 400, height: 400))
-//        let processor = DownsamplingImageProcessor(size: size)
+        let processor = DownsamplingImageProcessor(size: size)
         
         self.kf.setImage(
             with: imageURL,
             placeholder: UIImage(named: "basicProfile2"),
             options: [
                 .requestModifier(modifier),
-//                .processor(processor),
-//                .scaleFactor(UIScreen.main.scale),
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
                 .cacheOriginalImage,
-                .progressiveJPEG(.init(isBlur: false, isFastestScan: true, scanInterval: 0.1))
+//                .progressiveJPEG(.init(isBlur: false, isFastestScan: true, scanInterval: 0.1))
             ]
         )
     }

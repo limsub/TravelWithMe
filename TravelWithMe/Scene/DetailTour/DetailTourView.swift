@@ -350,7 +350,10 @@ class DetailTourView: BaseView {
         if let profileImageUrl = sender.creator.profile {
             let size = tourProfileImageView.bounds.size
             print("-- DetailTourView -- downsampling size : \(size)")
-            tourProfileImageView.loadImage(endURLString: profileImageUrl, size: size)
+            tourProfileImageView.loadImage(endURLString: profileImageUrl, size: CGSize(
+                width: 40,
+                height: 40
+            ))
         } else {
             tourProfileImageView.image = UIImage(named: "basicProfile2")
         }

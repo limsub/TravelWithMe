@@ -158,7 +158,10 @@ class ModifyProfileView: BaseView {
         if let profileImageUrl = sender.profile {
             let size = profileImageView.bounds.size
             print("-- ModifyProfileView -- downsampling size : \(size)")
-            profileImageView.loadImage(endURLString: profileImageUrl, size: size)
+            profileImageView.loadImage(endURLString: profileImageUrl, size: CGSize(
+                width: 120,
+                height: 120
+            ))
         }
         
         // nickname, birthday, gender, introduce

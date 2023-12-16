@@ -33,8 +33,13 @@ class SelectLocationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settingNavigation()
         settingSearch()
         settingTableView()
+    }
+    
+    func settingNavigation() {
+        navigationItem.title = "여행 장소 검색"
     }
     
     func settingSearch() {

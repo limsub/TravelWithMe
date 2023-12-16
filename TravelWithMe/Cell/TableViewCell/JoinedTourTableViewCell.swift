@@ -202,7 +202,10 @@ class JoinedTourTableViewCell: BaseTableViewCell {
         if !sender.image.isEmpty {
             let imageEndString = sender.image[0]
             let size = backImageView.bounds.size
-            backImageView.loadImage(endURLString: imageEndString, size: size)
+            backImageView.loadImage(endURLString: imageEndString, size: CGSize(
+                width: 300,
+                height: 300
+            ))
         } else {
             print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함 - 2")
         }

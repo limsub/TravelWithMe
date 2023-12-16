@@ -182,7 +182,10 @@ extension DetailTourViewController: UICollectionViewDataSource, UICollectionView
             
             print("-- DetailTourView - swipeImage -- downsampling size : \(size)")
             
-            cell.mainImageView.loadImage(endURLString: viewModel.tourItem.image[indexPath.item], size: size)
+            cell.mainImageView.loadImage(endURLString: viewModel.tourItem.image[indexPath.item], size: CGSize(
+                width: 340,
+                height: 360
+            ))
             
             return cell
             

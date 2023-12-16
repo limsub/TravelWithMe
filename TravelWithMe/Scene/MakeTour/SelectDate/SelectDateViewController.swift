@@ -36,7 +36,12 @@ class SelectDateViewController: BaseViewController {
         
         mainView.completeButton.addTarget(self , action: #selector(completeButtonClicked), for: .touchUpInside)
         
+        settingNavigation()
         settingCalendar()
+    }
+    
+    func settingNavigation() {
+        navigationItem.title = "여행 날짜 선택"
     }
     
     func settingCalendar() {

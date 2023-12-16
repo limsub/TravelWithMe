@@ -170,7 +170,10 @@ class ProfileTopView: BaseView {
         if let imageUrl = result.profile {
             let size = profileImageView.bounds.size
             print("-- ProfileTopView -- downsampling size : \(size)")
-            profileImageView.loadImage(endURLString: imageUrl, size: size)
+            profileImageView.loadImage(endURLString: imageUrl, size: CGSize(
+                width: 120,
+                height: 120
+            ))
         }
         
         // 닉네임 넣어주기

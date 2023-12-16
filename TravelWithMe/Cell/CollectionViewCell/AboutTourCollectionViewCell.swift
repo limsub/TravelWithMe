@@ -149,7 +149,7 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
             let imageEndString = sender.image[0]    // 맨 처음 이미지
             
             let size = self.backImageView.bounds.size
-            backImageView.loadImage(endURLString: imageEndString, size: size)
+            backImageView.loadImage(endURLString: imageEndString, size: CGSize(width: 340, height: 340))
         } else {
             print("이미지 없으면 기본 이미지 띄워주기. 이거 만들어야 함")
 
@@ -171,7 +171,13 @@ class AboutTourCollectionViewCell: BaseCollectionViewCell {
         // 4. 유저 프로필 이미지 (아직)
         if let profileImageUrl = sender.creator.profile {
             let size = self.profileImageView.bounds.size
-            profileImageView.loadImage(endURLString: profileImageUrl, size: size)
+            profileImageView.loadImage(
+                endURLString: profileImageUrl,
+                size: CGSize(
+                    width: 60,
+                    height: 60
+                )
+            )
         } else {
             profileImageView.image = UIImage(named: "basicProfile2")
         }
