@@ -382,11 +382,20 @@ class DetailTourView: BaseView {
         setUpBottomApplyButton(sender: sender)
     }
     
+    
     func setUpBottomApplyButton(sender: Datum) {
         
         // 버튼 타입 잡아주기
         // 1. 내가 만든 투어인지
         let isMine = sender.creator._id == KeychainStorage.shared._id
+        // 1.5 이미 날짜가 지난 투어인지!!
+        var outOfDate = false
+        if let datesStruct = decodingStringToStruct(type: TourDates.self, sender: sender.dates), let lastDate = datesStruct.dates.last {
+            if Date().toString(of: .full) > lastDate {
+                outOfDate = true
+            }
+        }
+        
         // 2. 내가 신청한 투어인지
         let isApplied = sender.likes.contains(KeychainStorage.shared._id ?? "-1")
         // 3. 신청 수 / 최대 인원 수
@@ -398,7 +407,8 @@ class DetailTourView: BaseView {
             likesCnt,
             maxCnt: maxCnt,
             isMine: isMine,
-            isApplied: isApplied
+            isApplied: isApplied,
+            outOfDates: outOfDate
         )
         
         print("isMine : \(isMine), isApplied: \(isApplied)")

@@ -11,8 +11,7 @@ import UIKit
 class ProfileViewModel {
     
     var userType = UserType.me
-    
-    
+ 
     var profileData: LookProfileResponse = LookProfileResponse(
         posts: [], followers: [], following: [], _id: "", email: "", nick: "", phoneNum: nil, birthDay: nil, profile: nil
     )

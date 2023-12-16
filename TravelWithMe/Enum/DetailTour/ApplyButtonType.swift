@@ -9,6 +9,10 @@ import UIKit
 
 enum ApplyButtonType {
     case myTour(likes: Int, max: Int)
+    
+    
+    case outOfDate(likes: Int, max: Int)
+    
     case unApplied(likes: Int, max: Int)
     case closed(max: Int)
     
@@ -19,6 +23,8 @@ enum ApplyButtonType {
         switch self {
         case .myTour(let likes, let max):
             return "신청 현황 \(likes) / \(max)"
+        case .outOfDate(let likes, let max):
+            return "기한 마감 \(likes) / \(max)"
         case .unApplied(let likes, let max):
             return "신청하기 \(likes) / \(max)"
         case .closed(let max):
@@ -34,6 +40,8 @@ enum ApplyButtonType {
         switch self {
         case .myTour:
             return .enabled
+        case .outOfDate:
+            return .disabled
         case .unApplied:
             return .enabled
         case .closed:

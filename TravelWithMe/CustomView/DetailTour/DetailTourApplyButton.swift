@@ -32,13 +32,17 @@ class DetailTourApplyButton: UIButton {
         setTitle("신청하기 1/3", for: .normal)
     }
     
-    func updateButton(_ likesCnt: Int, maxCnt: Int, isMine: Bool, isApplied: Bool) {
+    func updateButton(_ likesCnt: Int, maxCnt: Int, isMine: Bool, isApplied: Bool, outOfDates: Bool) {
         
         var buttonType: ApplyButtonType
         
         // 1. 내가 만든 투어인지
         if isMine { 
             buttonType = .myTour(likes: likesCnt, max: maxCnt)
+        }
+        // 1.5 이미 기한이 지난 투어인지!
+        else if outOfDates {
+            buttonType = .outOfDate(likes: likesCnt, max: maxCnt)
         }
         // 2. 내가 신청한 투어인지
         else if isApplied {
