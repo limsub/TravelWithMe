@@ -58,6 +58,14 @@ class MyTourViewController: BaseViewController {
                             
                             
                             // 만약 신청한 사람이 있다면, 게시글 수정은 불가능하다
+                            if !element.likes.isEmpty {
+                                self.showSingleAlert("수정 불가", message: "이미 신청한 사람이 있는 여행 컨텐츠는 수정할 수 없습니다") {
+                                    print("hi")
+                                }
+                                return
+                            }
+                            
+                            
                             let vc = MakeTourViewController()
                             vc.delegate = self
                             vc.type = .modify
