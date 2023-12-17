@@ -253,7 +253,7 @@ class ProfileViewController: TabmanViewController {
     
     lazy var settingButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
-        let image = UIImage(systemName: "trash.circle", withConfiguration: imageConfig)
+        let image = UIImage(systemName: "gearshape", withConfiguration: imageConfig)
         
         let view = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingButtonClicked))
         
@@ -323,9 +323,9 @@ extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSourc
         if viewModel.userType == .me {
             switch index {
             case 0:
-                return TMBarItem(title: "만든거")
+                return TMBarItem(title: "만든 여행")
             case 1:
-                return TMBarItem(title: "신청한거")
+                return TMBarItem(title: "신청한 여행")
             case 2:
                 return TMBarItem(title: "정보")
             default:
@@ -335,7 +335,7 @@ extension ProfileViewController: PageboyViewControllerDataSource, TMBarDataSourc
         } else {
             switch index {
             case 0:
-                return TMBarItem(title: "만든거")
+                return TMBarItem(title: "만든 여행")
             case 1:
                 return TMBarItem(title: "정보")
             default:

@@ -35,8 +35,8 @@ class StartTabBarViewController: UITabBarController {
         tabBar.layer.cornerRadius = 30
         
 //        a.tabBarItem.image = UIImage(systemName: "music.note.house")
-        b.tabBarItem.image = UIImage(systemName: "calendar")
-        c.tabBarItem.image = UIImage(systemName: "house")
+        b.tabBarItem.image = UIImage(systemName: "house")
+        c.tabBarItem.image = UIImage(systemName: "person")
         
         
         

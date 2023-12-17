@@ -390,8 +390,8 @@ class DetailTourView: BaseView {
         let isMine = sender.creator._id == KeychainStorage.shared._id
         // 1.5 이미 날짜가 지난 투어인지!!
         var outOfDate = false
-        if let datesStruct = decodingStringToStruct(type: TourDates.self, sender: sender.dates), let lastDate = datesStruct.dates.last {
-            if Date().toString(of: .full) > lastDate {
+        if let datesStruct = decodingStringToStruct(type: TourDates.self, sender: sender.dates), let firstDate = datesStruct.dates.first {
+            if Date().toString(of: .full) > firstDate {
                 outOfDate = true
             }
         }
