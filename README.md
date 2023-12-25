@@ -1,5 +1,4 @@
-(이미지)
-
+<img src="https://github.com/limsub/TravelWithMe/assets/99518799/1b10a1fb-b6c1-4692-9d62-9c91c97d1427" align="center" width="100%">
 
 ## :airplane: Travel With Me
 > 서비스 소개 : 같이 여행을 떠날 사람을 모집하고, 마음에 드는 여행을 신청하는 앱
@@ -36,7 +35,8 @@
 
 ## 💻 구현 내용
 ### 1. RxSwift를 이용한 실시간 회원가입 유효성 검증
-(gif)
+<img src="https://github.com/limsub/TravelWithMe/assets/99518799/52565fd5-13fb-4f52-b728-2e8b5c16de11" align="center" width="24%">
+
 - VC에서 VM의 input으로 `textField.rx.text.orEmpty` 를 전달하고, 
 - `transform` 메서드 내에서 해당 텍스트에 대한 유효성을 검증한 후,
 - output으로 결과를 전달받아서 실시간으로 View를 업데이트한다.
