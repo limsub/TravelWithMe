@@ -38,7 +38,6 @@ class RouterAPIManager {
                     completionHandler(.failure(error))
                 }
             }
-        
     }
     
     // 기본 (interceptor x)

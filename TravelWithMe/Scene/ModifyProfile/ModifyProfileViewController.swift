@@ -63,7 +63,7 @@ class ModifyProfileViewController: BaseViewController {
     // 기본 이미지로 변경 (저장된 profileImage를 없애는 것이 아니라, 기본 이미지를 저장시킨다)
     func settingBasicProfileImage() {
         let basicImage = UIImage(named: "basicProfile2")
-        guard let imageData = basicImage?.jpegData(compressionQuality: 0.00000001) else { return }
+        guard let imageData = basicImage?.jpegData(compressionQuality: 0.0001) else { return }
         viewModel.profileImageData = imageData
         
         updateProfileImage()
@@ -227,19 +227,14 @@ extension ModifyProfileViewController: PHPickerViewControllerDelegate {
                 var imageData: Data? = image.jpegData(compressionQuality: compressionQuality)
                 let bytesInMegaByte = 1024.0 * 1024.0
                 
-                while (true) {
+                while true {
                     if let sampleData = image.jpegData(compressionQuality: compressionQuality) {
                         
                         let mbSize = Double(sampleData.count) / bytesInMegaByte
                         
-                        print("image MB Size :\(mbSize), compression quality : \(compressionQuality)")
-                        
-                        if mbSize < 1 {
-                            imageData = sampleData
-                            break
-                        }
-                        
-                        if compressionQuality < 0.01 {
+                        print("image MB Size : \(String(format: "%.5f", mbSize)), compression quality : \(compressionQuality)")
+
+                        if mbSize < 1 || compressionQuality < 0.05 {
                             imageData = sampleData
                             break
                         }

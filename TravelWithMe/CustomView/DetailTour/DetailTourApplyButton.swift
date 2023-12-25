@@ -40,10 +40,10 @@ class DetailTourApplyButton: UIButton {
         if isMine { 
             buttonType = .myTour(likes: likesCnt, max: maxCnt)
         }
-        // 1.5 이미 기한이 지난 투어인지!
-        else if outOfDates {
-            buttonType = .outOfDate(likes: likesCnt, max: maxCnt)
-        }
+//        // 1.5 이미 기한이 지난 투어인지!
+//        else if outOfDates {
+//            buttonType = .outOfDate(likes: likesCnt, max: maxCnt)
+//        }
         // 2. 내가 신청한 투어인지
         else if isApplied {
             buttonType = .applied(likes: likesCnt, max: maxCnt)

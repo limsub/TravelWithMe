@@ -25,6 +25,8 @@ class SplashViewController: BaseViewController {
             self.transitionNextPage()
         }
 //        transitionNextPage()
+        
+        KeychainStorage.shared.printTokens()
     }
     
     func setUpViewFadeEffect() {
