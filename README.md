@@ -202,16 +202,20 @@ return Output(validPWFormat: validPWFormat)
 <br>
 
 ### 3. 자동 로그인 구현
-(사진)
+<img src="https://github.com/limsub/TravelWithMe/assets/99518799/b86ae516-c8ba-4e40-8ebe-42e8d7439da9" align="center" width="60%">
+
 - 앱 실행 시 나타나는 SplashView에서 현재 Keychain에 저장된 토큰의 유효성을 검사한다
 - 토큰의 유효성에 따라 앱의 첫 화면을 결정한다
-
 
 
 <br>
 
 ### 4. UIBezierPath 활용 곡선 뷰 구현
-(사진1. 프로필 화면) (사진 2. 투어 디테일 화면)
+<p align="left">
+  <img src="https://github.com/limsub/TravelWithMe/assets/99518799/82179b6f-a1a2-4b56-849a-64ae78aa4200" align="center" width="24%">
+  <img src="https://github.com/limsub/TravelWithMe/assets/99518799/ef04828a-e220-4460-a197-71ea98142f70" align="center" width="24%">
+</p>
+
 - UIView의 `draw` 메서드 내에서 `UIBezierPath`를 이용한 곡선 뷰를 구현했다
     ```swift
     override func draw(_ rect: CGRect) {
@@ -232,11 +236,10 @@ return Output(validPWFormat: validPWFormat)
         path.fill()
     }
     ```
+
+<img src="https://github.com/limsub/TravelWithMe/assets/99518799/a97832e7-742c-4412-aac6-3dff0055c8f9" align="center" width="24%">
+
 - (****)사용자 입장에서 곡선 뷰의 영역을 스크롤해도 뒤의 이미지 컬렉션뷰가 스크롤되어야 하기 때문에 곡선 뷰의 `hitTest` 를 넘겨주었다
-
-(gif)
-
-
     ```swift
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
