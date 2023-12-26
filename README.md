@@ -74,62 +74,65 @@ return Output(validPWFormat: validPWFormat)
 
 <br>
 
-### 2 - 1. Router pattern 구현 -> 보류
-
-
-### 2 - 2. jwt 토큰 갱신을 위한 Interceptor 구현
+### 2 - 1. jwt 토큰 갱신을 위한 Interceptor 구현
 - Keychain에 저장된 access token과 refresh token을 이용해서
 <br> 매번 네트워크 통신 전 토큰의 유효성 검증을 진행하였다.
 
-- `adapt` : 현재 Keychain에 저장된 token값을 헤더에 업데이트한다. 
-  - (retry 함수로 인해 Keychain의 토큰 값이 변경된 경우를 대비하기 위함)
-
-- `retry` : 네트워크 에러 발생 시 실행된다
-  1. access token 만료 에러(statusCode: 419)가 아닌 경우, 해당 에러를 그대로 반환한다.
-  2. access token 만료 에러인 경우, access token 갱신 네트워크 요청을 한다
-  3. access token 갱신 성공이면, Keychain 헤더 업데이트 후 현재 네트워크 통신을 재요청한다.
-  4. access token 갱신에 실패하면, 해당 에러를 그대로 반환한다.
-```swift
-// adapt
-func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-    var urlRequest = urlRequest
-    urlRequest.headers.add(name: "Authorization", value: KeychainStorage.shared.accessToken ?? "")
-    completion(.success(urlRequest))
-}
-
-// retry
-func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-
-    guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 419 else {
-        // 1.
-        completion(.doNotRetryWithError(error))
-        return
+- `adapt` : 현재 Keychain에 저장된 token값을 헤더에 추가
+  <br>(retry 함수로 인해 Keychain의 토큰 값이 변경된 경우 대비)
+    ```swift
+    // adapt
+    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        
+        var urlRequest = urlRequest
+        urlRequest.headers.add(name: "Authorization", value: KeychainStorage.shared.accessToken ?? "")
+        completion(.success(urlRequest))
     }
-    
-    // 2.
-    RouterAPIManager.shared.requestNormalWithNoIntercept(
-        type: RefreshTokenResponse.self,
-        error: RefreshTokenAPIError.self,
-        api: .refreshToken) { response  in
-            switch response {
-            case .success(let result):
-                // 3.
-                KeychainStorage.shared.accessToken = result.token
-                completion(.retry)
-                return
-            case .failure(let error):
-                // 4.
-                // (에러 분기 처리 생략)
-                completion(.doNotRetryWithError(error))
-            }
-        }
-}
-```
+    ```
 
-### 2 - 3. 네트워크 통신 에러 처리
-- API 별로 Error를 enum으로 선언하였다.
-- 모든 에러의 공통적인 내용을 `APIError` 라는 프로토콜을 선언하여 정의하였다.
-- `protocol APIError` 를 선언하여 Router Manager에서 모든 에러를 제네릭 타입으로 받을 수 있게 하였다.
+<br>
+
+- `retry` : 네트워크 에러 발생 시 실행
+  1. access token 만료 에러(statusCode: 419)가 아닌 경우, 해당 에러를 그대로 반환
+  2. access token 만료 에러인 경우, access token 갱신 네트워크 요청
+  3. access token 갱신 성공한 경우, Keychain 헤더 업데이트 후 현재 네트워크 통신을 재요청
+  4. access token 갱신에 실패한 경우, 해당 에러를 그대로 반환
+    ```swift
+    // retry
+    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+
+        guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 419 else {
+            // 1.
+            completion(.doNotRetryWithError(error))
+            return
+        }
+        
+        // 2.
+        RouterAPIManager.shared.requestNormalWithNoIntercept(
+            type: RefreshTokenResponse.self,
+            error: RefreshTokenAPIError.self,
+            api: .refreshToken) { response  in
+                switch response {
+                case .success(let result):
+                    // 3.
+                    KeychainStorage.shared.accessToken = result.token
+                    completion(.retry)
+                    return
+                case .failure(let error):
+                    // 4.
+                    // (에러 분기 처리 생략)
+                    completion(.doNotRetryWithError(error))
+                }
+            }
+    }
+    ```
+
+### 2 - 2. 네트워크 통신 에러 처리
+- API 별 Error -> enum 선언
+- 공통적인 내용 -> protocol 선언
+  1. Int 타입 rawValue
+  2. Error protocol 채택
+  3. error 내용 프로퍼티 (String)
     ```swift
     protocol APIError: RawRepresentable, Error where RawValue == Int {
         var description: String { get }
@@ -150,15 +153,20 @@ func retry(_ request: Request, for session: Session, dueTo error: Error, complet
         }
     }
     ```
-- 이를 통해 RouterManager의 메서드에서 제네릭 타입으로 에러를 받고, 이를 핸들링할 수 있도록 하였다
-<br> 에러 별 rawValue를 statusCode로 분기 처리를 진행하였다
+- 네트워크 요청 메서드에서 요청 모델(`T: Decodable`)을 제네릭으로 받는 것처럼 
+<br> API Error 타입(`U: APIError`)도 제네릭 매개변수로 받을 수 있게 된다
+- Error에 대한 분기 처리는 rawValue (statusCode) 를 이용하였다
+
     ```swift
-    func requestNormal<T: Decodable, U: APIError>(type: T.Type, error: U.Type, api: Router, completionHandler: @escaping (Result<T, Error>) -> Void) {
+    func requestNormal<T: Decodable, U: APIError>(
+        type: T.Type,
+        error: U.Type, 
+        api: Router, 
+        completionHandler: @escaping (Result<T, Error>) -> Void) {
         
         AF.request(api, interceptor: APIRequestInterceptor())
             .responseDecodable(of: T.self) { response in
-                print(response)
-                
+
                 switch response.result {
                 case .success(let data):
                     completionHandler(.success(data))
@@ -166,18 +174,18 @@ func retry(_ request: Request, for session: Session, dueTo error: Error, complet
                 case .failure(let error):
                     let statusCode = response.response?.statusCode ?? 500
 
-                    // 1. 공통 에러
+                    // 1. 공통 에러 (statusCode)
                     if [420, 429, 444, 500].contains(statusCode) {
                         let returnError = CommonAPIError(rawValue: statusCode)!
                         completionHandler(.failure(returnError))
                     }
                     
-                    // 2. 토큰 갱신 에러
+                    // 2. 토큰 갱신 에러 (retryFailed)
                     else if case .requestRetryFailed(let retryError as RefreshTokenAPIError, _) = error {
                         completionHandler(.failure(retryError))
                     }
 
-                    // 3. U 타입 에러
+                    // 3. U 타입 에러 (statusCode)
                     else if let returnError = U(rawValue: statusCode) {
                         completionHandler(.failure(returnError))
                     }
@@ -194,14 +202,49 @@ func retry(_ request: Request, for session: Session, dueTo error: Error, complet
 <br>
 
 ### 3. 자동 로그인 구현
-- 플로우 차트
+(사진)
+- 앱 실행 시 나타나는 SplashView에서 현재 Keychain에 저장된 토큰의 유효성을 검사한다
+- 토큰의 유효성에 따라 앱의 첫 화면을 결정한다
+
 
 
 <br>
 
 ### 4. UIBezierPath 활용 곡선 뷰 구현
-- 코드 
-- (추가 내용) hitTest 전달해서 스크롤 가능
+(사진1. 프로필 화면) (사진 2. 투어 디테일 화면)
+- UIView의 `draw` 메서드 내에서 `UIBezierPath`를 이용한 곡선 뷰를 구현했다
+    ```swift
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath()
+
+        UIColor.white.setFill()
+        path.lineWidth = 0
+
+        path.move(to: CGPoint(x: leftX, y: bottomY))
+        path.addLine(to: CGPoint(x: leftX, y: startY))
+        path.addCurve(to: CGPoint(x: rightX, y: endY),
+                    controlPoint1: CGPoint(x: firstX, y: firstY),
+                    controlPoint2: CGPoint(x: secondX, y: secondY)
+        )
+        path.addLine(to: CGPoint(x: rightX, y: bottomY))
+
+        path.stroke()
+        path.fill()
+    }
+    ```
+- (****)사용자 입장에서 곡선 뷰의 영역을 스크롤해도 뒤의 이미지 컬렉션뷰가 스크롤되어야 하기 때문에 곡선 뷰의 `hitTest` 를 넘겨주었다
+
+(gif)
+
+
+    ```swift
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        
+        let hitView: UIView? = super.hitTest(point, with: event)
+        if (self == hitView) { return nil }
+        return hitView
+    }
+    ```
 
 <br>
 
