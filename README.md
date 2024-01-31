@@ -310,3 +310,6 @@ return Output(validPWFormat: validPWFormat)
 
 - 한계 : 특정 값 이하에서는 용량이 줄지 않아서 무한 루프 발생
 <Br>-> 다른 방법은?
+
+
+### 4. multiple image select 시 순서 보장 방법
