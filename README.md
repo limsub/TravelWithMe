@@ -42,7 +42,9 @@
 ## 💻 구현 내용
 ### 1. RxSwift + Input/Output patttern을 이용한 실시간 회원가입 유효성 검증
 
-<img src="https://github.com/limsub/TravelWithMe/assets/99518799/52565fd5-13fb-4f52-b728-2e8b5c16de11" align="center" width="24%">
+|![이메일](https://github.com/limsub/TravelWithMe/assets/99518799/dda886b6-56ab-4258-8d26-121c8b272e7d)|![비밀번호](https://github.com/limsub/TravelWithMe/assets/99518799/206ce7b4-554c-4a98-9beb-0cf53d946808)|![닉네임](https://github.com/limsub/TravelWithMe/assets/99518799/7baa768f-d3ca-4d8c-8275-c99125f71c65)|![생년월일](https://github.com/limsub/TravelWithMe/assets/99518799/f499209a-7258-48bb-9bde-6b7cd830bb7d)|
+|:--:|:--:|:--:|:--:|
+|이메일 계정|비밀번호|닉네임|생년월일|
 
 - RxCocoa의 `textField.rx.text.orEmpty` 를 Input 으로 전달
 - `transform` 메서드 내부에서 유효성 검사 후 Output 결과 전달
@@ -133,8 +135,9 @@
 
 <br>
 
-### 2 - 1. Alamofire RequestInterceptor를 리용한 JWT 갱신
-// 이미지
+### 2 - 1. Alamofire RequestInterceptor를 이용한 JWT 갱신
+![‎인터셉터 ‎001](https://github.com/limsub/TravelWithMe/assets/99518799/d59c6524-09bc-4d68-8f4d-5a8982b53273)
+
 
 - **APIRequestInterceptor** 를 구현하여 Keychain에 저장된 access token의 유효성을 검증하고 필요 시 토큰 갱신
 
@@ -268,7 +271,8 @@
 
 
 ### 3. Splash View에서 refresh token API 를 이용한 자동 로그인 구현
-// 이미지
+![‎자동 로그인 ‎001](https://github.com/limsub/TravelWithMe/assets/99518799/65fd706a-c7c3-4bc1-8972-1f87bae3c95a)
+
 
 - 앱의 생명주기를 관리하는 `AppDelegate`와 화면의 상태를 관리하는 `SceneDelegate`에서 네트워크 통신을 수행하는 건 적절하지 않다
 - Splash View를 Code-Based로 구현하여 네트워크 통신 수행
