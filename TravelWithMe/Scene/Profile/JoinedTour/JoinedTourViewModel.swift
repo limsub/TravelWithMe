@@ -28,7 +28,7 @@ class JoinedTourViewModel: TourItemsProtocol2 {
             api: .lookPost(
                 query: LookPostQueryString(
                     next: nextCursor,
-                    limit: "10Ω0"
+                    limit: "100"
                 ),
                 likePost: true
             )) { response in

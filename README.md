@@ -8,6 +8,12 @@
 
 <br>
 
+## 🥇 Award
+- 새싹 iOS 3기 **LSLP (Light Service Level Project) 경진대회 1위**
+
+
+<br>
+
 
 
 ## 💪 주요 기능
@@ -34,181 +40,248 @@
 
 
 ## 💻 구현 내용
-### 1. RxSwift를 이용한 실시간 회원가입 유효성 검증
+### 1. RxSwift + Input/Output patttern을 이용한 실시간 회원가입 유효성 검증
+
 <img src="https://github.com/limsub/TravelWithMe/assets/99518799/52565fd5-13fb-4f52-b728-2e8b5c16de11" align="center" width="24%">
 
-- VC에서 VM의 input으로 `textField.rx.text.orEmpty` 를 전달하고, 
-- `transform` 메서드 내에서 해당 텍스트에 대한 유효성을 검증한 후,
-- output으로 결과를 전달받아서 실시간으로 View를 업데이트한다.
-```swift
-// VC (func bind())
-let input = viewModel.input(pwText: mainView.pwTextField.rx.text.orEmpty)
-let output = viewModel.transform(input)
-output.validPWFormat
-    .subscribe(with: self) { owner, value in 
-        owner.mainView.checkPWLabel.setUpText(value)
-    }
-    .disposed(by: disposeBag)
+- RxCocoa의 `textField.rx.text.orEmpty` 를 Input 으로 전달
+- `transform` 메서드 내부에서 유효성 검사 후 Output 결과 전달
+ 
+    <details>
+    <summary><b>Input/Output pattern</b> </summary>
+    <div markdown="1">
 
-
-// VM (func transform())
-let validPWFormat = PublishSubject<ValidPW>()
-input.pwText
-    .map { text in 
-        // 1. text.isEmpty
-        return ValidPW.nothing
-        // 2. text.count < 8
-        return ValidPW.tooShort
-        // 3. no specialCharacter
-        return ValidPW.missingSpecialCharacter
-        // 4. available
-        return ValidPW.available
-    }
-    .subscribe(with: self) { owner, value in 
-        validPWFormat.onNext(value)
-    }
-    .disposed(by: disposeBag)
-
-return Output(validPWFormat: validPWFormat)
-```
-
-<br>
-
-### 2 - 1. jwt 토큰 갱신을 위한 Interceptor 구현
-- Keychain에 저장된 access token과 refresh token을 이용해서
-<br> 매번 네트워크 통신 전 토큰의 유효성 검증을 진행하였다.
-
-- `adapt` : 현재 Keychain에 저장된 token값을 헤더에 추가
-  <br>(retry 함수로 인해 Keychain의 토큰 값이 변경된 경우 대비)
     ```swift
-    // adapt
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        
-        var urlRequest = urlRequest
-        urlRequest.headers.add(name: "Authorization", value: KeychainStorage.shared.accessToken ?? "")
-        completion(.success(urlRequest))
+    // VM
+    struct Input {
+        let emailText: ControlProperty<String>
+
+        /* ... */
+    }
+
+    struct Output {
+        let validEmailFormat: PublishSubject<ValidEmail>
+
+        /* ... */
+    }
+
+    func transform(_ input: Input) -> Output {
+        /* ... */
     }
     ```
 
+    </div>
+    </details>
+
 <br>
 
-- `retry` : 네트워크 에러 발생 시 실행
-  1. access token 만료 에러(statusCode: 419)가 아닌 경우, 해당 에러를 그대로 반환
-  2. access token 만료 에러인 경우, access token 갱신 네트워크 요청
-  3. access token 갱신 성공한 경우, Keychain 헤더 업데이트 후 현재 네트워크 통신을 재요청
-  4. access token 갱신에 실패한 경우, 해당 에러를 그대로 반환
-    ```swift
-    // retry
-    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+- `textField.rx.text` 는 텍스트의 변화(`.valueChanged`) 외에도 모든 액션(`.allEditingEvents`) 에 대해 이벤트를 방출하기 때문에 `distinctUntilChanged()` 를 통해 텍스트의 변화만 감지할 수 있도록 구현
 
-        guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 419 else {
-            // 1.
-            completion(.doNotRetryWithError(error))
-            return
+    <details>
+    <summary><b>distinctUntilChanged</b> </summary>
+    <div markdown="1">
+
+    ```swift
+    input.emailText
+	.distintUntilChanged()
+	.subscribe {
+		/* ... */
+	}
+	.disposed(by: disposeBag)
+    ```
+
+    </div>
+    </details>
+
+<br>
+
+- enum을 이용해서 구체적인 상태에 대한 결과 전달
+
+    <details>
+    <summary><b>enum ValidEmail</b> </summary>
+    <div markdown="1">
+
+    ```swift
+    enum ValidEmail: Int {
+        case nothing
+        case invalidFormat
+        case validFormatBeforeCheck
+        case alreadyInUse
+        case available
+        
+        var description: String {
+            switch self {
+            case .nothing:
+                return ""
+            case .invalidFormat:
+                return "이메일 형식에 맞지 않습니다"
+            case .validFormatBeforeCheck:
+                return "이메일 중복 확인을 해주세요"
+            case .alreadyInUse:
+                return "이미 사용중인 이메일입니다"
+            case .available:
+                return "사용 가능한 이메일입니다"
+            }
+        }
+    }
+
+    ```
+
+    </div>
+    </details>
+
+
+<br>
+
+### 2 - 1. Alamofire RequestInterceptor를 리용한 JWT 갱신
+// 이미지
+
+- **APIRequestInterceptor** 를 구현하여 Keychain에 저장된 access token의 유효성을 검증하고 필요 시 토큰 갱신
+
+    <details>
+    <summary><b>APIRequestInterceptor</b> </summary>
+    <div markdown="1">
+
+    ```swift
+    final class APIRequestInterceptor: RequestInterceptor {
+    
+        func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+            // 키체인에 있는 토큰을 header에 추가
+            var urlRequest = urlRequest
+            urlRequest.headers.add(name: "Authorization", value: KeychainStorage.shared.accessToken ?? "")
+            completion(.success(urlRequest))
         }
         
-        // 2.
-        RouterAPIManager.shared.requestNormalWithNoIntercept(
-            type: RefreshTokenResponse.self,
-            error: RefreshTokenAPIError.self,
-            api: .refreshToken) { response  in
-                switch response {
-                case .success(let result):
-                    // 3.
-                    KeychainStorage.shared.accessToken = result.token
-                    completion(.retry)
-                    return
-                case .failure(let error):
-                    // 4.
-                    // (에러 분기 처리 생략)
-                    completion(.doNotRetryWithError(error))
-                }
+        func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+
+            // Token 만료 에러가 아닌 경우
+            guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 419 else {
+                completion(.doNotRetryWithError(error))
+                return
             }
+            
+            // Token 만료 에러인 경우 (statusCode: 419)
+            RouterAPIManager.shared.requestNormal(
+                type: RefreshTokenResponse.self,
+                error: RefreshTokenAPIError.self,
+                api: .refreshToken) { response  in
+                    switch response {
+                    case .success(let result):
+                        // 키체인에 new Token 저장
+                        KeychainStorage.shared.accessToken = result.token
+
+                        // retry
+                        completion(.retry)
+
+                    case .failure(let error)
+                        /* ... 에러 분기 처리 생략 ... */
+
+                        // doNotRetryWithError
+                        completion(.doNotRetryWithError(error))
+                    }
+                }
+        }
     }
     ```
 
-### 2 - 2. 네트워크 통신 에러 처리
-- API 별 Error -> enum 선언
-- 공통적인 내용 -> protocol 선언
-  1. Int 타입 rawValue
-  2. Error protocol 채택
-  3. error 내용 프로퍼티 (String)
+    </div>
+    </details>
+
+
+<br>
+
+### 2 - 2. Protocol, Generic을 이용한 API 에러 타입 및 request 메서드 추상화
+
+- 프로젝트 내 API 에러 특징
+  1. **Int 타입 RawValue** (statusCode)
+  2. **protocol Error** 채택
+  3. **String 타입 error description** (alert, log에서 활용)
+
+<br>
+
+
+- 위 내용을 프로토콜로 선언하고, 각 에러 타입(enum)이 채택
+
+    <details>
+    <summary><b>protocol APIError</b> </summary>
+    <div markdown="1">
+
     ```swift
+    // protocol
     protocol APIError: RawRepresentable, Error where RawValue == Int {
         var description: String { get }
     }
 
-    /* ===== 회원가입 ===== */
-    enum JoinAPIError: Int, APIError {
+    /* === 공통 에러 === */
+    enum CommonAPIError: Int, APIError {
+        case invalidSeSACKey = 420
+        case overInvocation = 429
+        case invalidURL = 444
+        case unknownError = 500
+
+            var description: String {
+                    /* ... */
+            }
+    }
+
+    /* ===== 이메일 중복 확인 ===== */
+    enum ValidEmailAPIError: Int, APIError {
         case missingValue = 400
-        case alreadyRegistered = 409
+        case invalidEmail = 409
         
         var description: String {
-            switch self {
-            case .missingValue:
-                return "필수값을 채워주세요"
-            case .alreadyRegistered:
-                return "이미 가입된 유저입니다"
-            }
+                    /* ... */
         }
     }
+
     ```
-- 네트워크 요청 메서드에서 요청 모델(`T: Decodable`)을 제네릭으로 받는 것처럼 
-<br> API Error 타입(`U: APIError`)도 제네릭 매개변수로 받을 수 있게 된다
-- Error에 대한 분기 처리는 rawValue (statusCode) 를 이용하였다
+
+    </div>
+    </details>
+
+<br>
+
+
+- 네트워크 요청 시 Generic을 이용해서 여러 응답 모델과 에러 타입에 대해 대응
+
+    <details>
+    <summary><b>network request</b> </summary>
+    <div markdown="1">
 
     ```swift
-    func requestNormal<T: Decodable, U: APIError>(
-        type: T.Type,
-        error: U.Type, 
+    func request<T: Decodable, U: APIError>(
+        responseType: T.Type, 
+        errorType: U.Type, 
         api: Router, 
-        completionHandler: @escaping (Result<T, Error>) -> Void) {
-        
-        AF.request(api, interceptor: APIRequestInterceptor())
-            .responseDecodable(of: T.self) { response in
-
-                switch response.result {
-                case .success(let data):
-                    completionHandler(.success(data))
-                    
-                case .failure(let error):
-                    let statusCode = response.response?.statusCode ?? 500
-
-                    // 1. 공통 에러 (statusCode)
-                    if [420, 429, 444, 500].contains(statusCode) {
-                        let returnError = CommonAPIError(rawValue: statusCode)!
-                        completionHandler(.failure(returnError))
-                    }
-                    
-                    // 2. 토큰 갱신 에러 (retryFailed)
-                    else if case .requestRetryFailed(let retryError as RefreshTokenAPIError, _) = error {
-                        completionHandler(.failure(retryError))
-                    }
-
-                    // 3. U 타입 에러 (statusCode)
-                    else if let returnError = U(rawValue: statusCode) {
-                        completionHandler(.failure(returnError))
-                    }
-
-                    // 4. 알 수 없는 에러
-                    else {
-                        completionHandler(.failure(CommonError.unknownError))
-                    }
-                }
-            }   
+        completionHandler: @escaping (Result<T, Error>) -> Void
+    ) {
+        /* ... */
     }
+    
     ```
 
-<br>
-
-### 3. 자동 로그인 구현
-<img src="https://github.com/limsub/TravelWithMe/assets/99518799/b86ae516-c8ba-4e40-8ebe-42e8d7439da9" align="center" width="60%">
-
-- 앱 실행 시 나타나는 SplashView에서 현재 Keychain에 저장된 토큰의 유효성을 검사한다
-- 토큰의 유효성에 따라 앱의 첫 화면을 결정한다
+    </div>
+    </details>
 
 
 <br>
+
+
+### 3. Splash View에서 refresh token API 를 이용한 자동 로그인 구현
+// 이미지
+
+- 앱의 생명주기를 관리하는 `AppDelegate`와 화면의 상태를 관리하는 `SceneDelegate`에서 네트워크 통신을 수행하는 건 적절하지 않다
+- Splash View를 Code-Based로 구현하여 네트워크 통신 수행
+
+<br>
+
+- Keychain에 저장된 refresh token으로 access token 갱신 네트워크 요청
+    1. **성공** 또는 **access token이 만료되지 않은 경우 (419)**, 메인 화면 전환
+    2. **419 외 에러인 경우** 유효하지 않은 토큰으로 간주, 로그인 화면 전환
+
+
+<br>
+
 
 ### 4. UIBezierPath 활용 곡선 뷰 구현
 <p align="left">
