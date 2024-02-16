@@ -8,12 +8,18 @@
 
 <br>
 
-## 🥇 Award
+## 🥇 Awards
 - 새싹 iOS 3기 **LSLP (Light Service Level Project) 경진대회 1위**
 
 
 <br>
 
+## 📚 Tech Blog
+- [[MapKit] 장소 검색 및 애플 맵 annotation](https://github.com/limsub)
+- [[FSCalendar] Custom cell을 활용한 날짜 기간 선택 구현](https://github.com/limsub)
+
+
+<br>
 
 
 ## 💪 주요 기능
@@ -286,50 +292,81 @@
 
 <br>
 
+### 4. UIBezierPath를 이용한 곡선 UI 구현 및 CAGradientLayer를 이용한 색상 그라데이션 효과 구현
 
-### 4. UIBezierPath 활용 곡선 뷰 구현
-<p align="left">
-  <img src="https://github.com/limsub/TravelWithMe/assets/99518799/82179b6f-a1a2-4b56-849a-64ae78aa4200" align="center" width="24%">
-  <img src="https://github.com/limsub/TravelWithMe/assets/99518799/ef04828a-e220-4460-a197-71ea98142f70" align="center" width="24%">
-</p>
+|![다른 사람 프로필 - 만든 여행](https://github.com/limsub/TravelWithMe/assets/99518799/3301e20d-092d-49a1-9ba9-c30f2f2dc6bd)|![myprofile_joinedTour](https://github.com/limsub/TravelWithMe/assets/99518799/84c48070-3d4d-45da-b9ca-32c03589ebfd)|![내 프로필 - 정보](https://github.com/limsub/TravelWithMe/assets/99518799/b45edb4a-cf4a-438c-ae75-31a482b4f467)|![투어 상세페이지 - top](https://github.com/limsub/TravelWithMe/assets/99518799/23c6a40a-3aeb-4c20-92a4-8735fe3d85a8)|
+|:--:|:--:|:--:|:--:|
+|다른 유저 프로필 - 만든 여행|내 프로필 - 신청한 여행|내 프로필 - 정보|여행 상세페이지|
 
-- UIView의 `draw` 메서드 내에서 `UIBezierPath`를 이용한 곡선 뷰를 구현했다
-    ```swift
-    override func draw(_ rect: CGRect) {
-        let path = UIBezierPath()
 
-        UIColor.white.setFill()
-        path.lineWidth = 0
+- 
+	<details>
+	<summary><b>UIBezierPath</b> </summary>
+	<div markdown="1">
+	
+	```swift
+	override func draw(_ rect: CGRect) {
+ 		super.draw(rect)
+ 
+		let path = UIBezierPath()
+		
+		UIColor.white.setFill()
+		path.lineWidth = 0
+		
+		path.move(to: CGPoint(x: leftX, y: bottomY))
+		path.addLine(to: CGPoint(x: leftX, y: startY))
+		path.addCurve(to: CGPoint(x: rightX, y: endY),
+			    controlPoint1: CGPoint(x: firstX, y: firstY),
+			    controlPoint2: CGPoint(x: secondX, y: secondY)
+		)
+		path.addLine(to: CGPoint(x: rightX, y: bottomY))
+		
+		path.stroke()
+		path.fill()
+	}
+	```
+	</div>
+	</details>
 
-        path.move(to: CGPoint(x: leftX, y: bottomY))
-        path.addLine(to: CGPoint(x: leftX, y: startY))
-        path.addCurve(to: CGPoint(x: rightX, y: endY),
-                    controlPoint1: CGPoint(x: firstX, y: firstY),
-                    controlPoint2: CGPoint(x: secondX, y: secondY)
-        )
-        path.addLine(to: CGPoint(x: rightX, y: bottomY))
 
-        path.stroke()
-        path.fill()
-    }
-    ```
+- 
+	<details>
+	<summary><b>CAGradientLayer</b> </summary>
+	<div markdown="1">
+	
+	```swift
+	override func draw(_ rect: CGRect) {
+		super.draw(rect)
+	        
+	        let gradientLayer = CAGradientLayer()
+	        gradientLayer.frame = self.bounds
+	        let colors: [CGColor] = [
+	            UIColor.appColor(.main1).cgColor,
+	            UIColor.appColor(.second1).cgColor
+	        ]
+	        gradientLayer.colors = colors
+	
+	        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+	        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+	        
+	        self.layer.insertSublayer(gradientLayer, at: 0)
+	}
+	```
+	</div>
+	</details>
 
-<img src="https://github.com/limsub/TravelWithMe/assets/99518799/a97832e7-742c-4412-aac6-3dff0055c8f9" align="center" width="24%">
 
-- (****)사용자 입장에서 곡선 뷰의 영역을 스크롤해도 뒤의 이미지 컬렉션뷰가 스크롤되어야 하기 때문에 곡선 뷰의 `hitTest` 를 넘겨주었다
-    ```swift
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        
-        let hitView: UIView? = super.hitTest(point, with: event)
-        if (self == hitView) { return nil }
-        return hitView
-    }
-    ```
-
-<br>
 
 ## 🔥트러블 슈팅
 ### 1. Image Loading
+1. header가 필요한 이미지 로딩 - AlamofireImage 이용 + 캐싱을 위해 NSCache
+2. ~~ 한 점에서 한계. 이를 보완할 수 있는 KingFisher 이용 - option에 헤더 추가
+   	- `UIImageView`의 메서드로 구현
+4. 하지만 KingFisher 역시 ~~ 한 점에서 한계. (회고?)
+
+<br>
+----
+<br>
 - 기존에는 header가 필요 없이 url으로만 이미지 로딩 작업을 해왔기 때문에
 <br> 서버에 저장되는 이미지, 즉 권한이 필요한 이미지를 불러오는 작업이 처음이었다.
 
@@ -390,3 +427,10 @@
 
 
 ### 4. multiple image select 시 순서 보장 방법
+- 기존 : 시작 시점과 마지막 시점만 파악함
+- 그래서 순서가 뒤죽박죽으로 들어갔음
+- 미리 배열 만들어서 인덱스로 접근할 수 있도록 수정
+
+
+
+## 회고!
