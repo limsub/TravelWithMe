@@ -12,12 +12,15 @@ class SelectLocationViewController: BaseViewController {
     
     var delegate: SelectTourLocationDelegate?
     
+    
     private var searchCompleter = MKLocalSearchCompleter()
     private var searchResults = [MKLocalSearchCompletion]()
     
     
     private var localSearch: MKLocalSearch? = nil {
         willSet {
+            print("localSearch willSet!!")
+            print(newValue)
             localSearch?.cancel()
         }
     }
@@ -70,8 +73,8 @@ extension SelectLocationViewController: UISearchBarDelegate {
 extension SelectLocationViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        print(#function)
         searchResults = completer.results   // 결과 데이터 받기
-        print("서치 결과 : \(searchResults)")
         
         mainView.tableView.reloadData()
     }
