@@ -15,8 +15,8 @@
 <br>
 
 ## 📚 Tech Blog
-- [[MapKit] 장소 검색 및 애플 맵 annotation](https://github.com/limsub)
-- [[FSCalendar] Custom cell을 활용한 날짜 기간 선택 구현](https://github.com/limsub)
+- [[MapKit] 장소 검색 및 애플 맵 annotation](https://velog.io/@s_sub/%EC%83%88%EC%8B%B9-iOS-17%EC%A3%BC%EC%B0%A8MapKit-%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%9E%A5%EC%86%8C-%EA%B2%80%EC%83%89-%EB%B0%8F-Apple-Map-%EC%9C%84%EC%B9%98-%ED%91%9C%EC%8B%9C)
+- [[FSCalendar] Custom cell을 활용한 날짜 기간 선택 구현](https://velog.io/@s_sub/%EC%83%88%EC%8B%B9-iOS-17%EC%A3%BC%EC%B0%A8)
 
 
 <br>
