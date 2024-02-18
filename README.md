@@ -141,7 +141,7 @@
 
 <br>
 
-### 2 - 1. Alamofire RequestInterceptor를 이용한 JWT 갱신
+### 2. Alamofire RequestInterceptor를 이용한 JWT 갱신
 ![‎인터셉터 ‎001](https://github.com/limsub/TravelWithMe/assets/99518799/d59c6524-09bc-4d68-8f4d-5a8982b53273)
 
 
@@ -199,7 +199,7 @@
 
 <br>
 
-### 2 - 2. Protocol, Generic을 이용한 API 에러 타입 및 request 메서드 추상화
+### 3. Protocol, Generic을 이용한 API 에러 타입 및 request 메서드 추상화
 
 - 프로젝트 내 API 에러 특징
   1. **Int 타입 RawValue** (statusCode)
@@ -276,7 +276,7 @@
 <br>
 
 
-### 3. Splash View에서 refresh token API 를 이용한 자동 로그인 구현
+### 4. Splash View에서 refresh token API 를 이용한 자동 로그인 구현
 ![‎자동 로그인 ‎001](https://github.com/limsub/TravelWithMe/assets/99518799/65fd706a-c7c3-4bc1-8972-1f87bae3c95a)
 
 
@@ -355,6 +355,8 @@
 	</div>
 	</details>
 
+
+<br>
 
 
 ## 🔥트러블 슈팅
