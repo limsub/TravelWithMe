@@ -91,11 +91,11 @@
 
     ```swift
     input.emailText
-	.distintUntilChanged()
-	.subscribe {
-		/* ... */
-	}
-	.disposed(by: disposeBag)
+        .distintUntilChanged()
+        .subscribe {
+	    /* ... */
+        }
+        .disposed(by: disposeBag)
     ```
 
     </div>
