@@ -361,29 +361,108 @@
 
 ## 🔥트러블 슈팅
 ### 1. Image Loading
-1. header가 필요한 이미지 로딩 - AlamofireImage 이용 + 캐싱을 위해 NSCache
-2. ~~ 한 점에서 한계. 이를 보완할 수 있는 KingFisher 이용 - option에 헤더 추가
-   	- `UIImageView`의 메서드로 구현
-4. 하지만 KingFisher 역시 ~~ 한 점에서 한계. (회고?)
+이슈
+- tableView Cell에 로드한 이미지가 스크롤 시 버벅이는 이슈 발생
+
 
 <br>
-----
+
+
+해결 - 1 
+- **AlamofireImage** 의 `requestImage`를 통해 이미지 데이터 로드
+- `NSCache`에 대한 Singleton Manager 이용해서 이미지 캐싱 (memory cache) 처리
+	<details>
+	<summary><b>requestImage & ImageCacheManager</b> </summary>
+	<div markdown="1">
+
+	```swift
+	func requestImage(api: Router, completionHandler: @escaping (Result<Image, Error>) -> Void) {
+	    
+	    let cachedKey = NSString(string: url)
+	
+	    if let cachedImage = ImageCacheManager.shared.object(forKey: cachedKey) {
+	        completionHandler(.success(cachedImage)
+	        return
+	    }
+	    
+	    AF.request(api)
+	        .responseImage { response in
+	            switch response.result {
+	            case .success(let image):
+	                completionHandler(.success(image))
+	                
+	            case .failure(let error):
+	                ompletionHandler(.failure(error))
+	            }
+	        }
+	}
+	
+	class ImageCacheManager {
+	
+	    static let shared = NSCache<NSString, UIImage>()
+	    private init() { }
+	}
+	```
+
+	</div>
+	</details>
+
+
+
+
+	
+
 <br>
-- 기존에는 header가 필요 없이 url으로만 이미지 로딩 작업을 해왔기 때문에
-<br> 서버에 저장되는 이미지, 즉 권한이 필요한 이미지를 불러오는 작업이 처음이었다.
 
-1. insomnia를 이용해서 url과 header를 통해 이미지 파일 확인
 
-2. Router에 이미지 다운로드하는 case 추가 및 프로퍼티 구현
-<br> **AlamofireImage** 라이브러리 이용해서 이미지 파일 다운로드
-<br> **NSCache** 를 통한 직접 메모리 캐싱 구현
+해결 - 2
+- **KingFisher**를 활용해서 이미지 데이터 로드, 이미지 캐싱 (memory & disk cache), 이미지 다운샘플링
+- `UIImageView`의 메서드로 구현하여 편의성 향상
+	<details>
+	<summary><b>UIImageView - loadImage</b> </summary>
+	<div markdown="1">
 
-3. **KingFisher**의 option 활용 이미지 로딩
-<br> 내부적으로 downsampling이 가능하고 caching 처리가 가능하다는 장점
+	```swift
+	extension UIImageView {
+	    
+	    func loadImage(endURLString: String, size: CGSize) {
+	        
+	        let imageURLString = /* ... */
+	        let imageURL = URL(string: imageURLString)
+	        
+	        let header = [
+							/* ... */
+	        ]
+	        
+	        let modifier = AnyModifier { request in
+	            var modifiedRequest = request
+	            for (key, value) in header {
+	                modifiedRequest.headers.add(name: key, value: value)
+	            }
+	            return modifiedRequest
+	        }
+	        
+	        let processor = DownsamplingImageProcessor(size: size)
+	        
+	        self.kf.setImage(
+	            with: imageURL,
+	            placeholder: UIImage(named: "basicProfile2"),
+	            options: [
+	                .requestModifier(modifier),
+	                .processor(processor),
+	                .scaleFactor(UIScreen.main.scale),
+	                .cacheOriginalImage,
+	            ]
+	        )
+	    }
+	}
+	```
 
-4. `UIImageView`의 메서드 구현해서 보다 간편하게 사용할 수 있도록 함
+	</div>
+	</details>
 
 <br>
+
 
 ### 2. UIButton의 `isSelected` Control Property 직접 구현
 - 카테고리 버튼의 선택 여부 (isSelected)를 input으로 전달하는 과정에서, 
@@ -403,36 +482,53 @@
     }
     ```
 
-- 이슈 : 사용자가 버튼을 눌렀을 때는 정상적으로 이벤트를 방출하지만, 코드 내에서 직접 `button.isSelected` 값을 바꿔줄 때는 이벤트가 방출되지 않았다.
-  - 해결 방법 1 : 코드로 값을 바꿔줄 때마다 해당 버튼에 `touchUpInside` 액션을 전달한다.
-    ```swift
-    button.isSelected.toggle()
-    button.sendActions(for: .touchUpInside)
-    ```
-  - 해결 방법 2 : KVO 개념을 이용해서 사용자의 액션을 통한 이벤트와 코드를 통한 이벤트를 따로 처리한다.
-    ```swift
-    let buttonSelected1 = button.rx.isSelected
-    let buttonSelected2 = button.rx.observe(Bool.self, "isSelected")
-    ```
-- `UIButton` 외에도 `UITextField` 등 객체에도 동일한 이슈가 발생하여, 위 방법으로 해결하였다.
+이슈 
+- 사용자가 버튼을 눌렀을 때는 정상적으로 이벤트를 방출하지만, 코드 내에서 직접 `button.isSelected` 값을 바꿔줄 때는 이벤트가 방출되지 않았다.
+- `UIButton` 외에도 `UITextField` 등 객체에도 동일한 이슈가 발생
+
 
 <br>
 
-### 3. Image Resizing
-- 서버에 이미지 데이터를 올릴 때, 제한 용량이 존재했다. (ex. 프로필 이미지 제한 용량 1MB)
-- 따라서 이미지를 올리기 전 용량을 줄이는 resizing 작업이 필요했다.
-- `.jpegData` 메서드의 `compressionQuality` 를 줄여가며 리사이징 구현
+
+해결 - 1 
+- 코드로 값을 바꿔줄 때마다 해당 버튼에 `touchUpInside` 액션을 전달한다.
+	<details>
+	<summary><b>UIButton - sendActions</b> </summary>
+	<div markdown="1">
+	```swift
+	button.isSelected.toggle()
+	button.sendActions(for: .touchUpInside)
+	```
+
+	</div>
+	</details>
 
 
-- 한계 : 특정 값 이하에서는 용량이 줄지 않아서 무한 루프 발생
-<Br>-> 다른 방법은?
 
 
-### 4. multiple image select 시 순서 보장 방법
-- 기존 : 시작 시점과 마지막 시점만 파악함
-- 그래서 순서가 뒤죽박죽으로 들어갔음
-- 미리 배열 만들어서 인덱스로 접근할 수 있도록 수정
+	```swift
+	button.isSelected.toggle()
+	button.sendActions(for: .touchUpInside)
+	```
 
 
+<br>
 
-## 회고!
+
+해결 - 2
+- KVO 개념을 이용해서 사용자의 액션을 통한 이벤트와 코드를 통한 이벤트를 따로 처리한다.
+	<details>
+	<summary><b>KVO</b> </summary>
+	<div markdown="1">
+	```swift
+	let buttonSelected1 = button.rx.isSelected
+	let buttonSelected2 = button.rx.observe(Bool.self, "isSelected")
+	```
+
+	</div>
+	</details>
+
+
+<br>
+
+
